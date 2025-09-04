@@ -1,0 +1,10 @@
+^C:\USERS\ASUS\ONEDRIVE\DOCUMENTS\EAFIT\SEMESTRE 7\TOPICOS_TELEMATICA\DFS\NAMENODE\BUILD\CMAKEFILES\A083F28BA94E2377162F1AE504E35E2B\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/ASUS/OneDrive/Documents/EAFIT/SEMESTRE 7/Topicos_Telematica/DFS/namenode" "-BC:/Users/ASUS/OneDrive/Documents/EAFIT/SEMESTRE 7/Topicos_Telematica/DFS/namenode/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/ASUS/OneDrive/Documents/EAFIT/SEMESTRE 7/Topicos_Telematica/DFS/namenode/build/NameNodeDFS.sln"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

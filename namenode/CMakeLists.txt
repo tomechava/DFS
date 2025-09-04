@@ -1,35 +1,28 @@
 cmake_minimum_required(VERSION 3.15)
-project(NameNode LANGUAGES CXX)
+project(NameNodeDFS CXX)
 
-# Necesitamos C++17
 set(CMAKE_CXX_STANDARD 17)
 
-# Buscar gRPC y Protobuf instalados
-find_package(Protobuf CONFIG REQUIRED)
+# vcpkg integration
 find_package(gRPC CONFIG REQUIRED)
+find_package(Protobuf CONFIG REQUIRED)
 
-# Archivos generados por protoc
-set(PROTO_SRCS
-    src/dfs.pb.cc
-    src/dfs.grpc.pb.cc
+# Archivos fuente
+set(SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/dfs.pb.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/dfs.grpc.pb.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
 )
 
-set(PROTO_HDRS
-    src/dfs.pb.h
-    src/dfs.grpc.pb.h
+
+add_executable(namenode ${SOURCES})
+
+target_include_directories(namenode PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-# Archivos de tu implementación
-set(SERVER_SRCS
-    src/main.cpp
-    src/NameNodeService.cpp
-    ${PROTO_SRCS}
-)
-
-add_executable(namenode_server ${SERVER_SRCS})
-
-# Vincular librerías necesarias
-target_link_libraries(namenode_server
-    gRPC::grpc++
-    protobuf::libprotobuf
+target_link_libraries(namenode
+    PRIVATE gRPC::grpc++
+    PRIVATE protobuf::libprotobuf
 )

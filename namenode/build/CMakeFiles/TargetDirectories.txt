@@ -1,0 +1,3 @@
+C:/Users/ASUS/OneDrive/Documents/EAFIT/SEMESTRE 7/Topicos_Telematica/DFS/namenode/build/CMakeFiles/namenode.dir
+C:/Users/ASUS/OneDrive/Documents/EAFIT/SEMESTRE 7/Topicos_Telematica/DFS/namenode/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/ASUS/OneDrive/Documents/EAFIT/SEMESTRE 7/Topicos_Telematica/DFS/namenode/build/CMakeFiles/ZERO_CHECK.dir

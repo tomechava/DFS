@@ -1,0 +1,150 @@
+syntax = "proto3";
+
+package dfs;
+
+// ===========================================================
+//  Servicio NameNode <-> Cliente
+// ===========================================================
+service NameNodeService {
+  // Subir un archivo: cliente indica nombre y tamaño, NN responde con asignación de bloques
+  rpc PutFile (PutFileRequest) returns (PutFileResponse);
+
+  // Descargar un archivo: cliente pide info de bloques
+  rpc GetFile (GetFileRequest) returns (GetFileResponse);
+
+  // Listar archivos del usuario
+  rpc ListFiles (ListFilesRequest) returns (ListFilesResponse);
+
+  // Eliminar un archivo
+  rpc RemoveFile (RemoveFileRequest) returns (RemoveFileResponse);
+}
+
+// ===========================================================
+//  Servicio Cliente <-> DataNode
+// ===========================================================
+service DataNodeService {
+  // Subir un bloque a un DataNode
+  rpc UploadBlock (BlockUploadRequest) returns (BlockUploadResponse);
+
+  // Descargar un bloque desde un DataNode
+  rpc DownloadBlock (BlockDownloadRequest) returns (BlockDownloadResponse);
+}
+
+// ===========================================================
+//  Servicio interno NameNode <-> DataNodes (Cluster Management)
+// ===========================================================
+service ClusterService {
+  // Registro inicial de un DataNode
+  rpc RegisterDataNode (RegisterDataNodeRequest) returns (RegisterDataNodeResponse);
+
+  // Heartbeat: DataNode avisa que sigue activo
+  rpc Heartbeat (HeartbeatRequest) returns (HeartbeatResponse);
+
+  // Reporte de bloques almacenados
+  rpc ReportBlock (ReportBlockRequest) returns (ReportBlockResponse);
+}
+
+// ===========================================================
+//  MENSAJES
+// ===========================================================
+
+// ---------- Cliente <-> NameNode ----------
+message PutFileRequest {
+  string username = 1;
+  string password = 2;
+  string filename = 3;
+  int64 filesize = 4;  // en bytes
+}
+
+message PutFileResponse {
+  repeated BlockLocation blocks = 1; // Lista de bloques y DataNodes asignados
+}
+
+message GetFileRequest {
+  string username = 1;
+  string password = 2;
+  string filename = 3;
+}
+
+message GetFileResponse {
+  repeated BlockLocation blocks = 1;
+}
+
+message ListFilesRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message ListFilesResponse {
+  repeated string filenames = 1;
+}
+
+message RemoveFileRequest {
+  string username = 1;
+  string password = 2;
+  string filename = 3;
+}
+
+message RemoveFileResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// ---------- Cliente <-> DataNode ----------
+message BlockUploadRequest {
+  int32 block_id = 1;
+  string filename = 2;
+  bytes data = 3; // contenido del bloque
+}
+
+message BlockUploadResponse {
+  bool success = 1;
+}
+
+message BlockDownloadRequest {
+  int32 block_id = 1;
+  string filename = 2;
+}
+
+message BlockDownloadResponse {
+  bytes data = 1;
+}
+
+// ---------- NameNode <-> DataNodes ----------
+message RegisterDataNodeRequest {
+  string datanode_id = 1;
+  string ip_address = 2;
+  int32 port = 3;
+}
+
+message RegisterDataNodeResponse {
+  bool success = 1;
+}
+
+message HeartbeatRequest {
+  string datanode_id = 1;
+}
+
+message HeartbeatResponse {
+  bool success = 1;
+}
+
+message ReportBlockRequest {
+  string datanode_id = 1;
+  repeated BlockReport blocks = 2;
+}
+
+message ReportBlockResponse {
+  bool success = 1;
+}
+
+message BlockReport {
+  int32 block_id = 1;
+  string filename = 2;
+}
+
+// ---------- Estructuras comunes ----------
+message BlockLocation {
+  int32 block_id = 1;
+  string datanode_address = 2; // IP:PUERTO
+}

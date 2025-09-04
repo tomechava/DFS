@@ -1,0 +1,61 @@
+plugins {
+    id 'java'
+    id 'com.google.protobuf' version '0.9.4'
+    id 'application'
+}
+
+application {
+    mainClass = 'com.dfs.datanode.DataNodeServer'
+}
+
+group = 'com.dfs.datanode'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'io.grpc:grpc-netty-shaded:1.64.0'
+    implementation 'io.grpc:grpc-protobuf:1.64.0'
+    implementation 'io.grpc:grpc-stub:1.64.0'
+    implementation 'javax.annotation:javax.annotation-api:1.3.2'
+
+    testImplementation 'junit:junit:4.13.2'
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.25.1"
+    }
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:1.64.0"
+        }
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                java {}
+            }
+            task.plugins {
+                grpc {}
+            }
+        }
+    }
+}
+
+sourceSets {
+    main {
+        proto {
+            // Subir un nivel para llegar a DFS/proto
+            srcDir "${rootDir}/../proto"
+        }
+        java {
+            srcDirs 'src/main/java',
+                    'build/generated/source/proto/main/java',
+                    'build/generated/source/proto/main/grpc'
+        }
+    }
+}
+

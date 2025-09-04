@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\ASUS\OneDrive\Documents\EAFIT\SEMESTRE 7\Topicos_Telematica\DFS\namenode\build\CMakeFiles\a083f28ba94e2377162f1ae504e35e2b\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{710E29FC-D390-30F3-835B-C2DF7115519F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
