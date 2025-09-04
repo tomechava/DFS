@@ -8,6 +8,11 @@ application {
     mainClass = 'com.dfs.datanode.DataNodeServer'
 }
 
+tasks.register('runClient', JavaExec) {
+    mainClass = 'com.dfs.datanode.DataNodeClient'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
 group = 'com.dfs.datanode'
 version = '1.0-SNAPSHOT'
 
