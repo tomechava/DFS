@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-int main(){
+int testAuthManager(){
     cout << "hola" << endl;
     return 0;
 }

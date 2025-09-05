@@ -10,6 +10,18 @@
     <ClCompile Include="C:\Users\ASUS\OneDrive\Documents\EAFIT\SEMESTRE 7\Topicos_Telematica\DFS\namenode\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\ASUS\OneDrive\Documents\EAFIT\SEMESTRE 7\Topicos_Telematica\DFS\namenode\src\DataNodeClient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\ASUS\OneDrive\Documents\EAFIT\SEMESTRE 7\Topicos_Telematica\DFS\namenode\src\AuthManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\ASUS\OneDrive\Documents\EAFIT\SEMESTRE 7\Topicos_Telematica\DFS\namenode\src\NameNodeServer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\ASUS\OneDrive\Documents\EAFIT\SEMESTRE 7\Topicos_Telematica\DFS\namenode\src\MetadataManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\ASUS\OneDrive\Documents\EAFIT\SEMESTRE 7\Topicos_Telematica\DFS\namenode\CMakeLists.txt" />

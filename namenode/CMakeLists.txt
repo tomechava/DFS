@@ -12,6 +12,10 @@ set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/dfs.pb.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/dfs.grpc.pb.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/DataNodeClient.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/AuthManager.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/NameNodeServer.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MetadataManager.cpp
 )
 
 
