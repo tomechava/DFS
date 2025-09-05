@@ -73,8 +73,10 @@ void RunServer() {
     if (ok) std::cout << "Contenido: " << downloaded << std::endl;
 
     // 2.3 (Opcional) Registro/heartbeat
-    // dn.RegisterDataNode("dn-1", "127.0.0.1", 50052, &err);
-    // dn.Heartbeat("dn-1", &err);
+    ok = dn.RegisterDataNode("dn-1", "127.0.0.1", 50052, &err);
+    std::cout << "[NameNode->DataNode] Register Data Node: " << (ok ? "OK" : ("FAIL: " + err)) << std::endl;
+    ok = dn.Heartbeat("dn-1", &err);
+    std::cout << "[NameNode->DataNode] Heartbeat: " << (ok ? "OK" : ("FAIL: " + err)) << std::endl;
 }
 
 int main() {

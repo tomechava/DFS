@@ -19,6 +19,7 @@ public class DataNodeServer {
         this.port = port;
         this.server = ServerBuilder.forPort(port)
                 .addService(new DataNodeServiceImpl())
+                .addService(new ClusterServiceImpl()) //Servicio de registro / heartbeat
                 .build();
     }
 
