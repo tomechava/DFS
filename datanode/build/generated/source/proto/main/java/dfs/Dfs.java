@@ -6279,15 +6279,1110 @@ public final class Dfs {
 
   }
 
+  public interface ReplicaRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:dfs.ReplicaRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int64 block_id = 1;</code>
+     * @return The blockId.
+     */
+    long getBlockId();
+  }
+  /**
+   * Protobuf type {@code dfs.ReplicaRequest}
+   */
+  public static final class ReplicaRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:dfs.ReplicaRequest)
+      ReplicaRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ReplicaRequest.newBuilder() to construct.
+    private ReplicaRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ReplicaRequest() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ReplicaRequest();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return dfs.Dfs.internal_static_dfs_ReplicaRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return dfs.Dfs.internal_static_dfs_ReplicaRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              dfs.Dfs.ReplicaRequest.class, dfs.Dfs.ReplicaRequest.Builder.class);
+    }
+
+    public static final int BLOCK_ID_FIELD_NUMBER = 1;
+    private long blockId_ = 0L;
+    /**
+     * <code>int64 block_id = 1;</code>
+     * @return The blockId.
+     */
+    @java.lang.Override
+    public long getBlockId() {
+      return blockId_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (blockId_ != 0L) {
+        output.writeInt64(1, blockId_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (blockId_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, blockId_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof dfs.Dfs.ReplicaRequest)) {
+        return super.equals(obj);
+      }
+      dfs.Dfs.ReplicaRequest other = (dfs.Dfs.ReplicaRequest) obj;
+
+      if (getBlockId()
+          != other.getBlockId()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + BLOCK_ID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getBlockId());
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static dfs.Dfs.ReplicaRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static dfs.Dfs.ReplicaRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static dfs.Dfs.ReplicaRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static dfs.Dfs.ReplicaRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static dfs.Dfs.ReplicaRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static dfs.Dfs.ReplicaRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static dfs.Dfs.ReplicaRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static dfs.Dfs.ReplicaRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static dfs.Dfs.ReplicaRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static dfs.Dfs.ReplicaRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static dfs.Dfs.ReplicaRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static dfs.Dfs.ReplicaRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(dfs.Dfs.ReplicaRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code dfs.ReplicaRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:dfs.ReplicaRequest)
+        dfs.Dfs.ReplicaRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return dfs.Dfs.internal_static_dfs_ReplicaRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return dfs.Dfs.internal_static_dfs_ReplicaRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                dfs.Dfs.ReplicaRequest.class, dfs.Dfs.ReplicaRequest.Builder.class);
+      }
+
+      // Construct using dfs.Dfs.ReplicaRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        blockId_ = 0L;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return dfs.Dfs.internal_static_dfs_ReplicaRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public dfs.Dfs.ReplicaRequest getDefaultInstanceForType() {
+        return dfs.Dfs.ReplicaRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public dfs.Dfs.ReplicaRequest build() {
+        dfs.Dfs.ReplicaRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public dfs.Dfs.ReplicaRequest buildPartial() {
+        dfs.Dfs.ReplicaRequest result = new dfs.Dfs.ReplicaRequest(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(dfs.Dfs.ReplicaRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.blockId_ = blockId_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof dfs.Dfs.ReplicaRequest) {
+          return mergeFrom((dfs.Dfs.ReplicaRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(dfs.Dfs.ReplicaRequest other) {
+        if (other == dfs.Dfs.ReplicaRequest.getDefaultInstance()) return this;
+        if (other.getBlockId() != 0L) {
+          setBlockId(other.getBlockId());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                blockId_ = input.readInt64();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private long blockId_ ;
+      /**
+       * <code>int64 block_id = 1;</code>
+       * @return The blockId.
+       */
+      @java.lang.Override
+      public long getBlockId() {
+        return blockId_;
+      }
+      /**
+       * <code>int64 block_id = 1;</code>
+       * @param value The blockId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBlockId(long value) {
+
+        blockId_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 block_id = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearBlockId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        blockId_ = 0L;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:dfs.ReplicaRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:dfs.ReplicaRequest)
+    private static final dfs.Dfs.ReplicaRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new dfs.Dfs.ReplicaRequest();
+    }
+
+    public static dfs.Dfs.ReplicaRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ReplicaRequest>
+        PARSER = new com.google.protobuf.AbstractParser<ReplicaRequest>() {
+      @java.lang.Override
+      public ReplicaRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ReplicaRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ReplicaRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public dfs.Dfs.ReplicaRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ReplicaResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:dfs.ReplicaResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated string replica_datanodes = 1;</code>
+     * @return A list containing the replicaDatanodes.
+     */
+    java.util.List<java.lang.String>
+        getReplicaDatanodesList();
+    /**
+     * <code>repeated string replica_datanodes = 1;</code>
+     * @return The count of replicaDatanodes.
+     */
+    int getReplicaDatanodesCount();
+    /**
+     * <code>repeated string replica_datanodes = 1;</code>
+     * @param index The index of the element to return.
+     * @return The replicaDatanodes at the given index.
+     */
+    java.lang.String getReplicaDatanodes(int index);
+    /**
+     * <code>repeated string replica_datanodes = 1;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the replicaDatanodes at the given index.
+     */
+    com.google.protobuf.ByteString
+        getReplicaDatanodesBytes(int index);
+  }
+  /**
+   * Protobuf type {@code dfs.ReplicaResponse}
+   */
+  public static final class ReplicaResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:dfs.ReplicaResponse)
+      ReplicaResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ReplicaResponse.newBuilder() to construct.
+    private ReplicaResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ReplicaResponse() {
+      replicaDatanodes_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ReplicaResponse();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return dfs.Dfs.internal_static_dfs_ReplicaResponse_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return dfs.Dfs.internal_static_dfs_ReplicaResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              dfs.Dfs.ReplicaResponse.class, dfs.Dfs.ReplicaResponse.Builder.class);
+    }
+
+    public static final int REPLICA_DATANODES_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList replicaDatanodes_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
+    /**
+     * <code>repeated string replica_datanodes = 1;</code>
+     * @return A list containing the replicaDatanodes.
+     */
+    public com.google.protobuf.ProtocolStringList
+        getReplicaDatanodesList() {
+      return replicaDatanodes_;
+    }
+    /**
+     * <code>repeated string replica_datanodes = 1;</code>
+     * @return The count of replicaDatanodes.
+     */
+    public int getReplicaDatanodesCount() {
+      return replicaDatanodes_.size();
+    }
+    /**
+     * <code>repeated string replica_datanodes = 1;</code>
+     * @param index The index of the element to return.
+     * @return The replicaDatanodes at the given index.
+     */
+    public java.lang.String getReplicaDatanodes(int index) {
+      return replicaDatanodes_.get(index);
+    }
+    /**
+     * <code>repeated string replica_datanodes = 1;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the replicaDatanodes at the given index.
+     */
+    public com.google.protobuf.ByteString
+        getReplicaDatanodesBytes(int index) {
+      return replicaDatanodes_.getByteString(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < replicaDatanodes_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, replicaDatanodes_.getRaw(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      {
+        int dataSize = 0;
+        for (int i = 0; i < replicaDatanodes_.size(); i++) {
+          dataSize += computeStringSizeNoTag(replicaDatanodes_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getReplicaDatanodesList().size();
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof dfs.Dfs.ReplicaResponse)) {
+        return super.equals(obj);
+      }
+      dfs.Dfs.ReplicaResponse other = (dfs.Dfs.ReplicaResponse) obj;
+
+      if (!getReplicaDatanodesList()
+          .equals(other.getReplicaDatanodesList())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getReplicaDatanodesCount() > 0) {
+        hash = (37 * hash) + REPLICA_DATANODES_FIELD_NUMBER;
+        hash = (53 * hash) + getReplicaDatanodesList().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static dfs.Dfs.ReplicaResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static dfs.Dfs.ReplicaResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static dfs.Dfs.ReplicaResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static dfs.Dfs.ReplicaResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static dfs.Dfs.ReplicaResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static dfs.Dfs.ReplicaResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static dfs.Dfs.ReplicaResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static dfs.Dfs.ReplicaResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static dfs.Dfs.ReplicaResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static dfs.Dfs.ReplicaResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static dfs.Dfs.ReplicaResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static dfs.Dfs.ReplicaResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(dfs.Dfs.ReplicaResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code dfs.ReplicaResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:dfs.ReplicaResponse)
+        dfs.Dfs.ReplicaResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return dfs.Dfs.internal_static_dfs_ReplicaResponse_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return dfs.Dfs.internal_static_dfs_ReplicaResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                dfs.Dfs.ReplicaResponse.class, dfs.Dfs.ReplicaResponse.Builder.class);
+      }
+
+      // Construct using dfs.Dfs.ReplicaResponse.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        replicaDatanodes_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return dfs.Dfs.internal_static_dfs_ReplicaResponse_descriptor;
+      }
+
+      @java.lang.Override
+      public dfs.Dfs.ReplicaResponse getDefaultInstanceForType() {
+        return dfs.Dfs.ReplicaResponse.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public dfs.Dfs.ReplicaResponse build() {
+        dfs.Dfs.ReplicaResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public dfs.Dfs.ReplicaResponse buildPartial() {
+        dfs.Dfs.ReplicaResponse result = new dfs.Dfs.ReplicaResponse(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(dfs.Dfs.ReplicaResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          replicaDatanodes_.makeImmutable();
+          result.replicaDatanodes_ = replicaDatanodes_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof dfs.Dfs.ReplicaResponse) {
+          return mergeFrom((dfs.Dfs.ReplicaResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(dfs.Dfs.ReplicaResponse other) {
+        if (other == dfs.Dfs.ReplicaResponse.getDefaultInstance()) return this;
+        if (!other.replicaDatanodes_.isEmpty()) {
+          if (replicaDatanodes_.isEmpty()) {
+            replicaDatanodes_ = other.replicaDatanodes_;
+            bitField0_ |= 0x00000001;
+          } else {
+            ensureReplicaDatanodesIsMutable();
+            replicaDatanodes_.addAll(other.replicaDatanodes_);
+          }
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                java.lang.String s = input.readStringRequireUtf8();
+                ensureReplicaDatanodesIsMutable();
+                replicaDatanodes_.add(s);
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private com.google.protobuf.LazyStringArrayList replicaDatanodes_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      private void ensureReplicaDatanodesIsMutable() {
+        if (!replicaDatanodes_.isModifiable()) {
+          replicaDatanodes_ = new com.google.protobuf.LazyStringArrayList(replicaDatanodes_);
+        }
+        bitField0_ |= 0x00000001;
+      }
+      /**
+       * <code>repeated string replica_datanodes = 1;</code>
+       * @return A list containing the replicaDatanodes.
+       */
+      public com.google.protobuf.ProtocolStringList
+          getReplicaDatanodesList() {
+        replicaDatanodes_.makeImmutable();
+        return replicaDatanodes_;
+      }
+      /**
+       * <code>repeated string replica_datanodes = 1;</code>
+       * @return The count of replicaDatanodes.
+       */
+      public int getReplicaDatanodesCount() {
+        return replicaDatanodes_.size();
+      }
+      /**
+       * <code>repeated string replica_datanodes = 1;</code>
+       * @param index The index of the element to return.
+       * @return The replicaDatanodes at the given index.
+       */
+      public java.lang.String getReplicaDatanodes(int index) {
+        return replicaDatanodes_.get(index);
+      }
+      /**
+       * <code>repeated string replica_datanodes = 1;</code>
+       * @param index The index of the value to return.
+       * @return The bytes of the replicaDatanodes at the given index.
+       */
+      public com.google.protobuf.ByteString
+          getReplicaDatanodesBytes(int index) {
+        return replicaDatanodes_.getByteString(index);
+      }
+      /**
+       * <code>repeated string replica_datanodes = 1;</code>
+       * @param index The index to set the value at.
+       * @param value The replicaDatanodes to set.
+       * @return This builder for chaining.
+       */
+      public Builder setReplicaDatanodes(
+          int index, java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        ensureReplicaDatanodesIsMutable();
+        replicaDatanodes_.set(index, value);
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string replica_datanodes = 1;</code>
+       * @param value The replicaDatanodes to add.
+       * @return This builder for chaining.
+       */
+      public Builder addReplicaDatanodes(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        ensureReplicaDatanodesIsMutable();
+        replicaDatanodes_.add(value);
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string replica_datanodes = 1;</code>
+       * @param values The replicaDatanodes to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllReplicaDatanodes(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureReplicaDatanodesIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, replicaDatanodes_);
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string replica_datanodes = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearReplicaDatanodes() {
+        replicaDatanodes_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string replica_datanodes = 1;</code>
+       * @param value The bytes of the replicaDatanodes to add.
+       * @return This builder for chaining.
+       */
+      public Builder addReplicaDatanodesBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        ensureReplicaDatanodesIsMutable();
+        replicaDatanodes_.add(value);
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:dfs.ReplicaResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:dfs.ReplicaResponse)
+    private static final dfs.Dfs.ReplicaResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new dfs.Dfs.ReplicaResponse();
+    }
+
+    public static dfs.Dfs.ReplicaResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ReplicaResponse>
+        PARSER = new com.google.protobuf.AbstractParser<ReplicaResponse>() {
+      @java.lang.Override
+      public ReplicaResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ReplicaResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ReplicaResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public dfs.Dfs.ReplicaResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface BlockUploadRequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:dfs.BlockUploadRequest)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int32 block_id = 1;</code>
+     * <code>int64 block_id = 1;</code>
      * @return The blockId.
      */
-    int getBlockId();
+    long getBlockId();
 
     /**
      * <code>string filename = 2;</code>
@@ -6353,13 +7448,13 @@ public final class Dfs {
     }
 
     public static final int BLOCK_ID_FIELD_NUMBER = 1;
-    private int blockId_ = 0;
+    private long blockId_ = 0L;
     /**
-     * <code>int32 block_id = 1;</code>
+     * <code>int64 block_id = 1;</code>
      * @return The blockId.
      */
     @java.lang.Override
-    public int getBlockId() {
+    public long getBlockId() {
       return blockId_;
     }
 
@@ -6431,8 +7526,8 @@ public final class Dfs {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (blockId_ != 0) {
-        output.writeInt32(1, blockId_);
+      if (blockId_ != 0L) {
+        output.writeInt64(1, blockId_);
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(filename_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, filename_);
@@ -6449,9 +7544,9 @@ public final class Dfs {
       if (size != -1) return size;
 
       size = 0;
-      if (blockId_ != 0) {
+      if (blockId_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, blockId_);
+          .computeInt64Size(1, blockId_);
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(filename_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, filename_);
@@ -6493,7 +7588,8 @@ public final class Dfs {
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + BLOCK_ID_FIELD_NUMBER;
-      hash = (53 * hash) + getBlockId();
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getBlockId());
       hash = (37 * hash) + FILENAME_FIELD_NUMBER;
       hash = (53 * hash) + getFilename().hashCode();
       hash = (37 * hash) + DATA_FIELD_NUMBER;
@@ -6633,7 +7729,7 @@ public final class Dfs {
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
-        blockId_ = 0;
+        blockId_ = 0L;
         filename_ = "";
         data_ = com.google.protobuf.ByteString.EMPTY;
         return this;
@@ -6724,7 +7820,7 @@ public final class Dfs {
 
       public Builder mergeFrom(dfs.Dfs.BlockUploadRequest other) {
         if (other == dfs.Dfs.BlockUploadRequest.getDefaultInstance()) return this;
-        if (other.getBlockId() != 0) {
+        if (other.getBlockId() != 0L) {
           setBlockId(other.getBlockId());
         }
         if (!other.getFilename().isEmpty()) {
@@ -6762,7 +7858,7 @@ public final class Dfs {
                 done = true;
                 break;
               case 8: {
-                blockId_ = input.readInt32();
+                blockId_ = input.readInt64();
                 bitField0_ |= 0x00000001;
                 break;
               } // case 8
@@ -6793,21 +7889,21 @@ public final class Dfs {
       }
       private int bitField0_;
 
-      private int blockId_ ;
+      private long blockId_ ;
       /**
-       * <code>int32 block_id = 1;</code>
+       * <code>int64 block_id = 1;</code>
        * @return The blockId.
        */
       @java.lang.Override
-      public int getBlockId() {
+      public long getBlockId() {
         return blockId_;
       }
       /**
-       * <code>int32 block_id = 1;</code>
+       * <code>int64 block_id = 1;</code>
        * @param value The blockId to set.
        * @return This builder for chaining.
        */
-      public Builder setBlockId(int value) {
+      public Builder setBlockId(long value) {
 
         blockId_ = value;
         bitField0_ |= 0x00000001;
@@ -6815,12 +7911,12 @@ public final class Dfs {
         return this;
       }
       /**
-       * <code>int32 block_id = 1;</code>
+       * <code>int64 block_id = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearBlockId() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        blockId_ = 0;
+        blockId_ = 0L;
         onChanged();
         return this;
       }
@@ -7486,10 +8582,10 @@ public final class Dfs {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int32 block_id = 1;</code>
+     * <code>int64 block_id = 1;</code>
      * @return The blockId.
      */
-    int getBlockId();
+    long getBlockId();
 
     /**
      * <code>string filename = 2;</code>
@@ -7540,13 +8636,13 @@ public final class Dfs {
     }
 
     public static final int BLOCK_ID_FIELD_NUMBER = 1;
-    private int blockId_ = 0;
+    private long blockId_ = 0L;
     /**
-     * <code>int32 block_id = 1;</code>
+     * <code>int64 block_id = 1;</code>
      * @return The blockId.
      */
     @java.lang.Override
-    public int getBlockId() {
+    public long getBlockId() {
       return blockId_;
     }
 
@@ -7603,8 +8699,8 @@ public final class Dfs {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (blockId_ != 0) {
-        output.writeInt32(1, blockId_);
+      if (blockId_ != 0L) {
+        output.writeInt64(1, blockId_);
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(filename_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, filename_);
@@ -7618,9 +8714,9 @@ public final class Dfs {
       if (size != -1) return size;
 
       size = 0;
-      if (blockId_ != 0) {
+      if (blockId_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, blockId_);
+          .computeInt64Size(1, blockId_);
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(filename_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, filename_);
@@ -7656,7 +8752,8 @@ public final class Dfs {
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + BLOCK_ID_FIELD_NUMBER;
-      hash = (53 * hash) + getBlockId();
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getBlockId());
       hash = (37 * hash) + FILENAME_FIELD_NUMBER;
       hash = (53 * hash) + getFilename().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
@@ -7790,7 +8887,7 @@ public final class Dfs {
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
-        blockId_ = 0;
+        blockId_ = 0L;
         filename_ = "";
         return this;
       }
@@ -7877,7 +8974,7 @@ public final class Dfs {
 
       public Builder mergeFrom(dfs.Dfs.BlockDownloadRequest other) {
         if (other == dfs.Dfs.BlockDownloadRequest.getDefaultInstance()) return this;
-        if (other.getBlockId() != 0) {
+        if (other.getBlockId() != 0L) {
           setBlockId(other.getBlockId());
         }
         if (!other.getFilename().isEmpty()) {
@@ -7912,7 +9009,7 @@ public final class Dfs {
                 done = true;
                 break;
               case 8: {
-                blockId_ = input.readInt32();
+                blockId_ = input.readInt64();
                 bitField0_ |= 0x00000001;
                 break;
               } // case 8
@@ -7938,21 +9035,21 @@ public final class Dfs {
       }
       private int bitField0_;
 
-      private int blockId_ ;
+      private long blockId_ ;
       /**
-       * <code>int32 block_id = 1;</code>
+       * <code>int64 block_id = 1;</code>
        * @return The blockId.
        */
       @java.lang.Override
-      public int getBlockId() {
+      public long getBlockId() {
         return blockId_;
       }
       /**
-       * <code>int32 block_id = 1;</code>
+       * <code>int64 block_id = 1;</code>
        * @param value The blockId to set.
        * @return This builder for chaining.
        */
-      public Builder setBlockId(int value) {
+      public Builder setBlockId(long value) {
 
         blockId_ = value;
         bitField0_ |= 0x00000001;
@@ -7960,12 +9057,12 @@ public final class Dfs {
         return this;
       }
       /**
-       * <code>int32 block_id = 1;</code>
+       * <code>int64 block_id = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearBlockId() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        blockId_ = 0;
+        blockId_ = 0L;
         onChanged();
         return this;
       }
@@ -12280,10 +13377,10 @@ public final class Dfs {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int32 block_id = 1;</code>
+     * <code>int64 block_id = 1;</code>
      * @return The blockId.
      */
-    int getBlockId();
+    long getBlockId();
 
     /**
      * <code>string filename = 2;</code>
@@ -12334,13 +13431,13 @@ public final class Dfs {
     }
 
     public static final int BLOCK_ID_FIELD_NUMBER = 1;
-    private int blockId_ = 0;
+    private long blockId_ = 0L;
     /**
-     * <code>int32 block_id = 1;</code>
+     * <code>int64 block_id = 1;</code>
      * @return The blockId.
      */
     @java.lang.Override
-    public int getBlockId() {
+    public long getBlockId() {
       return blockId_;
     }
 
@@ -12397,8 +13494,8 @@ public final class Dfs {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (blockId_ != 0) {
-        output.writeInt32(1, blockId_);
+      if (blockId_ != 0L) {
+        output.writeInt64(1, blockId_);
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(filename_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, filename_);
@@ -12412,9 +13509,9 @@ public final class Dfs {
       if (size != -1) return size;
 
       size = 0;
-      if (blockId_ != 0) {
+      if (blockId_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, blockId_);
+          .computeInt64Size(1, blockId_);
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(filename_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, filename_);
@@ -12450,7 +13547,8 @@ public final class Dfs {
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + BLOCK_ID_FIELD_NUMBER;
-      hash = (53 * hash) + getBlockId();
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getBlockId());
       hash = (37 * hash) + FILENAME_FIELD_NUMBER;
       hash = (53 * hash) + getFilename().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
@@ -12584,7 +13682,7 @@ public final class Dfs {
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
-        blockId_ = 0;
+        blockId_ = 0L;
         filename_ = "";
         return this;
       }
@@ -12671,7 +13769,7 @@ public final class Dfs {
 
       public Builder mergeFrom(dfs.Dfs.BlockReport other) {
         if (other == dfs.Dfs.BlockReport.getDefaultInstance()) return this;
-        if (other.getBlockId() != 0) {
+        if (other.getBlockId() != 0L) {
           setBlockId(other.getBlockId());
         }
         if (!other.getFilename().isEmpty()) {
@@ -12706,7 +13804,7 @@ public final class Dfs {
                 done = true;
                 break;
               case 8: {
-                blockId_ = input.readInt32();
+                blockId_ = input.readInt64();
                 bitField0_ |= 0x00000001;
                 break;
               } // case 8
@@ -12732,21 +13830,21 @@ public final class Dfs {
       }
       private int bitField0_;
 
-      private int blockId_ ;
+      private long blockId_ ;
       /**
-       * <code>int32 block_id = 1;</code>
+       * <code>int64 block_id = 1;</code>
        * @return The blockId.
        */
       @java.lang.Override
-      public int getBlockId() {
+      public long getBlockId() {
         return blockId_;
       }
       /**
-       * <code>int32 block_id = 1;</code>
+       * <code>int64 block_id = 1;</code>
        * @param value The blockId to set.
        * @return This builder for chaining.
        */
-      public Builder setBlockId(int value) {
+      public Builder setBlockId(long value) {
 
         blockId_ = value;
         bitField0_ |= 0x00000001;
@@ -12754,12 +13852,12 @@ public final class Dfs {
         return this;
       }
       /**
-       * <code>int32 block_id = 1;</code>
+       * <code>int64 block_id = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearBlockId() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        blockId_ = 0;
+        blockId_ = 0L;
         onChanged();
         return this;
       }
@@ -12904,30 +14002,71 @@ public final class Dfs {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int32 block_id = 1;</code>
+     * <code>int64 block_id = 1;</code>
      * @return The blockId.
      */
-    int getBlockId();
+    long getBlockId();
 
     /**
      * <pre>
-     * IP:PUERTO
+     * Datanode primario (el que recibe del cliente)
      * </pre>
      *
-     * <code>string datanode_address = 2;</code>
-     * @return The datanodeAddress.
+     * <code>string primary_address = 2;</code>
+     * @return The primaryAddress.
      */
-    java.lang.String getDatanodeAddress();
+    java.lang.String getPrimaryAddress();
     /**
      * <pre>
-     * IP:PUERTO
+     * Datanode primario (el que recibe del cliente)
      * </pre>
      *
-     * <code>string datanode_address = 2;</code>
-     * @return The bytes for datanodeAddress.
+     * <code>string primary_address = 2;</code>
+     * @return The bytes for primaryAddress.
      */
     com.google.protobuf.ByteString
-        getDatanodeAddressBytes();
+        getPrimaryAddressBytes();
+
+    /**
+     * <pre>
+     * Direcciones de réplicas (opcional para cliente)
+     * </pre>
+     *
+     * <code>repeated string replica_addresses = 3;</code>
+     * @return A list containing the replicaAddresses.
+     */
+    java.util.List<java.lang.String>
+        getReplicaAddressesList();
+    /**
+     * <pre>
+     * Direcciones de réplicas (opcional para cliente)
+     * </pre>
+     *
+     * <code>repeated string replica_addresses = 3;</code>
+     * @return The count of replicaAddresses.
+     */
+    int getReplicaAddressesCount();
+    /**
+     * <pre>
+     * Direcciones de réplicas (opcional para cliente)
+     * </pre>
+     *
+     * <code>repeated string replica_addresses = 3;</code>
+     * @param index The index of the element to return.
+     * @return The replicaAddresses at the given index.
+     */
+    java.lang.String getReplicaAddresses(int index);
+    /**
+     * <pre>
+     * Direcciones de réplicas (opcional para cliente)
+     * </pre>
+     *
+     * <code>repeated string replica_addresses = 3;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the replicaAddresses at the given index.
+     */
+    com.google.protobuf.ByteString
+        getReplicaAddressesBytes(int index);
   }
   /**
    * <pre>
@@ -12946,7 +14085,9 @@ public final class Dfs {
       super(builder);
     }
     private BlockLocation() {
-      datanodeAddress_ = "";
+      primaryAddress_ = "";
+      replicaAddresses_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
     }
 
     @java.lang.Override
@@ -12970,61 +14111,114 @@ public final class Dfs {
     }
 
     public static final int BLOCK_ID_FIELD_NUMBER = 1;
-    private int blockId_ = 0;
+    private long blockId_ = 0L;
     /**
-     * <code>int32 block_id = 1;</code>
+     * <code>int64 block_id = 1;</code>
      * @return The blockId.
      */
     @java.lang.Override
-    public int getBlockId() {
+    public long getBlockId() {
       return blockId_;
     }
 
-    public static final int DATANODE_ADDRESS_FIELD_NUMBER = 2;
+    public static final int PRIMARY_ADDRESS_FIELD_NUMBER = 2;
     @SuppressWarnings("serial")
-    private volatile java.lang.Object datanodeAddress_ = "";
+    private volatile java.lang.Object primaryAddress_ = "";
     /**
      * <pre>
-     * IP:PUERTO
+     * Datanode primario (el que recibe del cliente)
      * </pre>
      *
-     * <code>string datanode_address = 2;</code>
-     * @return The datanodeAddress.
+     * <code>string primary_address = 2;</code>
+     * @return The primaryAddress.
      */
     @java.lang.Override
-    public java.lang.String getDatanodeAddress() {
-      java.lang.Object ref = datanodeAddress_;
+    public java.lang.String getPrimaryAddress() {
+      java.lang.Object ref = primaryAddress_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        datanodeAddress_ = s;
+        primaryAddress_ = s;
         return s;
       }
     }
     /**
      * <pre>
-     * IP:PUERTO
+     * Datanode primario (el que recibe del cliente)
      * </pre>
      *
-     * <code>string datanode_address = 2;</code>
-     * @return The bytes for datanodeAddress.
+     * <code>string primary_address = 2;</code>
+     * @return The bytes for primaryAddress.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-        getDatanodeAddressBytes() {
-      java.lang.Object ref = datanodeAddress_;
+        getPrimaryAddressBytes() {
+      java.lang.Object ref = primaryAddress_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        datanodeAddress_ = b;
+        primaryAddress_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
+    }
+
+    public static final int REPLICA_ADDRESSES_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList replicaAddresses_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
+    /**
+     * <pre>
+     * Direcciones de réplicas (opcional para cliente)
+     * </pre>
+     *
+     * <code>repeated string replica_addresses = 3;</code>
+     * @return A list containing the replicaAddresses.
+     */
+    public com.google.protobuf.ProtocolStringList
+        getReplicaAddressesList() {
+      return replicaAddresses_;
+    }
+    /**
+     * <pre>
+     * Direcciones de réplicas (opcional para cliente)
+     * </pre>
+     *
+     * <code>repeated string replica_addresses = 3;</code>
+     * @return The count of replicaAddresses.
+     */
+    public int getReplicaAddressesCount() {
+      return replicaAddresses_.size();
+    }
+    /**
+     * <pre>
+     * Direcciones de réplicas (opcional para cliente)
+     * </pre>
+     *
+     * <code>repeated string replica_addresses = 3;</code>
+     * @param index The index of the element to return.
+     * @return The replicaAddresses at the given index.
+     */
+    public java.lang.String getReplicaAddresses(int index) {
+      return replicaAddresses_.get(index);
+    }
+    /**
+     * <pre>
+     * Direcciones de réplicas (opcional para cliente)
+     * </pre>
+     *
+     * <code>repeated string replica_addresses = 3;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the replicaAddresses at the given index.
+     */
+    public com.google.protobuf.ByteString
+        getReplicaAddressesBytes(int index) {
+      return replicaAddresses_.getByteString(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -13041,11 +14235,14 @@ public final class Dfs {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (blockId_ != 0) {
-        output.writeInt32(1, blockId_);
+      if (blockId_ != 0L) {
+        output.writeInt64(1, blockId_);
       }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(datanodeAddress_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, datanodeAddress_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(primaryAddress_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, primaryAddress_);
+      }
+      for (int i = 0; i < replicaAddresses_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, replicaAddresses_.getRaw(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -13056,12 +14253,20 @@ public final class Dfs {
       if (size != -1) return size;
 
       size = 0;
-      if (blockId_ != 0) {
+      if (blockId_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, blockId_);
+          .computeInt64Size(1, blockId_);
       }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(datanodeAddress_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, datanodeAddress_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(primaryAddress_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, primaryAddress_);
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < replicaAddresses_.size(); i++) {
+          dataSize += computeStringSizeNoTag(replicaAddresses_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getReplicaAddressesList().size();
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -13080,8 +14285,10 @@ public final class Dfs {
 
       if (getBlockId()
           != other.getBlockId()) return false;
-      if (!getDatanodeAddress()
-          .equals(other.getDatanodeAddress())) return false;
+      if (!getPrimaryAddress()
+          .equals(other.getPrimaryAddress())) return false;
+      if (!getReplicaAddressesList()
+          .equals(other.getReplicaAddressesList())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -13094,9 +14301,14 @@ public final class Dfs {
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + BLOCK_ID_FIELD_NUMBER;
-      hash = (53 * hash) + getBlockId();
-      hash = (37 * hash) + DATANODE_ADDRESS_FIELD_NUMBER;
-      hash = (53 * hash) + getDatanodeAddress().hashCode();
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getBlockId());
+      hash = (37 * hash) + PRIMARY_ADDRESS_FIELD_NUMBER;
+      hash = (53 * hash) + getPrimaryAddress().hashCode();
+      if (getReplicaAddressesCount() > 0) {
+        hash = (37 * hash) + REPLICA_ADDRESSES_FIELD_NUMBER;
+        hash = (53 * hash) + getReplicaAddressesList().hashCode();
+      }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -13232,8 +14444,10 @@ public final class Dfs {
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
-        blockId_ = 0;
-        datanodeAddress_ = "";
+        blockId_ = 0L;
+        primaryAddress_ = "";
+        replicaAddresses_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
         return this;
       }
 
@@ -13271,7 +14485,11 @@ public final class Dfs {
           result.blockId_ = blockId_;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
-          result.datanodeAddress_ = datanodeAddress_;
+          result.primaryAddress_ = primaryAddress_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          replicaAddresses_.makeImmutable();
+          result.replicaAddresses_ = replicaAddresses_;
         }
       }
 
@@ -13319,12 +14537,22 @@ public final class Dfs {
 
       public Builder mergeFrom(dfs.Dfs.BlockLocation other) {
         if (other == dfs.Dfs.BlockLocation.getDefaultInstance()) return this;
-        if (other.getBlockId() != 0) {
+        if (other.getBlockId() != 0L) {
           setBlockId(other.getBlockId());
         }
-        if (!other.getDatanodeAddress().isEmpty()) {
-          datanodeAddress_ = other.datanodeAddress_;
+        if (!other.getPrimaryAddress().isEmpty()) {
+          primaryAddress_ = other.primaryAddress_;
           bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        if (!other.replicaAddresses_.isEmpty()) {
+          if (replicaAddresses_.isEmpty()) {
+            replicaAddresses_ = other.replicaAddresses_;
+            bitField0_ |= 0x00000004;
+          } else {
+            ensureReplicaAddressesIsMutable();
+            replicaAddresses_.addAll(other.replicaAddresses_);
+          }
           onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
@@ -13354,15 +14582,21 @@ public final class Dfs {
                 done = true;
                 break;
               case 8: {
-                blockId_ = input.readInt32();
+                blockId_ = input.readInt64();
                 bitField0_ |= 0x00000001;
                 break;
               } // case 8
               case 18: {
-                datanodeAddress_ = input.readStringRequireUtf8();
+                primaryAddress_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000002;
                 break;
               } // case 18
+              case 26: {
+                java.lang.String s = input.readStringRequireUtf8();
+                ensureReplicaAddressesIsMutable();
+                replicaAddresses_.add(s);
+                break;
+              } // case 26
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -13380,21 +14614,21 @@ public final class Dfs {
       }
       private int bitField0_;
 
-      private int blockId_ ;
+      private long blockId_ ;
       /**
-       * <code>int32 block_id = 1;</code>
+       * <code>int64 block_id = 1;</code>
        * @return The blockId.
        */
       @java.lang.Override
-      public int getBlockId() {
+      public long getBlockId() {
         return blockId_;
       }
       /**
-       * <code>int32 block_id = 1;</code>
+       * <code>int64 block_id = 1;</code>
        * @param value The blockId to set.
        * @return This builder for chaining.
        */
-      public Builder setBlockId(int value) {
+      public Builder setBlockId(long value) {
 
         blockId_ = value;
         bitField0_ |= 0x00000001;
@@ -13402,32 +14636,32 @@ public final class Dfs {
         return this;
       }
       /**
-       * <code>int32 block_id = 1;</code>
+       * <code>int64 block_id = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearBlockId() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        blockId_ = 0;
+        blockId_ = 0L;
         onChanged();
         return this;
       }
 
-      private java.lang.Object datanodeAddress_ = "";
+      private java.lang.Object primaryAddress_ = "";
       /**
        * <pre>
-       * IP:PUERTO
+       * Datanode primario (el que recibe del cliente)
        * </pre>
        *
-       * <code>string datanode_address = 2;</code>
-       * @return The datanodeAddress.
+       * <code>string primary_address = 2;</code>
+       * @return The primaryAddress.
        */
-      public java.lang.String getDatanodeAddress() {
-        java.lang.Object ref = datanodeAddress_;
+      public java.lang.String getPrimaryAddress() {
+        java.lang.Object ref = primaryAddress_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          datanodeAddress_ = s;
+          primaryAddress_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -13435,20 +14669,20 @@ public final class Dfs {
       }
       /**
        * <pre>
-       * IP:PUERTO
+       * Datanode primario (el que recibe del cliente)
        * </pre>
        *
-       * <code>string datanode_address = 2;</code>
-       * @return The bytes for datanodeAddress.
+       * <code>string primary_address = 2;</code>
+       * @return The bytes for primaryAddress.
        */
       public com.google.protobuf.ByteString
-          getDatanodeAddressBytes() {
-        java.lang.Object ref = datanodeAddress_;
+          getPrimaryAddressBytes() {
+        java.lang.Object ref = primaryAddress_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          datanodeAddress_ = b;
+          primaryAddress_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
@@ -13456,50 +14690,197 @@ public final class Dfs {
       }
       /**
        * <pre>
-       * IP:PUERTO
+       * Datanode primario (el que recibe del cliente)
        * </pre>
        *
-       * <code>string datanode_address = 2;</code>
-       * @param value The datanodeAddress to set.
+       * <code>string primary_address = 2;</code>
+       * @param value The primaryAddress to set.
        * @return This builder for chaining.
        */
-      public Builder setDatanodeAddress(
+      public Builder setPrimaryAddress(
           java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
-        datanodeAddress_ = value;
+        primaryAddress_ = value;
         bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * IP:PUERTO
+       * Datanode primario (el que recibe del cliente)
        * </pre>
        *
-       * <code>string datanode_address = 2;</code>
+       * <code>string primary_address = 2;</code>
        * @return This builder for chaining.
        */
-      public Builder clearDatanodeAddress() {
-        datanodeAddress_ = getDefaultInstance().getDatanodeAddress();
+      public Builder clearPrimaryAddress() {
+        primaryAddress_ = getDefaultInstance().getPrimaryAddress();
         bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * IP:PUERTO
+       * Datanode primario (el que recibe del cliente)
        * </pre>
        *
-       * <code>string datanode_address = 2;</code>
-       * @param value The bytes for datanodeAddress to set.
+       * <code>string primary_address = 2;</code>
+       * @param value The bytes for primaryAddress to set.
        * @return This builder for chaining.
        */
-      public Builder setDatanodeAddressBytes(
+      public Builder setPrimaryAddressBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) { throw new NullPointerException(); }
         checkByteStringIsUtf8(value);
-        datanodeAddress_ = value;
+        primaryAddress_ = value;
         bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.LazyStringArrayList replicaAddresses_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      private void ensureReplicaAddressesIsMutable() {
+        if (!replicaAddresses_.isModifiable()) {
+          replicaAddresses_ = new com.google.protobuf.LazyStringArrayList(replicaAddresses_);
+        }
+        bitField0_ |= 0x00000004;
+      }
+      /**
+       * <pre>
+       * Direcciones de réplicas (opcional para cliente)
+       * </pre>
+       *
+       * <code>repeated string replica_addresses = 3;</code>
+       * @return A list containing the replicaAddresses.
+       */
+      public com.google.protobuf.ProtocolStringList
+          getReplicaAddressesList() {
+        replicaAddresses_.makeImmutable();
+        return replicaAddresses_;
+      }
+      /**
+       * <pre>
+       * Direcciones de réplicas (opcional para cliente)
+       * </pre>
+       *
+       * <code>repeated string replica_addresses = 3;</code>
+       * @return The count of replicaAddresses.
+       */
+      public int getReplicaAddressesCount() {
+        return replicaAddresses_.size();
+      }
+      /**
+       * <pre>
+       * Direcciones de réplicas (opcional para cliente)
+       * </pre>
+       *
+       * <code>repeated string replica_addresses = 3;</code>
+       * @param index The index of the element to return.
+       * @return The replicaAddresses at the given index.
+       */
+      public java.lang.String getReplicaAddresses(int index) {
+        return replicaAddresses_.get(index);
+      }
+      /**
+       * <pre>
+       * Direcciones de réplicas (opcional para cliente)
+       * </pre>
+       *
+       * <code>repeated string replica_addresses = 3;</code>
+       * @param index The index of the value to return.
+       * @return The bytes of the replicaAddresses at the given index.
+       */
+      public com.google.protobuf.ByteString
+          getReplicaAddressesBytes(int index) {
+        return replicaAddresses_.getByteString(index);
+      }
+      /**
+       * <pre>
+       * Direcciones de réplicas (opcional para cliente)
+       * </pre>
+       *
+       * <code>repeated string replica_addresses = 3;</code>
+       * @param index The index to set the value at.
+       * @param value The replicaAddresses to set.
+       * @return This builder for chaining.
+       */
+      public Builder setReplicaAddresses(
+          int index, java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        ensureReplicaAddressesIsMutable();
+        replicaAddresses_.set(index, value);
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Direcciones de réplicas (opcional para cliente)
+       * </pre>
+       *
+       * <code>repeated string replica_addresses = 3;</code>
+       * @param value The replicaAddresses to add.
+       * @return This builder for chaining.
+       */
+      public Builder addReplicaAddresses(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        ensureReplicaAddressesIsMutable();
+        replicaAddresses_.add(value);
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Direcciones de réplicas (opcional para cliente)
+       * </pre>
+       *
+       * <code>repeated string replica_addresses = 3;</code>
+       * @param values The replicaAddresses to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllReplicaAddresses(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureReplicaAddressesIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, replicaAddresses_);
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Direcciones de réplicas (opcional para cliente)
+       * </pre>
+       *
+       * <code>repeated string replica_addresses = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearReplicaAddresses() {
+        replicaAddresses_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000004);;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Direcciones de réplicas (opcional para cliente)
+       * </pre>
+       *
+       * <code>repeated string replica_addresses = 3;</code>
+       * @param value The bytes of the replicaAddresses to add.
+       * @return This builder for chaining.
+       */
+      public Builder addReplicaAddressesBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        ensureReplicaAddressesIsMutable();
+        replicaAddresses_.add(value);
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -13567,6 +14948,1189 @@ public final class Dfs {
 
   }
 
+  public interface BlockReplicationRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:dfs.BlockReplicationRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int64 block_id = 1;</code>
+     * @return The blockId.
+     */
+    long getBlockId();
+
+    /**
+     * <code>string filename = 2;</code>
+     * @return The filename.
+     */
+    java.lang.String getFilename();
+    /**
+     * <code>string filename = 2;</code>
+     * @return The bytes for filename.
+     */
+    com.google.protobuf.ByteString
+        getFilenameBytes();
+
+    /**
+     * <code>bytes data = 3;</code>
+     * @return The data.
+     */
+    com.google.protobuf.ByteString getData();
+  }
+  /**
+   * <pre>
+   * ---------- Datanodes &lt;-&gt; DataNodes ----------
+   * </pre>
+   *
+   * Protobuf type {@code dfs.BlockReplicationRequest}
+   */
+  public static final class BlockReplicationRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:dfs.BlockReplicationRequest)
+      BlockReplicationRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use BlockReplicationRequest.newBuilder() to construct.
+    private BlockReplicationRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private BlockReplicationRequest() {
+      filename_ = "";
+      data_ = com.google.protobuf.ByteString.EMPTY;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new BlockReplicationRequest();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return dfs.Dfs.internal_static_dfs_BlockReplicationRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return dfs.Dfs.internal_static_dfs_BlockReplicationRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              dfs.Dfs.BlockReplicationRequest.class, dfs.Dfs.BlockReplicationRequest.Builder.class);
+    }
+
+    public static final int BLOCK_ID_FIELD_NUMBER = 1;
+    private long blockId_ = 0L;
+    /**
+     * <code>int64 block_id = 1;</code>
+     * @return The blockId.
+     */
+    @java.lang.Override
+    public long getBlockId() {
+      return blockId_;
+    }
+
+    public static final int FILENAME_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object filename_ = "";
+    /**
+     * <code>string filename = 2;</code>
+     * @return The filename.
+     */
+    @java.lang.Override
+    public java.lang.String getFilename() {
+      java.lang.Object ref = filename_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        filename_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string filename = 2;</code>
+     * @return The bytes for filename.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getFilenameBytes() {
+      java.lang.Object ref = filename_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        filename_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int DATA_FIELD_NUMBER = 3;
+    private com.google.protobuf.ByteString data_ = com.google.protobuf.ByteString.EMPTY;
+    /**
+     * <code>bytes data = 3;</code>
+     * @return The data.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString getData() {
+      return data_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (blockId_ != 0L) {
+        output.writeInt64(1, blockId_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(filename_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, filename_);
+      }
+      if (!data_.isEmpty()) {
+        output.writeBytes(3, data_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (blockId_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, blockId_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(filename_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, filename_);
+      }
+      if (!data_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, data_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof dfs.Dfs.BlockReplicationRequest)) {
+        return super.equals(obj);
+      }
+      dfs.Dfs.BlockReplicationRequest other = (dfs.Dfs.BlockReplicationRequest) obj;
+
+      if (getBlockId()
+          != other.getBlockId()) return false;
+      if (!getFilename()
+          .equals(other.getFilename())) return false;
+      if (!getData()
+          .equals(other.getData())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + BLOCK_ID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getBlockId());
+      hash = (37 * hash) + FILENAME_FIELD_NUMBER;
+      hash = (53 * hash) + getFilename().hashCode();
+      hash = (37 * hash) + DATA_FIELD_NUMBER;
+      hash = (53 * hash) + getData().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static dfs.Dfs.BlockReplicationRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static dfs.Dfs.BlockReplicationRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static dfs.Dfs.BlockReplicationRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static dfs.Dfs.BlockReplicationRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static dfs.Dfs.BlockReplicationRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static dfs.Dfs.BlockReplicationRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static dfs.Dfs.BlockReplicationRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static dfs.Dfs.BlockReplicationRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static dfs.Dfs.BlockReplicationRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static dfs.Dfs.BlockReplicationRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static dfs.Dfs.BlockReplicationRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static dfs.Dfs.BlockReplicationRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(dfs.Dfs.BlockReplicationRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * ---------- Datanodes &lt;-&gt; DataNodes ----------
+     * </pre>
+     *
+     * Protobuf type {@code dfs.BlockReplicationRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:dfs.BlockReplicationRequest)
+        dfs.Dfs.BlockReplicationRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return dfs.Dfs.internal_static_dfs_BlockReplicationRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return dfs.Dfs.internal_static_dfs_BlockReplicationRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                dfs.Dfs.BlockReplicationRequest.class, dfs.Dfs.BlockReplicationRequest.Builder.class);
+      }
+
+      // Construct using dfs.Dfs.BlockReplicationRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        blockId_ = 0L;
+        filename_ = "";
+        data_ = com.google.protobuf.ByteString.EMPTY;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return dfs.Dfs.internal_static_dfs_BlockReplicationRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public dfs.Dfs.BlockReplicationRequest getDefaultInstanceForType() {
+        return dfs.Dfs.BlockReplicationRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public dfs.Dfs.BlockReplicationRequest build() {
+        dfs.Dfs.BlockReplicationRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public dfs.Dfs.BlockReplicationRequest buildPartial() {
+        dfs.Dfs.BlockReplicationRequest result = new dfs.Dfs.BlockReplicationRequest(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(dfs.Dfs.BlockReplicationRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.blockId_ = blockId_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.filename_ = filename_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.data_ = data_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof dfs.Dfs.BlockReplicationRequest) {
+          return mergeFrom((dfs.Dfs.BlockReplicationRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(dfs.Dfs.BlockReplicationRequest other) {
+        if (other == dfs.Dfs.BlockReplicationRequest.getDefaultInstance()) return this;
+        if (other.getBlockId() != 0L) {
+          setBlockId(other.getBlockId());
+        }
+        if (!other.getFilename().isEmpty()) {
+          filename_ = other.filename_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        if (other.getData() != com.google.protobuf.ByteString.EMPTY) {
+          setData(other.getData());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                blockId_ = input.readInt64();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 18: {
+                filename_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                data_ = input.readBytes();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private long blockId_ ;
+      /**
+       * <code>int64 block_id = 1;</code>
+       * @return The blockId.
+       */
+      @java.lang.Override
+      public long getBlockId() {
+        return blockId_;
+      }
+      /**
+       * <code>int64 block_id = 1;</code>
+       * @param value The blockId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBlockId(long value) {
+
+        blockId_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 block_id = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearBlockId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        blockId_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object filename_ = "";
+      /**
+       * <code>string filename = 2;</code>
+       * @return The filename.
+       */
+      public java.lang.String getFilename() {
+        java.lang.Object ref = filename_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          filename_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string filename = 2;</code>
+       * @return The bytes for filename.
+       */
+      public com.google.protobuf.ByteString
+          getFilenameBytes() {
+        java.lang.Object ref = filename_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          filename_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string filename = 2;</code>
+       * @param value The filename to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFilename(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        filename_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string filename = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFilename() {
+        filename_ = getDefaultInstance().getFilename();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string filename = 2;</code>
+       * @param value The bytes for filename to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFilenameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        filename_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.ByteString data_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>bytes data = 3;</code>
+       * @return The data.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString getData() {
+        return data_;
+      }
+      /**
+       * <code>bytes data = 3;</code>
+       * @param value The data to set.
+       * @return This builder for chaining.
+       */
+      public Builder setData(com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        data_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bytes data = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearData() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        data_ = getDefaultInstance().getData();
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:dfs.BlockReplicationRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:dfs.BlockReplicationRequest)
+    private static final dfs.Dfs.BlockReplicationRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new dfs.Dfs.BlockReplicationRequest();
+    }
+
+    public static dfs.Dfs.BlockReplicationRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<BlockReplicationRequest>
+        PARSER = new com.google.protobuf.AbstractParser<BlockReplicationRequest>() {
+      @java.lang.Override
+      public BlockReplicationRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<BlockReplicationRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BlockReplicationRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public dfs.Dfs.BlockReplicationRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface BlockReplicationResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:dfs.BlockReplicationResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>bool success = 1;</code>
+     * @return The success.
+     */
+    boolean getSuccess();
+  }
+  /**
+   * Protobuf type {@code dfs.BlockReplicationResponse}
+   */
+  public static final class BlockReplicationResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:dfs.BlockReplicationResponse)
+      BlockReplicationResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use BlockReplicationResponse.newBuilder() to construct.
+    private BlockReplicationResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private BlockReplicationResponse() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new BlockReplicationResponse();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return dfs.Dfs.internal_static_dfs_BlockReplicationResponse_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return dfs.Dfs.internal_static_dfs_BlockReplicationResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              dfs.Dfs.BlockReplicationResponse.class, dfs.Dfs.BlockReplicationResponse.Builder.class);
+    }
+
+    public static final int SUCCESS_FIELD_NUMBER = 1;
+    private boolean success_ = false;
+    /**
+     * <code>bool success = 1;</code>
+     * @return The success.
+     */
+    @java.lang.Override
+    public boolean getSuccess() {
+      return success_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (success_ != false) {
+        output.writeBool(1, success_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (success_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(1, success_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof dfs.Dfs.BlockReplicationResponse)) {
+        return super.equals(obj);
+      }
+      dfs.Dfs.BlockReplicationResponse other = (dfs.Dfs.BlockReplicationResponse) obj;
+
+      if (getSuccess()
+          != other.getSuccess()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getSuccess());
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static dfs.Dfs.BlockReplicationResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static dfs.Dfs.BlockReplicationResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static dfs.Dfs.BlockReplicationResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static dfs.Dfs.BlockReplicationResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static dfs.Dfs.BlockReplicationResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static dfs.Dfs.BlockReplicationResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static dfs.Dfs.BlockReplicationResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static dfs.Dfs.BlockReplicationResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static dfs.Dfs.BlockReplicationResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static dfs.Dfs.BlockReplicationResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static dfs.Dfs.BlockReplicationResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static dfs.Dfs.BlockReplicationResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(dfs.Dfs.BlockReplicationResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code dfs.BlockReplicationResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:dfs.BlockReplicationResponse)
+        dfs.Dfs.BlockReplicationResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return dfs.Dfs.internal_static_dfs_BlockReplicationResponse_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return dfs.Dfs.internal_static_dfs_BlockReplicationResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                dfs.Dfs.BlockReplicationResponse.class, dfs.Dfs.BlockReplicationResponse.Builder.class);
+      }
+
+      // Construct using dfs.Dfs.BlockReplicationResponse.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        success_ = false;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return dfs.Dfs.internal_static_dfs_BlockReplicationResponse_descriptor;
+      }
+
+      @java.lang.Override
+      public dfs.Dfs.BlockReplicationResponse getDefaultInstanceForType() {
+        return dfs.Dfs.BlockReplicationResponse.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public dfs.Dfs.BlockReplicationResponse build() {
+        dfs.Dfs.BlockReplicationResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public dfs.Dfs.BlockReplicationResponse buildPartial() {
+        dfs.Dfs.BlockReplicationResponse result = new dfs.Dfs.BlockReplicationResponse(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(dfs.Dfs.BlockReplicationResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.success_ = success_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof dfs.Dfs.BlockReplicationResponse) {
+          return mergeFrom((dfs.Dfs.BlockReplicationResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(dfs.Dfs.BlockReplicationResponse other) {
+        if (other == dfs.Dfs.BlockReplicationResponse.getDefaultInstance()) return this;
+        if (other.getSuccess() != false) {
+          setSuccess(other.getSuccess());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                success_ = input.readBool();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private boolean success_ ;
+      /**
+       * <code>bool success = 1;</code>
+       * @return The success.
+       */
+      @java.lang.Override
+      public boolean getSuccess() {
+        return success_;
+      }
+      /**
+       * <code>bool success = 1;</code>
+       * @param value The success to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSuccess(boolean value) {
+
+        success_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool success = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSuccess() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        success_ = false;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:dfs.BlockReplicationResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:dfs.BlockReplicationResponse)
+    private static final dfs.Dfs.BlockReplicationResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new dfs.Dfs.BlockReplicationResponse();
+    }
+
+    public static dfs.Dfs.BlockReplicationResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<BlockReplicationResponse>
+        PARSER = new com.google.protobuf.AbstractParser<BlockReplicationResponse>() {
+      @java.lang.Override
+      public BlockReplicationResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<BlockReplicationResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BlockReplicationResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public dfs.Dfs.BlockReplicationResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_dfs_PutFileRequest_descriptor;
   private static final 
@@ -13607,6 +16171,16 @@ public final class Dfs {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_dfs_RemoveFileResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_dfs_ReplicaRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_dfs_ReplicaRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_dfs_ReplicaResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_dfs_ReplicaResponse_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_dfs_BlockUploadRequest_descriptor;
   private static final 
@@ -13667,6 +16241,16 @@ public final class Dfs {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_dfs_BlockLocation_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_dfs_BlockReplicationRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_dfs_BlockReplicationRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_dfs_BlockReplicationResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_dfs_BlockReplicationResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -13688,40 +16272,49 @@ public final class Dfs {
       "ponse\022\021\n\tfilenames\030\001 \003(\t\"I\n\021RemoveFileRe" +
       "quest\022\020\n\010username\030\001 \001(\t\022\020\n\010password\030\002 \001(" +
       "\t\022\020\n\010filename\030\003 \001(\t\"6\n\022RemoveFileRespons" +
-      "e\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"F\n\022B" +
-      "lockUploadRequest\022\020\n\010block_id\030\001 \001(\005\022\020\n\010f" +
-      "ilename\030\002 \001(\t\022\014\n\004data\030\003 \001(\014\"&\n\023BlockUplo" +
-      "adResponse\022\017\n\007success\030\001 \001(\010\":\n\024BlockDown" +
-      "loadRequest\022\020\n\010block_id\030\001 \001(\005\022\020\n\010filenam" +
-      "e\030\002 \001(\t\"%\n\025BlockDownloadResponse\022\014\n\004data" +
-      "\030\001 \001(\014\"P\n\027RegisterDataNodeRequest\022\023\n\013dat" +
-      "anode_id\030\001 \001(\t\022\022\n\nip_address\030\002 \001(\t\022\014\n\004po" +
-      "rt\030\003 \001(\005\"+\n\030RegisterDataNodeResponse\022\017\n\007" +
-      "success\030\001 \001(\010\"\'\n\020HeartbeatRequest\022\023\n\013dat" +
-      "anode_id\030\001 \001(\t\"$\n\021HeartbeatResponse\022\017\n\007s" +
-      "uccess\030\001 \001(\010\"K\n\022ReportBlockRequest\022\023\n\013da" +
-      "tanode_id\030\001 \001(\t\022 \n\006blocks\030\002 \003(\0132\020.dfs.Bl" +
-      "ockReport\"&\n\023ReportBlockResponse\022\017\n\007succ" +
-      "ess\030\001 \001(\010\"1\n\013BlockReport\022\020\n\010block_id\030\001 \001" +
-      "(\005\022\020\n\010filename\030\002 \001(\t\";\n\rBlockLocation\022\020\n" +
-      "\010block_id\030\001 \001(\005\022\030\n\020datanode_address\030\002 \001(" +
-      "\t2\370\001\n\017NameNodeService\0224\n\007PutFile\022\023.dfs.P" +
-      "utFileRequest\032\024.dfs.PutFileResponse\0224\n\007G" +
-      "etFile\022\023.dfs.GetFileRequest\032\024.dfs.GetFil" +
-      "eResponse\022:\n\tListFiles\022\025.dfs.ListFilesRe" +
-      "quest\032\026.dfs.ListFilesResponse\022=\n\nRemoveF" +
-      "ile\022\026.dfs.RemoveFileRequest\032\027.dfs.Remove" +
-      "FileResponse2\233\001\n\017DataNodeService\022@\n\013Uplo" +
-      "adBlock\022\027.dfs.BlockUploadRequest\032\030.dfs.B" +
-      "lockUploadResponse\022F\n\rDownloadBlock\022\031.df" +
-      "s.BlockDownloadRequest\032\032.dfs.BlockDownlo" +
-      "adResponse2\337\001\n\016ClusterService\022O\n\020Registe" +
-      "rDataNode\022\034.dfs.RegisterDataNodeRequest\032" +
-      "\035.dfs.RegisterDataNodeResponse\022:\n\tHeartb" +
-      "eat\022\025.dfs.HeartbeatRequest\032\026.dfs.Heartbe" +
-      "atResponse\022@\n\013ReportBlock\022\027.dfs.ReportBl" +
-      "ockRequest\032\030.dfs.ReportBlockResponseb\006pr" +
-      "oto3"
+      "e\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"\"\n\016R" +
+      "eplicaRequest\022\020\n\010block_id\030\001 \001(\003\",\n\017Repli" +
+      "caResponse\022\031\n\021replica_datanodes\030\001 \003(\t\"F\n" +
+      "\022BlockUploadRequest\022\020\n\010block_id\030\001 \001(\003\022\020\n" +
+      "\010filename\030\002 \001(\t\022\014\n\004data\030\003 \001(\014\"&\n\023BlockUp" +
+      "loadResponse\022\017\n\007success\030\001 \001(\010\":\n\024BlockDo" +
+      "wnloadRequest\022\020\n\010block_id\030\001 \001(\003\022\020\n\010filen" +
+      "ame\030\002 \001(\t\"%\n\025BlockDownloadResponse\022\014\n\004da" +
+      "ta\030\001 \001(\014\"P\n\027RegisterDataNodeRequest\022\023\n\013d" +
+      "atanode_id\030\001 \001(\t\022\022\n\nip_address\030\002 \001(\t\022\014\n\004" +
+      "port\030\003 \001(\005\"+\n\030RegisterDataNodeResponse\022\017" +
+      "\n\007success\030\001 \001(\010\"\'\n\020HeartbeatRequest\022\023\n\013d" +
+      "atanode_id\030\001 \001(\t\"$\n\021HeartbeatResponse\022\017\n" +
+      "\007success\030\001 \001(\010\"K\n\022ReportBlockRequest\022\023\n\013" +
+      "datanode_id\030\001 \001(\t\022 \n\006blocks\030\002 \003(\0132\020.dfs." +
+      "BlockReport\"&\n\023ReportBlockResponse\022\017\n\007su" +
+      "ccess\030\001 \001(\010\"1\n\013BlockReport\022\020\n\010block_id\030\001" +
+      " \001(\003\022\020\n\010filename\030\002 \001(\t\"U\n\rBlockLocation\022" +
+      "\020\n\010block_id\030\001 \001(\003\022\027\n\017primary_address\030\002 \001" +
+      "(\t\022\031\n\021replica_addresses\030\003 \003(\t\"K\n\027BlockRe" +
+      "plicationRequest\022\020\n\010block_id\030\001 \001(\003\022\020\n\010fi" +
+      "lename\030\002 \001(\t\022\014\n\004data\030\003 \001(\014\"+\n\030BlockRepli" +
+      "cationResponse\022\017\n\007success\030\001 \001(\0102\262\002\n\017Name" +
+      "NodeService\0224\n\007PutFile\022\023.dfs.PutFileRequ" +
+      "est\032\024.dfs.PutFileResponse\0224\n\007GetFile\022\023.d" +
+      "fs.GetFileRequest\032\024.dfs.GetFileResponse\022" +
+      ":\n\tListFiles\022\025.dfs.ListFilesRequest\032\026.df" +
+      "s.ListFilesResponse\022=\n\nRemoveFile\022\026.dfs." +
+      "RemoveFileRequest\032\027.dfs.RemoveFileRespon" +
+      "se\0228\n\013GetReplicas\022\023.dfs.ReplicaRequest\032\024" +
+      ".dfs.ReplicaResponse2\352\001\n\017DataNodeService" +
+      "\022@\n\013UploadBlock\022\027.dfs.BlockUploadRequest" +
+      "\032\030.dfs.BlockUploadResponse\022F\n\rDownloadBl" +
+      "ock\022\031.dfs.BlockDownloadRequest\032\032.dfs.Blo" +
+      "ckDownloadResponse\022M\n\016ReplicateBlock\022\034.d" +
+      "fs.BlockReplicationRequest\032\035.dfs.BlockRe" +
+      "plicationResponse2\337\001\n\016ClusterService\022O\n\020" +
+      "RegisterDataNode\022\034.dfs.RegisterDataNodeR" +
+      "equest\032\035.dfs.RegisterDataNodeResponse\022:\n" +
+      "\tHeartbeat\022\025.dfs.HeartbeatRequest\032\026.dfs." +
+      "HeartbeatResponse\022@\n\013ReportBlock\022\027.dfs.R" +
+      "eportBlockRequest\032\030.dfs.ReportBlockRespo" +
+      "nseb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -13775,78 +16368,102 @@ public final class Dfs {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_RemoveFileResponse_descriptor,
         new java.lang.String[] { "Success", "Message", });
-    internal_static_dfs_BlockUploadRequest_descriptor =
+    internal_static_dfs_ReplicaRequest_descriptor =
       getDescriptor().getMessageTypes().get(8);
+    internal_static_dfs_ReplicaRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_dfs_ReplicaRequest_descriptor,
+        new java.lang.String[] { "BlockId", });
+    internal_static_dfs_ReplicaResponse_descriptor =
+      getDescriptor().getMessageTypes().get(9);
+    internal_static_dfs_ReplicaResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_dfs_ReplicaResponse_descriptor,
+        new java.lang.String[] { "ReplicaDatanodes", });
+    internal_static_dfs_BlockUploadRequest_descriptor =
+      getDescriptor().getMessageTypes().get(10);
     internal_static_dfs_BlockUploadRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_BlockUploadRequest_descriptor,
         new java.lang.String[] { "BlockId", "Filename", "Data", });
     internal_static_dfs_BlockUploadResponse_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_dfs_BlockUploadResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_BlockUploadResponse_descriptor,
         new java.lang.String[] { "Success", });
     internal_static_dfs_BlockDownloadRequest_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_dfs_BlockDownloadRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_BlockDownloadRequest_descriptor,
         new java.lang.String[] { "BlockId", "Filename", });
     internal_static_dfs_BlockDownloadResponse_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(13);
     internal_static_dfs_BlockDownloadResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_BlockDownloadResponse_descriptor,
         new java.lang.String[] { "Data", });
     internal_static_dfs_RegisterDataNodeRequest_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(14);
     internal_static_dfs_RegisterDataNodeRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_RegisterDataNodeRequest_descriptor,
         new java.lang.String[] { "DatanodeId", "IpAddress", "Port", });
     internal_static_dfs_RegisterDataNodeResponse_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(15);
     internal_static_dfs_RegisterDataNodeResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_RegisterDataNodeResponse_descriptor,
         new java.lang.String[] { "Success", });
     internal_static_dfs_HeartbeatRequest_descriptor =
-      getDescriptor().getMessageTypes().get(14);
+      getDescriptor().getMessageTypes().get(16);
     internal_static_dfs_HeartbeatRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_HeartbeatRequest_descriptor,
         new java.lang.String[] { "DatanodeId", });
     internal_static_dfs_HeartbeatResponse_descriptor =
-      getDescriptor().getMessageTypes().get(15);
+      getDescriptor().getMessageTypes().get(17);
     internal_static_dfs_HeartbeatResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_HeartbeatResponse_descriptor,
         new java.lang.String[] { "Success", });
     internal_static_dfs_ReportBlockRequest_descriptor =
-      getDescriptor().getMessageTypes().get(16);
+      getDescriptor().getMessageTypes().get(18);
     internal_static_dfs_ReportBlockRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_ReportBlockRequest_descriptor,
         new java.lang.String[] { "DatanodeId", "Blocks", });
     internal_static_dfs_ReportBlockResponse_descriptor =
-      getDescriptor().getMessageTypes().get(17);
+      getDescriptor().getMessageTypes().get(19);
     internal_static_dfs_ReportBlockResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_ReportBlockResponse_descriptor,
         new java.lang.String[] { "Success", });
     internal_static_dfs_BlockReport_descriptor =
-      getDescriptor().getMessageTypes().get(18);
+      getDescriptor().getMessageTypes().get(20);
     internal_static_dfs_BlockReport_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_BlockReport_descriptor,
         new java.lang.String[] { "BlockId", "Filename", });
     internal_static_dfs_BlockLocation_descriptor =
-      getDescriptor().getMessageTypes().get(19);
+      getDescriptor().getMessageTypes().get(21);
     internal_static_dfs_BlockLocation_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_BlockLocation_descriptor,
-        new java.lang.String[] { "BlockId", "DatanodeAddress", });
+        new java.lang.String[] { "BlockId", "PrimaryAddress", "ReplicaAddresses", });
+    internal_static_dfs_BlockReplicationRequest_descriptor =
+      getDescriptor().getMessageTypes().get(22);
+    internal_static_dfs_BlockReplicationRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_dfs_BlockReplicationRequest_descriptor,
+        new java.lang.String[] { "BlockId", "Filename", "Data", });
+    internal_static_dfs_BlockReplicationResponse_descriptor =
+      getDescriptor().getMessageTypes().get(23);
+    internal_static_dfs_BlockReplicationResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_dfs_BlockReplicationResponse_descriptor,
+        new java.lang.String[] { "Success", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

@@ -2,6 +2,8 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
+#include <algorithm>
+#include <cstdint>
 
 // Información de un bloque registrado en la tabla de metadatos
 struct BlockLocation {
@@ -9,24 +11,37 @@ struct BlockLocation {
     std::string datanode_address;
 };
 
+struct NodeInfo {
+    std::string addr;
+    uint64_t free_bytes;
+    int64_t last_heartbeat;
+    bool alive;
+};
+
 class MetadataManager {
 public:
-    // Registrar en la tabla que un bloque de un archivo está en cierto DataNode
-    void registerBlockLocation(const std::string& filename, const BlockLocation& block);
+    
 
-    // Obtener la lista de bloques (con sus DataNodes) de un archivo
+    void registerDataNode(const std::string& datanode_id, const std::string& address);
+    std::vector<std::string> getAllDataNodes() const;
+
+    void registerBlockLocation(const std::string& filename, const BlockLocation& block);
     std::vector<BlockLocation> lookupFileBlocks(const std::string& filename) const;
 
-    // Listar los archivos de un usuario
     std::vector<std::string> listFilesForUser(const std::string& username) const;
-
-    // Eliminar la referencia a un archivo (desregistrar de la tabla)
     void unregisterFile(const std::string& filename);
 
-private:
-    // filename -> lista de ubicaciones de bloques
-    std::unordered_map<std::string, std::vector<BlockLocation>> fileTable;
+    // NUEVO: manejo de réplicas
+    void registerBlockReplicas(int64_t block_id, const std::vector<std::string>& nodes);
+    std::vector<std::string> getReplicasForBlock(int64_t block_id) const;
 
-    // username -> lista de archivos que le pertenecen
+    // NUEVO: filtrar sólo nodos vivos
+    std::vector<std::string> getAliveDataNodes() const;
+
+private:
+    std::unordered_map<std::string, std::vector<BlockLocation>> fileTable;
     std::unordered_map<std::string, std::vector<std::string>> userFiles;
+    std::unordered_map<std::string, std::string> dataNodes;
+    std::unordered_map<int64_t, std::vector<std::string>> blockReplicas;
+    std::unordered_map<std::string, NodeInfo> nodeInfo;
 };

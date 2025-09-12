@@ -82,6 +82,37 @@ public final class DataNodeServiceGrpc {
     return getDownloadBlockMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<dfs.Dfs.BlockReplicationRequest,
+      dfs.Dfs.BlockReplicationResponse> getReplicateBlockMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "ReplicateBlock",
+      requestType = dfs.Dfs.BlockReplicationRequest.class,
+      responseType = dfs.Dfs.BlockReplicationResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<dfs.Dfs.BlockReplicationRequest,
+      dfs.Dfs.BlockReplicationResponse> getReplicateBlockMethod() {
+    io.grpc.MethodDescriptor<dfs.Dfs.BlockReplicationRequest, dfs.Dfs.BlockReplicationResponse> getReplicateBlockMethod;
+    if ((getReplicateBlockMethod = DataNodeServiceGrpc.getReplicateBlockMethod) == null) {
+      synchronized (DataNodeServiceGrpc.class) {
+        if ((getReplicateBlockMethod = DataNodeServiceGrpc.getReplicateBlockMethod) == null) {
+          DataNodeServiceGrpc.getReplicateBlockMethod = getReplicateBlockMethod =
+              io.grpc.MethodDescriptor.<dfs.Dfs.BlockReplicationRequest, dfs.Dfs.BlockReplicationResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ReplicateBlock"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  dfs.Dfs.BlockReplicationRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  dfs.Dfs.BlockReplicationResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new DataNodeServiceMethodDescriptorSupplier("ReplicateBlock"))
+              .build();
+        }
+      }
+    }
+    return getReplicateBlockMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -154,6 +185,16 @@ public final class DataNodeServiceGrpc {
         io.grpc.stub.StreamObserver<dfs.Dfs.BlockDownloadResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDownloadBlockMethod(), responseObserver);
     }
+
+    /**
+     * <pre>
+     * Replicación de bloques entre DataNodes
+     * </pre>
+     */
+    default void replicateBlock(dfs.Dfs.BlockReplicationRequest request,
+        io.grpc.stub.StreamObserver<dfs.Dfs.BlockReplicationResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getReplicateBlockMethod(), responseObserver);
+    }
   }
 
   /**
@@ -214,6 +255,17 @@ public final class DataNodeServiceGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getDownloadBlockMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     * <pre>
+     * Replicación de bloques entre DataNodes
+     * </pre>
+     */
+    public void replicateBlock(dfs.Dfs.BlockReplicationRequest request,
+        io.grpc.stub.StreamObserver<dfs.Dfs.BlockReplicationResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getReplicateBlockMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -255,6 +307,16 @@ public final class DataNodeServiceGrpc {
     public dfs.Dfs.BlockDownloadResponse downloadBlock(dfs.Dfs.BlockDownloadRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getDownloadBlockMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Replicación de bloques entre DataNodes
+     * </pre>
+     */
+    public dfs.Dfs.BlockReplicationResponse replicateBlock(dfs.Dfs.BlockReplicationRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getReplicateBlockMethod(), getCallOptions(), request);
     }
   }
 
@@ -300,10 +362,22 @@ public final class DataNodeServiceGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getDownloadBlockMethod(), getCallOptions()), request);
     }
+
+    /**
+     * <pre>
+     * Replicación de bloques entre DataNodes
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<dfs.Dfs.BlockReplicationResponse> replicateBlock(
+        dfs.Dfs.BlockReplicationRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getReplicateBlockMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_UPLOAD_BLOCK = 0;
   private static final int METHODID_DOWNLOAD_BLOCK = 1;
+  private static final int METHODID_REPLICATE_BLOCK = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -329,6 +403,10 @@ public final class DataNodeServiceGrpc {
         case METHODID_DOWNLOAD_BLOCK:
           serviceImpl.downloadBlock((dfs.Dfs.BlockDownloadRequest) request,
               (io.grpc.stub.StreamObserver<dfs.Dfs.BlockDownloadResponse>) responseObserver);
+          break;
+        case METHODID_REPLICATE_BLOCK:
+          serviceImpl.replicateBlock((dfs.Dfs.BlockReplicationRequest) request,
+              (io.grpc.stub.StreamObserver<dfs.Dfs.BlockReplicationResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -362,6 +440,13 @@ public final class DataNodeServiceGrpc {
               dfs.Dfs.BlockDownloadRequest,
               dfs.Dfs.BlockDownloadResponse>(
                 service, METHODID_DOWNLOAD_BLOCK)))
+        .addMethod(
+          getReplicateBlockMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              dfs.Dfs.BlockReplicationRequest,
+              dfs.Dfs.BlockReplicationResponse>(
+                service, METHODID_REPLICATE_BLOCK)))
         .build();
   }
 
@@ -412,6 +497,7 @@ public final class DataNodeServiceGrpc {
               .setSchemaDescriptor(new DataNodeServiceFileDescriptorSupplier())
               .addMethod(getUploadBlockMethod())
               .addMethod(getDownloadBlockMethod())
+              .addMethod(getReplicateBlockMethod())
               .build();
         }
       }

@@ -61,6 +61,12 @@ extern BlockDownloadResponseDefaultTypeInternal _BlockDownloadResponse_default_i
 class BlockLocation;
 struct BlockLocationDefaultTypeInternal;
 extern BlockLocationDefaultTypeInternal _BlockLocation_default_instance_;
+class BlockReplicationRequest;
+struct BlockReplicationRequestDefaultTypeInternal;
+extern BlockReplicationRequestDefaultTypeInternal _BlockReplicationRequest_default_instance_;
+class BlockReplicationResponse;
+struct BlockReplicationResponseDefaultTypeInternal;
+extern BlockReplicationResponseDefaultTypeInternal _BlockReplicationResponse_default_instance_;
 class BlockReport;
 struct BlockReportDefaultTypeInternal;
 extern BlockReportDefaultTypeInternal _BlockReport_default_instance_;
@@ -106,6 +112,12 @@ extern RemoveFileRequestDefaultTypeInternal _RemoveFileRequest_default_instance_
 class RemoveFileResponse;
 struct RemoveFileResponseDefaultTypeInternal;
 extern RemoveFileResponseDefaultTypeInternal _RemoveFileResponse_default_instance_;
+class ReplicaRequest;
+struct ReplicaRequestDefaultTypeInternal;
+extern ReplicaRequestDefaultTypeInternal _ReplicaRequest_default_instance_;
+class ReplicaResponse;
+struct ReplicaResponseDefaultTypeInternal;
+extern ReplicaResponseDefaultTypeInternal _ReplicaResponse_default_instance_;
 class ReportBlockRequest;
 struct ReportBlockRequestDefaultTypeInternal;
 extern ReportBlockRequestDefaultTypeInternal _ReportBlockRequest_default_instance_;
@@ -184,7 +196,7 @@ class ReportBlockResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const ReportBlockResponse*>(
         &_ReportBlockResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 17;
+  static constexpr int kIndexInFileMessages = 19;
   friend void swap(ReportBlockResponse& a, ReportBlockResponse& b) { a.Swap(&b); }
   inline void Swap(ReportBlockResponse* other) {
     if (other == this) return;
@@ -307,6 +319,398 @@ class ReportBlockResponse final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const ReportBlockResponse& from_msg);
     bool success_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_dfs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ReplicaResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:dfs.ReplicaResponse) */ {
+ public:
+  inline ReplicaResponse() : ReplicaResponse(nullptr) {}
+  ~ReplicaResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(ReplicaResponse* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(ReplicaResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR ReplicaResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline ReplicaResponse(const ReplicaResponse& from) : ReplicaResponse(nullptr, from) {}
+  inline ReplicaResponse(ReplicaResponse&& from) noexcept
+      : ReplicaResponse(nullptr, std::move(from)) {}
+  inline ReplicaResponse& operator=(const ReplicaResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ReplicaResponse& operator=(ReplicaResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ReplicaResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ReplicaResponse* internal_default_instance() {
+    return reinterpret_cast<const ReplicaResponse*>(
+        &_ReplicaResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 9;
+  friend void swap(ReplicaResponse& a, ReplicaResponse& b) { a.Swap(&b); }
+  inline void Swap(ReplicaResponse* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ReplicaResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ReplicaResponse* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<ReplicaResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ReplicaResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const ReplicaResponse& from) { ReplicaResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(ReplicaResponse* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "dfs.ReplicaResponse"; }
+
+ protected:
+  explicit ReplicaResponse(::google::protobuf::Arena* arena);
+  ReplicaResponse(::google::protobuf::Arena* arena, const ReplicaResponse& from);
+  ReplicaResponse(::google::protobuf::Arena* arena, ReplicaResponse&& from) noexcept
+      : ReplicaResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kReplicaDatanodesFieldNumber = 1,
+  };
+  // repeated string replica_datanodes = 1;
+  int replica_datanodes_size() const;
+  private:
+  int _internal_replica_datanodes_size() const;
+
+  public:
+  void clear_replica_datanodes() ;
+  const std::string& replica_datanodes(int index) const;
+  std::string* mutable_replica_datanodes(int index);
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_replica_datanodes(int index, Arg_&& value, Args_... args);
+  std::string* add_replica_datanodes();
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void add_replica_datanodes(Arg_&& value, Args_... args);
+  const ::google::protobuf::RepeatedPtrField<std::string>& replica_datanodes() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* mutable_replica_datanodes();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_replica_datanodes() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_replica_datanodes();
+
+  public:
+  // @@protoc_insertion_point(class_scope:dfs.ReplicaResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 0,
+      45, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const ReplicaResponse& from_msg);
+    ::google::protobuf::RepeatedPtrField<std::string> replica_datanodes_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_dfs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ReplicaRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:dfs.ReplicaRequest) */ {
+ public:
+  inline ReplicaRequest() : ReplicaRequest(nullptr) {}
+  ~ReplicaRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(ReplicaRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(ReplicaRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR ReplicaRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline ReplicaRequest(const ReplicaRequest& from) : ReplicaRequest(nullptr, from) {}
+  inline ReplicaRequest(ReplicaRequest&& from) noexcept
+      : ReplicaRequest(nullptr, std::move(from)) {}
+  inline ReplicaRequest& operator=(const ReplicaRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ReplicaRequest& operator=(ReplicaRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ReplicaRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ReplicaRequest* internal_default_instance() {
+    return reinterpret_cast<const ReplicaRequest*>(
+        &_ReplicaRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 8;
+  friend void swap(ReplicaRequest& a, ReplicaRequest& b) { a.Swap(&b); }
+  inline void Swap(ReplicaRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ReplicaRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ReplicaRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<ReplicaRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ReplicaRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const ReplicaRequest& from) { ReplicaRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(ReplicaRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "dfs.ReplicaRequest"; }
+
+ protected:
+  explicit ReplicaRequest(::google::protobuf::Arena* arena);
+  ReplicaRequest(::google::protobuf::Arena* arena, const ReplicaRequest& from);
+  ReplicaRequest(::google::protobuf::Arena* arena, ReplicaRequest&& from) noexcept
+      : ReplicaRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kBlockIdFieldNumber = 1,
+  };
+  // int64 block_id = 1;
+  void clear_block_id() ;
+  ::int64_t block_id() const;
+  void set_block_id(::int64_t value);
+
+  private:
+  ::int64_t _internal_block_id() const;
+  void _internal_set_block_id(::int64_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:dfs.ReplicaRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const ReplicaRequest& from_msg);
+    ::int64_t block_id_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -814,7 +1218,7 @@ class RegisterDataNodeResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const RegisterDataNodeResponse*>(
         &_RegisterDataNodeResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 13;
+  static constexpr int kIndexInFileMessages = 15;
   friend void swap(RegisterDataNodeResponse& a, RegisterDataNodeResponse& b) { a.Swap(&b); }
   inline void Swap(RegisterDataNodeResponse* other) {
     if (other == this) return;
@@ -1004,7 +1408,7 @@ class RegisterDataNodeRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const RegisterDataNodeRequest*>(
         &_RegisterDataNodeRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 12;
+  static constexpr int kIndexInFileMessages = 14;
   friend void swap(RegisterDataNodeRequest& a, RegisterDataNodeRequest& b) { a.Swap(&b); }
   inline void Swap(RegisterDataNodeRequest* other) {
     if (other == this) return;
@@ -1890,7 +2294,7 @@ class HeartbeatResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const HeartbeatResponse*>(
         &_HeartbeatResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 15;
+  static constexpr int kIndexInFileMessages = 17;
   friend void swap(HeartbeatResponse& a, HeartbeatResponse& b) { a.Swap(&b); }
   inline void Swap(HeartbeatResponse* other) {
     if (other == this) return;
@@ -2080,7 +2484,7 @@ class HeartbeatRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const HeartbeatRequest*>(
         &_HeartbeatRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 14;
+  static constexpr int kIndexInFileMessages = 16;
   friend void swap(HeartbeatRequest& a, HeartbeatRequest& b) { a.Swap(&b); }
   inline void Swap(HeartbeatRequest* other) {
     if (other == this) return;
@@ -2508,7 +2912,7 @@ class BlockUploadResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const BlockUploadResponse*>(
         &_BlockUploadResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 9;
+  static constexpr int kIndexInFileMessages = 11;
   friend void swap(BlockUploadResponse& a, BlockUploadResponse& b) { a.Swap(&b); }
   inline void Swap(BlockUploadResponse* other) {
     if (other == this) return;
@@ -2698,7 +3102,7 @@ class BlockUploadRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const BlockUploadRequest*>(
         &_BlockUploadRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 8;
+  static constexpr int kIndexInFileMessages = 10;
   friend void swap(BlockUploadRequest& a, BlockUploadRequest& b) { a.Swap(&b); }
   inline void Swap(BlockUploadRequest* other) {
     if (other == this) return;
@@ -2821,14 +3225,14 @@ class BlockUploadRequest final : public ::google::protobuf::Message
   std::string* _internal_mutable_data();
 
   public:
-  // int32 block_id = 1;
+  // int64 block_id = 1;
   void clear_block_id() ;
-  ::int32_t block_id() const;
-  void set_block_id(::int32_t value);
+  ::int64_t block_id() const;
+  void set_block_id(::int64_t value);
 
   private:
-  ::int32_t _internal_block_id() const;
-  void _internal_set_block_id(::int32_t value);
+  ::int64_t _internal_block_id() const;
+  void _internal_set_block_id(::int64_t value);
 
   public:
   // @@protoc_insertion_point(class_scope:dfs.BlockUploadRequest)
@@ -2856,7 +3260,7 @@ class BlockUploadRequest final : public ::google::protobuf::Message
                           const BlockUploadRequest& from_msg);
     ::google::protobuf::internal::ArenaStringPtr filename_;
     ::google::protobuf::internal::ArenaStringPtr data_;
-    ::int32_t block_id_;
+    ::int64_t block_id_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -2924,7 +3328,7 @@ class BlockReport final : public ::google::protobuf::Message
     return reinterpret_cast<const BlockReport*>(
         &_BlockReport_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 18;
+  static constexpr int kIndexInFileMessages = 20;
   friend void swap(BlockReport& a, BlockReport& b) { a.Swap(&b); }
   inline void Swap(BlockReport* other) {
     if (other == this) return;
@@ -3030,14 +3434,14 @@ class BlockReport final : public ::google::protobuf::Message
   std::string* _internal_mutable_filename();
 
   public:
-  // int32 block_id = 1;
+  // int64 block_id = 1;
   void clear_block_id() ;
-  ::int32_t block_id() const;
-  void set_block_id(::int32_t value);
+  ::int64_t block_id() const;
+  void set_block_id(::int64_t value);
 
   private:
-  ::int32_t _internal_block_id() const;
-  void _internal_set_block_id(::int32_t value);
+  ::int64_t _internal_block_id() const;
+  void _internal_set_block_id(::int64_t value);
 
   public:
   // @@protoc_insertion_point(class_scope:dfs.BlockReport)
@@ -3064,7 +3468,423 @@ class BlockReport final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const BlockReport& from_msg);
     ::google::protobuf::internal::ArenaStringPtr filename_;
-    ::int32_t block_id_;
+    ::int64_t block_id_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_dfs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class BlockReplicationResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:dfs.BlockReplicationResponse) */ {
+ public:
+  inline BlockReplicationResponse() : BlockReplicationResponse(nullptr) {}
+  ~BlockReplicationResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(BlockReplicationResponse* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(BlockReplicationResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR BlockReplicationResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline BlockReplicationResponse(const BlockReplicationResponse& from) : BlockReplicationResponse(nullptr, from) {}
+  inline BlockReplicationResponse(BlockReplicationResponse&& from) noexcept
+      : BlockReplicationResponse(nullptr, std::move(from)) {}
+  inline BlockReplicationResponse& operator=(const BlockReplicationResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline BlockReplicationResponse& operator=(BlockReplicationResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const BlockReplicationResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const BlockReplicationResponse* internal_default_instance() {
+    return reinterpret_cast<const BlockReplicationResponse*>(
+        &_BlockReplicationResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 23;
+  friend void swap(BlockReplicationResponse& a, BlockReplicationResponse& b) { a.Swap(&b); }
+  inline void Swap(BlockReplicationResponse* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(BlockReplicationResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  BlockReplicationResponse* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<BlockReplicationResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const BlockReplicationResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const BlockReplicationResponse& from) { BlockReplicationResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(BlockReplicationResponse* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "dfs.BlockReplicationResponse"; }
+
+ protected:
+  explicit BlockReplicationResponse(::google::protobuf::Arena* arena);
+  BlockReplicationResponse(::google::protobuf::Arena* arena, const BlockReplicationResponse& from);
+  BlockReplicationResponse(::google::protobuf::Arena* arena, BlockReplicationResponse&& from) noexcept
+      : BlockReplicationResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kSuccessFieldNumber = 1,
+  };
+  // bool success = 1;
+  void clear_success() ;
+  bool success() const;
+  void set_success(bool value);
+
+  private:
+  bool _internal_success() const;
+  void _internal_set_success(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:dfs.BlockReplicationResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const BlockReplicationResponse& from_msg);
+    bool success_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_dfs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class BlockReplicationRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:dfs.BlockReplicationRequest) */ {
+ public:
+  inline BlockReplicationRequest() : BlockReplicationRequest(nullptr) {}
+  ~BlockReplicationRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(BlockReplicationRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(BlockReplicationRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR BlockReplicationRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline BlockReplicationRequest(const BlockReplicationRequest& from) : BlockReplicationRequest(nullptr, from) {}
+  inline BlockReplicationRequest(BlockReplicationRequest&& from) noexcept
+      : BlockReplicationRequest(nullptr, std::move(from)) {}
+  inline BlockReplicationRequest& operator=(const BlockReplicationRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline BlockReplicationRequest& operator=(BlockReplicationRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const BlockReplicationRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const BlockReplicationRequest* internal_default_instance() {
+    return reinterpret_cast<const BlockReplicationRequest*>(
+        &_BlockReplicationRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 22;
+  friend void swap(BlockReplicationRequest& a, BlockReplicationRequest& b) { a.Swap(&b); }
+  inline void Swap(BlockReplicationRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(BlockReplicationRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  BlockReplicationRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<BlockReplicationRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const BlockReplicationRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const BlockReplicationRequest& from) { BlockReplicationRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(BlockReplicationRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "dfs.BlockReplicationRequest"; }
+
+ protected:
+  explicit BlockReplicationRequest(::google::protobuf::Arena* arena);
+  BlockReplicationRequest(::google::protobuf::Arena* arena, const BlockReplicationRequest& from);
+  BlockReplicationRequest(::google::protobuf::Arena* arena, BlockReplicationRequest&& from) noexcept
+      : BlockReplicationRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kFilenameFieldNumber = 2,
+    kDataFieldNumber = 3,
+    kBlockIdFieldNumber = 1,
+  };
+  // string filename = 2;
+  void clear_filename() ;
+  const std::string& filename() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_filename(Arg_&& arg, Args_... args);
+  std::string* mutable_filename();
+  PROTOBUF_NODISCARD std::string* release_filename();
+  void set_allocated_filename(std::string* value);
+
+  private:
+  const std::string& _internal_filename() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_filename(
+      const std::string& value);
+  std::string* _internal_mutable_filename();
+
+  public:
+  // bytes data = 3;
+  void clear_data() ;
+  const std::string& data() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_data(Arg_&& arg, Args_... args);
+  std::string* mutable_data();
+  PROTOBUF_NODISCARD std::string* release_data();
+  void set_allocated_data(std::string* value);
+
+  private:
+  const std::string& _internal_data() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_data(
+      const std::string& value);
+  std::string* _internal_mutable_data();
+
+  public:
+  // int64 block_id = 1;
+  void clear_block_id() ;
+  ::int64_t block_id() const;
+  void set_block_id(::int64_t value);
+
+  private:
+  ::int64_t _internal_block_id() const;
+  void _internal_set_block_id(::int64_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:dfs.BlockReplicationRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 0,
+      44, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const BlockReplicationRequest& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr filename_;
+    ::google::protobuf::internal::ArenaStringPtr data_;
+    ::int64_t block_id_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -3132,7 +3952,7 @@ class BlockLocation final : public ::google::protobuf::Message
     return reinterpret_cast<const BlockLocation*>(
         &_BlockLocation_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 19;
+  static constexpr int kIndexInFileMessages = 21;
   friend void swap(BlockLocation& a, BlockLocation& b) { a.Swap(&b); }
   inline void Swap(BlockLocation* other) {
     if (other == this) return;
@@ -3219,33 +4039,56 @@ class BlockLocation final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kDatanodeAddressFieldNumber = 2,
+    kReplicaAddressesFieldNumber = 3,
+    kPrimaryAddressFieldNumber = 2,
     kBlockIdFieldNumber = 1,
   };
-  // string datanode_address = 2;
-  void clear_datanode_address() ;
-  const std::string& datanode_address() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_datanode_address(Arg_&& arg, Args_... args);
-  std::string* mutable_datanode_address();
-  PROTOBUF_NODISCARD std::string* release_datanode_address();
-  void set_allocated_datanode_address(std::string* value);
-
+  // repeated string replica_addresses = 3;
+  int replica_addresses_size() const;
   private:
-  const std::string& _internal_datanode_address() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_datanode_address(
-      const std::string& value);
-  std::string* _internal_mutable_datanode_address();
+  int _internal_replica_addresses_size() const;
 
   public:
-  // int32 block_id = 1;
-  void clear_block_id() ;
-  ::int32_t block_id() const;
-  void set_block_id(::int32_t value);
+  void clear_replica_addresses() ;
+  const std::string& replica_addresses(int index) const;
+  std::string* mutable_replica_addresses(int index);
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_replica_addresses(int index, Arg_&& value, Args_... args);
+  std::string* add_replica_addresses();
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void add_replica_addresses(Arg_&& value, Args_... args);
+  const ::google::protobuf::RepeatedPtrField<std::string>& replica_addresses() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* mutable_replica_addresses();
 
   private:
-  ::int32_t _internal_block_id() const;
-  void _internal_set_block_id(::int32_t value);
+  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_replica_addresses() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_replica_addresses();
+
+  public:
+  // string primary_address = 2;
+  void clear_primary_address() ;
+  const std::string& primary_address() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_primary_address(Arg_&& arg, Args_... args);
+  std::string* mutable_primary_address();
+  PROTOBUF_NODISCARD std::string* release_primary_address();
+  void set_allocated_primary_address(std::string* value);
+
+  private:
+  const std::string& _internal_primary_address() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_primary_address(
+      const std::string& value);
+  std::string* _internal_mutable_primary_address();
+
+  public:
+  // int64 block_id = 1;
+  void clear_block_id() ;
+  ::int64_t block_id() const;
+  void set_block_id(::int64_t value);
+
+  private:
+  ::int64_t _internal_block_id() const;
+  void _internal_set_block_id(::int64_t value);
 
   public:
   // @@protoc_insertion_point(class_scope:dfs.BlockLocation)
@@ -3253,8 +4096,8 @@ class BlockLocation final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 0,
-      42, 2>
+      2, 3, 0,
+      58, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -3271,8 +4114,9 @@ class BlockLocation final : public ::google::protobuf::Message
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const BlockLocation& from_msg);
-    ::google::protobuf::internal::ArenaStringPtr datanode_address_;
-    ::int32_t block_id_;
+    ::google::protobuf::RepeatedPtrField<std::string> replica_addresses_;
+    ::google::protobuf::internal::ArenaStringPtr primary_address_;
+    ::int64_t block_id_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -3340,7 +4184,7 @@ class BlockDownloadResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const BlockDownloadResponse*>(
         &_BlockDownloadResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 11;
+  static constexpr int kIndexInFileMessages = 13;
   friend void swap(BlockDownloadResponse& a, BlockDownloadResponse& b) { a.Swap(&b); }
   inline void Swap(BlockDownloadResponse* other) {
     if (other == this) return;
@@ -3536,7 +4380,7 @@ class BlockDownloadRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const BlockDownloadRequest*>(
         &_BlockDownloadRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 10;
+  static constexpr int kIndexInFileMessages = 12;
   friend void swap(BlockDownloadRequest& a, BlockDownloadRequest& b) { a.Swap(&b); }
   inline void Swap(BlockDownloadRequest* other) {
     if (other == this) return;
@@ -3642,14 +4486,14 @@ class BlockDownloadRequest final : public ::google::protobuf::Message
   std::string* _internal_mutable_filename();
 
   public:
-  // int32 block_id = 1;
+  // int64 block_id = 1;
   void clear_block_id() ;
-  ::int32_t block_id() const;
-  void set_block_id(::int32_t value);
+  ::int64_t block_id() const;
+  void set_block_id(::int64_t value);
 
   private:
-  ::int32_t _internal_block_id() const;
-  void _internal_set_block_id(::int32_t value);
+  ::int64_t _internal_block_id() const;
+  void _internal_set_block_id(::int64_t value);
 
   public:
   // @@protoc_insertion_point(class_scope:dfs.BlockDownloadRequest)
@@ -3676,7 +4520,7 @@ class BlockDownloadRequest final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const BlockDownloadRequest& from_msg);
     ::google::protobuf::internal::ArenaStringPtr filename_;
-    ::int32_t block_id_;
+    ::int64_t block_id_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -3744,7 +4588,7 @@ class ReportBlockRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const ReportBlockRequest*>(
         &_ReportBlockRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 16;
+  static constexpr int kIndexInFileMessages = 18;
   friend void swap(ReportBlockRequest& a, ReportBlockRequest& b) { a.Swap(&b); }
   inline void Swap(ReportBlockRequest* other) {
     if (other == this) return;
@@ -5121,26 +5965,120 @@ inline void RemoveFileResponse::set_allocated_message(std::string* value) {
 
 // -------------------------------------------------------------------
 
-// BlockUploadRequest
+// ReplicaRequest
 
-// int32 block_id = 1;
-inline void BlockUploadRequest::clear_block_id() {
+// int64 block_id = 1;
+inline void ReplicaRequest::clear_block_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.block_id_ = 0;
+  _impl_.block_id_ = ::int64_t{0};
 }
-inline ::int32_t BlockUploadRequest::block_id() const {
-  // @@protoc_insertion_point(field_get:dfs.BlockUploadRequest.block_id)
+inline ::int64_t ReplicaRequest::block_id() const {
+  // @@protoc_insertion_point(field_get:dfs.ReplicaRequest.block_id)
   return _internal_block_id();
 }
-inline void BlockUploadRequest::set_block_id(::int32_t value) {
+inline void ReplicaRequest::set_block_id(::int64_t value) {
   _internal_set_block_id(value);
-  // @@protoc_insertion_point(field_set:dfs.BlockUploadRequest.block_id)
+  // @@protoc_insertion_point(field_set:dfs.ReplicaRequest.block_id)
 }
-inline ::int32_t BlockUploadRequest::_internal_block_id() const {
+inline ::int64_t ReplicaRequest::_internal_block_id() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.block_id_;
 }
-inline void BlockUploadRequest::_internal_set_block_id(::int32_t value) {
+inline void ReplicaRequest::_internal_set_block_id(::int64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.block_id_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// ReplicaResponse
+
+// repeated string replica_datanodes = 1;
+inline int ReplicaResponse::_internal_replica_datanodes_size() const {
+  return _internal_replica_datanodes().size();
+}
+inline int ReplicaResponse::replica_datanodes_size() const {
+  return _internal_replica_datanodes_size();
+}
+inline void ReplicaResponse::clear_replica_datanodes() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.replica_datanodes_.Clear();
+}
+inline std::string* ReplicaResponse::add_replica_datanodes() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  std::string* _s = _internal_mutable_replica_datanodes()->Add();
+  // @@protoc_insertion_point(field_add_mutable:dfs.ReplicaResponse.replica_datanodes)
+  return _s;
+}
+inline const std::string& ReplicaResponse::replica_datanodes(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:dfs.ReplicaResponse.replica_datanodes)
+  return _internal_replica_datanodes().Get(index);
+}
+inline std::string* ReplicaResponse::mutable_replica_datanodes(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:dfs.ReplicaResponse.replica_datanodes)
+  return _internal_mutable_replica_datanodes()->Mutable(index);
+}
+template <typename Arg_, typename... Args_>
+inline void ReplicaResponse::set_replica_datanodes(int index, Arg_&& value, Args_... args) {
+  ::google::protobuf::internal::AssignToString(
+      *_internal_mutable_replica_datanodes()->Mutable(index),
+      std::forward<Arg_>(value), args... );
+  // @@protoc_insertion_point(field_set:dfs.ReplicaResponse.replica_datanodes)
+}
+template <typename Arg_, typename... Args_>
+inline void ReplicaResponse::add_replica_datanodes(Arg_&& value, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::google::protobuf::internal::AddToRepeatedPtrField(*_internal_mutable_replica_datanodes(),
+                               std::forward<Arg_>(value),
+                               args... );
+  // @@protoc_insertion_point(field_add:dfs.ReplicaResponse.replica_datanodes)
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+ReplicaResponse::replica_datanodes() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:dfs.ReplicaResponse.replica_datanodes)
+  return _internal_replica_datanodes();
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+ReplicaResponse::mutable_replica_datanodes() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:dfs.ReplicaResponse.replica_datanodes)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_replica_datanodes();
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+ReplicaResponse::_internal_replica_datanodes() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.replica_datanodes_;
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+ReplicaResponse::_internal_mutable_replica_datanodes() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.replica_datanodes_;
+}
+
+// -------------------------------------------------------------------
+
+// BlockUploadRequest
+
+// int64 block_id = 1;
+inline void BlockUploadRequest::clear_block_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.block_id_ = ::int64_t{0};
+}
+inline ::int64_t BlockUploadRequest::block_id() const {
+  // @@protoc_insertion_point(field_get:dfs.BlockUploadRequest.block_id)
+  return _internal_block_id();
+}
+inline void BlockUploadRequest::set_block_id(::int64_t value) {
+  _internal_set_block_id(value);
+  // @@protoc_insertion_point(field_set:dfs.BlockUploadRequest.block_id)
+}
+inline ::int64_t BlockUploadRequest::_internal_block_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.block_id_;
+}
+inline void BlockUploadRequest::_internal_set_block_id(::int64_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.block_id_ = value;
 }
@@ -5271,24 +6209,24 @@ inline void BlockUploadResponse::_internal_set_success(bool value) {
 
 // BlockDownloadRequest
 
-// int32 block_id = 1;
+// int64 block_id = 1;
 inline void BlockDownloadRequest::clear_block_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.block_id_ = 0;
+  _impl_.block_id_ = ::int64_t{0};
 }
-inline ::int32_t BlockDownloadRequest::block_id() const {
+inline ::int64_t BlockDownloadRequest::block_id() const {
   // @@protoc_insertion_point(field_get:dfs.BlockDownloadRequest.block_id)
   return _internal_block_id();
 }
-inline void BlockDownloadRequest::set_block_id(::int32_t value) {
+inline void BlockDownloadRequest::set_block_id(::int64_t value) {
   _internal_set_block_id(value);
   // @@protoc_insertion_point(field_set:dfs.BlockDownloadRequest.block_id)
 }
-inline ::int32_t BlockDownloadRequest::_internal_block_id() const {
+inline ::int64_t BlockDownloadRequest::_internal_block_id() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.block_id_;
 }
-inline void BlockDownloadRequest::_internal_set_block_id(::int32_t value) {
+inline void BlockDownloadRequest::_internal_set_block_id(::int64_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.block_id_ = value;
 }
@@ -5750,24 +6688,24 @@ inline void ReportBlockResponse::_internal_set_success(bool value) {
 
 // BlockReport
 
-// int32 block_id = 1;
+// int64 block_id = 1;
 inline void BlockReport::clear_block_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.block_id_ = 0;
+  _impl_.block_id_ = ::int64_t{0};
 }
-inline ::int32_t BlockReport::block_id() const {
+inline ::int64_t BlockReport::block_id() const {
   // @@protoc_insertion_point(field_get:dfs.BlockReport.block_id)
   return _internal_block_id();
 }
-inline void BlockReport::set_block_id(::int32_t value) {
+inline void BlockReport::set_block_id(::int64_t value) {
   _internal_set_block_id(value);
   // @@protoc_insertion_point(field_set:dfs.BlockReport.block_id)
 }
-inline ::int32_t BlockReport::_internal_block_id() const {
+inline ::int64_t BlockReport::_internal_block_id() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.block_id_;
 }
-inline void BlockReport::_internal_set_block_id(::int32_t value) {
+inline void BlockReport::_internal_set_block_id(::int64_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.block_id_ = value;
 }
@@ -5824,74 +6762,286 @@ inline void BlockReport::set_allocated_filename(std::string* value) {
 
 // BlockLocation
 
-// int32 block_id = 1;
+// int64 block_id = 1;
 inline void BlockLocation::clear_block_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.block_id_ = 0;
+  _impl_.block_id_ = ::int64_t{0};
 }
-inline ::int32_t BlockLocation::block_id() const {
+inline ::int64_t BlockLocation::block_id() const {
   // @@protoc_insertion_point(field_get:dfs.BlockLocation.block_id)
   return _internal_block_id();
 }
-inline void BlockLocation::set_block_id(::int32_t value) {
+inline void BlockLocation::set_block_id(::int64_t value) {
   _internal_set_block_id(value);
   // @@protoc_insertion_point(field_set:dfs.BlockLocation.block_id)
 }
-inline ::int32_t BlockLocation::_internal_block_id() const {
+inline ::int64_t BlockLocation::_internal_block_id() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.block_id_;
 }
-inline void BlockLocation::_internal_set_block_id(::int32_t value) {
+inline void BlockLocation::_internal_set_block_id(::int64_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.block_id_ = value;
 }
 
-// string datanode_address = 2;
-inline void BlockLocation::clear_datanode_address() {
+// string primary_address = 2;
+inline void BlockLocation::clear_primary_address() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.datanode_address_.ClearToEmpty();
+  _impl_.primary_address_.ClearToEmpty();
 }
-inline const std::string& BlockLocation::datanode_address() const
+inline const std::string& BlockLocation::primary_address() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:dfs.BlockLocation.datanode_address)
-  return _internal_datanode_address();
+  // @@protoc_insertion_point(field_get:dfs.BlockLocation.primary_address)
+  return _internal_primary_address();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void BlockLocation::set_datanode_address(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void BlockLocation::set_primary_address(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.datanode_address_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:dfs.BlockLocation.datanode_address)
+  _impl_.primary_address_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:dfs.BlockLocation.primary_address)
 }
-inline std::string* BlockLocation::mutable_datanode_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_datanode_address();
-  // @@protoc_insertion_point(field_mutable:dfs.BlockLocation.datanode_address)
+inline std::string* BlockLocation::mutable_primary_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_primary_address();
+  // @@protoc_insertion_point(field_mutable:dfs.BlockLocation.primary_address)
   return _s;
 }
-inline const std::string& BlockLocation::_internal_datanode_address() const {
+inline const std::string& BlockLocation::_internal_primary_address() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.datanode_address_.Get();
+  return _impl_.primary_address_.Get();
 }
-inline void BlockLocation::_internal_set_datanode_address(const std::string& value) {
+inline void BlockLocation::_internal_set_primary_address(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.datanode_address_.Set(value, GetArena());
+  _impl_.primary_address_.Set(value, GetArena());
 }
-inline std::string* BlockLocation::_internal_mutable_datanode_address() {
+inline std::string* BlockLocation::_internal_mutable_primary_address() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.datanode_address_.Mutable( GetArena());
+  return _impl_.primary_address_.Mutable( GetArena());
 }
-inline std::string* BlockLocation::release_datanode_address() {
+inline std::string* BlockLocation::release_primary_address() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:dfs.BlockLocation.datanode_address)
-  return _impl_.datanode_address_.Release();
+  // @@protoc_insertion_point(field_release:dfs.BlockLocation.primary_address)
+  return _impl_.primary_address_.Release();
 }
-inline void BlockLocation::set_allocated_datanode_address(std::string* value) {
+inline void BlockLocation::set_allocated_primary_address(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.datanode_address_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.datanode_address_.IsDefault()) {
-    _impl_.datanode_address_.Set("", GetArena());
+  _impl_.primary_address_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.primary_address_.IsDefault()) {
+    _impl_.primary_address_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:dfs.BlockLocation.datanode_address)
+  // @@protoc_insertion_point(field_set_allocated:dfs.BlockLocation.primary_address)
+}
+
+// repeated string replica_addresses = 3;
+inline int BlockLocation::_internal_replica_addresses_size() const {
+  return _internal_replica_addresses().size();
+}
+inline int BlockLocation::replica_addresses_size() const {
+  return _internal_replica_addresses_size();
+}
+inline void BlockLocation::clear_replica_addresses() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.replica_addresses_.Clear();
+}
+inline std::string* BlockLocation::add_replica_addresses() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  std::string* _s = _internal_mutable_replica_addresses()->Add();
+  // @@protoc_insertion_point(field_add_mutable:dfs.BlockLocation.replica_addresses)
+  return _s;
+}
+inline const std::string& BlockLocation::replica_addresses(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:dfs.BlockLocation.replica_addresses)
+  return _internal_replica_addresses().Get(index);
+}
+inline std::string* BlockLocation::mutable_replica_addresses(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:dfs.BlockLocation.replica_addresses)
+  return _internal_mutable_replica_addresses()->Mutable(index);
+}
+template <typename Arg_, typename... Args_>
+inline void BlockLocation::set_replica_addresses(int index, Arg_&& value, Args_... args) {
+  ::google::protobuf::internal::AssignToString(
+      *_internal_mutable_replica_addresses()->Mutable(index),
+      std::forward<Arg_>(value), args... );
+  // @@protoc_insertion_point(field_set:dfs.BlockLocation.replica_addresses)
+}
+template <typename Arg_, typename... Args_>
+inline void BlockLocation::add_replica_addresses(Arg_&& value, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::google::protobuf::internal::AddToRepeatedPtrField(*_internal_mutable_replica_addresses(),
+                               std::forward<Arg_>(value),
+                               args... );
+  // @@protoc_insertion_point(field_add:dfs.BlockLocation.replica_addresses)
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+BlockLocation::replica_addresses() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:dfs.BlockLocation.replica_addresses)
+  return _internal_replica_addresses();
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+BlockLocation::mutable_replica_addresses() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:dfs.BlockLocation.replica_addresses)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_replica_addresses();
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+BlockLocation::_internal_replica_addresses() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.replica_addresses_;
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+BlockLocation::_internal_mutable_replica_addresses() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.replica_addresses_;
+}
+
+// -------------------------------------------------------------------
+
+// BlockReplicationRequest
+
+// int64 block_id = 1;
+inline void BlockReplicationRequest::clear_block_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.block_id_ = ::int64_t{0};
+}
+inline ::int64_t BlockReplicationRequest::block_id() const {
+  // @@protoc_insertion_point(field_get:dfs.BlockReplicationRequest.block_id)
+  return _internal_block_id();
+}
+inline void BlockReplicationRequest::set_block_id(::int64_t value) {
+  _internal_set_block_id(value);
+  // @@protoc_insertion_point(field_set:dfs.BlockReplicationRequest.block_id)
+}
+inline ::int64_t BlockReplicationRequest::_internal_block_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.block_id_;
+}
+inline void BlockReplicationRequest::_internal_set_block_id(::int64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.block_id_ = value;
+}
+
+// string filename = 2;
+inline void BlockReplicationRequest::clear_filename() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.filename_.ClearToEmpty();
+}
+inline const std::string& BlockReplicationRequest::filename() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:dfs.BlockReplicationRequest.filename)
+  return _internal_filename();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void BlockReplicationRequest::set_filename(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.filename_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:dfs.BlockReplicationRequest.filename)
+}
+inline std::string* BlockReplicationRequest::mutable_filename() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_filename();
+  // @@protoc_insertion_point(field_mutable:dfs.BlockReplicationRequest.filename)
+  return _s;
+}
+inline const std::string& BlockReplicationRequest::_internal_filename() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.filename_.Get();
+}
+inline void BlockReplicationRequest::_internal_set_filename(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.filename_.Set(value, GetArena());
+}
+inline std::string* BlockReplicationRequest::_internal_mutable_filename() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.filename_.Mutable( GetArena());
+}
+inline std::string* BlockReplicationRequest::release_filename() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:dfs.BlockReplicationRequest.filename)
+  return _impl_.filename_.Release();
+}
+inline void BlockReplicationRequest::set_allocated_filename(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.filename_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.filename_.IsDefault()) {
+    _impl_.filename_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:dfs.BlockReplicationRequest.filename)
+}
+
+// bytes data = 3;
+inline void BlockReplicationRequest::clear_data() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.data_.ClearToEmpty();
+}
+inline const std::string& BlockReplicationRequest::data() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:dfs.BlockReplicationRequest.data)
+  return _internal_data();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void BlockReplicationRequest::set_data(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.data_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:dfs.BlockReplicationRequest.data)
+}
+inline std::string* BlockReplicationRequest::mutable_data() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_data();
+  // @@protoc_insertion_point(field_mutable:dfs.BlockReplicationRequest.data)
+  return _s;
+}
+inline const std::string& BlockReplicationRequest::_internal_data() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.data_.Get();
+}
+inline void BlockReplicationRequest::_internal_set_data(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.data_.Set(value, GetArena());
+}
+inline std::string* BlockReplicationRequest::_internal_mutable_data() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.data_.Mutable( GetArena());
+}
+inline std::string* BlockReplicationRequest::release_data() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:dfs.BlockReplicationRequest.data)
+  return _impl_.data_.Release();
+}
+inline void BlockReplicationRequest::set_allocated_data(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.data_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.data_.IsDefault()) {
+    _impl_.data_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:dfs.BlockReplicationRequest.data)
+}
+
+// -------------------------------------------------------------------
+
+// BlockReplicationResponse
+
+// bool success = 1;
+inline void BlockReplicationResponse::clear_success() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.success_ = false;
+}
+inline bool BlockReplicationResponse::success() const {
+  // @@protoc_insertion_point(field_get:dfs.BlockReplicationResponse.success)
+  return _internal_success();
+}
+inline void BlockReplicationResponse::set_success(bool value) {
+  _internal_set_success(value);
+  // @@protoc_insertion_point(field_set:dfs.BlockReplicationResponse.success)
+}
+inline bool BlockReplicationResponse::_internal_success() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.success_;
+}
+inline void BlockReplicationResponse::_internal_set_success(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.success_ = value;
 }
 
 #ifdef __GNUC__

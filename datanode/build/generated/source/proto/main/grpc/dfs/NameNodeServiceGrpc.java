@@ -144,6 +144,37 @@ public final class NameNodeServiceGrpc {
     return getRemoveFileMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<dfs.Dfs.ReplicaRequest,
+      dfs.Dfs.ReplicaResponse> getGetReplicasMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "GetReplicas",
+      requestType = dfs.Dfs.ReplicaRequest.class,
+      responseType = dfs.Dfs.ReplicaResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<dfs.Dfs.ReplicaRequest,
+      dfs.Dfs.ReplicaResponse> getGetReplicasMethod() {
+    io.grpc.MethodDescriptor<dfs.Dfs.ReplicaRequest, dfs.Dfs.ReplicaResponse> getGetReplicasMethod;
+    if ((getGetReplicasMethod = NameNodeServiceGrpc.getGetReplicasMethod) == null) {
+      synchronized (NameNodeServiceGrpc.class) {
+        if ((getGetReplicasMethod = NameNodeServiceGrpc.getGetReplicasMethod) == null) {
+          NameNodeServiceGrpc.getGetReplicasMethod = getGetReplicasMethod =
+              io.grpc.MethodDescriptor.<dfs.Dfs.ReplicaRequest, dfs.Dfs.ReplicaResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetReplicas"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  dfs.Dfs.ReplicaRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  dfs.Dfs.ReplicaResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new NameNodeServiceMethodDescriptorSupplier("GetReplicas"))
+              .build();
+        }
+      }
+    }
+    return getGetReplicasMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -236,6 +267,16 @@ public final class NameNodeServiceGrpc {
         io.grpc.stub.StreamObserver<dfs.Dfs.RemoveFileResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRemoveFileMethod(), responseObserver);
     }
+
+    /**
+     * <pre>
+     * Consulta de réplicas para un bloque
+     * </pre>
+     */
+    default void getReplicas(dfs.Dfs.ReplicaRequest request,
+        io.grpc.stub.StreamObserver<dfs.Dfs.ReplicaResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetReplicasMethod(), responseObserver);
+    }
   }
 
   /**
@@ -318,6 +359,17 @@ public final class NameNodeServiceGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getRemoveFileMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     * <pre>
+     * Consulta de réplicas para un bloque
+     * </pre>
+     */
+    public void getReplicas(dfs.Dfs.ReplicaRequest request,
+        io.grpc.stub.StreamObserver<dfs.Dfs.ReplicaResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getGetReplicasMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -379,6 +431,16 @@ public final class NameNodeServiceGrpc {
     public dfs.Dfs.RemoveFileResponse removeFile(dfs.Dfs.RemoveFileRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getRemoveFileMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Consulta de réplicas para un bloque
+     * </pre>
+     */
+    public dfs.Dfs.ReplicaResponse getReplicas(dfs.Dfs.ReplicaRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getGetReplicasMethod(), getCallOptions(), request);
     }
   }
 
@@ -446,12 +508,24 @@ public final class NameNodeServiceGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getRemoveFileMethod(), getCallOptions()), request);
     }
+
+    /**
+     * <pre>
+     * Consulta de réplicas para un bloque
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<dfs.Dfs.ReplicaResponse> getReplicas(
+        dfs.Dfs.ReplicaRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getGetReplicasMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_PUT_FILE = 0;
   private static final int METHODID_GET_FILE = 1;
   private static final int METHODID_LIST_FILES = 2;
   private static final int METHODID_REMOVE_FILE = 3;
+  private static final int METHODID_GET_REPLICAS = 4;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -485,6 +559,10 @@ public final class NameNodeServiceGrpc {
         case METHODID_REMOVE_FILE:
           serviceImpl.removeFile((dfs.Dfs.RemoveFileRequest) request,
               (io.grpc.stub.StreamObserver<dfs.Dfs.RemoveFileResponse>) responseObserver);
+          break;
+        case METHODID_GET_REPLICAS:
+          serviceImpl.getReplicas((dfs.Dfs.ReplicaRequest) request,
+              (io.grpc.stub.StreamObserver<dfs.Dfs.ReplicaResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -532,6 +610,13 @@ public final class NameNodeServiceGrpc {
               dfs.Dfs.RemoveFileRequest,
               dfs.Dfs.RemoveFileResponse>(
                 service, METHODID_REMOVE_FILE)))
+        .addMethod(
+          getGetReplicasMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              dfs.Dfs.ReplicaRequest,
+              dfs.Dfs.ReplicaResponse>(
+                service, METHODID_GET_REPLICAS)))
         .build();
   }
 
@@ -584,6 +669,7 @@ public final class NameNodeServiceGrpc {
               .addMethod(getGetFileMethod())
               .addMethod(getListFilesMethod())
               .addMethod(getRemoveFileMethod())
+              .addMethod(getGetReplicasMethod())
               .build();
         }
       }

@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\tdfs.proto\x12\x03\x64\x66s\"X\n\x0ePutFileRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\x12\x10\n\x08\x66ilename\x18\x03 \x01(\t\x12\x10\n\x08\x66ilesize\x18\x04 \x01(\x03\"5\n\x0fPutFileResponse\x12\"\n\x06\x62locks\x18\x01 \x03(\x0b\x32\x12.dfs.BlockLocation\"F\n\x0eGetFileRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\x12\x10\n\x08\x66ilename\x18\x03 \x01(\t\"5\n\x0fGetFileResponse\x12\"\n\x06\x62locks\x18\x01 \x03(\x0b\x32\x12.dfs.BlockLocation\"6\n\x10ListFilesRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"&\n\x11ListFilesResponse\x12\x11\n\tfilenames\x18\x01 \x03(\t\"I\n\x11RemoveFileRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\x12\x10\n\x08\x66ilename\x18\x03 \x01(\t\"6\n\x12RemoveFileResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\"F\n\x12\x42lockUploadRequest\x12\x10\n\x08\x62lock_id\x18\x01 \x01(\x05\x12\x10\n\x08\x66ilename\x18\x02 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x03 \x01(\x0c\"&\n\x13\x42lockUploadResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\":\n\x14\x42lockDownloadRequest\x12\x10\n\x08\x62lock_id\x18\x01 \x01(\x05\x12\x10\n\x08\x66ilename\x18\x02 \x01(\t\"%\n\x15\x42lockDownloadResponse\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\x0c\"P\n\x17RegisterDataNodeRequest\x12\x13\n\x0b\x64\x61tanode_id\x18\x01 \x01(\t\x12\x12\n\nip_address\x18\x02 \x01(\t\x12\x0c\n\x04port\x18\x03 \x01(\x05\"+\n\x18RegisterDataNodeResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\"\'\n\x10HeartbeatRequest\x12\x13\n\x0b\x64\x61tanode_id\x18\x01 \x01(\t\"$\n\x11HeartbeatResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\"K\n\x12ReportBlockRequest\x12\x13\n\x0b\x64\x61tanode_id\x18\x01 \x01(\t\x12 \n\x06\x62locks\x18\x02 \x03(\x0b\x32\x10.dfs.BlockReport\"&\n\x13ReportBlockResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\"1\n\x0b\x42lockReport\x12\x10\n\x08\x62lock_id\x18\x01 \x01(\x05\x12\x10\n\x08\x66ilename\x18\x02 \x01(\t\";\n\rBlockLocation\x12\x10\n\x08\x62lock_id\x18\x01 \x01(\x05\x12\x18\n\x10\x64\x61tanode_address\x18\x02 \x01(\t2\xf8\x01\n\x0fNameNodeService\x12\x34\n\x07PutFile\x12\x13.dfs.PutFileRequest\x1a\x14.dfs.PutFileResponse\x12\x34\n\x07GetFile\x12\x13.dfs.GetFileRequest\x1a\x14.dfs.GetFileResponse\x12:\n\tListFiles\x12\x15.dfs.ListFilesRequest\x1a\x16.dfs.ListFilesResponse\x12=\n\nRemoveFile\x12\x16.dfs.RemoveFileRequest\x1a\x17.dfs.RemoveFileResponse2\x9b\x01\n\x0f\x44\x61taNodeService\x12@\n\x0bUploadBlock\x12\x17.dfs.BlockUploadRequest\x1a\x18.dfs.BlockUploadResponse\x12\x46\n\rDownloadBlock\x12\x19.dfs.BlockDownloadRequest\x1a\x1a.dfs.BlockDownloadResponse2\xdf\x01\n\x0e\x43lusterService\x12O\n\x10RegisterDataNode\x12\x1c.dfs.RegisterDataNodeRequest\x1a\x1d.dfs.RegisterDataNodeResponse\x12:\n\tHeartbeat\x12\x15.dfs.HeartbeatRequest\x1a\x16.dfs.HeartbeatResponse\x12@\n\x0bReportBlock\x12\x17.dfs.ReportBlockRequest\x1a\x18.dfs.ReportBlockResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\tdfs.proto\x12\x03\x64\x66s\"X\n\x0ePutFileRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\x12\x10\n\x08\x66ilename\x18\x03 \x01(\t\x12\x10\n\x08\x66ilesize\x18\x04 \x01(\x03\"5\n\x0fPutFileResponse\x12\"\n\x06\x62locks\x18\x01 \x03(\x0b\x32\x12.dfs.BlockLocation\"F\n\x0eGetFileRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\x12\x10\n\x08\x66ilename\x18\x03 \x01(\t\"5\n\x0fGetFileResponse\x12\"\n\x06\x62locks\x18\x01 \x03(\x0b\x32\x12.dfs.BlockLocation\"6\n\x10ListFilesRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"&\n\x11ListFilesResponse\x12\x11\n\tfilenames\x18\x01 \x03(\t\"I\n\x11RemoveFileRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\x12\x10\n\x08\x66ilename\x18\x03 \x01(\t\"6\n\x12RemoveFileResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\"\"\n\x0eReplicaRequest\x12\x10\n\x08\x62lock_id\x18\x01 \x01(\x03\",\n\x0fReplicaResponse\x12\x19\n\x11replica_datanodes\x18\x01 \x03(\t\"F\n\x12\x42lockUploadRequest\x12\x10\n\x08\x62lock_id\x18\x01 \x01(\x03\x12\x10\n\x08\x66ilename\x18\x02 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x03 \x01(\x0c\"&\n\x13\x42lockUploadResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\":\n\x14\x42lockDownloadRequest\x12\x10\n\x08\x62lock_id\x18\x01 \x01(\x03\x12\x10\n\x08\x66ilename\x18\x02 \x01(\t\"%\n\x15\x42lockDownloadResponse\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\x0c\"P\n\x17RegisterDataNodeRequest\x12\x13\n\x0b\x64\x61tanode_id\x18\x01 \x01(\t\x12\x12\n\nip_address\x18\x02 \x01(\t\x12\x0c\n\x04port\x18\x03 \x01(\x05\"+\n\x18RegisterDataNodeResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\"\'\n\x10HeartbeatRequest\x12\x13\n\x0b\x64\x61tanode_id\x18\x01 \x01(\t\"$\n\x11HeartbeatResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\"K\n\x12ReportBlockRequest\x12\x13\n\x0b\x64\x61tanode_id\x18\x01 \x01(\t\x12 \n\x06\x62locks\x18\x02 \x03(\x0b\x32\x10.dfs.BlockReport\"&\n\x13ReportBlockResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\"1\n\x0b\x42lockReport\x12\x10\n\x08\x62lock_id\x18\x01 \x01(\x03\x12\x10\n\x08\x66ilename\x18\x02 \x01(\t\"U\n\rBlockLocation\x12\x10\n\x08\x62lock_id\x18\x01 \x01(\x03\x12\x17\n\x0fprimary_address\x18\x02 \x01(\t\x12\x19\n\x11replica_addresses\x18\x03 \x03(\t\"K\n\x17\x42lockReplicationRequest\x12\x10\n\x08\x62lock_id\x18\x01 \x01(\x03\x12\x10\n\x08\x66ilename\x18\x02 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x03 \x01(\x0c\"+\n\x18\x42lockReplicationResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x32\xb2\x02\n\x0fNameNodeService\x12\x34\n\x07PutFile\x12\x13.dfs.PutFileRequest\x1a\x14.dfs.PutFileResponse\x12\x34\n\x07GetFile\x12\x13.dfs.GetFileRequest\x1a\x14.dfs.GetFileResponse\x12:\n\tListFiles\x12\x15.dfs.ListFilesRequest\x1a\x16.dfs.ListFilesResponse\x12=\n\nRemoveFile\x12\x16.dfs.RemoveFileRequest\x1a\x17.dfs.RemoveFileResponse\x12\x38\n\x0bGetReplicas\x12\x13.dfs.ReplicaRequest\x1a\x14.dfs.ReplicaResponse2\xea\x01\n\x0f\x44\x61taNodeService\x12@\n\x0bUploadBlock\x12\x17.dfs.BlockUploadRequest\x1a\x18.dfs.BlockUploadResponse\x12\x46\n\rDownloadBlock\x12\x19.dfs.BlockDownloadRequest\x1a\x1a.dfs.BlockDownloadResponse\x12M\n\x0eReplicateBlock\x12\x1c.dfs.BlockReplicationRequest\x1a\x1d.dfs.BlockReplicationResponse2\xdf\x01\n\x0e\x43lusterService\x12O\n\x10RegisterDataNode\x12\x1c.dfs.RegisterDataNodeRequest\x1a\x1d.dfs.RegisterDataNodeResponse\x12:\n\tHeartbeat\x12\x15.dfs.HeartbeatRequest\x1a\x16.dfs.HeartbeatResponse\x12@\n\x0bReportBlock\x12\x17.dfs.ReportBlockRequest\x1a\x18.dfs.ReportBlockResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -47,34 +47,42 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_REMOVEFILEREQUEST']._serialized_end=459
   _globals['_REMOVEFILERESPONSE']._serialized_start=461
   _globals['_REMOVEFILERESPONSE']._serialized_end=515
-  _globals['_BLOCKUPLOADREQUEST']._serialized_start=517
-  _globals['_BLOCKUPLOADREQUEST']._serialized_end=587
-  _globals['_BLOCKUPLOADRESPONSE']._serialized_start=589
-  _globals['_BLOCKUPLOADRESPONSE']._serialized_end=627
-  _globals['_BLOCKDOWNLOADREQUEST']._serialized_start=629
-  _globals['_BLOCKDOWNLOADREQUEST']._serialized_end=687
-  _globals['_BLOCKDOWNLOADRESPONSE']._serialized_start=689
-  _globals['_BLOCKDOWNLOADRESPONSE']._serialized_end=726
-  _globals['_REGISTERDATANODEREQUEST']._serialized_start=728
-  _globals['_REGISTERDATANODEREQUEST']._serialized_end=808
-  _globals['_REGISTERDATANODERESPONSE']._serialized_start=810
-  _globals['_REGISTERDATANODERESPONSE']._serialized_end=853
-  _globals['_HEARTBEATREQUEST']._serialized_start=855
-  _globals['_HEARTBEATREQUEST']._serialized_end=894
-  _globals['_HEARTBEATRESPONSE']._serialized_start=896
-  _globals['_HEARTBEATRESPONSE']._serialized_end=932
-  _globals['_REPORTBLOCKREQUEST']._serialized_start=934
-  _globals['_REPORTBLOCKREQUEST']._serialized_end=1009
-  _globals['_REPORTBLOCKRESPONSE']._serialized_start=1011
-  _globals['_REPORTBLOCKRESPONSE']._serialized_end=1049
-  _globals['_BLOCKREPORT']._serialized_start=1051
-  _globals['_BLOCKREPORT']._serialized_end=1100
-  _globals['_BLOCKLOCATION']._serialized_start=1102
-  _globals['_BLOCKLOCATION']._serialized_end=1161
-  _globals['_NAMENODESERVICE']._serialized_start=1164
-  _globals['_NAMENODESERVICE']._serialized_end=1412
-  _globals['_DATANODESERVICE']._serialized_start=1415
-  _globals['_DATANODESERVICE']._serialized_end=1570
-  _globals['_CLUSTERSERVICE']._serialized_start=1573
-  _globals['_CLUSTERSERVICE']._serialized_end=1796
+  _globals['_REPLICAREQUEST']._serialized_start=517
+  _globals['_REPLICAREQUEST']._serialized_end=551
+  _globals['_REPLICARESPONSE']._serialized_start=553
+  _globals['_REPLICARESPONSE']._serialized_end=597
+  _globals['_BLOCKUPLOADREQUEST']._serialized_start=599
+  _globals['_BLOCKUPLOADREQUEST']._serialized_end=669
+  _globals['_BLOCKUPLOADRESPONSE']._serialized_start=671
+  _globals['_BLOCKUPLOADRESPONSE']._serialized_end=709
+  _globals['_BLOCKDOWNLOADREQUEST']._serialized_start=711
+  _globals['_BLOCKDOWNLOADREQUEST']._serialized_end=769
+  _globals['_BLOCKDOWNLOADRESPONSE']._serialized_start=771
+  _globals['_BLOCKDOWNLOADRESPONSE']._serialized_end=808
+  _globals['_REGISTERDATANODEREQUEST']._serialized_start=810
+  _globals['_REGISTERDATANODEREQUEST']._serialized_end=890
+  _globals['_REGISTERDATANODERESPONSE']._serialized_start=892
+  _globals['_REGISTERDATANODERESPONSE']._serialized_end=935
+  _globals['_HEARTBEATREQUEST']._serialized_start=937
+  _globals['_HEARTBEATREQUEST']._serialized_end=976
+  _globals['_HEARTBEATRESPONSE']._serialized_start=978
+  _globals['_HEARTBEATRESPONSE']._serialized_end=1014
+  _globals['_REPORTBLOCKREQUEST']._serialized_start=1016
+  _globals['_REPORTBLOCKREQUEST']._serialized_end=1091
+  _globals['_REPORTBLOCKRESPONSE']._serialized_start=1093
+  _globals['_REPORTBLOCKRESPONSE']._serialized_end=1131
+  _globals['_BLOCKREPORT']._serialized_start=1133
+  _globals['_BLOCKREPORT']._serialized_end=1182
+  _globals['_BLOCKLOCATION']._serialized_start=1184
+  _globals['_BLOCKLOCATION']._serialized_end=1269
+  _globals['_BLOCKREPLICATIONREQUEST']._serialized_start=1271
+  _globals['_BLOCKREPLICATIONREQUEST']._serialized_end=1346
+  _globals['_BLOCKREPLICATIONRESPONSE']._serialized_start=1348
+  _globals['_BLOCKREPLICATIONRESPONSE']._serialized_end=1391
+  _globals['_NAMENODESERVICE']._serialized_start=1394
+  _globals['_NAMENODESERVICE']._serialized_end=1700
+  _globals['_DATANODESERVICE']._serialized_start=1703
+  _globals['_DATANODESERVICE']._serialized_end=1937
+  _globals['_CLUSTERSERVICE']._serialized_start=1940
+  _globals['_CLUSTERSERVICE']._serialized_end=2163
 # @@protoc_insertion_point(module_scope)

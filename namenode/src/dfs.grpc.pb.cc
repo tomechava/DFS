@@ -26,6 +26,7 @@ static const char* NameNodeService_method_names[] = {
   "/dfs.NameNodeService/GetFile",
   "/dfs.NameNodeService/ListFiles",
   "/dfs.NameNodeService/RemoveFile",
+  "/dfs.NameNodeService/GetReplicas",
 };
 
 std::unique_ptr< NameNodeService::Stub> NameNodeService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -39,6 +40,7 @@ NameNodeService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& ch
   , rpcmethod_GetFile_(NameNodeService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_ListFiles_(NameNodeService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_RemoveFile_(NameNodeService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetReplicas_(NameNodeService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status NameNodeService::Stub::PutFile(::grpc::ClientContext* context, const ::dfs::PutFileRequest& request, ::dfs::PutFileResponse* response) {
@@ -133,6 +135,29 @@ void NameNodeService::Stub::async::RemoveFile(::grpc::ClientContext* context, co
   return result;
 }
 
+::grpc::Status NameNodeService::Stub::GetReplicas(::grpc::ClientContext* context, const ::dfs::ReplicaRequest& request, ::dfs::ReplicaResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::dfs::ReplicaRequest, ::dfs::ReplicaResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetReplicas_, context, request, response);
+}
+
+void NameNodeService::Stub::async::GetReplicas(::grpc::ClientContext* context, const ::dfs::ReplicaRequest* request, ::dfs::ReplicaResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::dfs::ReplicaRequest, ::dfs::ReplicaResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetReplicas_, context, request, response, std::move(f));
+}
+
+void NameNodeService::Stub::async::GetReplicas(::grpc::ClientContext* context, const ::dfs::ReplicaRequest* request, ::dfs::ReplicaResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetReplicas_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::dfs::ReplicaResponse>* NameNodeService::Stub::PrepareAsyncGetReplicasRaw(::grpc::ClientContext* context, const ::dfs::ReplicaRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::dfs::ReplicaResponse, ::dfs::ReplicaRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetReplicas_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::dfs::ReplicaResponse>* NameNodeService::Stub::AsyncGetReplicasRaw(::grpc::ClientContext* context, const ::dfs::ReplicaRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetReplicasRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 NameNodeService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       NameNodeService_method_names[0],
@@ -174,6 +199,16 @@ NameNodeService::Service::Service() {
              ::dfs::RemoveFileResponse* resp) {
                return service->RemoveFile(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NameNodeService_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NameNodeService::Service, ::dfs::ReplicaRequest, ::dfs::ReplicaResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NameNodeService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::dfs::ReplicaRequest* req,
+             ::dfs::ReplicaResponse* resp) {
+               return service->GetReplicas(ctx, req, resp);
+             }, this)));
 }
 
 NameNodeService::Service::~Service() {
@@ -207,10 +242,18 @@ NameNodeService::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
+::grpc::Status NameNodeService::Service::GetReplicas(::grpc::ServerContext* context, const ::dfs::ReplicaRequest* request, ::dfs::ReplicaResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
 
 static const char* DataNodeService_method_names[] = {
   "/dfs.DataNodeService/UploadBlock",
   "/dfs.DataNodeService/DownloadBlock",
+  "/dfs.DataNodeService/ReplicateBlock",
 };
 
 std::unique_ptr< DataNodeService::Stub> DataNodeService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -222,6 +265,7 @@ std::unique_ptr< DataNodeService::Stub> DataNodeService::NewStub(const std::shar
 DataNodeService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_UploadBlock_(DataNodeService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_DownloadBlock_(DataNodeService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ReplicateBlock_(DataNodeService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status DataNodeService::Stub::UploadBlock(::grpc::ClientContext* context, const ::dfs::BlockUploadRequest& request, ::dfs::BlockUploadResponse* response) {
@@ -270,6 +314,29 @@ void DataNodeService::Stub::async::DownloadBlock(::grpc::ClientContext* context,
   return result;
 }
 
+::grpc::Status DataNodeService::Stub::ReplicateBlock(::grpc::ClientContext* context, const ::dfs::BlockReplicationRequest& request, ::dfs::BlockReplicationResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::dfs::BlockReplicationRequest, ::dfs::BlockReplicationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ReplicateBlock_, context, request, response);
+}
+
+void DataNodeService::Stub::async::ReplicateBlock(::grpc::ClientContext* context, const ::dfs::BlockReplicationRequest* request, ::dfs::BlockReplicationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::dfs::BlockReplicationRequest, ::dfs::BlockReplicationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ReplicateBlock_, context, request, response, std::move(f));
+}
+
+void DataNodeService::Stub::async::ReplicateBlock(::grpc::ClientContext* context, const ::dfs::BlockReplicationRequest* request, ::dfs::BlockReplicationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ReplicateBlock_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::dfs::BlockReplicationResponse>* DataNodeService::Stub::PrepareAsyncReplicateBlockRaw(::grpc::ClientContext* context, const ::dfs::BlockReplicationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::dfs::BlockReplicationResponse, ::dfs::BlockReplicationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ReplicateBlock_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::dfs::BlockReplicationResponse>* DataNodeService::Stub::AsyncReplicateBlockRaw(::grpc::ClientContext* context, const ::dfs::BlockReplicationRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncReplicateBlockRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 DataNodeService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       DataNodeService_method_names[0],
@@ -291,6 +358,16 @@ DataNodeService::Service::Service() {
              ::dfs::BlockDownloadResponse* resp) {
                return service->DownloadBlock(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      DataNodeService_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< DataNodeService::Service, ::dfs::BlockReplicationRequest, ::dfs::BlockReplicationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](DataNodeService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::dfs::BlockReplicationRequest* req,
+             ::dfs::BlockReplicationResponse* resp) {
+               return service->ReplicateBlock(ctx, req, resp);
+             }, this)));
 }
 
 DataNodeService::Service::~Service() {
@@ -304,6 +381,13 @@ DataNodeService::Service::~Service() {
 }
 
 ::grpc::Status DataNodeService::Service::DownloadBlock(::grpc::ServerContext* context, const ::dfs::BlockDownloadRequest* request, ::dfs::BlockDownloadResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status DataNodeService::Service::ReplicateBlock(::grpc::ServerContext* context, const ::dfs::BlockReplicationRequest* request, ::dfs::BlockReplicationResponse* response) {
   (void) context;
   (void) request;
   (void) response;

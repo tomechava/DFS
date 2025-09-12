@@ -71,6 +71,14 @@ class NameNodeService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dfs::RemoveFileResponse>> PrepareAsyncRemoveFile(::grpc::ClientContext* context, const ::dfs::RemoveFileRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dfs::RemoveFileResponse>>(PrepareAsyncRemoveFileRaw(context, request, cq));
     }
+    // Consulta de réplicas para un bloque
+    virtual ::grpc::Status GetReplicas(::grpc::ClientContext* context, const ::dfs::ReplicaRequest& request, ::dfs::ReplicaResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dfs::ReplicaResponse>> AsyncGetReplicas(::grpc::ClientContext* context, const ::dfs::ReplicaRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dfs::ReplicaResponse>>(AsyncGetReplicasRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dfs::ReplicaResponse>> PrepareAsyncGetReplicas(::grpc::ClientContext* context, const ::dfs::ReplicaRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dfs::ReplicaResponse>>(PrepareAsyncGetReplicasRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -86,6 +94,9 @@ class NameNodeService final {
       // Eliminar un archivo
       virtual void RemoveFile(::grpc::ClientContext* context, const ::dfs::RemoveFileRequest* request, ::dfs::RemoveFileResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void RemoveFile(::grpc::ClientContext* context, const ::dfs::RemoveFileRequest* request, ::dfs::RemoveFileResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Consulta de réplicas para un bloque
+      virtual void GetReplicas(::grpc::ClientContext* context, const ::dfs::ReplicaRequest* request, ::dfs::ReplicaResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetReplicas(::grpc::ClientContext* context, const ::dfs::ReplicaRequest* request, ::dfs::ReplicaResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -99,6 +110,8 @@ class NameNodeService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::dfs::ListFilesResponse>* PrepareAsyncListFilesRaw(::grpc::ClientContext* context, const ::dfs::ListFilesRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::dfs::RemoveFileResponse>* AsyncRemoveFileRaw(::grpc::ClientContext* context, const ::dfs::RemoveFileRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::dfs::RemoveFileResponse>* PrepareAsyncRemoveFileRaw(::grpc::ClientContext* context, const ::dfs::RemoveFileRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::dfs::ReplicaResponse>* AsyncGetReplicasRaw(::grpc::ClientContext* context, const ::dfs::ReplicaRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::dfs::ReplicaResponse>* PrepareAsyncGetReplicasRaw(::grpc::ClientContext* context, const ::dfs::ReplicaRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -131,6 +144,13 @@ class NameNodeService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dfs::RemoveFileResponse>> PrepareAsyncRemoveFile(::grpc::ClientContext* context, const ::dfs::RemoveFileRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dfs::RemoveFileResponse>>(PrepareAsyncRemoveFileRaw(context, request, cq));
     }
+    ::grpc::Status GetReplicas(::grpc::ClientContext* context, const ::dfs::ReplicaRequest& request, ::dfs::ReplicaResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dfs::ReplicaResponse>> AsyncGetReplicas(::grpc::ClientContext* context, const ::dfs::ReplicaRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dfs::ReplicaResponse>>(AsyncGetReplicasRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dfs::ReplicaResponse>> PrepareAsyncGetReplicas(::grpc::ClientContext* context, const ::dfs::ReplicaRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dfs::ReplicaResponse>>(PrepareAsyncGetReplicasRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -142,6 +162,8 @@ class NameNodeService final {
       void ListFiles(::grpc::ClientContext* context, const ::dfs::ListFilesRequest* request, ::dfs::ListFilesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void RemoveFile(::grpc::ClientContext* context, const ::dfs::RemoveFileRequest* request, ::dfs::RemoveFileResponse* response, std::function<void(::grpc::Status)>) override;
       void RemoveFile(::grpc::ClientContext* context, const ::dfs::RemoveFileRequest* request, ::dfs::RemoveFileResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetReplicas(::grpc::ClientContext* context, const ::dfs::ReplicaRequest* request, ::dfs::ReplicaResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetReplicas(::grpc::ClientContext* context, const ::dfs::ReplicaRequest* request, ::dfs::ReplicaResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -161,10 +183,13 @@ class NameNodeService final {
     ::grpc::ClientAsyncResponseReader< ::dfs::ListFilesResponse>* PrepareAsyncListFilesRaw(::grpc::ClientContext* context, const ::dfs::ListFilesRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::dfs::RemoveFileResponse>* AsyncRemoveFileRaw(::grpc::ClientContext* context, const ::dfs::RemoveFileRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::dfs::RemoveFileResponse>* PrepareAsyncRemoveFileRaw(::grpc::ClientContext* context, const ::dfs::RemoveFileRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::dfs::ReplicaResponse>* AsyncGetReplicasRaw(::grpc::ClientContext* context, const ::dfs::ReplicaRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::dfs::ReplicaResponse>* PrepareAsyncGetReplicasRaw(::grpc::ClientContext* context, const ::dfs::ReplicaRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_PutFile_;
     const ::grpc::internal::RpcMethod rpcmethod_GetFile_;
     const ::grpc::internal::RpcMethod rpcmethod_ListFiles_;
     const ::grpc::internal::RpcMethod rpcmethod_RemoveFile_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetReplicas_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -180,6 +205,8 @@ class NameNodeService final {
     virtual ::grpc::Status ListFiles(::grpc::ServerContext* context, const ::dfs::ListFilesRequest* request, ::dfs::ListFilesResponse* response);
     // Eliminar un archivo
     virtual ::grpc::Status RemoveFile(::grpc::ServerContext* context, const ::dfs::RemoveFileRequest* request, ::dfs::RemoveFileResponse* response);
+    // Consulta de réplicas para un bloque
+    virtual ::grpc::Status GetReplicas(::grpc::ServerContext* context, const ::dfs::ReplicaRequest* request, ::dfs::ReplicaResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_PutFile : public BaseClass {
@@ -261,7 +288,27 @@ class NameNodeService final {
       ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_PutFile<WithAsyncMethod_GetFile<WithAsyncMethod_ListFiles<WithAsyncMethod_RemoveFile<Service > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_GetReplicas : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetReplicas() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_GetReplicas() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetReplicas(::grpc::ServerContext* /*context*/, const ::dfs::ReplicaRequest* /*request*/, ::dfs::ReplicaResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetReplicas(::grpc::ServerContext* context, ::dfs::ReplicaRequest* request, ::grpc::ServerAsyncResponseWriter< ::dfs::ReplicaResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_PutFile<WithAsyncMethod_GetFile<WithAsyncMethod_ListFiles<WithAsyncMethod_RemoveFile<WithAsyncMethod_GetReplicas<Service > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_PutFile : public BaseClass {
    private:
@@ -370,7 +417,34 @@ class NameNodeService final {
     virtual ::grpc::ServerUnaryReactor* RemoveFile(
       ::grpc::CallbackServerContext* /*context*/, const ::dfs::RemoveFileRequest* /*request*/, ::dfs::RemoveFileResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_PutFile<WithCallbackMethod_GetFile<WithCallbackMethod_ListFiles<WithCallbackMethod_RemoveFile<Service > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_GetReplicas : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetReplicas() {
+      ::grpc::Service::MarkMethodCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::dfs::ReplicaRequest, ::dfs::ReplicaResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::dfs::ReplicaRequest* request, ::dfs::ReplicaResponse* response) { return this->GetReplicas(context, request, response); }));}
+    void SetMessageAllocatorFor_GetReplicas(
+        ::grpc::MessageAllocator< ::dfs::ReplicaRequest, ::dfs::ReplicaResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::dfs::ReplicaRequest, ::dfs::ReplicaResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetReplicas() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetReplicas(::grpc::ServerContext* /*context*/, const ::dfs::ReplicaRequest* /*request*/, ::dfs::ReplicaResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetReplicas(
+      ::grpc::CallbackServerContext* /*context*/, const ::dfs::ReplicaRequest* /*request*/, ::dfs::ReplicaResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_PutFile<WithCallbackMethod_GetFile<WithCallbackMethod_ListFiles<WithCallbackMethod_RemoveFile<WithCallbackMethod_GetReplicas<Service > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_PutFile : public BaseClass {
@@ -436,6 +510,23 @@ class NameNodeService final {
     }
     // disable synchronous version of this method
     ::grpc::Status RemoveFile(::grpc::ServerContext* /*context*/, const ::dfs::RemoveFileRequest* /*request*/, ::dfs::RemoveFileResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetReplicas : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetReplicas() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_GetReplicas() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetReplicas(::grpc::ServerContext* /*context*/, const ::dfs::ReplicaRequest* /*request*/, ::dfs::ReplicaResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -518,6 +609,26 @@ class NameNodeService final {
     }
     void RequestRemoveFile(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetReplicas : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetReplicas() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_GetReplicas() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetReplicas(::grpc::ServerContext* /*context*/, const ::dfs::ReplicaRequest* /*request*/, ::dfs::ReplicaResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetReplicas(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -606,6 +717,28 @@ class NameNodeService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* RemoveFile(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetReplicas : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetReplicas() {
+      ::grpc::Service::MarkMethodRawCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetReplicas(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetReplicas() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetReplicas(::grpc::ServerContext* /*context*/, const ::dfs::ReplicaRequest* /*request*/, ::dfs::ReplicaResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetReplicas(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -716,9 +849,36 @@ class NameNodeService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedRemoveFile(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::dfs::RemoveFileRequest,::dfs::RemoveFileResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_PutFile<WithStreamedUnaryMethod_GetFile<WithStreamedUnaryMethod_ListFiles<WithStreamedUnaryMethod_RemoveFile<Service > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetReplicas : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetReplicas() {
+      ::grpc::Service::MarkMethodStreamed(4,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::dfs::ReplicaRequest, ::dfs::ReplicaResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::dfs::ReplicaRequest, ::dfs::ReplicaResponse>* streamer) {
+                       return this->StreamedGetReplicas(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetReplicas() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetReplicas(::grpc::ServerContext* /*context*/, const ::dfs::ReplicaRequest* /*request*/, ::dfs::ReplicaResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetReplicas(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::dfs::ReplicaRequest,::dfs::ReplicaResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_PutFile<WithStreamedUnaryMethod_GetFile<WithStreamedUnaryMethod_ListFiles<WithStreamedUnaryMethod_RemoveFile<WithStreamedUnaryMethod_GetReplicas<Service > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_PutFile<WithStreamedUnaryMethod_GetFile<WithStreamedUnaryMethod_ListFiles<WithStreamedUnaryMethod_RemoveFile<Service > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_PutFile<WithStreamedUnaryMethod_GetFile<WithStreamedUnaryMethod_ListFiles<WithStreamedUnaryMethod_RemoveFile<WithStreamedUnaryMethod_GetReplicas<Service > > > > > StreamedService;
 };
 
 // ===========================================================
@@ -748,6 +908,14 @@ class DataNodeService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dfs::BlockDownloadResponse>> PrepareAsyncDownloadBlock(::grpc::ClientContext* context, const ::dfs::BlockDownloadRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dfs::BlockDownloadResponse>>(PrepareAsyncDownloadBlockRaw(context, request, cq));
     }
+    // Replicación de bloques entre DataNodes
+    virtual ::grpc::Status ReplicateBlock(::grpc::ClientContext* context, const ::dfs::BlockReplicationRequest& request, ::dfs::BlockReplicationResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dfs::BlockReplicationResponse>> AsyncReplicateBlock(::grpc::ClientContext* context, const ::dfs::BlockReplicationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dfs::BlockReplicationResponse>>(AsyncReplicateBlockRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dfs::BlockReplicationResponse>> PrepareAsyncReplicateBlock(::grpc::ClientContext* context, const ::dfs::BlockReplicationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dfs::BlockReplicationResponse>>(PrepareAsyncReplicateBlockRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -757,6 +925,9 @@ class DataNodeService final {
       // Descargar un bloque desde un DataNode
       virtual void DownloadBlock(::grpc::ClientContext* context, const ::dfs::BlockDownloadRequest* request, ::dfs::BlockDownloadResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void DownloadBlock(::grpc::ClientContext* context, const ::dfs::BlockDownloadRequest* request, ::dfs::BlockDownloadResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Replicación de bloques entre DataNodes
+      virtual void ReplicateBlock(::grpc::ClientContext* context, const ::dfs::BlockReplicationRequest* request, ::dfs::BlockReplicationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ReplicateBlock(::grpc::ClientContext* context, const ::dfs::BlockReplicationRequest* request, ::dfs::BlockReplicationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -766,6 +937,8 @@ class DataNodeService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::dfs::BlockUploadResponse>* PrepareAsyncUploadBlockRaw(::grpc::ClientContext* context, const ::dfs::BlockUploadRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::dfs::BlockDownloadResponse>* AsyncDownloadBlockRaw(::grpc::ClientContext* context, const ::dfs::BlockDownloadRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::dfs::BlockDownloadResponse>* PrepareAsyncDownloadBlockRaw(::grpc::ClientContext* context, const ::dfs::BlockDownloadRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::dfs::BlockReplicationResponse>* AsyncReplicateBlockRaw(::grpc::ClientContext* context, const ::dfs::BlockReplicationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::dfs::BlockReplicationResponse>* PrepareAsyncReplicateBlockRaw(::grpc::ClientContext* context, const ::dfs::BlockReplicationRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -784,6 +957,13 @@ class DataNodeService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dfs::BlockDownloadResponse>> PrepareAsyncDownloadBlock(::grpc::ClientContext* context, const ::dfs::BlockDownloadRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dfs::BlockDownloadResponse>>(PrepareAsyncDownloadBlockRaw(context, request, cq));
     }
+    ::grpc::Status ReplicateBlock(::grpc::ClientContext* context, const ::dfs::BlockReplicationRequest& request, ::dfs::BlockReplicationResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dfs::BlockReplicationResponse>> AsyncReplicateBlock(::grpc::ClientContext* context, const ::dfs::BlockReplicationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dfs::BlockReplicationResponse>>(AsyncReplicateBlockRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dfs::BlockReplicationResponse>> PrepareAsyncReplicateBlock(::grpc::ClientContext* context, const ::dfs::BlockReplicationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dfs::BlockReplicationResponse>>(PrepareAsyncReplicateBlockRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -791,6 +971,8 @@ class DataNodeService final {
       void UploadBlock(::grpc::ClientContext* context, const ::dfs::BlockUploadRequest* request, ::dfs::BlockUploadResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void DownloadBlock(::grpc::ClientContext* context, const ::dfs::BlockDownloadRequest* request, ::dfs::BlockDownloadResponse* response, std::function<void(::grpc::Status)>) override;
       void DownloadBlock(::grpc::ClientContext* context, const ::dfs::BlockDownloadRequest* request, ::dfs::BlockDownloadResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ReplicateBlock(::grpc::ClientContext* context, const ::dfs::BlockReplicationRequest* request, ::dfs::BlockReplicationResponse* response, std::function<void(::grpc::Status)>) override;
+      void ReplicateBlock(::grpc::ClientContext* context, const ::dfs::BlockReplicationRequest* request, ::dfs::BlockReplicationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -806,8 +988,11 @@ class DataNodeService final {
     ::grpc::ClientAsyncResponseReader< ::dfs::BlockUploadResponse>* PrepareAsyncUploadBlockRaw(::grpc::ClientContext* context, const ::dfs::BlockUploadRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::dfs::BlockDownloadResponse>* AsyncDownloadBlockRaw(::grpc::ClientContext* context, const ::dfs::BlockDownloadRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::dfs::BlockDownloadResponse>* PrepareAsyncDownloadBlockRaw(::grpc::ClientContext* context, const ::dfs::BlockDownloadRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::dfs::BlockReplicationResponse>* AsyncReplicateBlockRaw(::grpc::ClientContext* context, const ::dfs::BlockReplicationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::dfs::BlockReplicationResponse>* PrepareAsyncReplicateBlockRaw(::grpc::ClientContext* context, const ::dfs::BlockReplicationRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_UploadBlock_;
     const ::grpc::internal::RpcMethod rpcmethod_DownloadBlock_;
+    const ::grpc::internal::RpcMethod rpcmethod_ReplicateBlock_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -819,6 +1004,8 @@ class DataNodeService final {
     virtual ::grpc::Status UploadBlock(::grpc::ServerContext* context, const ::dfs::BlockUploadRequest* request, ::dfs::BlockUploadResponse* response);
     // Descargar un bloque desde un DataNode
     virtual ::grpc::Status DownloadBlock(::grpc::ServerContext* context, const ::dfs::BlockDownloadRequest* request, ::dfs::BlockDownloadResponse* response);
+    // Replicación de bloques entre DataNodes
+    virtual ::grpc::Status ReplicateBlock(::grpc::ServerContext* context, const ::dfs::BlockReplicationRequest* request, ::dfs::BlockReplicationResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_UploadBlock : public BaseClass {
@@ -860,7 +1047,27 @@ class DataNodeService final {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_UploadBlock<WithAsyncMethod_DownloadBlock<Service > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_ReplicateBlock : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_ReplicateBlock() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_ReplicateBlock() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ReplicateBlock(::grpc::ServerContext* /*context*/, const ::dfs::BlockReplicationRequest* /*request*/, ::dfs::BlockReplicationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestReplicateBlock(::grpc::ServerContext* context, ::dfs::BlockReplicationRequest* request, ::grpc::ServerAsyncResponseWriter< ::dfs::BlockReplicationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_UploadBlock<WithAsyncMethod_DownloadBlock<WithAsyncMethod_ReplicateBlock<Service > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_UploadBlock : public BaseClass {
    private:
@@ -915,7 +1122,34 @@ class DataNodeService final {
     virtual ::grpc::ServerUnaryReactor* DownloadBlock(
       ::grpc::CallbackServerContext* /*context*/, const ::dfs::BlockDownloadRequest* /*request*/, ::dfs::BlockDownloadResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_UploadBlock<WithCallbackMethod_DownloadBlock<Service > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_ReplicateBlock : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_ReplicateBlock() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::dfs::BlockReplicationRequest, ::dfs::BlockReplicationResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::dfs::BlockReplicationRequest* request, ::dfs::BlockReplicationResponse* response) { return this->ReplicateBlock(context, request, response); }));}
+    void SetMessageAllocatorFor_ReplicateBlock(
+        ::grpc::MessageAllocator< ::dfs::BlockReplicationRequest, ::dfs::BlockReplicationResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::dfs::BlockReplicationRequest, ::dfs::BlockReplicationResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_ReplicateBlock() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ReplicateBlock(::grpc::ServerContext* /*context*/, const ::dfs::BlockReplicationRequest* /*request*/, ::dfs::BlockReplicationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ReplicateBlock(
+      ::grpc::CallbackServerContext* /*context*/, const ::dfs::BlockReplicationRequest* /*request*/, ::dfs::BlockReplicationResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_UploadBlock<WithCallbackMethod_DownloadBlock<WithCallbackMethod_ReplicateBlock<Service > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_UploadBlock : public BaseClass {
@@ -947,6 +1181,23 @@ class DataNodeService final {
     }
     // disable synchronous version of this method
     ::grpc::Status DownloadBlock(::grpc::ServerContext* /*context*/, const ::dfs::BlockDownloadRequest* /*request*/, ::dfs::BlockDownloadResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_ReplicateBlock : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_ReplicateBlock() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_ReplicateBlock() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ReplicateBlock(::grpc::ServerContext* /*context*/, const ::dfs::BlockReplicationRequest* /*request*/, ::dfs::BlockReplicationResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -992,6 +1243,26 @@ class DataNodeService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_ReplicateBlock : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_ReplicateBlock() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_ReplicateBlock() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ReplicateBlock(::grpc::ServerContext* /*context*/, const ::dfs::BlockReplicationRequest* /*request*/, ::dfs::BlockReplicationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestReplicateBlock(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_UploadBlock : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -1033,6 +1304,28 @@ class DataNodeService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* DownloadBlock(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_ReplicateBlock : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_ReplicateBlock() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ReplicateBlock(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_ReplicateBlock() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ReplicateBlock(::grpc::ServerContext* /*context*/, const ::dfs::BlockReplicationRequest* /*request*/, ::dfs::BlockReplicationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ReplicateBlock(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -1089,9 +1382,36 @@ class DataNodeService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedDownloadBlock(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::dfs::BlockDownloadRequest,::dfs::BlockDownloadResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_UploadBlock<WithStreamedUnaryMethod_DownloadBlock<Service > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_ReplicateBlock : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_ReplicateBlock() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::dfs::BlockReplicationRequest, ::dfs::BlockReplicationResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::dfs::BlockReplicationRequest, ::dfs::BlockReplicationResponse>* streamer) {
+                       return this->StreamedReplicateBlock(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_ReplicateBlock() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status ReplicateBlock(::grpc::ServerContext* /*context*/, const ::dfs::BlockReplicationRequest* /*request*/, ::dfs::BlockReplicationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedReplicateBlock(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::dfs::BlockReplicationRequest,::dfs::BlockReplicationResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_UploadBlock<WithStreamedUnaryMethod_DownloadBlock<WithStreamedUnaryMethod_ReplicateBlock<Service > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_UploadBlock<WithStreamedUnaryMethod_DownloadBlock<Service > > StreamedService;
+  typedef WithStreamedUnaryMethod_UploadBlock<WithStreamedUnaryMethod_DownloadBlock<WithStreamedUnaryMethod_ReplicateBlock<Service > > > StreamedService;
 };
 
 // ===========================================================

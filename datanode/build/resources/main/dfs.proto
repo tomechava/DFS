@@ -17,6 +17,9 @@ service NameNodeService {
 
   // Eliminar un archivo
   rpc RemoveFile (RemoveFileRequest) returns (RemoveFileResponse);
+
+  // Consulta de réplicas para un bloque
+  rpc GetReplicas (ReplicaRequest) returns (ReplicaResponse);
 }
 
 // ===========================================================
@@ -28,6 +31,9 @@ service DataNodeService {
 
   // Descargar un bloque desde un DataNode
   rpc DownloadBlock (BlockDownloadRequest) returns (BlockDownloadResponse);
+
+  // Replicación de bloques entre DataNodes
+  rpc ReplicateBlock (BlockReplicationRequest) returns (BlockReplicationResponse);
 }
 
 // ===========================================================
@@ -90,9 +96,17 @@ message RemoveFileResponse {
   string message = 2;
 }
 
+message ReplicaRequest {
+  int64 block_id = 1;
+}
+
+message ReplicaResponse {
+  repeated string replica_datanodes = 1;
+}
+
 // ---------- Cliente <-> DataNode ----------
 message BlockUploadRequest {
-  int32 block_id = 1;
+  int64 block_id = 1;
   string filename = 2;
   bytes data = 3; // contenido del bloque
 }
@@ -102,7 +116,7 @@ message BlockUploadResponse {
 }
 
 message BlockDownloadRequest {
-  int32 block_id = 1;
+  int64 block_id = 1;
   string filename = 2;
 }
 
@@ -139,12 +153,25 @@ message ReportBlockResponse {
 }
 
 message BlockReport {
-  int32 block_id = 1;
+  int64 block_id = 1;
   string filename = 2;
 }
 
 // ---------- Estructuras comunes ----------
 message BlockLocation {
-  int32 block_id = 1;
-  string datanode_address = 2; // IP:PUERTO
+  int64 block_id = 1;
+  string primary_address = 2;            // Datanode primario (el que recibe del cliente)
+  repeated string replica_addresses = 3;  // Direcciones de réplicas (opcional para cliente)
+}
+
+
+// ---------- Datanodes <-> DataNodes ----------
+message BlockReplicationRequest {
+  int64 block_id = 1;
+  string filename = 2;
+  bytes data = 3;
+}
+
+message BlockReplicationResponse {
+  bool success = 1;
 }

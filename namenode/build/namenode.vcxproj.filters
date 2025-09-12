@@ -22,6 +22,15 @@
     <ClCompile Include="C:\Users\ASUS\OneDrive\Documents\EAFIT\SEMESTRE 7\Topicos_Telematica\DFS\namenode\src\MetadataManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\ASUS\OneDrive\Documents\EAFIT\SEMESTRE 7\Topicos_Telematica\DFS\namenode\src\PartitionUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\ASUS\OneDrive\Documents\EAFIT\SEMESTRE 7\Topicos_Telematica\DFS\namenode\src\ClusterServiceImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\ASUS\OneDrive\Documents\EAFIT\SEMESTRE 7\Topicos_Telematica\DFS\namenode\src\HashUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\ASUS\OneDrive\Documents\EAFIT\SEMESTRE 7\Topicos_Telematica\DFS\namenode\CMakeLists.txt" />

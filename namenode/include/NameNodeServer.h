@@ -29,6 +29,10 @@ public:
     grpc::Status RemoveFile(grpc::ServerContext* context,
                             const dfs::RemoveFileRequest* request,
                             dfs::RemoveFileResponse* response) override;
+    
+    grpc::Status GetReplicas(grpc::ServerContext* context,
+                             const dfs::ReplicaRequest* request,
+                             dfs::ReplicaResponse* response) override;
 
 private:
     MetadataManager* metadata;

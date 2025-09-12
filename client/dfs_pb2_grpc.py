@@ -57,6 +57,11 @@ class NameNodeServiceStub(object):
                 request_serializer=dfs__pb2.RemoveFileRequest.SerializeToString,
                 response_deserializer=dfs__pb2.RemoveFileResponse.FromString,
                 _registered_method=True)
+        self.GetReplicas = channel.unary_unary(
+                '/dfs.NameNodeService/GetReplicas',
+                request_serializer=dfs__pb2.ReplicaRequest.SerializeToString,
+                response_deserializer=dfs__pb2.ReplicaResponse.FromString,
+                _registered_method=True)
 
 
 class NameNodeServiceServicer(object):
@@ -93,6 +98,13 @@ class NameNodeServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetReplicas(self, request, context):
+        """Consulta de réplicas para un bloque
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_NameNodeServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -115,6 +127,11 @@ def add_NameNodeServiceServicer_to_server(servicer, server):
                     servicer.RemoveFile,
                     request_deserializer=dfs__pb2.RemoveFileRequest.FromString,
                     response_serializer=dfs__pb2.RemoveFileResponse.SerializeToString,
+            ),
+            'GetReplicas': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetReplicas,
+                    request_deserializer=dfs__pb2.ReplicaRequest.FromString,
+                    response_serializer=dfs__pb2.ReplicaResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -238,6 +255,33 @@ class NameNodeService(object):
             metadata,
             _registered_method=True)
 
+    @staticmethod
+    def GetReplicas(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/dfs.NameNodeService/GetReplicas',
+            dfs__pb2.ReplicaRequest.SerializeToString,
+            dfs__pb2.ReplicaResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
 
 class DataNodeServiceStub(object):
     """===========================================================
@@ -261,6 +305,11 @@ class DataNodeServiceStub(object):
                 request_serializer=dfs__pb2.BlockDownloadRequest.SerializeToString,
                 response_deserializer=dfs__pb2.BlockDownloadResponse.FromString,
                 _registered_method=True)
+        self.ReplicateBlock = channel.unary_unary(
+                '/dfs.DataNodeService/ReplicateBlock',
+                request_serializer=dfs__pb2.BlockReplicationRequest.SerializeToString,
+                response_deserializer=dfs__pb2.BlockReplicationResponse.FromString,
+                _registered_method=True)
 
 
 class DataNodeServiceServicer(object):
@@ -283,6 +332,13 @@ class DataNodeServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ReplicateBlock(self, request, context):
+        """Replicación de bloques entre DataNodes
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_DataNodeServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -295,6 +351,11 @@ def add_DataNodeServiceServicer_to_server(servicer, server):
                     servicer.DownloadBlock,
                     request_deserializer=dfs__pb2.BlockDownloadRequest.FromString,
                     response_serializer=dfs__pb2.BlockDownloadResponse.SerializeToString,
+            ),
+            'ReplicateBlock': grpc.unary_unary_rpc_method_handler(
+                    servicer.ReplicateBlock,
+                    request_deserializer=dfs__pb2.BlockReplicationRequest.FromString,
+                    response_serializer=dfs__pb2.BlockReplicationResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -354,6 +415,33 @@ class DataNodeService(object):
             '/dfs.DataNodeService/DownloadBlock',
             dfs__pb2.BlockDownloadRequest.SerializeToString,
             dfs__pb2.BlockDownloadResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ReplicateBlock(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/dfs.DataNodeService/ReplicateBlock',
+            dfs__pb2.BlockReplicationRequest.SerializeToString,
+            dfs__pb2.BlockReplicationResponse.FromString,
             options,
             channel_credentials,
             insecure,

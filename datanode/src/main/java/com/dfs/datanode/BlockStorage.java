@@ -13,14 +13,14 @@ public class BlockStorage {
         new File(storageDir).mkdirs(); // crear dir si no existe
     }
 
-    public void saveBlock(int blockId, String filename, byte[] data) throws IOException {
+    public void saveBlock(long blockId, String filename, byte[] data) throws IOException {
         File blockFile = new File(storageDir, filename + "_" + blockId + ".blk");
         try (FileOutputStream fos = new FileOutputStream(blockFile)) {
             fos.write(data);
         }
     }
 
-    public byte[] readBlock(int blockId, String filename) throws IOException {
+    public byte[] readBlock(long blockId, String filename) throws IOException {
         File blockFile = new File(storageDir, filename + "_" + blockId + ".blk");
         return Files.readAllBytes(blockFile.toPath());
     }

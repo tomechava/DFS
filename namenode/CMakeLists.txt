@@ -16,6 +16,9 @@ set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/AuthManager.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/NameNodeServer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MetadataManager.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/PartitionUtils.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ClusterServiceImpl.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/HashUtils.cpp
 )
 
 
