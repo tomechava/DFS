@@ -23,7 +23,10 @@ class DFSCLI(cmd.Cmd):
             return
         resp = self.client.putFile(self.username, self.password, arg)
         for b in resp.blocks:
-            print(f"Bloque {b.block_id} -> {b.datanode_address}")
+            print(f"Bloque {b.block_id} -> {b.primary_address}")
+            if b.replica_addresses:
+                print(f"   réplicas: {list(b.replica_addresses)}")
+
 
     def do_getFile(self, arg):
         "Obtener información de bloques de un archivo: getFile <nombre_archivo>"

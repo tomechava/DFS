@@ -11,6 +11,10 @@ public:
     // Hash básico de 64 bits para strings
     static uint64_t hash64(const std::string& input);
 
+    // Genera un block id robusto a partir de filename + index
+    // (diseñado para minimizar colisiones internas)
+    static uint64_t blockIdFor(const std::string& filename, uint64_t index);
+
     // Selecciona el DataNode más apto usando Rendezvous Hashing
     static std::string rendezvousSelect(
         const std::string& key,

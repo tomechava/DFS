@@ -13,7 +13,7 @@ from google.protobuf import json_format
 import dfs_pb2
 import dfs_pb2_grpc
 
-BLOCK_SIZE = 64 * 1024 * 1024  # 64 MB
+BLOCK_SIZE = 60 * 1024 * 1024  # 64 MB
 
 
 class DFSClient:
@@ -81,35 +81,40 @@ class DFSClient:
 
         filesize = os.path.getsize(local_path)
         with open(local_path, "rb") as f:
-            for block in put_resp.blocks:
-                offset = block.block_id * BLOCK_SIZE
-                f.seek(offset)
-                data = f.read(BLOCK_SIZE)  # se envía chunk en binario
+            for i, block in enumerate(put_resp.blocks):
+                # No necesitamos seek si vamos leyendo en orden
+                data = f.read(BLOCK_SIZE)
 
                 resp = self.uploadBlock(
-                    datanode_address=block.datanode_address,
+                    datanode_address=block.primary_address,
                     block_id=block.block_id,
                     filename=os.path.basename(local_path),
                     data=data,
                 )
                 print(
-                    f"[PUT] Bloque {block.block_id} -> {block.datanode_address}, ok={resp.success}"
+                    f"[PUT] Bloque {i} (id={block.block_id}) -> {block.primary_address}, ok={resp.success}"
                 )
 
         return "[DONE] Archivo subido."
+
 
     def getFile_and_download(self, username, password, filename, output_path):
         """Orquesta: pide mapa al NameNode y reconstruye el archivo desde DataNodes."""
         get_resp = self.getFile(username, password, filename)
 
+        # Ordenamos los bloques por su índice lógico (block_index),
+        # no por block_id porque ese es solo un identificador único.
+        ordered_blocks = sorted(get_resp.blocks, key=lambda b: b.block_index)
+
         with open(output_path, "wb") as out_f:
-            for block in sorted(get_resp.blocks, key=lambda b: b.block_id):
+            for i, block in enumerate(ordered_blocks):
                 resp = self.downloadBlock(
-                    datanode_address=block.datanode_address,
+                    datanode_address=block.primary_address,
                     block_id=block.block_id,
                     filename=filename,
                 )
-                out_f.write(resp.data)  # resp.data ya es bytes
-                print(f"[GET] Bloque {block.block_id} <- {block.datanode_address}")
+                out_f.write(resp.data)  # se escribe en orden secuencial
+                print(f"[GET] Bloque {i} (id={block.block_id}) <- {block.primary_address}")
 
         return f"[DONE] Archivo reconstruido en {output_path}"
+

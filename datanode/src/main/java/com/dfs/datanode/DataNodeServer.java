@@ -149,7 +149,7 @@ public class DataNodeServer {
 
                 // 3️Consultar réplicas en el NameNode
                 Dfs.ReplicaRequest replicaReq = Dfs.ReplicaRequest.newBuilder()
-                        .setBlockId((int) request.getBlockId()) // OJO: aquí depende de tu proto (int32/int64)
+                        .setBlockId(request.getBlockId()) // OJO: aquí depende de tu proto (int32/int64)
                         .build();
 
                 Dfs.ReplicaResponse replicaResp = nameNodeStub.getReplicas(replicaReq);
@@ -166,7 +166,7 @@ public class DataNodeServer {
 
                         // Enviar réplica
                         Dfs.BlockReplicationRequest replicationRequest = Dfs.BlockReplicationRequest.newBuilder()
-                                .setBlockId((int) request.getBlockId()) // igual, depende de proto
+                                .setBlockId(request.getBlockId()) // igual, depende de proto
                                 .setFilename(request.getFilename())
                                 .setData(request.getData())
                                 .build();

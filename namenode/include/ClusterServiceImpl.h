@@ -1,8 +1,7 @@
 #pragma once
-#include "dfs.grpc.pb.h"
 #include "MetadataManager.h"
-#include "HashUtils.h"
-#include "PartitionUtils.h"
+#include "dfs.grpc.pb.h"
+#include <grpcpp/grpcpp.h>
 
 class ClusterServiceImpl final : public dfs::ClusterService::Service {
 public:

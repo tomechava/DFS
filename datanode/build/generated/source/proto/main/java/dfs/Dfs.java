@@ -10951,6 +10951,24 @@ public final class Dfs {
      */
     com.google.protobuf.ByteString
         getDatanodeIdBytes();
+
+    /**
+     * <code>string ip_address = 2;</code>
+     * @return The ipAddress.
+     */
+    java.lang.String getIpAddress();
+    /**
+     * <code>string ip_address = 2;</code>
+     * @return The bytes for ipAddress.
+     */
+    com.google.protobuf.ByteString
+        getIpAddressBytes();
+
+    /**
+     * <code>int32 port = 3;</code>
+     * @return The port.
+     */
+    int getPort();
   }
   /**
    * Protobuf type {@code dfs.HeartbeatRequest}
@@ -10966,6 +10984,7 @@ public final class Dfs {
     }
     private HeartbeatRequest() {
       datanodeId_ = "";
+      ipAddress_ = "";
     }
 
     @java.lang.Override
@@ -11027,6 +11046,56 @@ public final class Dfs {
       }
     }
 
+    public static final int IP_ADDRESS_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object ipAddress_ = "";
+    /**
+     * <code>string ip_address = 2;</code>
+     * @return The ipAddress.
+     */
+    @java.lang.Override
+    public java.lang.String getIpAddress() {
+      java.lang.Object ref = ipAddress_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        ipAddress_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string ip_address = 2;</code>
+     * @return The bytes for ipAddress.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getIpAddressBytes() {
+      java.lang.Object ref = ipAddress_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        ipAddress_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PORT_FIELD_NUMBER = 3;
+    private int port_ = 0;
+    /**
+     * <code>int32 port = 3;</code>
+     * @return The port.
+     */
+    @java.lang.Override
+    public int getPort() {
+      return port_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -11044,6 +11113,12 @@ public final class Dfs {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(datanodeId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, datanodeId_);
       }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(ipAddress_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, ipAddress_);
+      }
+      if (port_ != 0) {
+        output.writeInt32(3, port_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -11055,6 +11130,13 @@ public final class Dfs {
       size = 0;
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(datanodeId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, datanodeId_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(ipAddress_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, ipAddress_);
+      }
+      if (port_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, port_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -11073,6 +11155,10 @@ public final class Dfs {
 
       if (!getDatanodeId()
           .equals(other.getDatanodeId())) return false;
+      if (!getIpAddress()
+          .equals(other.getIpAddress())) return false;
+      if (getPort()
+          != other.getPort()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -11086,6 +11172,10 @@ public final class Dfs {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + DATANODE_ID_FIELD_NUMBER;
       hash = (53 * hash) + getDatanodeId().hashCode();
+      hash = (37 * hash) + IP_ADDRESS_FIELD_NUMBER;
+      hash = (53 * hash) + getIpAddress().hashCode();
+      hash = (37 * hash) + PORT_FIELD_NUMBER;
+      hash = (53 * hash) + getPort();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -11218,6 +11308,8 @@ public final class Dfs {
         super.clear();
         bitField0_ = 0;
         datanodeId_ = "";
+        ipAddress_ = "";
+        port_ = 0;
         return this;
       }
 
@@ -11253,6 +11345,12 @@ public final class Dfs {
         int from_bitField0_ = bitField0_;
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.datanodeId_ = datanodeId_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.ipAddress_ = ipAddress_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.port_ = port_;
         }
       }
 
@@ -11305,6 +11403,14 @@ public final class Dfs {
           bitField0_ |= 0x00000001;
           onChanged();
         }
+        if (!other.getIpAddress().isEmpty()) {
+          ipAddress_ = other.ipAddress_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        if (other.getPort() != 0) {
+          setPort(other.getPort());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -11336,6 +11442,16 @@ public final class Dfs {
                 bitField0_ |= 0x00000001;
                 break;
               } // case 10
+              case 18: {
+                ipAddress_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 24: {
+                port_ = input.readInt32();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -11421,6 +11537,110 @@ public final class Dfs {
         checkByteStringIsUtf8(value);
         datanodeId_ = value;
         bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object ipAddress_ = "";
+      /**
+       * <code>string ip_address = 2;</code>
+       * @return The ipAddress.
+       */
+      public java.lang.String getIpAddress() {
+        java.lang.Object ref = ipAddress_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          ipAddress_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string ip_address = 2;</code>
+       * @return The bytes for ipAddress.
+       */
+      public com.google.protobuf.ByteString
+          getIpAddressBytes() {
+        java.lang.Object ref = ipAddress_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          ipAddress_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string ip_address = 2;</code>
+       * @param value The ipAddress to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIpAddress(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        ipAddress_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string ip_address = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearIpAddress() {
+        ipAddress_ = getDefaultInstance().getIpAddress();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string ip_address = 2;</code>
+       * @param value The bytes for ipAddress to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIpAddressBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        ipAddress_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
+      private int port_ ;
+      /**
+       * <code>int32 port = 3;</code>
+       * @return The port.
+       */
+      @java.lang.Override
+      public int getPort() {
+        return port_;
+      }
+      /**
+       * <code>int32 port = 3;</code>
+       * @param value The port to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPort(int value) {
+
+        port_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 port = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPort() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        port_ = 0;
         onChanged();
         return this;
       }
@@ -11982,25 +12202,43 @@ public final class Dfs {
         getDatanodeIdBytes();
 
     /**
-     * <code>repeated .dfs.BlockReport blocks = 2;</code>
+     * <code>string ip_address = 2;</code>
+     * @return The ipAddress.
+     */
+    java.lang.String getIpAddress();
+    /**
+     * <code>string ip_address = 2;</code>
+     * @return The bytes for ipAddress.
+     */
+    com.google.protobuf.ByteString
+        getIpAddressBytes();
+
+    /**
+     * <code>int32 port = 3;</code>
+     * @return The port.
+     */
+    int getPort();
+
+    /**
+     * <code>repeated .dfs.BlockReport blocks = 4;</code>
      */
     java.util.List<dfs.Dfs.BlockReport> 
         getBlocksList();
     /**
-     * <code>repeated .dfs.BlockReport blocks = 2;</code>
+     * <code>repeated .dfs.BlockReport blocks = 4;</code>
      */
     dfs.Dfs.BlockReport getBlocks(int index);
     /**
-     * <code>repeated .dfs.BlockReport blocks = 2;</code>
+     * <code>repeated .dfs.BlockReport blocks = 4;</code>
      */
     int getBlocksCount();
     /**
-     * <code>repeated .dfs.BlockReport blocks = 2;</code>
+     * <code>repeated .dfs.BlockReport blocks = 4;</code>
      */
     java.util.List<? extends dfs.Dfs.BlockReportOrBuilder> 
         getBlocksOrBuilderList();
     /**
-     * <code>repeated .dfs.BlockReport blocks = 2;</code>
+     * <code>repeated .dfs.BlockReport blocks = 4;</code>
      */
     dfs.Dfs.BlockReportOrBuilder getBlocksOrBuilder(
         int index);
@@ -12019,6 +12257,7 @@ public final class Dfs {
     }
     private ReportBlockRequest() {
       datanodeId_ = "";
+      ipAddress_ = "";
       blocks_ = java.util.Collections.emptyList();
     }
 
@@ -12081,18 +12320,68 @@ public final class Dfs {
       }
     }
 
-    public static final int BLOCKS_FIELD_NUMBER = 2;
+    public static final int IP_ADDRESS_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object ipAddress_ = "";
+    /**
+     * <code>string ip_address = 2;</code>
+     * @return The ipAddress.
+     */
+    @java.lang.Override
+    public java.lang.String getIpAddress() {
+      java.lang.Object ref = ipAddress_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        ipAddress_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string ip_address = 2;</code>
+     * @return The bytes for ipAddress.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getIpAddressBytes() {
+      java.lang.Object ref = ipAddress_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        ipAddress_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PORT_FIELD_NUMBER = 3;
+    private int port_ = 0;
+    /**
+     * <code>int32 port = 3;</code>
+     * @return The port.
+     */
+    @java.lang.Override
+    public int getPort() {
+      return port_;
+    }
+
+    public static final int BLOCKS_FIELD_NUMBER = 4;
     @SuppressWarnings("serial")
     private java.util.List<dfs.Dfs.BlockReport> blocks_;
     /**
-     * <code>repeated .dfs.BlockReport blocks = 2;</code>
+     * <code>repeated .dfs.BlockReport blocks = 4;</code>
      */
     @java.lang.Override
     public java.util.List<dfs.Dfs.BlockReport> getBlocksList() {
       return blocks_;
     }
     /**
-     * <code>repeated .dfs.BlockReport blocks = 2;</code>
+     * <code>repeated .dfs.BlockReport blocks = 4;</code>
      */
     @java.lang.Override
     public java.util.List<? extends dfs.Dfs.BlockReportOrBuilder> 
@@ -12100,21 +12389,21 @@ public final class Dfs {
       return blocks_;
     }
     /**
-     * <code>repeated .dfs.BlockReport blocks = 2;</code>
+     * <code>repeated .dfs.BlockReport blocks = 4;</code>
      */
     @java.lang.Override
     public int getBlocksCount() {
       return blocks_.size();
     }
     /**
-     * <code>repeated .dfs.BlockReport blocks = 2;</code>
+     * <code>repeated .dfs.BlockReport blocks = 4;</code>
      */
     @java.lang.Override
     public dfs.Dfs.BlockReport getBlocks(int index) {
       return blocks_.get(index);
     }
     /**
-     * <code>repeated .dfs.BlockReport blocks = 2;</code>
+     * <code>repeated .dfs.BlockReport blocks = 4;</code>
      */
     @java.lang.Override
     public dfs.Dfs.BlockReportOrBuilder getBlocksOrBuilder(
@@ -12139,8 +12428,14 @@ public final class Dfs {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(datanodeId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, datanodeId_);
       }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(ipAddress_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, ipAddress_);
+      }
+      if (port_ != 0) {
+        output.writeInt32(3, port_);
+      }
       for (int i = 0; i < blocks_.size(); i++) {
-        output.writeMessage(2, blocks_.get(i));
+        output.writeMessage(4, blocks_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -12154,9 +12449,16 @@ public final class Dfs {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(datanodeId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, datanodeId_);
       }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(ipAddress_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, ipAddress_);
+      }
+      if (port_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, port_);
+      }
       for (int i = 0; i < blocks_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, blocks_.get(i));
+          .computeMessageSize(4, blocks_.get(i));
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -12175,6 +12477,10 @@ public final class Dfs {
 
       if (!getDatanodeId()
           .equals(other.getDatanodeId())) return false;
+      if (!getIpAddress()
+          .equals(other.getIpAddress())) return false;
+      if (getPort()
+          != other.getPort()) return false;
       if (!getBlocksList()
           .equals(other.getBlocksList())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
@@ -12190,6 +12496,10 @@ public final class Dfs {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + DATANODE_ID_FIELD_NUMBER;
       hash = (53 * hash) + getDatanodeId().hashCode();
+      hash = (37 * hash) + IP_ADDRESS_FIELD_NUMBER;
+      hash = (53 * hash) + getIpAddress().hashCode();
+      hash = (37 * hash) + PORT_FIELD_NUMBER;
+      hash = (53 * hash) + getPort();
       if (getBlocksCount() > 0) {
         hash = (37 * hash) + BLOCKS_FIELD_NUMBER;
         hash = (53 * hash) + getBlocksList().hashCode();
@@ -12326,13 +12636,15 @@ public final class Dfs {
         super.clear();
         bitField0_ = 0;
         datanodeId_ = "";
+        ipAddress_ = "";
+        port_ = 0;
         if (blocksBuilder_ == null) {
           blocks_ = java.util.Collections.emptyList();
         } else {
           blocks_ = null;
           blocksBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -12367,9 +12679,9 @@ public final class Dfs {
 
       private void buildPartialRepeatedFields(dfs.Dfs.ReportBlockRequest result) {
         if (blocksBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) != 0)) {
+          if (((bitField0_ & 0x00000008) != 0)) {
             blocks_ = java.util.Collections.unmodifiableList(blocks_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000008);
           }
           result.blocks_ = blocks_;
         } else {
@@ -12381,6 +12693,12 @@ public final class Dfs {
         int from_bitField0_ = bitField0_;
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.datanodeId_ = datanodeId_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.ipAddress_ = ipAddress_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.port_ = port_;
         }
       }
 
@@ -12433,11 +12751,19 @@ public final class Dfs {
           bitField0_ |= 0x00000001;
           onChanged();
         }
+        if (!other.getIpAddress().isEmpty()) {
+          ipAddress_ = other.ipAddress_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        if (other.getPort() != 0) {
+          setPort(other.getPort());
+        }
         if (blocksBuilder_ == null) {
           if (!other.blocks_.isEmpty()) {
             if (blocks_.isEmpty()) {
               blocks_ = other.blocks_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000008);
             } else {
               ensureBlocksIsMutable();
               blocks_.addAll(other.blocks_);
@@ -12450,7 +12776,7 @@ public final class Dfs {
               blocksBuilder_.dispose();
               blocksBuilder_ = null;
               blocks_ = other.blocks_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000008);
               blocksBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getBlocksFieldBuilder() : null;
@@ -12491,6 +12817,16 @@ public final class Dfs {
                 break;
               } // case 10
               case 18: {
+                ipAddress_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 24: {
+                port_ = input.readInt32();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 34: {
                 dfs.Dfs.BlockReport m =
                     input.readMessage(
                         dfs.Dfs.BlockReport.parser(),
@@ -12502,7 +12838,7 @@ public final class Dfs {
                   blocksBuilder_.addMessage(m);
                 }
                 break;
-              } // case 18
+              } // case 34
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -12592,12 +12928,116 @@ public final class Dfs {
         return this;
       }
 
+      private java.lang.Object ipAddress_ = "";
+      /**
+       * <code>string ip_address = 2;</code>
+       * @return The ipAddress.
+       */
+      public java.lang.String getIpAddress() {
+        java.lang.Object ref = ipAddress_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          ipAddress_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string ip_address = 2;</code>
+       * @return The bytes for ipAddress.
+       */
+      public com.google.protobuf.ByteString
+          getIpAddressBytes() {
+        java.lang.Object ref = ipAddress_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          ipAddress_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string ip_address = 2;</code>
+       * @param value The ipAddress to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIpAddress(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        ipAddress_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string ip_address = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearIpAddress() {
+        ipAddress_ = getDefaultInstance().getIpAddress();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string ip_address = 2;</code>
+       * @param value The bytes for ipAddress to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIpAddressBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        ipAddress_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
+      private int port_ ;
+      /**
+       * <code>int32 port = 3;</code>
+       * @return The port.
+       */
+      @java.lang.Override
+      public int getPort() {
+        return port_;
+      }
+      /**
+       * <code>int32 port = 3;</code>
+       * @param value The port to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPort(int value) {
+
+        port_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 port = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPort() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        port_ = 0;
+        onChanged();
+        return this;
+      }
+
       private java.util.List<dfs.Dfs.BlockReport> blocks_ =
         java.util.Collections.emptyList();
       private void ensureBlocksIsMutable() {
-        if (!((bitField0_ & 0x00000002) != 0)) {
+        if (!((bitField0_ & 0x00000008) != 0)) {
           blocks_ = new java.util.ArrayList<dfs.Dfs.BlockReport>(blocks_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000008;
          }
       }
 
@@ -12605,7 +13045,7 @@ public final class Dfs {
           dfs.Dfs.BlockReport, dfs.Dfs.BlockReport.Builder, dfs.Dfs.BlockReportOrBuilder> blocksBuilder_;
 
       /**
-       * <code>repeated .dfs.BlockReport blocks = 2;</code>
+       * <code>repeated .dfs.BlockReport blocks = 4;</code>
        */
       public java.util.List<dfs.Dfs.BlockReport> getBlocksList() {
         if (blocksBuilder_ == null) {
@@ -12615,7 +13055,7 @@ public final class Dfs {
         }
       }
       /**
-       * <code>repeated .dfs.BlockReport blocks = 2;</code>
+       * <code>repeated .dfs.BlockReport blocks = 4;</code>
        */
       public int getBlocksCount() {
         if (blocksBuilder_ == null) {
@@ -12625,7 +13065,7 @@ public final class Dfs {
         }
       }
       /**
-       * <code>repeated .dfs.BlockReport blocks = 2;</code>
+       * <code>repeated .dfs.BlockReport blocks = 4;</code>
        */
       public dfs.Dfs.BlockReport getBlocks(int index) {
         if (blocksBuilder_ == null) {
@@ -12635,7 +13075,7 @@ public final class Dfs {
         }
       }
       /**
-       * <code>repeated .dfs.BlockReport blocks = 2;</code>
+       * <code>repeated .dfs.BlockReport blocks = 4;</code>
        */
       public Builder setBlocks(
           int index, dfs.Dfs.BlockReport value) {
@@ -12652,7 +13092,7 @@ public final class Dfs {
         return this;
       }
       /**
-       * <code>repeated .dfs.BlockReport blocks = 2;</code>
+       * <code>repeated .dfs.BlockReport blocks = 4;</code>
        */
       public Builder setBlocks(
           int index, dfs.Dfs.BlockReport.Builder builderForValue) {
@@ -12666,7 +13106,7 @@ public final class Dfs {
         return this;
       }
       /**
-       * <code>repeated .dfs.BlockReport blocks = 2;</code>
+       * <code>repeated .dfs.BlockReport blocks = 4;</code>
        */
       public Builder addBlocks(dfs.Dfs.BlockReport value) {
         if (blocksBuilder_ == null) {
@@ -12682,7 +13122,7 @@ public final class Dfs {
         return this;
       }
       /**
-       * <code>repeated .dfs.BlockReport blocks = 2;</code>
+       * <code>repeated .dfs.BlockReport blocks = 4;</code>
        */
       public Builder addBlocks(
           int index, dfs.Dfs.BlockReport value) {
@@ -12699,7 +13139,7 @@ public final class Dfs {
         return this;
       }
       /**
-       * <code>repeated .dfs.BlockReport blocks = 2;</code>
+       * <code>repeated .dfs.BlockReport blocks = 4;</code>
        */
       public Builder addBlocks(
           dfs.Dfs.BlockReport.Builder builderForValue) {
@@ -12713,7 +13153,7 @@ public final class Dfs {
         return this;
       }
       /**
-       * <code>repeated .dfs.BlockReport blocks = 2;</code>
+       * <code>repeated .dfs.BlockReport blocks = 4;</code>
        */
       public Builder addBlocks(
           int index, dfs.Dfs.BlockReport.Builder builderForValue) {
@@ -12727,7 +13167,7 @@ public final class Dfs {
         return this;
       }
       /**
-       * <code>repeated .dfs.BlockReport blocks = 2;</code>
+       * <code>repeated .dfs.BlockReport blocks = 4;</code>
        */
       public Builder addAllBlocks(
           java.lang.Iterable<? extends dfs.Dfs.BlockReport> values) {
@@ -12742,12 +13182,12 @@ public final class Dfs {
         return this;
       }
       /**
-       * <code>repeated .dfs.BlockReport blocks = 2;</code>
+       * <code>repeated .dfs.BlockReport blocks = 4;</code>
        */
       public Builder clearBlocks() {
         if (blocksBuilder_ == null) {
           blocks_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000008);
           onChanged();
         } else {
           blocksBuilder_.clear();
@@ -12755,7 +13195,7 @@ public final class Dfs {
         return this;
       }
       /**
-       * <code>repeated .dfs.BlockReport blocks = 2;</code>
+       * <code>repeated .dfs.BlockReport blocks = 4;</code>
        */
       public Builder removeBlocks(int index) {
         if (blocksBuilder_ == null) {
@@ -12768,14 +13208,14 @@ public final class Dfs {
         return this;
       }
       /**
-       * <code>repeated .dfs.BlockReport blocks = 2;</code>
+       * <code>repeated .dfs.BlockReport blocks = 4;</code>
        */
       public dfs.Dfs.BlockReport.Builder getBlocksBuilder(
           int index) {
         return getBlocksFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .dfs.BlockReport blocks = 2;</code>
+       * <code>repeated .dfs.BlockReport blocks = 4;</code>
        */
       public dfs.Dfs.BlockReportOrBuilder getBlocksOrBuilder(
           int index) {
@@ -12785,7 +13225,7 @@ public final class Dfs {
         }
       }
       /**
-       * <code>repeated .dfs.BlockReport blocks = 2;</code>
+       * <code>repeated .dfs.BlockReport blocks = 4;</code>
        */
       public java.util.List<? extends dfs.Dfs.BlockReportOrBuilder> 
            getBlocksOrBuilderList() {
@@ -12796,14 +13236,14 @@ public final class Dfs {
         }
       }
       /**
-       * <code>repeated .dfs.BlockReport blocks = 2;</code>
+       * <code>repeated .dfs.BlockReport blocks = 4;</code>
        */
       public dfs.Dfs.BlockReport.Builder addBlocksBuilder() {
         return getBlocksFieldBuilder().addBuilder(
             dfs.Dfs.BlockReport.getDefaultInstance());
       }
       /**
-       * <code>repeated .dfs.BlockReport blocks = 2;</code>
+       * <code>repeated .dfs.BlockReport blocks = 4;</code>
        */
       public dfs.Dfs.BlockReport.Builder addBlocksBuilder(
           int index) {
@@ -12811,7 +13251,7 @@ public final class Dfs {
             index, dfs.Dfs.BlockReport.getDefaultInstance());
       }
       /**
-       * <code>repeated .dfs.BlockReport blocks = 2;</code>
+       * <code>repeated .dfs.BlockReport blocks = 4;</code>
        */
       public java.util.List<dfs.Dfs.BlockReport.Builder> 
            getBlocksBuilderList() {
@@ -12824,7 +13264,7 @@ public final class Dfs {
           blocksBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               dfs.Dfs.BlockReport, dfs.Dfs.BlockReport.Builder, dfs.Dfs.BlockReportOrBuilder>(
                   blocks_,
-                  ((bitField0_ & 0x00000002) != 0),
+                  ((bitField0_ & 0x00000008) != 0),
                   getParentForChildren(),
                   isClean());
           blocks_ = null;
@@ -16283,38 +16723,39 @@ public final class Dfs {
       "ta\030\001 \001(\014\"P\n\027RegisterDataNodeRequest\022\023\n\013d" +
       "atanode_id\030\001 \001(\t\022\022\n\nip_address\030\002 \001(\t\022\014\n\004" +
       "port\030\003 \001(\005\"+\n\030RegisterDataNodeResponse\022\017" +
-      "\n\007success\030\001 \001(\010\"\'\n\020HeartbeatRequest\022\023\n\013d" +
-      "atanode_id\030\001 \001(\t\"$\n\021HeartbeatResponse\022\017\n" +
-      "\007success\030\001 \001(\010\"K\n\022ReportBlockRequest\022\023\n\013" +
-      "datanode_id\030\001 \001(\t\022 \n\006blocks\030\002 \003(\0132\020.dfs." +
-      "BlockReport\"&\n\023ReportBlockResponse\022\017\n\007su" +
-      "ccess\030\001 \001(\010\"1\n\013BlockReport\022\020\n\010block_id\030\001" +
-      " \001(\003\022\020\n\010filename\030\002 \001(\t\"U\n\rBlockLocation\022" +
-      "\020\n\010block_id\030\001 \001(\003\022\027\n\017primary_address\030\002 \001" +
-      "(\t\022\031\n\021replica_addresses\030\003 \003(\t\"K\n\027BlockRe" +
-      "plicationRequest\022\020\n\010block_id\030\001 \001(\003\022\020\n\010fi" +
-      "lename\030\002 \001(\t\022\014\n\004data\030\003 \001(\014\"+\n\030BlockRepli" +
-      "cationResponse\022\017\n\007success\030\001 \001(\0102\262\002\n\017Name" +
-      "NodeService\0224\n\007PutFile\022\023.dfs.PutFileRequ" +
-      "est\032\024.dfs.PutFileResponse\0224\n\007GetFile\022\023.d" +
-      "fs.GetFileRequest\032\024.dfs.GetFileResponse\022" +
-      ":\n\tListFiles\022\025.dfs.ListFilesRequest\032\026.df" +
-      "s.ListFilesResponse\022=\n\nRemoveFile\022\026.dfs." +
-      "RemoveFileRequest\032\027.dfs.RemoveFileRespon" +
-      "se\0228\n\013GetReplicas\022\023.dfs.ReplicaRequest\032\024" +
-      ".dfs.ReplicaResponse2\352\001\n\017DataNodeService" +
-      "\022@\n\013UploadBlock\022\027.dfs.BlockUploadRequest" +
-      "\032\030.dfs.BlockUploadResponse\022F\n\rDownloadBl" +
-      "ock\022\031.dfs.BlockDownloadRequest\032\032.dfs.Blo" +
-      "ckDownloadResponse\022M\n\016ReplicateBlock\022\034.d" +
-      "fs.BlockReplicationRequest\032\035.dfs.BlockRe" +
-      "plicationResponse2\337\001\n\016ClusterService\022O\n\020" +
-      "RegisterDataNode\022\034.dfs.RegisterDataNodeR" +
-      "equest\032\035.dfs.RegisterDataNodeResponse\022:\n" +
-      "\tHeartbeat\022\025.dfs.HeartbeatRequest\032\026.dfs." +
-      "HeartbeatResponse\022@\n\013ReportBlock\022\027.dfs.R" +
-      "eportBlockRequest\032\030.dfs.ReportBlockRespo" +
-      "nseb\006proto3"
+      "\n\007success\030\001 \001(\010\"I\n\020HeartbeatRequest\022\023\n\013d" +
+      "atanode_id\030\001 \001(\t\022\022\n\nip_address\030\002 \001(\t\022\014\n\004" +
+      "port\030\003 \001(\005\"$\n\021HeartbeatResponse\022\017\n\007succe" +
+      "ss\030\001 \001(\010\"m\n\022ReportBlockRequest\022\023\n\013datano" +
+      "de_id\030\001 \001(\t\022\022\n\nip_address\030\002 \001(\t\022\014\n\004port\030" +
+      "\003 \001(\005\022 \n\006blocks\030\004 \003(\0132\020.dfs.BlockReport\"" +
+      "&\n\023ReportBlockResponse\022\017\n\007success\030\001 \001(\010\"" +
+      "1\n\013BlockReport\022\020\n\010block_id\030\001 \001(\003\022\020\n\010file" +
+      "name\030\002 \001(\t\"U\n\rBlockLocation\022\020\n\010block_id\030" +
+      "\001 \001(\003\022\027\n\017primary_address\030\002 \001(\t\022\031\n\021replic" +
+      "a_addresses\030\003 \003(\t\"K\n\027BlockReplicationReq" +
+      "uest\022\020\n\010block_id\030\001 \001(\003\022\020\n\010filename\030\002 \001(\t" +
+      "\022\014\n\004data\030\003 \001(\014\"+\n\030BlockReplicationRespon" +
+      "se\022\017\n\007success\030\001 \001(\0102\262\002\n\017NameNodeService\022" +
+      "4\n\007PutFile\022\023.dfs.PutFileRequest\032\024.dfs.Pu" +
+      "tFileResponse\0224\n\007GetFile\022\023.dfs.GetFileRe" +
+      "quest\032\024.dfs.GetFileResponse\022:\n\tListFiles" +
+      "\022\025.dfs.ListFilesRequest\032\026.dfs.ListFilesR" +
+      "esponse\022=\n\nRemoveFile\022\026.dfs.RemoveFileRe" +
+      "quest\032\027.dfs.RemoveFileResponse\0228\n\013GetRep" +
+      "licas\022\023.dfs.ReplicaRequest\032\024.dfs.Replica" +
+      "Response2\352\001\n\017DataNodeService\022@\n\013UploadBl" +
+      "ock\022\027.dfs.BlockUploadRequest\032\030.dfs.Block" +
+      "UploadResponse\022F\n\rDownloadBlock\022\031.dfs.Bl" +
+      "ockDownloadRequest\032\032.dfs.BlockDownloadRe" +
+      "sponse\022M\n\016ReplicateBlock\022\034.dfs.BlockRepl" +
+      "icationRequest\032\035.dfs.BlockReplicationRes" +
+      "ponse2\337\001\n\016ClusterService\022O\n\020RegisterData" +
+      "Node\022\034.dfs.RegisterDataNodeRequest\032\035.dfs" +
+      ".RegisterDataNodeResponse\022:\n\tHeartbeat\022\025" +
+      ".dfs.HeartbeatRequest\032\026.dfs.HeartbeatRes" +
+      "ponse\022@\n\013ReportBlock\022\027.dfs.ReportBlockRe" +
+      "quest\032\030.dfs.ReportBlockResponseb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -16421,7 +16862,7 @@ public final class Dfs {
     internal_static_dfs_HeartbeatRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_HeartbeatRequest_descriptor,
-        new java.lang.String[] { "DatanodeId", });
+        new java.lang.String[] { "DatanodeId", "IpAddress", "Port", });
     internal_static_dfs_HeartbeatResponse_descriptor =
       getDescriptor().getMessageTypes().get(17);
     internal_static_dfs_HeartbeatResponse_fieldAccessorTable = new
@@ -16433,7 +16874,7 @@ public final class Dfs {
     internal_static_dfs_ReportBlockRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_ReportBlockRequest_descriptor,
-        new java.lang.String[] { "DatanodeId", "Blocks", });
+        new java.lang.String[] { "DatanodeId", "IpAddress", "Port", "Blocks", });
     internal_static_dfs_ReportBlockResponse_descriptor =
       getDescriptor().getMessageTypes().get(19);
     internal_static_dfs_ReportBlockResponse_fieldAccessorTable = new

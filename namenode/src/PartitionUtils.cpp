@@ -1,6 +1,7 @@
 #include "PartitionUtils.h"
 #include <unordered_set>
 #include <iostream>
+#include <algorithm> // std::min
 
 namespace dfs {
 
@@ -8,7 +9,6 @@ namespace dfs {
 // Selecciona primario y réplicas para un bloque
 // ==========================================
 std::pair<std::string, std::vector<std::string>>
-
 PartitionUtils::assignBlockNodes(
     const std::string& filename,
     int64_t blockId,
@@ -23,6 +23,9 @@ PartitionUtils::assignBlockNodes(
         return result;
     }
 
+    // Ajustar replicationFactor al máximo posible
+    int effectiveReplication = std::min(replicationFactor, (int)allNodes.size());
+
     // Clave única por bloque
     std::string blockKey = filename + "_" + std::to_string(blockId);
 
@@ -32,16 +35,21 @@ PartitionUtils::assignBlockNodes(
 
     // 2. Seleccionamos réplicas adicionales
     std::unordered_set<std::string> chosen;
-    chosen.insert(primary);
+    chosen.insert(primary); // aseguramos que el primario no entre en réplicas
 
-    for (int r = 1; r < replicationFactor && chosen.size() < allNodes.size(); r++) {
+    for (int r = 1; (int)result.second.size() < effectiveReplication - 1; r++) {
         std::string seed = blockKey + "_replica_" + std::to_string(r);
         std::string candidate = HashUtils::rendezvousSelect(seed, allNodes);
 
-        // Evitamos duplicados
-        while (chosen.count(candidate)) {
+        // Evitamos duplicados y el mismo primario
+        int attempts = 0;
+        while (chosen.count(candidate) && attempts < 10) {
             seed += "_x";
             candidate = HashUtils::rendezvousSelect(seed, allNodes);
+            attempts++;
+        }
+        if (chosen.count(candidate)) {
+            break; // no se encontró nodo distinto, salimos
         }
 
         chosen.insert(candidate);

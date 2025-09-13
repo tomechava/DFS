@@ -2572,6 +2572,8 @@ class HeartbeatRequest final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kDatanodeIdFieldNumber = 1,
+    kIpAddressFieldNumber = 2,
+    kPortFieldNumber = 3,
   };
   // string datanode_id = 1;
   void clear_datanode_id() ;
@@ -2589,13 +2591,39 @@ class HeartbeatRequest final : public ::google::protobuf::Message
   std::string* _internal_mutable_datanode_id();
 
   public:
+  // string ip_address = 2;
+  void clear_ip_address() ;
+  const std::string& ip_address() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_ip_address(Arg_&& arg, Args_... args);
+  std::string* mutable_ip_address();
+  PROTOBUF_NODISCARD std::string* release_ip_address();
+  void set_allocated_ip_address(std::string* value);
+
+  private:
+  const std::string& _internal_ip_address() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_ip_address(
+      const std::string& value);
+  std::string* _internal_mutable_ip_address();
+
+  public:
+  // int32 port = 3;
+  void clear_port() ;
+  ::int32_t port() const;
+  void set_port(::int32_t value);
+
+  private:
+  ::int32_t _internal_port() const;
+  void _internal_set_port(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:dfs.HeartbeatRequest)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 0,
-      40, 2>
+      2, 3, 0,
+      50, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -2613,6 +2641,8 @@ class HeartbeatRequest final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const HeartbeatRequest& from_msg);
     ::google::protobuf::internal::ArenaStringPtr datanode_id_;
+    ::google::protobuf::internal::ArenaStringPtr ip_address_;
+    ::int32_t port_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -4675,10 +4705,12 @@ class ReportBlockRequest final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kBlocksFieldNumber = 2,
+    kBlocksFieldNumber = 4,
     kDatanodeIdFieldNumber = 1,
+    kIpAddressFieldNumber = 2,
+    kPortFieldNumber = 3,
   };
-  // repeated .dfs.BlockReport blocks = 2;
+  // repeated .dfs.BlockReport blocks = 4;
   int blocks_size() const;
   private:
   int _internal_blocks_size() const;
@@ -4711,13 +4743,39 @@ class ReportBlockRequest final : public ::google::protobuf::Message
   std::string* _internal_mutable_datanode_id();
 
   public:
+  // string ip_address = 2;
+  void clear_ip_address() ;
+  const std::string& ip_address() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_ip_address(Arg_&& arg, Args_... args);
+  std::string* mutable_ip_address();
+  PROTOBUF_NODISCARD std::string* release_ip_address();
+  void set_allocated_ip_address(std::string* value);
+
+  private:
+  const std::string& _internal_ip_address() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_ip_address(
+      const std::string& value);
+  std::string* _internal_mutable_ip_address();
+
+  public:
+  // int32 port = 3;
+  void clear_port() ;
+  ::int32_t port() const;
+  void set_port(::int32_t value);
+
+  private:
+  ::int32_t _internal_port() const;
+  void _internal_set_port(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:dfs.ReportBlockRequest)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 1,
-      42, 2>
+      2, 4, 1,
+      52, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -4736,6 +4794,8 @@ class ReportBlockRequest final : public ::google::protobuf::Message
                           const ReportBlockRequest& from_msg);
     ::google::protobuf::RepeatedPtrField< ::dfs::BlockReport > blocks_;
     ::google::protobuf::internal::ArenaStringPtr datanode_id_;
+    ::google::protobuf::internal::ArenaStringPtr ip_address_;
+    ::int32_t port_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -6531,6 +6591,76 @@ inline void HeartbeatRequest::set_allocated_datanode_id(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:dfs.HeartbeatRequest.datanode_id)
 }
 
+// string ip_address = 2;
+inline void HeartbeatRequest::clear_ip_address() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.ip_address_.ClearToEmpty();
+}
+inline const std::string& HeartbeatRequest::ip_address() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:dfs.HeartbeatRequest.ip_address)
+  return _internal_ip_address();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void HeartbeatRequest::set_ip_address(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.ip_address_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:dfs.HeartbeatRequest.ip_address)
+}
+inline std::string* HeartbeatRequest::mutable_ip_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_ip_address();
+  // @@protoc_insertion_point(field_mutable:dfs.HeartbeatRequest.ip_address)
+  return _s;
+}
+inline const std::string& HeartbeatRequest::_internal_ip_address() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.ip_address_.Get();
+}
+inline void HeartbeatRequest::_internal_set_ip_address(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.ip_address_.Set(value, GetArena());
+}
+inline std::string* HeartbeatRequest::_internal_mutable_ip_address() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.ip_address_.Mutable( GetArena());
+}
+inline std::string* HeartbeatRequest::release_ip_address() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:dfs.HeartbeatRequest.ip_address)
+  return _impl_.ip_address_.Release();
+}
+inline void HeartbeatRequest::set_allocated_ip_address(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.ip_address_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.ip_address_.IsDefault()) {
+    _impl_.ip_address_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:dfs.HeartbeatRequest.ip_address)
+}
+
+// int32 port = 3;
+inline void HeartbeatRequest::clear_port() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.port_ = 0;
+}
+inline ::int32_t HeartbeatRequest::port() const {
+  // @@protoc_insertion_point(field_get:dfs.HeartbeatRequest.port)
+  return _internal_port();
+}
+inline void HeartbeatRequest::set_port(::int32_t value) {
+  _internal_set_port(value);
+  // @@protoc_insertion_point(field_set:dfs.HeartbeatRequest.port)
+}
+inline ::int32_t HeartbeatRequest::_internal_port() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.port_;
+}
+inline void HeartbeatRequest::_internal_set_port(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.port_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // HeartbeatResponse
@@ -6609,7 +6739,77 @@ inline void ReportBlockRequest::set_allocated_datanode_id(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:dfs.ReportBlockRequest.datanode_id)
 }
 
-// repeated .dfs.BlockReport blocks = 2;
+// string ip_address = 2;
+inline void ReportBlockRequest::clear_ip_address() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.ip_address_.ClearToEmpty();
+}
+inline const std::string& ReportBlockRequest::ip_address() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:dfs.ReportBlockRequest.ip_address)
+  return _internal_ip_address();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ReportBlockRequest::set_ip_address(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.ip_address_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:dfs.ReportBlockRequest.ip_address)
+}
+inline std::string* ReportBlockRequest::mutable_ip_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_ip_address();
+  // @@protoc_insertion_point(field_mutable:dfs.ReportBlockRequest.ip_address)
+  return _s;
+}
+inline const std::string& ReportBlockRequest::_internal_ip_address() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.ip_address_.Get();
+}
+inline void ReportBlockRequest::_internal_set_ip_address(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.ip_address_.Set(value, GetArena());
+}
+inline std::string* ReportBlockRequest::_internal_mutable_ip_address() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.ip_address_.Mutable( GetArena());
+}
+inline std::string* ReportBlockRequest::release_ip_address() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:dfs.ReportBlockRequest.ip_address)
+  return _impl_.ip_address_.Release();
+}
+inline void ReportBlockRequest::set_allocated_ip_address(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.ip_address_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.ip_address_.IsDefault()) {
+    _impl_.ip_address_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:dfs.ReportBlockRequest.ip_address)
+}
+
+// int32 port = 3;
+inline void ReportBlockRequest::clear_port() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.port_ = 0;
+}
+inline ::int32_t ReportBlockRequest::port() const {
+  // @@protoc_insertion_point(field_get:dfs.ReportBlockRequest.port)
+  return _internal_port();
+}
+inline void ReportBlockRequest::set_port(::int32_t value) {
+  _internal_set_port(value);
+  // @@protoc_insertion_point(field_set:dfs.ReportBlockRequest.port)
+}
+inline ::int32_t ReportBlockRequest::_internal_port() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.port_;
+}
+inline void ReportBlockRequest::_internal_set_port(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.port_ = value;
+}
+
+// repeated .dfs.BlockReport blocks = 4;
 inline int ReportBlockRequest::_internal_blocks_size() const {
   return _internal_blocks().size();
 }

@@ -137,6 +137,8 @@ message RegisterDataNodeResponse {
 
 message HeartbeatRequest {
   string datanode_id = 1;
+  string ip_address = 2;
+  int32 port = 3;
 }
 
 message HeartbeatResponse {
@@ -145,7 +147,10 @@ message HeartbeatResponse {
 
 message ReportBlockRequest {
   string datanode_id = 1;
-  repeated BlockReport blocks = 2;
+  string ip_address = 2;
+  int32 port = 3;
+  repeated BlockReport blocks = 4;
+
 }
 
 message ReportBlockResponse {

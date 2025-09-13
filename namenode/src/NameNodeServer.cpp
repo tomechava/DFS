@@ -2,6 +2,9 @@
 #include "PartitionUtils.h"
 #include "HashUtils.h"
 #include <iostream>
+#include <algorithm> // std::min
+#include <vector>
+#include <cstdint>
 
 using grpc::Status;
 using grpc::ServerContext;
@@ -20,51 +23,79 @@ Status NameNodeServiceImpl::PutFile(ServerContext* context,
     std::cout << "Cliente sube archivo: " << filename
               << " (" << filesize << " bytes)" << std::endl;
 
-    // Elegir block_size dinámicamente
-    uint64_t blockSize = 64 * 1024 * 1024;
+    // Tamaño de bloque (puedes hacerlo dinámico con choose_block_size si lo implementas)
+    uint64_t blockSize = 60ull * 1024ull * 1024ull;
     uint64_t numBlocks = (filesize + blockSize - 1) / blockSize;
     std::cout << "Archivo dividido en " << numBlocks
               << " bloques de " << blockSize << " bytes" << std::endl;
 
-    auto availableNodes = metadata->getAliveDataNodes();
-    if (availableNodes.empty()) {
-        std::cerr << "No hay DataNodes registrados." << std::endl;
+    // Obtener nodos vivos desde metadata
+    std::vector<std::string> allNodes = metadata->getAliveDataNodes();
+    if (allNodes.empty()) {
+        std::cerr << "❌ No hay DataNodes registrados." << std::endl;
         return Status::CANCELLED;
     }
 
-    for (uint64_t i = 0; i < numBlocks; i++) {
-        // ID único usando hash
-        std::string key = filename + ":" + std::to_string(i);
-        int64_t block_id = static_cast<int64_t>(dfs::HashUtils::hash64(key));
+    // Factor de replicación (configurable)
+    int replicationFactor = 3;
 
+    for (uint64_t i = 0; i < numBlocks; ++i) {
+        
+        uint64_t block_id = dfs::HashUtils::blockIdFor(filename, i);
+        std::cout << "block_id (i=" << i << ") = " << block_id << std::endl;
+        // Ajustar replicationFactor al máximo disponible
+        int effectiveReplication = std::min(replicationFactor, static_cast<int>(allNodes.size()));
 
-        // Usamos PartitionUtils para decidir primario + réplicas
-        auto assignment = dfs::PartitionUtils::assignBlockNodes(
-            filename, block_id, availableNodes, 3 // replication factor
-        );
-
+        // Asignación: primario + réplicas (PartitionUtils ya evita duplicados)
+        auto assignment = dfs::PartitionUtils::assignBlockNodes(filename, block_id, allNodes, effectiveReplication);
+        std::cout << "Asignación bloque " << block_id
+             << ": primario " << assignment.first
+             << ", réplicas [";
+        for (const auto& r : assignment.second) {
+            std::cout << r << " ";
+        }
+        std::cout << "]" << std::endl;
         std::string primary = assignment.first;
-        const auto& replicas = assignment.second;
+        const std::vector<std::string>& replicas = assignment.second;
 
+        // Construir respuesta para el cliente (solo primary + lista opcional de réplicas)
         dfs::BlockLocation* block = response->add_blocks();
-        block->set_block_id(block_id);
+        block->set_block_id(static_cast<int64_t>(block_id));
         block->set_primary_address(primary);
-        for (const auto& replica : replicas) {
-            block->add_replica_addresses(replica);
+        for (const auto& r : replicas) {
+            block->add_replica_addresses(r);
         }
 
-        // Guardar en metadata
-        metadata->registerBlockLocation(filename, {std::to_string(block_id), primary});
+        // Construir un objeto BlockLocation (nuestro propio struct de metadatos)
+        BlockLocation metaBlock;
+        metaBlock.block_id = std::to_string(block->block_id());   // se guarda como string
+        metaBlock.datanode_address = block->primary_address();    // primario
 
-        std::vector<std::string> all = {primary};
+        // Guardar en metadatos
+        std::cout << "➡ Guardando bloque en metadatos" << std::endl;
+        metadata->registerBlockLocation(filename, metaBlock);
+        std::cout << "✅ Guardado bloque en metadatos" << std::endl;
+
+
+        // Guardar réplicas en tabla separada
+        std::vector<std::string> all;
+        all.push_back(primary);
         all.insert(all.end(), replicas.begin(), replicas.end());
         metadata->registerBlockReplicas(block_id, all);
+        std::cout << "✅ Guardadas réplicas en metadatos" << std::endl;
+        std::cout << "Asignación bloque " << block_id
+             << ": primario " << assignment.first
+             << ", réplicas [";
+        for (const auto& r : assignment.second) {
+            std::cout << r << " ";
+        }
+        std::cout << "]" << std::endl;
+        std::cout << "Iteración " << i << " completada" << std::endl;
+
     }
 
     return Status::OK;
 }
-
-
 
 // ==============================================
 // Consulta de réplicas (DataNode -> NameNode)
@@ -81,19 +112,13 @@ Status NameNodeServiceImpl::GetReplicas(ServerContext* context,
         return Status::CANCELLED;
     }
 
-    std::cout << "Réplicas registradas: ";
-    for (const auto& n : replicas) std::cout << n << " ";
-    std::cout << std::endl;
-
-    // omitimos el primario, devolvemos solo secundarias
-    for (size_t i = 1; i < replicas.size(); i++) {
+    // replicas[0] se considera primario (según nuestro contrato); devolvemos solo las secundarias
+    for (size_t i = 1; i < replicas.size(); ++i) {
         response->add_replica_datanodes(replicas[i]);
     }
 
     return Status::OK;
 }
-
-
 
 // ==============================================
 // Descarga de archivo (Cliente -> NameNode)
@@ -107,23 +132,28 @@ Status NameNodeServiceImpl::GetFile(ServerContext* context,
     for (const auto& b : blocks) {
         dfs::BlockLocation* blockLoc = response->add_blocks();
 
-        // block_id lo guardaste como string, conviértelo a int64
-        int64_t blockId = std::stoll(b.block_id);
+        // block_id lo guardamos como string en metadatos, aquí lo convertimos
+        int64_t blockId = 0;
+        try {
+            blockId = std::stoll(b.block_id);
+        } catch (...) {
+            std::cerr << "Aviso: block id corrupto en metadatos: " << b.block_id << std::endl;
+            continue;
+        }
         blockLoc->set_block_id(blockId);
 
-        // primario (lo que guardaste como datanode_address)
+        // primario
         blockLoc->set_primary_address(b.datanode_address);
 
-        // ahora réplicas desde MetadataManager
+        // añadir réplicas (si existen)
         auto replicas = metadata->getReplicasForBlock(blockId);
-        for (size_t i = 1; i < replicas.size(); i++) {
+        for (size_t i = 1; i < replicas.size(); ++i) {
             blockLoc->add_replica_addresses(replicas[i]);
         }
     }
 
     return Status::OK;
 }
-
 
 // ==============================================
 // Listar archivos (Cliente -> NameNode)

@@ -337,6 +337,10 @@ inline constexpr HeartbeatRequest::Impl_::Impl_(
       : datanode_id_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
+        ip_address_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        port_{0},
         _cached_size_{0} {}
 
 template <typename>
@@ -622,6 +626,10 @@ inline constexpr ReportBlockRequest::Impl_::Impl_(
         datanode_id_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
+        ip_address_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        port_{0},
         _cached_size_{0} {}
 
 template <typename>
@@ -868,6 +876,8 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::dfs::HeartbeatRequest, _impl_.datanode_id_),
+        PROTOBUF_FIELD_OFFSET(::dfs::HeartbeatRequest, _impl_.ip_address_),
+        PROTOBUF_FIELD_OFFSET(::dfs::HeartbeatRequest, _impl_.port_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::dfs::HeartbeatResponse, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -886,6 +896,8 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::dfs::ReportBlockRequest, _impl_.datanode_id_),
+        PROTOBUF_FIELD_OFFSET(::dfs::ReportBlockRequest, _impl_.ip_address_),
+        PROTOBUF_FIELD_OFFSET(::dfs::ReportBlockRequest, _impl_.port_),
         PROTOBUF_FIELD_OFFSET(::dfs::ReportBlockRequest, _impl_.blocks_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::dfs::ReportBlockResponse, _internal_metadata_),
@@ -958,13 +970,13 @@ static const ::_pbi::MigrationSchema
         {138, -1, -1, sizeof(::dfs::RegisterDataNodeRequest)},
         {149, -1, -1, sizeof(::dfs::RegisterDataNodeResponse)},
         {158, -1, -1, sizeof(::dfs::HeartbeatRequest)},
-        {167, -1, -1, sizeof(::dfs::HeartbeatResponse)},
-        {176, -1, -1, sizeof(::dfs::ReportBlockRequest)},
-        {186, -1, -1, sizeof(::dfs::ReportBlockResponse)},
-        {195, -1, -1, sizeof(::dfs::BlockReport)},
-        {205, -1, -1, sizeof(::dfs::BlockLocation)},
-        {216, -1, -1, sizeof(::dfs::BlockReplicationRequest)},
-        {227, -1, -1, sizeof(::dfs::BlockReplicationResponse)},
+        {169, -1, -1, sizeof(::dfs::HeartbeatResponse)},
+        {178, -1, -1, sizeof(::dfs::ReportBlockRequest)},
+        {190, -1, -1, sizeof(::dfs::ReportBlockResponse)},
+        {199, -1, -1, sizeof(::dfs::BlockReport)},
+        {209, -1, -1, sizeof(::dfs::BlockLocation)},
+        {220, -1, -1, sizeof(::dfs::BlockReplicationRequest)},
+        {231, -1, -1, sizeof(::dfs::BlockReplicationResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::dfs::_PutFileRequest_default_instance_._instance,
@@ -1017,44 +1029,45 @@ const char descriptor_table_protodef_dfs_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIAB
     "ta\030\001 \001(\014\"P\n\027RegisterDataNodeRequest\022\023\n\013d"
     "atanode_id\030\001 \001(\t\022\022\n\nip_address\030\002 \001(\t\022\014\n\004"
     "port\030\003 \001(\005\"+\n\030RegisterDataNodeResponse\022\017"
-    "\n\007success\030\001 \001(\010\"\'\n\020HeartbeatRequest\022\023\n\013d"
-    "atanode_id\030\001 \001(\t\"$\n\021HeartbeatResponse\022\017\n"
-    "\007success\030\001 \001(\010\"K\n\022ReportBlockRequest\022\023\n\013"
-    "datanode_id\030\001 \001(\t\022 \n\006blocks\030\002 \003(\0132\020.dfs."
-    "BlockReport\"&\n\023ReportBlockResponse\022\017\n\007su"
-    "ccess\030\001 \001(\010\"1\n\013BlockReport\022\020\n\010block_id\030\001"
-    " \001(\003\022\020\n\010filename\030\002 \001(\t\"U\n\rBlockLocation\022"
-    "\020\n\010block_id\030\001 \001(\003\022\027\n\017primary_address\030\002 \001"
-    "(\t\022\031\n\021replica_addresses\030\003 \003(\t\"K\n\027BlockRe"
-    "plicationRequest\022\020\n\010block_id\030\001 \001(\003\022\020\n\010fi"
-    "lename\030\002 \001(\t\022\014\n\004data\030\003 \001(\014\"+\n\030BlockRepli"
-    "cationResponse\022\017\n\007success\030\001 \001(\0102\262\002\n\017Name"
-    "NodeService\0224\n\007PutFile\022\023.dfs.PutFileRequ"
-    "est\032\024.dfs.PutFileResponse\0224\n\007GetFile\022\023.d"
-    "fs.GetFileRequest\032\024.dfs.GetFileResponse\022"
-    ":\n\tListFiles\022\025.dfs.ListFilesRequest\032\026.df"
-    "s.ListFilesResponse\022=\n\nRemoveFile\022\026.dfs."
-    "RemoveFileRequest\032\027.dfs.RemoveFileRespon"
-    "se\0228\n\013GetReplicas\022\023.dfs.ReplicaRequest\032\024"
-    ".dfs.ReplicaResponse2\352\001\n\017DataNodeService"
-    "\022@\n\013UploadBlock\022\027.dfs.BlockUploadRequest"
-    "\032\030.dfs.BlockUploadResponse\022F\n\rDownloadBl"
-    "ock\022\031.dfs.BlockDownloadRequest\032\032.dfs.Blo"
-    "ckDownloadResponse\022M\n\016ReplicateBlock\022\034.d"
-    "fs.BlockReplicationRequest\032\035.dfs.BlockRe"
-    "plicationResponse2\337\001\n\016ClusterService\022O\n\020"
-    "RegisterDataNode\022\034.dfs.RegisterDataNodeR"
-    "equest\032\035.dfs.RegisterDataNodeResponse\022:\n"
-    "\tHeartbeat\022\025.dfs.HeartbeatRequest\032\026.dfs."
-    "HeartbeatResponse\022@\n\013ReportBlock\022\027.dfs.R"
-    "eportBlockRequest\032\030.dfs.ReportBlockRespo"
-    "nseb\006proto3"
+    "\n\007success\030\001 \001(\010\"I\n\020HeartbeatRequest\022\023\n\013d"
+    "atanode_id\030\001 \001(\t\022\022\n\nip_address\030\002 \001(\t\022\014\n\004"
+    "port\030\003 \001(\005\"$\n\021HeartbeatResponse\022\017\n\007succe"
+    "ss\030\001 \001(\010\"m\n\022ReportBlockRequest\022\023\n\013datano"
+    "de_id\030\001 \001(\t\022\022\n\nip_address\030\002 \001(\t\022\014\n\004port\030"
+    "\003 \001(\005\022 \n\006blocks\030\004 \003(\0132\020.dfs.BlockReport\""
+    "&\n\023ReportBlockResponse\022\017\n\007success\030\001 \001(\010\""
+    "1\n\013BlockReport\022\020\n\010block_id\030\001 \001(\003\022\020\n\010file"
+    "name\030\002 \001(\t\"U\n\rBlockLocation\022\020\n\010block_id\030"
+    "\001 \001(\003\022\027\n\017primary_address\030\002 \001(\t\022\031\n\021replic"
+    "a_addresses\030\003 \003(\t\"K\n\027BlockReplicationReq"
+    "uest\022\020\n\010block_id\030\001 \001(\003\022\020\n\010filename\030\002 \001(\t"
+    "\022\014\n\004data\030\003 \001(\014\"+\n\030BlockReplicationRespon"
+    "se\022\017\n\007success\030\001 \001(\0102\262\002\n\017NameNodeService\022"
+    "4\n\007PutFile\022\023.dfs.PutFileRequest\032\024.dfs.Pu"
+    "tFileResponse\0224\n\007GetFile\022\023.dfs.GetFileRe"
+    "quest\032\024.dfs.GetFileResponse\022:\n\tListFiles"
+    "\022\025.dfs.ListFilesRequest\032\026.dfs.ListFilesR"
+    "esponse\022=\n\nRemoveFile\022\026.dfs.RemoveFileRe"
+    "quest\032\027.dfs.RemoveFileResponse\0228\n\013GetRep"
+    "licas\022\023.dfs.ReplicaRequest\032\024.dfs.Replica"
+    "Response2\352\001\n\017DataNodeService\022@\n\013UploadBl"
+    "ock\022\027.dfs.BlockUploadRequest\032\030.dfs.Block"
+    "UploadResponse\022F\n\rDownloadBlock\022\031.dfs.Bl"
+    "ockDownloadRequest\032\032.dfs.BlockDownloadRe"
+    "sponse\022M\n\016ReplicateBlock\022\034.dfs.BlockRepl"
+    "icationRequest\032\035.dfs.BlockReplicationRes"
+    "ponse2\337\001\n\016ClusterService\022O\n\020RegisterData"
+    "Node\022\034.dfs.RegisterDataNodeRequest\032\035.dfs"
+    ".RegisterDataNodeResponse\022:\n\tHeartbeat\022\025"
+    ".dfs.HeartbeatRequest\032\026.dfs.HeartbeatRes"
+    "ponse\022@\n\013ReportBlock\022\027.dfs.ReportBlockRe"
+    "quest\032\030.dfs.ReportBlockResponseb\006proto3"
 };
 static ::absl::once_flag descriptor_table_dfs_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_dfs_2eproto = {
     false,
     false,
-    2171,
+    2239,
     descriptor_table_protodef_dfs_2eproto,
     "dfs.proto",
     &descriptor_table_dfs_2eproto_once,
@@ -5135,6 +5148,7 @@ inline PROTOBUF_NDEBUG_INLINE HeartbeatRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from, const ::dfs::HeartbeatRequest& from_msg)
       : datanode_id_(arena, from.datanode_id_),
+        ip_address_(arena, from.ip_address_),
         _cached_size_{0} {}
 
 HeartbeatRequest::HeartbeatRequest(
@@ -5150,6 +5164,7 @@ HeartbeatRequest::HeartbeatRequest(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.port_ = from._impl_.port_;
 
   // @@protoc_insertion_point(copy_constructor:dfs.HeartbeatRequest)
 }
@@ -5157,10 +5172,12 @@ inline PROTOBUF_NDEBUG_INLINE HeartbeatRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : datanode_id_(arena),
+        ip_address_(arena),
         _cached_size_{0} {}
 
 inline void HeartbeatRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.port_ = {};
 }
 HeartbeatRequest::~HeartbeatRequest() {
   // @@protoc_insertion_point(destructor:dfs.HeartbeatRequest)
@@ -5171,6 +5188,7 @@ inline void HeartbeatRequest::SharedDtor(MessageLite& self) {
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
   this_._impl_.datanode_id_.Destroy();
+  this_._impl_.ip_address_.Destroy();
   this_._impl_.~Impl_();
 }
 
@@ -5210,15 +5228,15 @@ const ::google::protobuf::internal::ClassData* HeartbeatRequest::GetClassData() 
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 40, 2> HeartbeatRequest::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 0, 50, 2> HeartbeatRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
+    3, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
+    4294967288,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
+    3,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     _class_data_.base(),
@@ -5228,21 +5246,35 @@ const ::_pbi::TcParseTable<0, 1, 0, 40, 2> HeartbeatRequest::_table_ = {
     ::_pbi::TcParser::GetTable<::dfs::HeartbeatRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
+    {::_pbi::TcParser::MiniParse, {}},
     // string datanode_id = 1;
     {::_pbi::TcParser::FastUS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(HeartbeatRequest, _impl_.datanode_id_)}},
+    // string ip_address = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(HeartbeatRequest, _impl_.ip_address_)}},
+    // int32 port = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(HeartbeatRequest, _impl_.port_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(HeartbeatRequest, _impl_.port_)}},
   }}, {{
     65535, 65535
   }}, {{
     // string datanode_id = 1;
     {PROTOBUF_FIELD_OFFSET(HeartbeatRequest, _impl_.datanode_id_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string ip_address = 2;
+    {PROTOBUF_FIELD_OFFSET(HeartbeatRequest, _impl_.ip_address_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // int32 port = 3;
+    {PROTOBUF_FIELD_OFFSET(HeartbeatRequest, _impl_.port_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
   }},
   // no aux_entries
   {{
-    "\24\13\0\0\0\0\0\0"
+    "\24\13\12\0\0\0\0\0"
     "dfs.HeartbeatRequest"
     "datanode_id"
+    "ip_address"
   }},
 };
 
@@ -5254,6 +5286,8 @@ PROTOBUF_NOINLINE void HeartbeatRequest::Clear() {
   (void) cached_has_bits;
 
   _impl_.datanode_id_.ClearToEmpty();
+  _impl_.ip_address_.ClearToEmpty();
+  _impl_.port_ = 0;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -5280,6 +5314,21 @@ PROTOBUF_NOINLINE void HeartbeatRequest::Clear() {
             target = stream->WriteStringMaybeAliased(1, _s, target);
           }
 
+          // string ip_address = 2;
+          if (!this_._internal_ip_address().empty()) {
+            const std::string& _s = this_._internal_ip_address();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "dfs.HeartbeatRequest.ip_address");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          // int32 port = 3;
+          if (this_._internal_port() != 0) {
+            target = ::google::protobuf::internal::WireFormatLite::
+                WriteInt32ToArrayWithField<3>(
+                    stream, this_._internal_port(), target);
+          }
+
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
             target =
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -5303,11 +5352,22 @@ PROTOBUF_NOINLINE void HeartbeatRequest::Clear() {
           // Prevent compiler warnings about cached_has_bits being unused
           (void)cached_has_bits;
 
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
             // string datanode_id = 1;
             if (!this_._internal_datanode_id().empty()) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                               this_._internal_datanode_id());
+            }
+            // string ip_address = 2;
+            if (!this_._internal_ip_address().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_ip_address());
+            }
+            // int32 port = 3;
+            if (this_._internal_port() != 0) {
+              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+                  this_._internal_port());
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -5324,6 +5384,12 @@ void HeartbeatRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const 
 
   if (!from._internal_datanode_id().empty()) {
     _this->_internal_set_datanode_id(from._internal_datanode_id());
+  }
+  if (!from._internal_ip_address().empty()) {
+    _this->_internal_set_ip_address(from._internal_ip_address());
+  }
+  if (from._internal_port() != 0) {
+    _this->_impl_.port_ = from._impl_.port_;
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -5342,6 +5408,8 @@ void HeartbeatRequest::InternalSwap(HeartbeatRequest* PROTOBUF_RESTRICT other) {
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.datanode_id_, &other->_impl_.datanode_id_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.ip_address_, &other->_impl_.ip_address_, arena);
+        swap(_impl_.port_, other->_impl_.port_);
 }
 
 ::google::protobuf::Metadata HeartbeatRequest::GetMetadata() const {
@@ -5573,6 +5641,7 @@ inline PROTOBUF_NDEBUG_INLINE ReportBlockRequest::Impl_::Impl_(
     const Impl_& from, const ::dfs::ReportBlockRequest& from_msg)
       : blocks_{visibility, arena, from.blocks_},
         datanode_id_(arena, from.datanode_id_),
+        ip_address_(arena, from.ip_address_),
         _cached_size_{0} {}
 
 ReportBlockRequest::ReportBlockRequest(
@@ -5588,6 +5657,7 @@ ReportBlockRequest::ReportBlockRequest(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.port_ = from._impl_.port_;
 
   // @@protoc_insertion_point(copy_constructor:dfs.ReportBlockRequest)
 }
@@ -5596,10 +5666,12 @@ inline PROTOBUF_NDEBUG_INLINE ReportBlockRequest::Impl_::Impl_(
     ::google::protobuf::Arena* arena)
       : blocks_{visibility, arena},
         datanode_id_(arena),
+        ip_address_(arena),
         _cached_size_{0} {}
 
 inline void ReportBlockRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.port_ = {};
 }
 ReportBlockRequest::~ReportBlockRequest() {
   // @@protoc_insertion_point(destructor:dfs.ReportBlockRequest)
@@ -5610,6 +5682,7 @@ inline void ReportBlockRequest::SharedDtor(MessageLite& self) {
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
   this_._impl_.datanode_id_.Destroy();
+  this_._impl_.ip_address_.Destroy();
   this_._impl_.~Impl_();
 }
 
@@ -5661,15 +5734,15 @@ const ::google::protobuf::internal::ClassData* ReportBlockRequest::GetClassData(
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 1, 42, 2> ReportBlockRequest::_table_ = {
+const ::_pbi::TcParseTable<2, 4, 1, 52, 2> ReportBlockRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    4, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967280,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
+    4,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
@@ -5679,27 +5752,40 @@ const ::_pbi::TcParseTable<1, 2, 1, 42, 2> ReportBlockRequest::_table_ = {
     ::_pbi::TcParser::GetTable<::dfs::ReportBlockRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // repeated .dfs.BlockReport blocks = 2;
+    // repeated .dfs.BlockReport blocks = 4;
     {::_pbi::TcParser::FastMtR1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ReportBlockRequest, _impl_.blocks_)}},
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(ReportBlockRequest, _impl_.blocks_)}},
     // string datanode_id = 1;
     {::_pbi::TcParser::FastUS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(ReportBlockRequest, _impl_.datanode_id_)}},
+    // string ip_address = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ReportBlockRequest, _impl_.ip_address_)}},
+    // int32 port = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ReportBlockRequest, _impl_.port_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(ReportBlockRequest, _impl_.port_)}},
   }}, {{
     65535, 65535
   }}, {{
     // string datanode_id = 1;
     {PROTOBUF_FIELD_OFFSET(ReportBlockRequest, _impl_.datanode_id_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // repeated .dfs.BlockReport blocks = 2;
+    // string ip_address = 2;
+    {PROTOBUF_FIELD_OFFSET(ReportBlockRequest, _impl_.ip_address_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // int32 port = 3;
+    {PROTOBUF_FIELD_OFFSET(ReportBlockRequest, _impl_.port_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // repeated .dfs.BlockReport blocks = 4;
     {PROTOBUF_FIELD_OFFSET(ReportBlockRequest, _impl_.blocks_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
     {::_pbi::TcParser::GetTable<::dfs::BlockReport>()},
   }}, {{
-    "\26\13\0\0\0\0\0\0"
+    "\26\13\12\0\0\0\0\0"
     "dfs.ReportBlockRequest"
     "datanode_id"
+    "ip_address"
   }},
 };
 
@@ -5712,6 +5798,8 @@ PROTOBUF_NOINLINE void ReportBlockRequest::Clear() {
 
   _impl_.blocks_.Clear();
   _impl_.datanode_id_.ClearToEmpty();
+  _impl_.ip_address_.ClearToEmpty();
+  _impl_.port_ = 0;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -5738,14 +5826,29 @@ PROTOBUF_NOINLINE void ReportBlockRequest::Clear() {
             target = stream->WriteStringMaybeAliased(1, _s, target);
           }
 
-          // repeated .dfs.BlockReport blocks = 2;
+          // string ip_address = 2;
+          if (!this_._internal_ip_address().empty()) {
+            const std::string& _s = this_._internal_ip_address();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "dfs.ReportBlockRequest.ip_address");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          // int32 port = 3;
+          if (this_._internal_port() != 0) {
+            target = ::google::protobuf::internal::WireFormatLite::
+                WriteInt32ToArrayWithField<3>(
+                    stream, this_._internal_port(), target);
+          }
+
+          // repeated .dfs.BlockReport blocks = 4;
           for (unsigned i = 0, n = static_cast<unsigned>(
                                    this_._internal_blocks_size());
                i < n; i++) {
             const auto& repfield = this_._internal_blocks().Get(i);
             target =
                 ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                    2, repfield, repfield.GetCachedSize(),
+                    4, repfield, repfield.GetCachedSize(),
                     target, stream);
           }
 
@@ -5774,7 +5877,7 @@ PROTOBUF_NOINLINE void ReportBlockRequest::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // repeated .dfs.BlockReport blocks = 2;
+            // repeated .dfs.BlockReport blocks = 4;
             {
               total_size += 1UL * this_._internal_blocks_size();
               for (const auto& msg : this_._internal_blocks()) {
@@ -5787,6 +5890,16 @@ PROTOBUF_NOINLINE void ReportBlockRequest::Clear() {
             if (!this_._internal_datanode_id().empty()) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                               this_._internal_datanode_id());
+            }
+            // string ip_address = 2;
+            if (!this_._internal_ip_address().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_ip_address());
+            }
+            // int32 port = 3;
+            if (this_._internal_port() != 0) {
+              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+                  this_._internal_port());
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -5806,6 +5919,12 @@ void ReportBlockRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, cons
   if (!from._internal_datanode_id().empty()) {
     _this->_internal_set_datanode_id(from._internal_datanode_id());
   }
+  if (!from._internal_ip_address().empty()) {
+    _this->_internal_set_ip_address(from._internal_ip_address());
+  }
+  if (from._internal_port() != 0) {
+    _this->_impl_.port_ = from._impl_.port_;
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -5824,6 +5943,8 @@ void ReportBlockRequest::InternalSwap(ReportBlockRequest* PROTOBUF_RESTRICT othe
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.blocks_.InternalSwap(&other->_impl_.blocks_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.datanode_id_, &other->_impl_.datanode_id_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.ip_address_, &other->_impl_.ip_address_, arena);
+        swap(_impl_.port_, other->_impl_.port_);
 }
 
 ::google::protobuf::Metadata ReportBlockRequest::GetMetadata() const {
