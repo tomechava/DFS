@@ -24,7 +24,7 @@ Status NameNodeServiceImpl::PutFile(ServerContext* context,
               << " (" << filesize << " bytes)" << std::endl;
 
     // Tamaño de bloque (puedes hacerlo dinámico con choose_block_size si lo implementas)
-    uint64_t blockSize = 60ull * 1024ull * 1024ull;
+    uint64_t blockSize = 64ull * 1024ull * 1024ull;
     uint64_t numBlocks = (filesize + blockSize - 1) / blockSize;
     std::cout << "Archivo dividido en " << numBlocks
               << " bloques de " << blockSize << " bytes" << std::endl;

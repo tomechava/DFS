@@ -14507,6 +14507,12 @@ public final class Dfs {
      */
     com.google.protobuf.ByteString
         getReplicaAddressesBytes(int index);
+
+    /**
+     * <code>int32 block_index = 4;</code>
+     * @return The blockIndex.
+     */
+    int getBlockIndex();
   }
   /**
    * <pre>
@@ -14661,6 +14667,17 @@ public final class Dfs {
       return replicaAddresses_.getByteString(index);
     }
 
+    public static final int BLOCK_INDEX_FIELD_NUMBER = 4;
+    private int blockIndex_ = 0;
+    /**
+     * <code>int32 block_index = 4;</code>
+     * @return The blockIndex.
+     */
+    @java.lang.Override
+    public int getBlockIndex() {
+      return blockIndex_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -14683,6 +14700,9 @@ public final class Dfs {
       }
       for (int i = 0; i < replicaAddresses_.size(); i++) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, replicaAddresses_.getRaw(i));
+      }
+      if (blockIndex_ != 0) {
+        output.writeInt32(4, blockIndex_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -14708,6 +14728,10 @@ public final class Dfs {
         size += dataSize;
         size += 1 * getReplicaAddressesList().size();
       }
+      if (blockIndex_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, blockIndex_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -14729,6 +14753,8 @@ public final class Dfs {
           .equals(other.getPrimaryAddress())) return false;
       if (!getReplicaAddressesList()
           .equals(other.getReplicaAddressesList())) return false;
+      if (getBlockIndex()
+          != other.getBlockIndex()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -14749,6 +14775,8 @@ public final class Dfs {
         hash = (37 * hash) + REPLICA_ADDRESSES_FIELD_NUMBER;
         hash = (53 * hash) + getReplicaAddressesList().hashCode();
       }
+      hash = (37 * hash) + BLOCK_INDEX_FIELD_NUMBER;
+      hash = (53 * hash) + getBlockIndex();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -14888,6 +14916,7 @@ public final class Dfs {
         primaryAddress_ = "";
         replicaAddresses_ =
             com.google.protobuf.LazyStringArrayList.emptyList();
+        blockIndex_ = 0;
         return this;
       }
 
@@ -14930,6 +14959,9 @@ public final class Dfs {
         if (((from_bitField0_ & 0x00000004) != 0)) {
           replicaAddresses_.makeImmutable();
           result.replicaAddresses_ = replicaAddresses_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.blockIndex_ = blockIndex_;
         }
       }
 
@@ -14995,6 +15027,9 @@ public final class Dfs {
           }
           onChanged();
         }
+        if (other.getBlockIndex() != 0) {
+          setBlockIndex(other.getBlockIndex());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -15037,6 +15072,11 @@ public final class Dfs {
                 replicaAddresses_.add(s);
                 break;
               } // case 26
+              case 32: {
+                blockIndex_ = input.readInt32();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -15321,6 +15361,38 @@ public final class Dfs {
         ensureReplicaAddressesIsMutable();
         replicaAddresses_.add(value);
         bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+
+      private int blockIndex_ ;
+      /**
+       * <code>int32 block_index = 4;</code>
+       * @return The blockIndex.
+       */
+      @java.lang.Override
+      public int getBlockIndex() {
+        return blockIndex_;
+      }
+      /**
+       * <code>int32 block_index = 4;</code>
+       * @param value The blockIndex to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBlockIndex(int value) {
+
+        blockIndex_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 block_index = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearBlockIndex() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        blockIndex_ = 0;
         onChanged();
         return this;
       }
@@ -16731,31 +16803,32 @@ public final class Dfs {
       "\003 \001(\005\022 \n\006blocks\030\004 \003(\0132\020.dfs.BlockReport\"" +
       "&\n\023ReportBlockResponse\022\017\n\007success\030\001 \001(\010\"" +
       "1\n\013BlockReport\022\020\n\010block_id\030\001 \001(\003\022\020\n\010file" +
-      "name\030\002 \001(\t\"U\n\rBlockLocation\022\020\n\010block_id\030" +
+      "name\030\002 \001(\t\"j\n\rBlockLocation\022\020\n\010block_id\030" +
       "\001 \001(\003\022\027\n\017primary_address\030\002 \001(\t\022\031\n\021replic" +
-      "a_addresses\030\003 \003(\t\"K\n\027BlockReplicationReq" +
-      "uest\022\020\n\010block_id\030\001 \001(\003\022\020\n\010filename\030\002 \001(\t" +
-      "\022\014\n\004data\030\003 \001(\014\"+\n\030BlockReplicationRespon" +
-      "se\022\017\n\007success\030\001 \001(\0102\262\002\n\017NameNodeService\022" +
-      "4\n\007PutFile\022\023.dfs.PutFileRequest\032\024.dfs.Pu" +
-      "tFileResponse\0224\n\007GetFile\022\023.dfs.GetFileRe" +
-      "quest\032\024.dfs.GetFileResponse\022:\n\tListFiles" +
-      "\022\025.dfs.ListFilesRequest\032\026.dfs.ListFilesR" +
-      "esponse\022=\n\nRemoveFile\022\026.dfs.RemoveFileRe" +
-      "quest\032\027.dfs.RemoveFileResponse\0228\n\013GetRep" +
-      "licas\022\023.dfs.ReplicaRequest\032\024.dfs.Replica" +
-      "Response2\352\001\n\017DataNodeService\022@\n\013UploadBl" +
-      "ock\022\027.dfs.BlockUploadRequest\032\030.dfs.Block" +
-      "UploadResponse\022F\n\rDownloadBlock\022\031.dfs.Bl" +
-      "ockDownloadRequest\032\032.dfs.BlockDownloadRe" +
-      "sponse\022M\n\016ReplicateBlock\022\034.dfs.BlockRepl" +
-      "icationRequest\032\035.dfs.BlockReplicationRes" +
-      "ponse2\337\001\n\016ClusterService\022O\n\020RegisterData" +
-      "Node\022\034.dfs.RegisterDataNodeRequest\032\035.dfs" +
-      ".RegisterDataNodeResponse\022:\n\tHeartbeat\022\025" +
-      ".dfs.HeartbeatRequest\032\026.dfs.HeartbeatRes" +
-      "ponse\022@\n\013ReportBlock\022\027.dfs.ReportBlockRe" +
-      "quest\032\030.dfs.ReportBlockResponseb\006proto3"
+      "a_addresses\030\003 \003(\t\022\023\n\013block_index\030\004 \001(\005\"K" +
+      "\n\027BlockReplicationRequest\022\020\n\010block_id\030\001 " +
+      "\001(\003\022\020\n\010filename\030\002 \001(\t\022\014\n\004data\030\003 \001(\014\"+\n\030B" +
+      "lockReplicationResponse\022\017\n\007success\030\001 \001(\010" +
+      "2\262\002\n\017NameNodeService\0224\n\007PutFile\022\023.dfs.Pu" +
+      "tFileRequest\032\024.dfs.PutFileResponse\0224\n\007Ge" +
+      "tFile\022\023.dfs.GetFileRequest\032\024.dfs.GetFile" +
+      "Response\022:\n\tListFiles\022\025.dfs.ListFilesReq" +
+      "uest\032\026.dfs.ListFilesResponse\022=\n\nRemoveFi" +
+      "le\022\026.dfs.RemoveFileRequest\032\027.dfs.RemoveF" +
+      "ileResponse\0228\n\013GetReplicas\022\023.dfs.Replica" +
+      "Request\032\024.dfs.ReplicaResponse2\352\001\n\017DataNo" +
+      "deService\022@\n\013UploadBlock\022\027.dfs.BlockUplo" +
+      "adRequest\032\030.dfs.BlockUploadResponse\022F\n\rD" +
+      "ownloadBlock\022\031.dfs.BlockDownloadRequest\032" +
+      "\032.dfs.BlockDownloadResponse\022M\n\016Replicate" +
+      "Block\022\034.dfs.BlockReplicationRequest\032\035.df" +
+      "s.BlockReplicationResponse2\337\001\n\016ClusterSe" +
+      "rvice\022O\n\020RegisterDataNode\022\034.dfs.Register" +
+      "DataNodeRequest\032\035.dfs.RegisterDataNodeRe" +
+      "sponse\022:\n\tHeartbeat\022\025.dfs.HeartbeatReque" +
+      "st\032\026.dfs.HeartbeatResponse\022@\n\013ReportBloc" +
+      "k\022\027.dfs.ReportBlockRequest\032\030.dfs.ReportB" +
+      "lockResponseb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -16892,7 +16965,7 @@ public final class Dfs {
     internal_static_dfs_BlockLocation_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_BlockLocation_descriptor,
-        new java.lang.String[] { "BlockId", "PrimaryAddress", "ReplicaAddresses", });
+        new java.lang.String[] { "BlockId", "PrimaryAddress", "ReplicaAddresses", "BlockIndex", });
     internal_static_dfs_BlockReplicationRequest_descriptor =
       getDescriptor().getMessageTypes().get(22);
     internal_static_dfs_BlockReplicationRequest_fieldAccessorTable = new

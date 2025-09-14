@@ -167,6 +167,7 @@ message BlockLocation {
   int64 block_id = 1;
   string primary_address = 2;            // Datanode primario (el que recibe del cliente)
   repeated string replica_addresses = 3;  // Direcciones de réplicas (opcional para cliente)
+  int32 block_index=4;
 }
 
 

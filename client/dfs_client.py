@@ -1,5 +1,6 @@
-# dfs_client.py
+# dfs_client.py (versión parcheada para evitar desorden de bloques y con checks)
 import os
+import math
 import grpc
 from google.protobuf import empty_pb2
 from google.protobuf import wrappers_pb2
@@ -13,7 +14,7 @@ from google.protobuf import json_format
 import dfs_pb2
 import dfs_pb2_grpc
 
-BLOCK_SIZE = 60 * 1024 * 1024  # 64 MB
+BLOCK_SIZE = 64 * 1024 * 1024  # 64 MB
 
 
 class DFSClient:
@@ -52,59 +53,81 @@ class DFSClient:
     # --- Funciones hacia los DataNodes (DataNodeService) ---
     def _get_datanode_stub(self, datanode_address):
         options = [
-        ('grpc.max_send_message_length', 64 * 1024 * 1024),
-        ('grpc.max_receive_message_length', 64 * 1024 * 1024),
+            ('grpc.max_send_message_length', 200 * 1024 * 1024),
+            ('grpc.max_receive_message_length', 200 * 1024 * 1024),
         ]
         channel = grpc.insecure_channel(datanode_address, options=options)
         return dfs_pb2_grpc.DataNodeServiceStub(channel)
 
     def uploadBlock(self, datanode_address, block_id, filename, data: bytes):
-        """Envía un bloque binario al DataNode."""
+        """Envía un bloque binario al DataNode (con debug ligero)."""
         stub = self._get_datanode_stub(datanode_address)
         req = dfs_pb2.BlockUploadRequest(
             block_id=block_id,
             filename=filename,
-            data=data,  # ya es bytes, el stub se encarga de serializarlo como ByteString
+            data=data,
         )
-        return stub.UploadBlock(req)
+        resp = stub.UploadBlock(req)
+        # opcional: print para debug si lo deseas
+        print(f"[CLIENT] uploadBlock -> addr={datanode_address} block_id={block_id} bytes={len(data)} ok={resp.success}")
+        return resp
 
     def downloadBlock(self, datanode_address, block_id, filename):
-        """Descarga un bloque binario del DataNode."""
+        """Descarga un bloque binario del DataNode (con debug ligero)."""
         stub = self._get_datanode_stub(datanode_address)
         req = dfs_pb2.BlockDownloadRequest(block_id=block_id, filename=filename)
-        return stub.DownloadBlock(req)
+        resp = stub.DownloadBlock(req)
+        print(f"[CLIENT] downloadBlock <- addr={datanode_address} block_id={block_id} bytes={len(resp.data)}")
+        return resp
 
     # --- Operaciones de alto nivel (usan ambos) ---
     def putFile_and_upload(self, username, password, local_path):
-        """Orquesta: pide asignación al NameNode y sube los bloques a DataNodes."""
+        """
+        Orquesta: pide asignación al NameNode y sube los bloques a DataNodes.
+        IMPORTANTE: ordena put_resp.blocks por block_index antes de leer y subir.
+        """
         put_resp = self.putFile(username, password, local_path)
 
         filesize = os.path.getsize(local_path)
-        with open(local_path, "rb") as f:
-            for i, block in enumerate(put_resp.blocks):
-                # No necesitamos seek si vamos leyendo en orden
-                data = f.read(BLOCK_SIZE)
+        expected_parts = math.ceil(filesize / BLOCK_SIZE) if filesize > 0 else 1
+        if len(put_resp.blocks) != expected_parts:
+            print(f"[WARNING] NameNode devolvió {len(put_resp.blocks)} bloques pero se esperan {expected_parts} a partir de filesize={filesize}")
 
+        # Ordenar por block_index para asegurar que el primer chunk leído
+        # se asigne al bloque con block_index == 0, etc.
+        ordered_blocks = sorted(put_resp.blocks, key=lambda b: b.block_index)
+
+        with open(local_path, "rb") as f:
+            for i, block in enumerate(ordered_blocks):
+                data = f.read(BLOCK_SIZE)
+                if data is None:
+                    data = b''
+                if len(data) == 0 and filesize != 0:
+                    # Esto no debería pasar: significa que el archivo terminó antes de lo esperado
+                    raise RuntimeError(f"[ERROR cliente] Leyendo archivo local: bloque {i} está vacío (offset incorrecto). filesize={filesize}")
                 resp = self.uploadBlock(
                     datanode_address=block.primary_address,
                     block_id=block.block_id,
                     filename=os.path.basename(local_path),
                     data=data,
                 )
-                print(
-                    f"[PUT] Bloque {i} (id={block.block_id}) -> {block.primary_address}, ok={resp.success}"
-                )
+                print(f"[PUT] Bloque {i} (id={block.block_id}) -> {block.primary_address}, ok={resp.success} bytes_sent={len(data)}")
 
         return "[DONE] Archivo subido."
 
-
     def getFile_and_download(self, username, password, filename, output_path):
-        """Orquesta: pide mapa al NameNode y reconstruye el archivo desde DataNodes."""
+        """
+        Orquesta: pide mapa al NameNode y reconstruye el archivo desde DataNodes.
+        Asegura orden correcto por block_index y valida que cada bloque tenga bytes.
+        """
         get_resp = self.getFile(username, password, filename)
 
-        # Ordenamos los bloques por su índice lógico (block_index),
-        # no por block_id porque ese es solo un identificador único.
+        if not get_resp.blocks:
+            raise RuntimeError(f"[ERROR cliente] NameNode no devolvió bloques para {filename}")
+
+        # Ordenamos los bloques por block_index (orden lógico)
         ordered_blocks = sorted(get_resp.blocks, key=lambda b: b.block_index)
+        print(f"[CLIENT] getFile -> {len(ordered_blocks)} bloques (ordenados por block_index)")
 
         with open(output_path, "wb") as out_f:
             for i, block in enumerate(ordered_blocks):
@@ -113,8 +136,11 @@ class DFSClient:
                     block_id=block.block_id,
                     filename=filename,
                 )
-                out_f.write(resp.data)  # se escribe en orden secuencial
-                print(f"[GET] Bloque {i} (id={block.block_id}) <- {block.primary_address}")
+                received = len(resp.data)
+                if received == 0:
+                    # Falla duro aquí para que lo detectes inmediatamente
+                    raise RuntimeError(f"[ERROR cliente] Bloque {block.block_id} recibido VACÍO desde {block.primary_address} (index={block.block_index})")
+                out_f.write(resp.data)
+                print(f"[GET] Bloque {i} (id={block.block_id}, index={block.block_index}) <- {block.primary_address} bytes_written={received}")
 
         return f"[DONE] Archivo reconstruido en {output_path}"
-

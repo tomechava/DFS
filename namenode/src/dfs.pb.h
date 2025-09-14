@@ -4072,6 +4072,7 @@ class BlockLocation final : public ::google::protobuf::Message
     kReplicaAddressesFieldNumber = 3,
     kPrimaryAddressFieldNumber = 2,
     kBlockIdFieldNumber = 1,
+    kBlockIndexFieldNumber = 4,
   };
   // repeated string replica_addresses = 3;
   int replica_addresses_size() const;
@@ -4121,12 +4122,22 @@ class BlockLocation final : public ::google::protobuf::Message
   void _internal_set_block_id(::int64_t value);
 
   public:
+  // int32 block_index = 4;
+  void clear_block_index() ;
+  ::int32_t block_index() const;
+  void set_block_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_block_index() const;
+  void _internal_set_block_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:dfs.BlockLocation)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 0,
+      2, 4, 0,
       58, 2>
       _table_;
 
@@ -4147,6 +4158,7 @@ class BlockLocation final : public ::google::protobuf::Message
     ::google::protobuf::RepeatedPtrField<std::string> replica_addresses_;
     ::google::protobuf::internal::ArenaStringPtr primary_address_;
     ::int64_t block_id_;
+    ::int32_t block_index_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -7094,6 +7106,28 @@ inline ::google::protobuf::RepeatedPtrField<std::string>*
 BlockLocation::_internal_mutable_replica_addresses() {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return &_impl_.replica_addresses_;
+}
+
+// int32 block_index = 4;
+inline void BlockLocation::clear_block_index() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.block_index_ = 0;
+}
+inline ::int32_t BlockLocation::block_index() const {
+  // @@protoc_insertion_point(field_get:dfs.BlockLocation.block_index)
+  return _internal_block_index();
+}
+inline void BlockLocation::set_block_index(::int32_t value) {
+  _internal_set_block_index(value);
+  // @@protoc_insertion_point(field_set:dfs.BlockLocation.block_index)
+}
+inline ::int32_t BlockLocation::_internal_block_index() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.block_index_;
+}
+inline void BlockLocation::_internal_set_block_index(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.block_index_ = value;
 }
 
 // -------------------------------------------------------------------
