@@ -15,8 +15,8 @@ public final class Dfs {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  public interface PutFileRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:dfs.PutFileRequest)
+  public interface LoginRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:dfs.LoginRequest)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -42,69 +42,46 @@ public final class Dfs {
      */
     com.google.protobuf.ByteString
         getPasswordBytes();
-
-    /**
-     * <code>string filename = 3;</code>
-     * @return The filename.
-     */
-    java.lang.String getFilename();
-    /**
-     * <code>string filename = 3;</code>
-     * @return The bytes for filename.
-     */
-    com.google.protobuf.ByteString
-        getFilenameBytes();
-
-    /**
-     * <pre>
-     * en bytes
-     * </pre>
-     *
-     * <code>int64 filesize = 4;</code>
-     * @return The filesize.
-     */
-    long getFilesize();
   }
   /**
    * <pre>
-   * ---------- Cliente &lt;-&gt; NameNode ----------
+   * ---------- Autenticación ----------
    * </pre>
    *
-   * Protobuf type {@code dfs.PutFileRequest}
+   * Protobuf type {@code dfs.LoginRequest}
    */
-  public static final class PutFileRequest extends
+  public static final class LoginRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:dfs.PutFileRequest)
-      PutFileRequestOrBuilder {
+      // @@protoc_insertion_point(message_implements:dfs.LoginRequest)
+      LoginRequestOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use PutFileRequest.newBuilder() to construct.
-    private PutFileRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use LoginRequest.newBuilder() to construct.
+    private LoginRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private PutFileRequest() {
+    private LoginRequest() {
       username_ = "";
       password_ = "";
-      filename_ = "";
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new PutFileRequest();
+      return new LoginRequest();
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return dfs.Dfs.internal_static_dfs_PutFileRequest_descriptor;
+      return dfs.Dfs.internal_static_dfs_LoginRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return dfs.Dfs.internal_static_dfs_PutFileRequest_fieldAccessorTable
+      return dfs.Dfs.internal_static_dfs_LoginRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              dfs.Dfs.PutFileRequest.class, dfs.Dfs.PutFileRequest.Builder.class);
+              dfs.Dfs.LoginRequest.class, dfs.Dfs.LoginRequest.Builder.class);
     }
 
     public static final int USERNAME_FIELD_NUMBER = 1;
@@ -185,60 +162,6 @@ public final class Dfs {
       }
     }
 
-    public static final int FILENAME_FIELD_NUMBER = 3;
-    @SuppressWarnings("serial")
-    private volatile java.lang.Object filename_ = "";
-    /**
-     * <code>string filename = 3;</code>
-     * @return The filename.
-     */
-    @java.lang.Override
-    public java.lang.String getFilename() {
-      java.lang.Object ref = filename_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        filename_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string filename = 3;</code>
-     * @return The bytes for filename.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getFilenameBytes() {
-      java.lang.Object ref = filename_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        filename_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int FILESIZE_FIELD_NUMBER = 4;
-    private long filesize_ = 0L;
-    /**
-     * <pre>
-     * en bytes
-     * </pre>
-     *
-     * <code>int64 filesize = 4;</code>
-     * @return The filesize.
-     */
-    @java.lang.Override
-    public long getFilesize() {
-      return filesize_;
-    }
-
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -259,12 +182,6 @@ public final class Dfs {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(password_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, password_);
       }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(filename_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, filename_);
-      }
-      if (filesize_ != 0L) {
-        output.writeInt64(4, filesize_);
-      }
       getUnknownFields().writeTo(output);
     }
 
@@ -280,13 +197,6 @@ public final class Dfs {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(password_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, password_);
       }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(filename_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, filename_);
-      }
-      if (filesize_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(4, filesize_);
-      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -297,19 +207,15 @@ public final class Dfs {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof dfs.Dfs.PutFileRequest)) {
+      if (!(obj instanceof dfs.Dfs.LoginRequest)) {
         return super.equals(obj);
       }
-      dfs.Dfs.PutFileRequest other = (dfs.Dfs.PutFileRequest) obj;
+      dfs.Dfs.LoginRequest other = (dfs.Dfs.LoginRequest) obj;
 
       if (!getUsername()
           .equals(other.getUsername())) return false;
       if (!getPassword()
           .equals(other.getPassword())) return false;
-      if (!getFilename()
-          .equals(other.getFilename())) return false;
-      if (getFilesize()
-          != other.getFilesize()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -325,54 +231,49 @@ public final class Dfs {
       hash = (53 * hash) + getUsername().hashCode();
       hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
       hash = (53 * hash) + getPassword().hashCode();
-      hash = (37 * hash) + FILENAME_FIELD_NUMBER;
-      hash = (53 * hash) + getFilename().hashCode();
-      hash = (37 * hash) + FILESIZE_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getFilesize());
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static dfs.Dfs.PutFileRequest parseFrom(
+    public static dfs.Dfs.LoginRequest parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static dfs.Dfs.PutFileRequest parseFrom(
+    public static dfs.Dfs.LoginRequest parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static dfs.Dfs.PutFileRequest parseFrom(
+    public static dfs.Dfs.LoginRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static dfs.Dfs.PutFileRequest parseFrom(
+    public static dfs.Dfs.LoginRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static dfs.Dfs.PutFileRequest parseFrom(byte[] data)
+    public static dfs.Dfs.LoginRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static dfs.Dfs.PutFileRequest parseFrom(
+    public static dfs.Dfs.LoginRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static dfs.Dfs.PutFileRequest parseFrom(java.io.InputStream input)
+    public static dfs.Dfs.LoginRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static dfs.Dfs.PutFileRequest parseFrom(
+    public static dfs.Dfs.LoginRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -380,26 +281,26 @@ public final class Dfs {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static dfs.Dfs.PutFileRequest parseDelimitedFrom(java.io.InputStream input)
+    public static dfs.Dfs.LoginRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
 
-    public static dfs.Dfs.PutFileRequest parseDelimitedFrom(
+    public static dfs.Dfs.LoginRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static dfs.Dfs.PutFileRequest parseFrom(
+    public static dfs.Dfs.LoginRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static dfs.Dfs.PutFileRequest parseFrom(
+    public static dfs.Dfs.LoginRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -412,7 +313,7 @@ public final class Dfs {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(dfs.Dfs.PutFileRequest prototype) {
+    public static Builder newBuilder(dfs.Dfs.LoginRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -429,29 +330,29 @@ public final class Dfs {
     }
     /**
      * <pre>
-     * ---------- Cliente &lt;-&gt; NameNode ----------
+     * ---------- Autenticación ----------
      * </pre>
      *
-     * Protobuf type {@code dfs.PutFileRequest}
+     * Protobuf type {@code dfs.LoginRequest}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:dfs.PutFileRequest)
-        dfs.Dfs.PutFileRequestOrBuilder {
+        // @@protoc_insertion_point(builder_implements:dfs.LoginRequest)
+        dfs.Dfs.LoginRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return dfs.Dfs.internal_static_dfs_PutFileRequest_descriptor;
+        return dfs.Dfs.internal_static_dfs_LoginRequest_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return dfs.Dfs.internal_static_dfs_PutFileRequest_fieldAccessorTable
+        return dfs.Dfs.internal_static_dfs_LoginRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                dfs.Dfs.PutFileRequest.class, dfs.Dfs.PutFileRequest.Builder.class);
+                dfs.Dfs.LoginRequest.class, dfs.Dfs.LoginRequest.Builder.class);
       }
 
-      // Construct using dfs.Dfs.PutFileRequest.newBuilder()
+      // Construct using dfs.Dfs.LoginRequest.newBuilder()
       private Builder() {
 
       }
@@ -467,25 +368,23 @@ public final class Dfs {
         bitField0_ = 0;
         username_ = "";
         password_ = "";
-        filename_ = "";
-        filesize_ = 0L;
         return this;
       }
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return dfs.Dfs.internal_static_dfs_PutFileRequest_descriptor;
+        return dfs.Dfs.internal_static_dfs_LoginRequest_descriptor;
       }
 
       @java.lang.Override
-      public dfs.Dfs.PutFileRequest getDefaultInstanceForType() {
-        return dfs.Dfs.PutFileRequest.getDefaultInstance();
+      public dfs.Dfs.LoginRequest getDefaultInstanceForType() {
+        return dfs.Dfs.LoginRequest.getDefaultInstance();
       }
 
       @java.lang.Override
-      public dfs.Dfs.PutFileRequest build() {
-        dfs.Dfs.PutFileRequest result = buildPartial();
+      public dfs.Dfs.LoginRequest build() {
+        dfs.Dfs.LoginRequest result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -493,26 +392,20 @@ public final class Dfs {
       }
 
       @java.lang.Override
-      public dfs.Dfs.PutFileRequest buildPartial() {
-        dfs.Dfs.PutFileRequest result = new dfs.Dfs.PutFileRequest(this);
+      public dfs.Dfs.LoginRequest buildPartial() {
+        dfs.Dfs.LoginRequest result = new dfs.Dfs.LoginRequest(this);
         if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      private void buildPartial0(dfs.Dfs.PutFileRequest result) {
+      private void buildPartial0(dfs.Dfs.LoginRequest result) {
         int from_bitField0_ = bitField0_;
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.username_ = username_;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
           result.password_ = password_;
-        }
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          result.filename_ = filename_;
-        }
-        if (((from_bitField0_ & 0x00000008) != 0)) {
-          result.filesize_ = filesize_;
         }
       }
 
@@ -550,16 +443,16 @@ public final class Dfs {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof dfs.Dfs.PutFileRequest) {
-          return mergeFrom((dfs.Dfs.PutFileRequest)other);
+        if (other instanceof dfs.Dfs.LoginRequest) {
+          return mergeFrom((dfs.Dfs.LoginRequest)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(dfs.Dfs.PutFileRequest other) {
-        if (other == dfs.Dfs.PutFileRequest.getDefaultInstance()) return this;
+      public Builder mergeFrom(dfs.Dfs.LoginRequest other) {
+        if (other == dfs.Dfs.LoginRequest.getDefaultInstance()) return this;
         if (!other.getUsername().isEmpty()) {
           username_ = other.username_;
           bitField0_ |= 0x00000001;
@@ -569,14 +462,6 @@ public final class Dfs {
           password_ = other.password_;
           bitField0_ |= 0x00000002;
           onChanged();
-        }
-        if (!other.getFilename().isEmpty()) {
-          filename_ = other.filename_;
-          bitField0_ |= 0x00000004;
-          onChanged();
-        }
-        if (other.getFilesize() != 0L) {
-          setFilesize(other.getFilesize());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -614,16 +499,6 @@ public final class Dfs {
                 bitField0_ |= 0x00000002;
                 break;
               } // case 18
-              case 26: {
-                filename_ = input.readStringRequireUtf8();
-                bitField0_ |= 0x00000004;
-                break;
-              } // case 26
-              case 32: {
-                filesize_ = input.readInt64();
-                bitField0_ |= 0x00000008;
-                break;
-              } // case 32
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -784,6 +659,1604 @@ public final class Dfs {
         onChanged();
         return this;
       }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:dfs.LoginRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:dfs.LoginRequest)
+    private static final dfs.Dfs.LoginRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new dfs.Dfs.LoginRequest();
+    }
+
+    public static dfs.Dfs.LoginRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<LoginRequest>
+        PARSER = new com.google.protobuf.AbstractParser<LoginRequest>() {
+      @java.lang.Override
+      public LoginRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<LoginRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<LoginRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public dfs.Dfs.LoginRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface LoginResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:dfs.LoginResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>bool success = 1;</code>
+     * @return The success.
+     */
+    boolean getSuccess();
+
+    /**
+     * <code>string message = 2;</code>
+     * @return The message.
+     */
+    java.lang.String getMessage();
+    /**
+     * <code>string message = 2;</code>
+     * @return The bytes for message.
+     */
+    com.google.protobuf.ByteString
+        getMessageBytes();
+
+    /**
+     * <code>string session_token = 3;</code>
+     * @return The sessionToken.
+     */
+    java.lang.String getSessionToken();
+    /**
+     * <code>string session_token = 3;</code>
+     * @return The bytes for sessionToken.
+     */
+    com.google.protobuf.ByteString
+        getSessionTokenBytes();
+  }
+  /**
+   * Protobuf type {@code dfs.LoginResponse}
+   */
+  public static final class LoginResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:dfs.LoginResponse)
+      LoginResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use LoginResponse.newBuilder() to construct.
+    private LoginResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private LoginResponse() {
+      message_ = "";
+      sessionToken_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new LoginResponse();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return dfs.Dfs.internal_static_dfs_LoginResponse_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return dfs.Dfs.internal_static_dfs_LoginResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              dfs.Dfs.LoginResponse.class, dfs.Dfs.LoginResponse.Builder.class);
+    }
+
+    public static final int SUCCESS_FIELD_NUMBER = 1;
+    private boolean success_ = false;
+    /**
+     * <code>bool success = 1;</code>
+     * @return The success.
+     */
+    @java.lang.Override
+    public boolean getSuccess() {
+      return success_;
+    }
+
+    public static final int MESSAGE_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object message_ = "";
+    /**
+     * <code>string message = 2;</code>
+     * @return The message.
+     */
+    @java.lang.Override
+    public java.lang.String getMessage() {
+      java.lang.Object ref = message_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        message_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string message = 2;</code>
+     * @return The bytes for message.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getMessageBytes() {
+      java.lang.Object ref = message_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        message_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int SESSION_TOKEN_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object sessionToken_ = "";
+    /**
+     * <code>string session_token = 3;</code>
+     * @return The sessionToken.
+     */
+    @java.lang.Override
+    public java.lang.String getSessionToken() {
+      java.lang.Object ref = sessionToken_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        sessionToken_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string session_token = 3;</code>
+     * @return The bytes for sessionToken.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getSessionTokenBytes() {
+      java.lang.Object ref = sessionToken_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        sessionToken_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (success_ != false) {
+        output.writeBool(1, success_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(message_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, message_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sessionToken_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, sessionToken_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (success_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(1, success_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(message_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, message_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sessionToken_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, sessionToken_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof dfs.Dfs.LoginResponse)) {
+        return super.equals(obj);
+      }
+      dfs.Dfs.LoginResponse other = (dfs.Dfs.LoginResponse) obj;
+
+      if (getSuccess()
+          != other.getSuccess()) return false;
+      if (!getMessage()
+          .equals(other.getMessage())) return false;
+      if (!getSessionToken()
+          .equals(other.getSessionToken())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getSuccess());
+      hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
+      hash = (53 * hash) + getMessage().hashCode();
+      hash = (37 * hash) + SESSION_TOKEN_FIELD_NUMBER;
+      hash = (53 * hash) + getSessionToken().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static dfs.Dfs.LoginResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static dfs.Dfs.LoginResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static dfs.Dfs.LoginResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static dfs.Dfs.LoginResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static dfs.Dfs.LoginResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static dfs.Dfs.LoginResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static dfs.Dfs.LoginResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static dfs.Dfs.LoginResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static dfs.Dfs.LoginResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static dfs.Dfs.LoginResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static dfs.Dfs.LoginResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static dfs.Dfs.LoginResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(dfs.Dfs.LoginResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code dfs.LoginResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:dfs.LoginResponse)
+        dfs.Dfs.LoginResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return dfs.Dfs.internal_static_dfs_LoginResponse_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return dfs.Dfs.internal_static_dfs_LoginResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                dfs.Dfs.LoginResponse.class, dfs.Dfs.LoginResponse.Builder.class);
+      }
+
+      // Construct using dfs.Dfs.LoginResponse.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        success_ = false;
+        message_ = "";
+        sessionToken_ = "";
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return dfs.Dfs.internal_static_dfs_LoginResponse_descriptor;
+      }
+
+      @java.lang.Override
+      public dfs.Dfs.LoginResponse getDefaultInstanceForType() {
+        return dfs.Dfs.LoginResponse.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public dfs.Dfs.LoginResponse build() {
+        dfs.Dfs.LoginResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public dfs.Dfs.LoginResponse buildPartial() {
+        dfs.Dfs.LoginResponse result = new dfs.Dfs.LoginResponse(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(dfs.Dfs.LoginResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.success_ = success_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.message_ = message_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.sessionToken_ = sessionToken_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof dfs.Dfs.LoginResponse) {
+          return mergeFrom((dfs.Dfs.LoginResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(dfs.Dfs.LoginResponse other) {
+        if (other == dfs.Dfs.LoginResponse.getDefaultInstance()) return this;
+        if (other.getSuccess() != false) {
+          setSuccess(other.getSuccess());
+        }
+        if (!other.getMessage().isEmpty()) {
+          message_ = other.message_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        if (!other.getSessionToken().isEmpty()) {
+          sessionToken_ = other.sessionToken_;
+          bitField0_ |= 0x00000004;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                success_ = input.readBool();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 18: {
+                message_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                sessionToken_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private boolean success_ ;
+      /**
+       * <code>bool success = 1;</code>
+       * @return The success.
+       */
+      @java.lang.Override
+      public boolean getSuccess() {
+        return success_;
+      }
+      /**
+       * <code>bool success = 1;</code>
+       * @param value The success to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSuccess(boolean value) {
+
+        success_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool success = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSuccess() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        success_ = false;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object message_ = "";
+      /**
+       * <code>string message = 2;</code>
+       * @return The message.
+       */
+      public java.lang.String getMessage() {
+        java.lang.Object ref = message_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          message_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string message = 2;</code>
+       * @return The bytes for message.
+       */
+      public com.google.protobuf.ByteString
+          getMessageBytes() {
+        java.lang.Object ref = message_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          message_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string message = 2;</code>
+       * @param value The message to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMessage(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        message_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string message = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearMessage() {
+        message_ = getDefaultInstance().getMessage();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string message = 2;</code>
+       * @param value The bytes for message to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMessageBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        message_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object sessionToken_ = "";
+      /**
+       * <code>string session_token = 3;</code>
+       * @return The sessionToken.
+       */
+      public java.lang.String getSessionToken() {
+        java.lang.Object ref = sessionToken_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          sessionToken_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string session_token = 3;</code>
+       * @return The bytes for sessionToken.
+       */
+      public com.google.protobuf.ByteString
+          getSessionTokenBytes() {
+        java.lang.Object ref = sessionToken_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          sessionToken_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string session_token = 3;</code>
+       * @param value The sessionToken to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSessionToken(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        sessionToken_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string session_token = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSessionToken() {
+        sessionToken_ = getDefaultInstance().getSessionToken();
+        bitField0_ = (bitField0_ & ~0x00000004);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string session_token = 3;</code>
+       * @param value The bytes for sessionToken to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSessionTokenBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        sessionToken_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:dfs.LoginResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:dfs.LoginResponse)
+    private static final dfs.Dfs.LoginResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new dfs.Dfs.LoginResponse();
+    }
+
+    public static dfs.Dfs.LoginResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<LoginResponse>
+        PARSER = new com.google.protobuf.AbstractParser<LoginResponse>() {
+      @java.lang.Override
+      public LoginResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<LoginResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<LoginResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public dfs.Dfs.LoginResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface PutFileRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:dfs.PutFileRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string username = 1;</code>
+     * @return The username.
+     */
+    java.lang.String getUsername();
+    /**
+     * <code>string username = 1;</code>
+     * @return The bytes for username.
+     */
+    com.google.protobuf.ByteString
+        getUsernameBytes();
+
+    /**
+     * <code>string session_token = 2;</code>
+     * @return The sessionToken.
+     */
+    java.lang.String getSessionToken();
+    /**
+     * <code>string session_token = 2;</code>
+     * @return The bytes for sessionToken.
+     */
+    com.google.protobuf.ByteString
+        getSessionTokenBytes();
+
+    /**
+     * <code>string filename = 3;</code>
+     * @return The filename.
+     */
+    java.lang.String getFilename();
+    /**
+     * <code>string filename = 3;</code>
+     * @return The bytes for filename.
+     */
+    com.google.protobuf.ByteString
+        getFilenameBytes();
+
+    /**
+     * <code>int64 filesize = 4;</code>
+     * @return The filesize.
+     */
+    long getFilesize();
+  }
+  /**
+   * <pre>
+   * ---------- Cliente &lt;-&gt; NameNode ----------
+   * </pre>
+   *
+   * Protobuf type {@code dfs.PutFileRequest}
+   */
+  public static final class PutFileRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:dfs.PutFileRequest)
+      PutFileRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use PutFileRequest.newBuilder() to construct.
+    private PutFileRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private PutFileRequest() {
+      username_ = "";
+      sessionToken_ = "";
+      filename_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new PutFileRequest();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return dfs.Dfs.internal_static_dfs_PutFileRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return dfs.Dfs.internal_static_dfs_PutFileRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              dfs.Dfs.PutFileRequest.class, dfs.Dfs.PutFileRequest.Builder.class);
+    }
+
+    public static final int USERNAME_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object username_ = "";
+    /**
+     * <code>string username = 1;</code>
+     * @return The username.
+     */
+    @java.lang.Override
+    public java.lang.String getUsername() {
+      java.lang.Object ref = username_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        username_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string username = 1;</code>
+     * @return The bytes for username.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getUsernameBytes() {
+      java.lang.Object ref = username_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        username_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int SESSION_TOKEN_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object sessionToken_ = "";
+    /**
+     * <code>string session_token = 2;</code>
+     * @return The sessionToken.
+     */
+    @java.lang.Override
+    public java.lang.String getSessionToken() {
+      java.lang.Object ref = sessionToken_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        sessionToken_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string session_token = 2;</code>
+     * @return The bytes for sessionToken.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getSessionTokenBytes() {
+      java.lang.Object ref = sessionToken_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        sessionToken_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int FILENAME_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object filename_ = "";
+    /**
+     * <code>string filename = 3;</code>
+     * @return The filename.
+     */
+    @java.lang.Override
+    public java.lang.String getFilename() {
+      java.lang.Object ref = filename_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        filename_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string filename = 3;</code>
+     * @return The bytes for filename.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getFilenameBytes() {
+      java.lang.Object ref = filename_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        filename_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int FILESIZE_FIELD_NUMBER = 4;
+    private long filesize_ = 0L;
+    /**
+     * <code>int64 filesize = 4;</code>
+     * @return The filesize.
+     */
+    @java.lang.Override
+    public long getFilesize() {
+      return filesize_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(username_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, username_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sessionToken_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, sessionToken_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(filename_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, filename_);
+      }
+      if (filesize_ != 0L) {
+        output.writeInt64(4, filesize_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(username_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, username_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sessionToken_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, sessionToken_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(filename_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, filename_);
+      }
+      if (filesize_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(4, filesize_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof dfs.Dfs.PutFileRequest)) {
+        return super.equals(obj);
+      }
+      dfs.Dfs.PutFileRequest other = (dfs.Dfs.PutFileRequest) obj;
+
+      if (!getUsername()
+          .equals(other.getUsername())) return false;
+      if (!getSessionToken()
+          .equals(other.getSessionToken())) return false;
+      if (!getFilename()
+          .equals(other.getFilename())) return false;
+      if (getFilesize()
+          != other.getFilesize()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + USERNAME_FIELD_NUMBER;
+      hash = (53 * hash) + getUsername().hashCode();
+      hash = (37 * hash) + SESSION_TOKEN_FIELD_NUMBER;
+      hash = (53 * hash) + getSessionToken().hashCode();
+      hash = (37 * hash) + FILENAME_FIELD_NUMBER;
+      hash = (53 * hash) + getFilename().hashCode();
+      hash = (37 * hash) + FILESIZE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getFilesize());
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static dfs.Dfs.PutFileRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static dfs.Dfs.PutFileRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static dfs.Dfs.PutFileRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static dfs.Dfs.PutFileRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static dfs.Dfs.PutFileRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static dfs.Dfs.PutFileRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static dfs.Dfs.PutFileRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static dfs.Dfs.PutFileRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static dfs.Dfs.PutFileRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static dfs.Dfs.PutFileRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static dfs.Dfs.PutFileRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static dfs.Dfs.PutFileRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(dfs.Dfs.PutFileRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * ---------- Cliente &lt;-&gt; NameNode ----------
+     * </pre>
+     *
+     * Protobuf type {@code dfs.PutFileRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:dfs.PutFileRequest)
+        dfs.Dfs.PutFileRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return dfs.Dfs.internal_static_dfs_PutFileRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return dfs.Dfs.internal_static_dfs_PutFileRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                dfs.Dfs.PutFileRequest.class, dfs.Dfs.PutFileRequest.Builder.class);
+      }
+
+      // Construct using dfs.Dfs.PutFileRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        username_ = "";
+        sessionToken_ = "";
+        filename_ = "";
+        filesize_ = 0L;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return dfs.Dfs.internal_static_dfs_PutFileRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public dfs.Dfs.PutFileRequest getDefaultInstanceForType() {
+        return dfs.Dfs.PutFileRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public dfs.Dfs.PutFileRequest build() {
+        dfs.Dfs.PutFileRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public dfs.Dfs.PutFileRequest buildPartial() {
+        dfs.Dfs.PutFileRequest result = new dfs.Dfs.PutFileRequest(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(dfs.Dfs.PutFileRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.username_ = username_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.sessionToken_ = sessionToken_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.filename_ = filename_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.filesize_ = filesize_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof dfs.Dfs.PutFileRequest) {
+          return mergeFrom((dfs.Dfs.PutFileRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(dfs.Dfs.PutFileRequest other) {
+        if (other == dfs.Dfs.PutFileRequest.getDefaultInstance()) return this;
+        if (!other.getUsername().isEmpty()) {
+          username_ = other.username_;
+          bitField0_ |= 0x00000001;
+          onChanged();
+        }
+        if (!other.getSessionToken().isEmpty()) {
+          sessionToken_ = other.sessionToken_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        if (!other.getFilename().isEmpty()) {
+          filename_ = other.filename_;
+          bitField0_ |= 0x00000004;
+          onChanged();
+        }
+        if (other.getFilesize() != 0L) {
+          setFilesize(other.getFilesize());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                username_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                sessionToken_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                filename_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              case 32: {
+                filesize_ = input.readInt64();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object username_ = "";
+      /**
+       * <code>string username = 1;</code>
+       * @return The username.
+       */
+      public java.lang.String getUsername() {
+        java.lang.Object ref = username_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          username_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string username = 1;</code>
+       * @return The bytes for username.
+       */
+      public com.google.protobuf.ByteString
+          getUsernameBytes() {
+        java.lang.Object ref = username_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          username_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string username = 1;</code>
+       * @param value The username to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUsername(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        username_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string username = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearUsername() {
+        username_ = getDefaultInstance().getUsername();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string username = 1;</code>
+       * @param value The bytes for username to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUsernameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        username_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object sessionToken_ = "";
+      /**
+       * <code>string session_token = 2;</code>
+       * @return The sessionToken.
+       */
+      public java.lang.String getSessionToken() {
+        java.lang.Object ref = sessionToken_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          sessionToken_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string session_token = 2;</code>
+       * @return The bytes for sessionToken.
+       */
+      public com.google.protobuf.ByteString
+          getSessionTokenBytes() {
+        java.lang.Object ref = sessionToken_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          sessionToken_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string session_token = 2;</code>
+       * @param value The sessionToken to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSessionToken(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        sessionToken_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string session_token = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSessionToken() {
+        sessionToken_ = getDefaultInstance().getSessionToken();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string session_token = 2;</code>
+       * @param value The bytes for sessionToken to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSessionTokenBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        sessionToken_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
 
       private java.lang.Object filename_ = "";
       /**
@@ -859,10 +2332,6 @@ public final class Dfs {
 
       private long filesize_ ;
       /**
-       * <pre>
-       * en bytes
-       * </pre>
-       *
        * <code>int64 filesize = 4;</code>
        * @return The filesize.
        */
@@ -871,10 +2340,6 @@ public final class Dfs {
         return filesize_;
       }
       /**
-       * <pre>
-       * en bytes
-       * </pre>
-       *
        * <code>int64 filesize = 4;</code>
        * @param value The filesize to set.
        * @return This builder for chaining.
@@ -887,10 +2352,6 @@ public final class Dfs {
         return this;
       }
       /**
-       * <pre>
-       * en bytes
-       * </pre>
-       *
        * <code>int64 filesize = 4;</code>
        * @return This builder for chaining.
        */
@@ -969,44 +2430,24 @@ public final class Dfs {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <pre>
-     * Lista de bloques y DataNodes asignados
-     * </pre>
-     *
      * <code>repeated .dfs.BlockLocation blocks = 1;</code>
      */
     java.util.List<dfs.Dfs.BlockLocation> 
         getBlocksList();
     /**
-     * <pre>
-     * Lista de bloques y DataNodes asignados
-     * </pre>
-     *
      * <code>repeated .dfs.BlockLocation blocks = 1;</code>
      */
     dfs.Dfs.BlockLocation getBlocks(int index);
     /**
-     * <pre>
-     * Lista de bloques y DataNodes asignados
-     * </pre>
-     *
      * <code>repeated .dfs.BlockLocation blocks = 1;</code>
      */
     int getBlocksCount();
     /**
-     * <pre>
-     * Lista de bloques y DataNodes asignados
-     * </pre>
-     *
      * <code>repeated .dfs.BlockLocation blocks = 1;</code>
      */
     java.util.List<? extends dfs.Dfs.BlockLocationOrBuilder> 
         getBlocksOrBuilderList();
     /**
-     * <pre>
-     * Lista de bloques y DataNodes asignados
-     * </pre>
-     *
      * <code>repeated .dfs.BlockLocation blocks = 1;</code>
      */
     dfs.Dfs.BlockLocationOrBuilder getBlocksOrBuilder(
@@ -1052,10 +2493,6 @@ public final class Dfs {
     @SuppressWarnings("serial")
     private java.util.List<dfs.Dfs.BlockLocation> blocks_;
     /**
-     * <pre>
-     * Lista de bloques y DataNodes asignados
-     * </pre>
-     *
      * <code>repeated .dfs.BlockLocation blocks = 1;</code>
      */
     @java.lang.Override
@@ -1063,10 +2500,6 @@ public final class Dfs {
       return blocks_;
     }
     /**
-     * <pre>
-     * Lista de bloques y DataNodes asignados
-     * </pre>
-     *
      * <code>repeated .dfs.BlockLocation blocks = 1;</code>
      */
     @java.lang.Override
@@ -1075,10 +2508,6 @@ public final class Dfs {
       return blocks_;
     }
     /**
-     * <pre>
-     * Lista de bloques y DataNodes asignados
-     * </pre>
-     *
      * <code>repeated .dfs.BlockLocation blocks = 1;</code>
      */
     @java.lang.Override
@@ -1086,10 +2515,6 @@ public final class Dfs {
       return blocks_.size();
     }
     /**
-     * <pre>
-     * Lista de bloques y DataNodes asignados
-     * </pre>
-     *
      * <code>repeated .dfs.BlockLocation blocks = 1;</code>
      */
     @java.lang.Override
@@ -1097,10 +2522,6 @@ public final class Dfs {
       return blocks_.get(index);
     }
     /**
-     * <pre>
-     * Lista de bloques y DataNodes asignados
-     * </pre>
-     *
      * <code>repeated .dfs.BlockLocation blocks = 1;</code>
      */
     @java.lang.Override
@@ -1496,10 +2917,6 @@ public final class Dfs {
           dfs.Dfs.BlockLocation, dfs.Dfs.BlockLocation.Builder, dfs.Dfs.BlockLocationOrBuilder> blocksBuilder_;
 
       /**
-       * <pre>
-       * Lista de bloques y DataNodes asignados
-       * </pre>
-       *
        * <code>repeated .dfs.BlockLocation blocks = 1;</code>
        */
       public java.util.List<dfs.Dfs.BlockLocation> getBlocksList() {
@@ -1510,10 +2927,6 @@ public final class Dfs {
         }
       }
       /**
-       * <pre>
-       * Lista de bloques y DataNodes asignados
-       * </pre>
-       *
        * <code>repeated .dfs.BlockLocation blocks = 1;</code>
        */
       public int getBlocksCount() {
@@ -1524,10 +2937,6 @@ public final class Dfs {
         }
       }
       /**
-       * <pre>
-       * Lista de bloques y DataNodes asignados
-       * </pre>
-       *
        * <code>repeated .dfs.BlockLocation blocks = 1;</code>
        */
       public dfs.Dfs.BlockLocation getBlocks(int index) {
@@ -1538,10 +2947,6 @@ public final class Dfs {
         }
       }
       /**
-       * <pre>
-       * Lista de bloques y DataNodes asignados
-       * </pre>
-       *
        * <code>repeated .dfs.BlockLocation blocks = 1;</code>
        */
       public Builder setBlocks(
@@ -1559,10 +2964,6 @@ public final class Dfs {
         return this;
       }
       /**
-       * <pre>
-       * Lista de bloques y DataNodes asignados
-       * </pre>
-       *
        * <code>repeated .dfs.BlockLocation blocks = 1;</code>
        */
       public Builder setBlocks(
@@ -1577,10 +2978,6 @@ public final class Dfs {
         return this;
       }
       /**
-       * <pre>
-       * Lista de bloques y DataNodes asignados
-       * </pre>
-       *
        * <code>repeated .dfs.BlockLocation blocks = 1;</code>
        */
       public Builder addBlocks(dfs.Dfs.BlockLocation value) {
@@ -1597,10 +2994,6 @@ public final class Dfs {
         return this;
       }
       /**
-       * <pre>
-       * Lista de bloques y DataNodes asignados
-       * </pre>
-       *
        * <code>repeated .dfs.BlockLocation blocks = 1;</code>
        */
       public Builder addBlocks(
@@ -1618,10 +3011,6 @@ public final class Dfs {
         return this;
       }
       /**
-       * <pre>
-       * Lista de bloques y DataNodes asignados
-       * </pre>
-       *
        * <code>repeated .dfs.BlockLocation blocks = 1;</code>
        */
       public Builder addBlocks(
@@ -1636,10 +3025,6 @@ public final class Dfs {
         return this;
       }
       /**
-       * <pre>
-       * Lista de bloques y DataNodes asignados
-       * </pre>
-       *
        * <code>repeated .dfs.BlockLocation blocks = 1;</code>
        */
       public Builder addBlocks(
@@ -1654,10 +3039,6 @@ public final class Dfs {
         return this;
       }
       /**
-       * <pre>
-       * Lista de bloques y DataNodes asignados
-       * </pre>
-       *
        * <code>repeated .dfs.BlockLocation blocks = 1;</code>
        */
       public Builder addAllBlocks(
@@ -1673,10 +3054,6 @@ public final class Dfs {
         return this;
       }
       /**
-       * <pre>
-       * Lista de bloques y DataNodes asignados
-       * </pre>
-       *
        * <code>repeated .dfs.BlockLocation blocks = 1;</code>
        */
       public Builder clearBlocks() {
@@ -1690,10 +3067,6 @@ public final class Dfs {
         return this;
       }
       /**
-       * <pre>
-       * Lista de bloques y DataNodes asignados
-       * </pre>
-       *
        * <code>repeated .dfs.BlockLocation blocks = 1;</code>
        */
       public Builder removeBlocks(int index) {
@@ -1707,10 +3080,6 @@ public final class Dfs {
         return this;
       }
       /**
-       * <pre>
-       * Lista de bloques y DataNodes asignados
-       * </pre>
-       *
        * <code>repeated .dfs.BlockLocation blocks = 1;</code>
        */
       public dfs.Dfs.BlockLocation.Builder getBlocksBuilder(
@@ -1718,10 +3087,6 @@ public final class Dfs {
         return getBlocksFieldBuilder().getBuilder(index);
       }
       /**
-       * <pre>
-       * Lista de bloques y DataNodes asignados
-       * </pre>
-       *
        * <code>repeated .dfs.BlockLocation blocks = 1;</code>
        */
       public dfs.Dfs.BlockLocationOrBuilder getBlocksOrBuilder(
@@ -1732,10 +3097,6 @@ public final class Dfs {
         }
       }
       /**
-       * <pre>
-       * Lista de bloques y DataNodes asignados
-       * </pre>
-       *
        * <code>repeated .dfs.BlockLocation blocks = 1;</code>
        */
       public java.util.List<? extends dfs.Dfs.BlockLocationOrBuilder> 
@@ -1747,10 +3108,6 @@ public final class Dfs {
         }
       }
       /**
-       * <pre>
-       * Lista de bloques y DataNodes asignados
-       * </pre>
-       *
        * <code>repeated .dfs.BlockLocation blocks = 1;</code>
        */
       public dfs.Dfs.BlockLocation.Builder addBlocksBuilder() {
@@ -1758,10 +3115,6 @@ public final class Dfs {
             dfs.Dfs.BlockLocation.getDefaultInstance());
       }
       /**
-       * <pre>
-       * Lista de bloques y DataNodes asignados
-       * </pre>
-       *
        * <code>repeated .dfs.BlockLocation blocks = 1;</code>
        */
       public dfs.Dfs.BlockLocation.Builder addBlocksBuilder(
@@ -1770,10 +3123,6 @@ public final class Dfs {
             index, dfs.Dfs.BlockLocation.getDefaultInstance());
       }
       /**
-       * <pre>
-       * Lista de bloques y DataNodes asignados
-       * </pre>
-       *
        * <code>repeated .dfs.BlockLocation blocks = 1;</code>
        */
       public java.util.List<dfs.Dfs.BlockLocation.Builder> 
@@ -1875,16 +3224,16 @@ public final class Dfs {
         getUsernameBytes();
 
     /**
-     * <code>string password = 2;</code>
-     * @return The password.
+     * <code>string session_token = 2;</code>
+     * @return The sessionToken.
      */
-    java.lang.String getPassword();
+    java.lang.String getSessionToken();
     /**
-     * <code>string password = 2;</code>
-     * @return The bytes for password.
+     * <code>string session_token = 2;</code>
+     * @return The bytes for sessionToken.
      */
     com.google.protobuf.ByteString
-        getPasswordBytes();
+        getSessionTokenBytes();
 
     /**
      * <code>string filename = 3;</code>
@@ -1912,7 +3261,7 @@ public final class Dfs {
     }
     private GetFileRequest() {
       username_ = "";
-      password_ = "";
+      sessionToken_ = "";
       filename_ = "";
     }
 
@@ -1975,39 +3324,39 @@ public final class Dfs {
       }
     }
 
-    public static final int PASSWORD_FIELD_NUMBER = 2;
+    public static final int SESSION_TOKEN_FIELD_NUMBER = 2;
     @SuppressWarnings("serial")
-    private volatile java.lang.Object password_ = "";
+    private volatile java.lang.Object sessionToken_ = "";
     /**
-     * <code>string password = 2;</code>
-     * @return The password.
+     * <code>string session_token = 2;</code>
+     * @return The sessionToken.
      */
     @java.lang.Override
-    public java.lang.String getPassword() {
-      java.lang.Object ref = password_;
+    public java.lang.String getSessionToken() {
+      java.lang.Object ref = sessionToken_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        password_ = s;
+        sessionToken_ = s;
         return s;
       }
     }
     /**
-     * <code>string password = 2;</code>
-     * @return The bytes for password.
+     * <code>string session_token = 2;</code>
+     * @return The bytes for sessionToken.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-        getPasswordBytes() {
-      java.lang.Object ref = password_;
+        getSessionTokenBytes() {
+      java.lang.Object ref = sessionToken_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        password_ = b;
+        sessionToken_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -2070,8 +3419,8 @@ public final class Dfs {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(username_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, username_);
       }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(password_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, password_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sessionToken_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, sessionToken_);
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(filename_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, filename_);
@@ -2088,8 +3437,8 @@ public final class Dfs {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(username_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, username_);
       }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(password_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, password_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sessionToken_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, sessionToken_);
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(filename_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, filename_);
@@ -2111,8 +3460,8 @@ public final class Dfs {
 
       if (!getUsername()
           .equals(other.getUsername())) return false;
-      if (!getPassword()
-          .equals(other.getPassword())) return false;
+      if (!getSessionToken()
+          .equals(other.getSessionToken())) return false;
       if (!getFilename()
           .equals(other.getFilename())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
@@ -2128,8 +3477,8 @@ public final class Dfs {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + USERNAME_FIELD_NUMBER;
       hash = (53 * hash) + getUsername().hashCode();
-      hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
-      hash = (53 * hash) + getPassword().hashCode();
+      hash = (37 * hash) + SESSION_TOKEN_FIELD_NUMBER;
+      hash = (53 * hash) + getSessionToken().hashCode();
       hash = (37 * hash) + FILENAME_FIELD_NUMBER;
       hash = (53 * hash) + getFilename().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
@@ -2264,7 +3613,7 @@ public final class Dfs {
         super.clear();
         bitField0_ = 0;
         username_ = "";
-        password_ = "";
+        sessionToken_ = "";
         filename_ = "";
         return this;
       }
@@ -2303,7 +3652,7 @@ public final class Dfs {
           result.username_ = username_;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
-          result.password_ = password_;
+          result.sessionToken_ = sessionToken_;
         }
         if (((from_bitField0_ & 0x00000004) != 0)) {
           result.filename_ = filename_;
@@ -2359,8 +3708,8 @@ public final class Dfs {
           bitField0_ |= 0x00000001;
           onChanged();
         }
-        if (!other.getPassword().isEmpty()) {
-          password_ = other.password_;
+        if (!other.getSessionToken().isEmpty()) {
+          sessionToken_ = other.sessionToken_;
           bitField0_ |= 0x00000002;
           onChanged();
         }
@@ -2401,7 +3750,7 @@ public final class Dfs {
                 break;
               } // case 10
               case 18: {
-                password_ = input.readStringRequireUtf8();
+                sessionToken_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000002;
                 break;
               } // case 18
@@ -2499,73 +3848,73 @@ public final class Dfs {
         return this;
       }
 
-      private java.lang.Object password_ = "";
+      private java.lang.Object sessionToken_ = "";
       /**
-       * <code>string password = 2;</code>
-       * @return The password.
+       * <code>string session_token = 2;</code>
+       * @return The sessionToken.
        */
-      public java.lang.String getPassword() {
-        java.lang.Object ref = password_;
+      public java.lang.String getSessionToken() {
+        java.lang.Object ref = sessionToken_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          password_ = s;
+          sessionToken_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string password = 2;</code>
-       * @return The bytes for password.
+       * <code>string session_token = 2;</code>
+       * @return The bytes for sessionToken.
        */
       public com.google.protobuf.ByteString
-          getPasswordBytes() {
-        java.lang.Object ref = password_;
+          getSessionTokenBytes() {
+        java.lang.Object ref = sessionToken_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          password_ = b;
+          sessionToken_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string password = 2;</code>
-       * @param value The password to set.
+       * <code>string session_token = 2;</code>
+       * @param value The sessionToken to set.
        * @return This builder for chaining.
        */
-      public Builder setPassword(
+      public Builder setSessionToken(
           java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
-        password_ = value;
+        sessionToken_ = value;
         bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       /**
-       * <code>string password = 2;</code>
+       * <code>string session_token = 2;</code>
        * @return This builder for chaining.
        */
-      public Builder clearPassword() {
-        password_ = getDefaultInstance().getPassword();
+      public Builder clearSessionToken() {
+        sessionToken_ = getDefaultInstance().getSessionToken();
         bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
       /**
-       * <code>string password = 2;</code>
-       * @param value The bytes for password to set.
+       * <code>string session_token = 2;</code>
+       * @param value The bytes for sessionToken to set.
        * @return This builder for chaining.
        */
-      public Builder setPasswordBytes(
+      public Builder setSessionTokenBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) { throw new NullPointerException(); }
         checkByteStringIsUtf8(value);
-        password_ = value;
+        sessionToken_ = value;
         bitField0_ |= 0x00000002;
         onChanged();
         return this;
@@ -3505,16 +4854,16 @@ public final class Dfs {
         getUsernameBytes();
 
     /**
-     * <code>string password = 2;</code>
-     * @return The password.
+     * <code>string session_token = 2;</code>
+     * @return The sessionToken.
      */
-    java.lang.String getPassword();
+    java.lang.String getSessionToken();
     /**
-     * <code>string password = 2;</code>
-     * @return The bytes for password.
+     * <code>string session_token = 2;</code>
+     * @return The bytes for sessionToken.
      */
     com.google.protobuf.ByteString
-        getPasswordBytes();
+        getSessionTokenBytes();
   }
   /**
    * Protobuf type {@code dfs.ListFilesRequest}
@@ -3530,7 +4879,7 @@ public final class Dfs {
     }
     private ListFilesRequest() {
       username_ = "";
-      password_ = "";
+      sessionToken_ = "";
     }
 
     @java.lang.Override
@@ -3592,39 +4941,39 @@ public final class Dfs {
       }
     }
 
-    public static final int PASSWORD_FIELD_NUMBER = 2;
+    public static final int SESSION_TOKEN_FIELD_NUMBER = 2;
     @SuppressWarnings("serial")
-    private volatile java.lang.Object password_ = "";
+    private volatile java.lang.Object sessionToken_ = "";
     /**
-     * <code>string password = 2;</code>
-     * @return The password.
+     * <code>string session_token = 2;</code>
+     * @return The sessionToken.
      */
     @java.lang.Override
-    public java.lang.String getPassword() {
-      java.lang.Object ref = password_;
+    public java.lang.String getSessionToken() {
+      java.lang.Object ref = sessionToken_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        password_ = s;
+        sessionToken_ = s;
         return s;
       }
     }
     /**
-     * <code>string password = 2;</code>
-     * @return The bytes for password.
+     * <code>string session_token = 2;</code>
+     * @return The bytes for sessionToken.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-        getPasswordBytes() {
-      java.lang.Object ref = password_;
+        getSessionTokenBytes() {
+      java.lang.Object ref = sessionToken_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        password_ = b;
+        sessionToken_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -3648,8 +4997,8 @@ public final class Dfs {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(username_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, username_);
       }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(password_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, password_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sessionToken_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, sessionToken_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -3663,8 +5012,8 @@ public final class Dfs {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(username_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, username_);
       }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(password_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, password_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sessionToken_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, sessionToken_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -3683,8 +5032,8 @@ public final class Dfs {
 
       if (!getUsername()
           .equals(other.getUsername())) return false;
-      if (!getPassword()
-          .equals(other.getPassword())) return false;
+      if (!getSessionToken()
+          .equals(other.getSessionToken())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -3698,8 +5047,8 @@ public final class Dfs {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + USERNAME_FIELD_NUMBER;
       hash = (53 * hash) + getUsername().hashCode();
-      hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
-      hash = (53 * hash) + getPassword().hashCode();
+      hash = (37 * hash) + SESSION_TOKEN_FIELD_NUMBER;
+      hash = (53 * hash) + getSessionToken().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -3832,7 +5181,7 @@ public final class Dfs {
         super.clear();
         bitField0_ = 0;
         username_ = "";
-        password_ = "";
+        sessionToken_ = "";
         return this;
       }
 
@@ -3870,7 +5219,7 @@ public final class Dfs {
           result.username_ = username_;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
-          result.password_ = password_;
+          result.sessionToken_ = sessionToken_;
         }
       }
 
@@ -3923,8 +5272,8 @@ public final class Dfs {
           bitField0_ |= 0x00000001;
           onChanged();
         }
-        if (!other.getPassword().isEmpty()) {
-          password_ = other.password_;
+        if (!other.getSessionToken().isEmpty()) {
+          sessionToken_ = other.sessionToken_;
           bitField0_ |= 0x00000002;
           onChanged();
         }
@@ -3960,7 +5309,7 @@ public final class Dfs {
                 break;
               } // case 10
               case 18: {
-                password_ = input.readStringRequireUtf8();
+                sessionToken_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000002;
                 break;
               } // case 18
@@ -4053,73 +5402,73 @@ public final class Dfs {
         return this;
       }
 
-      private java.lang.Object password_ = "";
+      private java.lang.Object sessionToken_ = "";
       /**
-       * <code>string password = 2;</code>
-       * @return The password.
+       * <code>string session_token = 2;</code>
+       * @return The sessionToken.
        */
-      public java.lang.String getPassword() {
-        java.lang.Object ref = password_;
+      public java.lang.String getSessionToken() {
+        java.lang.Object ref = sessionToken_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          password_ = s;
+          sessionToken_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string password = 2;</code>
-       * @return The bytes for password.
+       * <code>string session_token = 2;</code>
+       * @return The bytes for sessionToken.
        */
       public com.google.protobuf.ByteString
-          getPasswordBytes() {
-        java.lang.Object ref = password_;
+          getSessionTokenBytes() {
+        java.lang.Object ref = sessionToken_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          password_ = b;
+          sessionToken_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string password = 2;</code>
-       * @param value The password to set.
+       * <code>string session_token = 2;</code>
+       * @param value The sessionToken to set.
        * @return This builder for chaining.
        */
-      public Builder setPassword(
+      public Builder setSessionToken(
           java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
-        password_ = value;
+        sessionToken_ = value;
         bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       /**
-       * <code>string password = 2;</code>
+       * <code>string session_token = 2;</code>
        * @return This builder for chaining.
        */
-      public Builder clearPassword() {
-        password_ = getDefaultInstance().getPassword();
+      public Builder clearSessionToken() {
+        sessionToken_ = getDefaultInstance().getSessionToken();
         bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
       /**
-       * <code>string password = 2;</code>
-       * @param value The bytes for password to set.
+       * <code>string session_token = 2;</code>
+       * @param value The bytes for sessionToken to set.
        * @return This builder for chaining.
        */
-      public Builder setPasswordBytes(
+      public Builder setSessionTokenBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) { throw new NullPointerException(); }
         checkByteStringIsUtf8(value);
-        password_ = value;
+        sessionToken_ = value;
         bitField0_ |= 0x00000002;
         onChanged();
         return this;
@@ -4823,16 +6172,16 @@ public final class Dfs {
         getUsernameBytes();
 
     /**
-     * <code>string password = 2;</code>
-     * @return The password.
+     * <code>string session_token = 2;</code>
+     * @return The sessionToken.
      */
-    java.lang.String getPassword();
+    java.lang.String getSessionToken();
     /**
-     * <code>string password = 2;</code>
-     * @return The bytes for password.
+     * <code>string session_token = 2;</code>
+     * @return The bytes for sessionToken.
      */
     com.google.protobuf.ByteString
-        getPasswordBytes();
+        getSessionTokenBytes();
 
     /**
      * <code>string filename = 3;</code>
@@ -4860,7 +6209,7 @@ public final class Dfs {
     }
     private RemoveFileRequest() {
       username_ = "";
-      password_ = "";
+      sessionToken_ = "";
       filename_ = "";
     }
 
@@ -4923,39 +6272,39 @@ public final class Dfs {
       }
     }
 
-    public static final int PASSWORD_FIELD_NUMBER = 2;
+    public static final int SESSION_TOKEN_FIELD_NUMBER = 2;
     @SuppressWarnings("serial")
-    private volatile java.lang.Object password_ = "";
+    private volatile java.lang.Object sessionToken_ = "";
     /**
-     * <code>string password = 2;</code>
-     * @return The password.
+     * <code>string session_token = 2;</code>
+     * @return The sessionToken.
      */
     @java.lang.Override
-    public java.lang.String getPassword() {
-      java.lang.Object ref = password_;
+    public java.lang.String getSessionToken() {
+      java.lang.Object ref = sessionToken_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        password_ = s;
+        sessionToken_ = s;
         return s;
       }
     }
     /**
-     * <code>string password = 2;</code>
-     * @return The bytes for password.
+     * <code>string session_token = 2;</code>
+     * @return The bytes for sessionToken.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-        getPasswordBytes() {
-      java.lang.Object ref = password_;
+        getSessionTokenBytes() {
+      java.lang.Object ref = sessionToken_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        password_ = b;
+        sessionToken_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -5018,8 +6367,8 @@ public final class Dfs {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(username_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, username_);
       }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(password_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, password_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sessionToken_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, sessionToken_);
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(filename_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, filename_);
@@ -5036,8 +6385,8 @@ public final class Dfs {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(username_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, username_);
       }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(password_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, password_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sessionToken_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, sessionToken_);
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(filename_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, filename_);
@@ -5059,8 +6408,8 @@ public final class Dfs {
 
       if (!getUsername()
           .equals(other.getUsername())) return false;
-      if (!getPassword()
-          .equals(other.getPassword())) return false;
+      if (!getSessionToken()
+          .equals(other.getSessionToken())) return false;
       if (!getFilename()
           .equals(other.getFilename())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
@@ -5076,8 +6425,8 @@ public final class Dfs {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + USERNAME_FIELD_NUMBER;
       hash = (53 * hash) + getUsername().hashCode();
-      hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
-      hash = (53 * hash) + getPassword().hashCode();
+      hash = (37 * hash) + SESSION_TOKEN_FIELD_NUMBER;
+      hash = (53 * hash) + getSessionToken().hashCode();
       hash = (37 * hash) + FILENAME_FIELD_NUMBER;
       hash = (53 * hash) + getFilename().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
@@ -5212,7 +6561,7 @@ public final class Dfs {
         super.clear();
         bitField0_ = 0;
         username_ = "";
-        password_ = "";
+        sessionToken_ = "";
         filename_ = "";
         return this;
       }
@@ -5251,7 +6600,7 @@ public final class Dfs {
           result.username_ = username_;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
-          result.password_ = password_;
+          result.sessionToken_ = sessionToken_;
         }
         if (((from_bitField0_ & 0x00000004) != 0)) {
           result.filename_ = filename_;
@@ -5307,8 +6656,8 @@ public final class Dfs {
           bitField0_ |= 0x00000001;
           onChanged();
         }
-        if (!other.getPassword().isEmpty()) {
-          password_ = other.password_;
+        if (!other.getSessionToken().isEmpty()) {
+          sessionToken_ = other.sessionToken_;
           bitField0_ |= 0x00000002;
           onChanged();
         }
@@ -5349,7 +6698,7 @@ public final class Dfs {
                 break;
               } // case 10
               case 18: {
-                password_ = input.readStringRequireUtf8();
+                sessionToken_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000002;
                 break;
               } // case 18
@@ -5447,73 +6796,73 @@ public final class Dfs {
         return this;
       }
 
-      private java.lang.Object password_ = "";
+      private java.lang.Object sessionToken_ = "";
       /**
-       * <code>string password = 2;</code>
-       * @return The password.
+       * <code>string session_token = 2;</code>
+       * @return The sessionToken.
        */
-      public java.lang.String getPassword() {
-        java.lang.Object ref = password_;
+      public java.lang.String getSessionToken() {
+        java.lang.Object ref = sessionToken_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          password_ = s;
+          sessionToken_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string password = 2;</code>
-       * @return The bytes for password.
+       * <code>string session_token = 2;</code>
+       * @return The bytes for sessionToken.
        */
       public com.google.protobuf.ByteString
-          getPasswordBytes() {
-        java.lang.Object ref = password_;
+          getSessionTokenBytes() {
+        java.lang.Object ref = sessionToken_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          password_ = b;
+          sessionToken_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string password = 2;</code>
-       * @param value The password to set.
+       * <code>string session_token = 2;</code>
+       * @param value The sessionToken to set.
        * @return This builder for chaining.
        */
-      public Builder setPassword(
+      public Builder setSessionToken(
           java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
-        password_ = value;
+        sessionToken_ = value;
         bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       /**
-       * <code>string password = 2;</code>
+       * <code>string session_token = 2;</code>
        * @return This builder for chaining.
        */
-      public Builder clearPassword() {
-        password_ = getDefaultInstance().getPassword();
+      public Builder clearSessionToken() {
+        sessionToken_ = getDefaultInstance().getSessionToken();
         bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
       /**
-       * <code>string password = 2;</code>
-       * @param value The bytes for password to set.
+       * <code>string session_token = 2;</code>
+       * @param value The bytes for sessionToken to set.
        * @return This builder for chaining.
        */
-      public Builder setPasswordBytes(
+      public Builder setSessionTokenBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) { throw new NullPointerException(); }
         checkByteStringIsUtf8(value);
-        password_ = value;
+        sessionToken_ = value;
         bitField0_ |= 0x00000002;
         onChanged();
         return this;
@@ -7391,12 +8740,24 @@ public final class Dfs {
         getUsernameBytes();
 
     /**
-     * <code>string path = 2;</code>
+     * <code>string session_token = 2;</code>
+     * @return The sessionToken.
+     */
+    java.lang.String getSessionToken();
+    /**
+     * <code>string session_token = 2;</code>
+     * @return The bytes for sessionToken.
+     */
+    com.google.protobuf.ByteString
+        getSessionTokenBytes();
+
+    /**
+     * <code>string path = 3;</code>
      * @return The path.
      */
     java.lang.String getPath();
     /**
-     * <code>string path = 2;</code>
+     * <code>string path = 3;</code>
      * @return The bytes for path.
      */
     com.google.protobuf.ByteString
@@ -7416,6 +8777,7 @@ public final class Dfs {
     }
     private MkdirRequest() {
       username_ = "";
+      sessionToken_ = "";
       path_ = "";
     }
 
@@ -7478,11 +8840,50 @@ public final class Dfs {
       }
     }
 
-    public static final int PATH_FIELD_NUMBER = 2;
+    public static final int SESSION_TOKEN_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object sessionToken_ = "";
+    /**
+     * <code>string session_token = 2;</code>
+     * @return The sessionToken.
+     */
+    @java.lang.Override
+    public java.lang.String getSessionToken() {
+      java.lang.Object ref = sessionToken_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        sessionToken_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string session_token = 2;</code>
+     * @return The bytes for sessionToken.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getSessionTokenBytes() {
+      java.lang.Object ref = sessionToken_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        sessionToken_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PATH_FIELD_NUMBER = 3;
     @SuppressWarnings("serial")
     private volatile java.lang.Object path_ = "";
     /**
-     * <code>string path = 2;</code>
+     * <code>string path = 3;</code>
      * @return The path.
      */
     @java.lang.Override
@@ -7499,7 +8900,7 @@ public final class Dfs {
       }
     }
     /**
-     * <code>string path = 2;</code>
+     * <code>string path = 3;</code>
      * @return The bytes for path.
      */
     @java.lang.Override
@@ -7534,8 +8935,11 @@ public final class Dfs {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(username_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, username_);
       }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sessionToken_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, sessionToken_);
+      }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(path_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, path_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, path_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -7549,8 +8953,11 @@ public final class Dfs {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(username_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, username_);
       }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sessionToken_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, sessionToken_);
+      }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(path_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, path_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, path_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -7569,6 +8976,8 @@ public final class Dfs {
 
       if (!getUsername()
           .equals(other.getUsername())) return false;
+      if (!getSessionToken()
+          .equals(other.getSessionToken())) return false;
       if (!getPath()
           .equals(other.getPath())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
@@ -7584,6 +8993,8 @@ public final class Dfs {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + USERNAME_FIELD_NUMBER;
       hash = (53 * hash) + getUsername().hashCode();
+      hash = (37 * hash) + SESSION_TOKEN_FIELD_NUMBER;
+      hash = (53 * hash) + getSessionToken().hashCode();
       hash = (37 * hash) + PATH_FIELD_NUMBER;
       hash = (53 * hash) + getPath().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
@@ -7718,6 +9129,7 @@ public final class Dfs {
         super.clear();
         bitField0_ = 0;
         username_ = "";
+        sessionToken_ = "";
         path_ = "";
         return this;
       }
@@ -7756,6 +9168,9 @@ public final class Dfs {
           result.username_ = username_;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.sessionToken_ = sessionToken_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
           result.path_ = path_;
         }
       }
@@ -7809,9 +9224,14 @@ public final class Dfs {
           bitField0_ |= 0x00000001;
           onChanged();
         }
+        if (!other.getSessionToken().isEmpty()) {
+          sessionToken_ = other.sessionToken_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
         if (!other.getPath().isEmpty()) {
           path_ = other.path_;
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000004;
           onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
@@ -7846,10 +9266,15 @@ public final class Dfs {
                 break;
               } // case 10
               case 18: {
-                path_ = input.readStringRequireUtf8();
+                sessionToken_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000002;
                 break;
               } // case 18
+              case 26: {
+                path_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -7939,9 +9364,81 @@ public final class Dfs {
         return this;
       }
 
+      private java.lang.Object sessionToken_ = "";
+      /**
+       * <code>string session_token = 2;</code>
+       * @return The sessionToken.
+       */
+      public java.lang.String getSessionToken() {
+        java.lang.Object ref = sessionToken_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          sessionToken_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string session_token = 2;</code>
+       * @return The bytes for sessionToken.
+       */
+      public com.google.protobuf.ByteString
+          getSessionTokenBytes() {
+        java.lang.Object ref = sessionToken_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          sessionToken_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string session_token = 2;</code>
+       * @param value The sessionToken to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSessionToken(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        sessionToken_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string session_token = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSessionToken() {
+        sessionToken_ = getDefaultInstance().getSessionToken();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string session_token = 2;</code>
+       * @param value The bytes for sessionToken to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSessionTokenBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        sessionToken_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
       private java.lang.Object path_ = "";
       /**
-       * <code>string path = 2;</code>
+       * <code>string path = 3;</code>
        * @return The path.
        */
       public java.lang.String getPath() {
@@ -7957,7 +9454,7 @@ public final class Dfs {
         }
       }
       /**
-       * <code>string path = 2;</code>
+       * <code>string path = 3;</code>
        * @return The bytes for path.
        */
       public com.google.protobuf.ByteString
@@ -7974,7 +9471,7 @@ public final class Dfs {
         }
       }
       /**
-       * <code>string path = 2;</code>
+       * <code>string path = 3;</code>
        * @param value The path to set.
        * @return This builder for chaining.
        */
@@ -7982,22 +9479,22 @@ public final class Dfs {
           java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
         path_ = value;
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
-       * <code>string path = 2;</code>
+       * <code>string path = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearPath() {
         path_ = getDefaultInstance().getPath();
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
       /**
-       * <code>string path = 2;</code>
+       * <code>string path = 3;</code>
        * @param value The bytes for path to set.
        * @return This builder for chaining.
        */
@@ -8006,7 +9503,7 @@ public final class Dfs {
         if (value == null) { throw new NullPointerException(); }
         checkByteStringIsUtf8(value);
         path_ = value;
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -8716,12 +10213,24 @@ public final class Dfs {
         getUsernameBytes();
 
     /**
-     * <code>string path = 2;</code>
+     * <code>string session_token = 2;</code>
+     * @return The sessionToken.
+     */
+    java.lang.String getSessionToken();
+    /**
+     * <code>string session_token = 2;</code>
+     * @return The bytes for sessionToken.
+     */
+    com.google.protobuf.ByteString
+        getSessionTokenBytes();
+
+    /**
+     * <code>string path = 3;</code>
      * @return The path.
      */
     java.lang.String getPath();
     /**
-     * <code>string path = 2;</code>
+     * <code>string path = 3;</code>
      * @return The bytes for path.
      */
     com.google.protobuf.ByteString
@@ -8741,6 +10250,7 @@ public final class Dfs {
     }
     private RmdirRequest() {
       username_ = "";
+      sessionToken_ = "";
       path_ = "";
     }
 
@@ -8803,11 +10313,50 @@ public final class Dfs {
       }
     }
 
-    public static final int PATH_FIELD_NUMBER = 2;
+    public static final int SESSION_TOKEN_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object sessionToken_ = "";
+    /**
+     * <code>string session_token = 2;</code>
+     * @return The sessionToken.
+     */
+    @java.lang.Override
+    public java.lang.String getSessionToken() {
+      java.lang.Object ref = sessionToken_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        sessionToken_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string session_token = 2;</code>
+     * @return The bytes for sessionToken.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getSessionTokenBytes() {
+      java.lang.Object ref = sessionToken_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        sessionToken_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PATH_FIELD_NUMBER = 3;
     @SuppressWarnings("serial")
     private volatile java.lang.Object path_ = "";
     /**
-     * <code>string path = 2;</code>
+     * <code>string path = 3;</code>
      * @return The path.
      */
     @java.lang.Override
@@ -8824,7 +10373,7 @@ public final class Dfs {
       }
     }
     /**
-     * <code>string path = 2;</code>
+     * <code>string path = 3;</code>
      * @return The bytes for path.
      */
     @java.lang.Override
@@ -8859,8 +10408,11 @@ public final class Dfs {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(username_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, username_);
       }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sessionToken_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, sessionToken_);
+      }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(path_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, path_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, path_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -8874,8 +10426,11 @@ public final class Dfs {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(username_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, username_);
       }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sessionToken_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, sessionToken_);
+      }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(path_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, path_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, path_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -8894,6 +10449,8 @@ public final class Dfs {
 
       if (!getUsername()
           .equals(other.getUsername())) return false;
+      if (!getSessionToken()
+          .equals(other.getSessionToken())) return false;
       if (!getPath()
           .equals(other.getPath())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
@@ -8909,6 +10466,8 @@ public final class Dfs {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + USERNAME_FIELD_NUMBER;
       hash = (53 * hash) + getUsername().hashCode();
+      hash = (37 * hash) + SESSION_TOKEN_FIELD_NUMBER;
+      hash = (53 * hash) + getSessionToken().hashCode();
       hash = (37 * hash) + PATH_FIELD_NUMBER;
       hash = (53 * hash) + getPath().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
@@ -9043,6 +10602,7 @@ public final class Dfs {
         super.clear();
         bitField0_ = 0;
         username_ = "";
+        sessionToken_ = "";
         path_ = "";
         return this;
       }
@@ -9081,6 +10641,9 @@ public final class Dfs {
           result.username_ = username_;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.sessionToken_ = sessionToken_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
           result.path_ = path_;
         }
       }
@@ -9134,9 +10697,14 @@ public final class Dfs {
           bitField0_ |= 0x00000001;
           onChanged();
         }
+        if (!other.getSessionToken().isEmpty()) {
+          sessionToken_ = other.sessionToken_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
         if (!other.getPath().isEmpty()) {
           path_ = other.path_;
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000004;
           onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
@@ -9171,10 +10739,15 @@ public final class Dfs {
                 break;
               } // case 10
               case 18: {
-                path_ = input.readStringRequireUtf8();
+                sessionToken_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000002;
                 break;
               } // case 18
+              case 26: {
+                path_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -9264,9 +10837,81 @@ public final class Dfs {
         return this;
       }
 
+      private java.lang.Object sessionToken_ = "";
+      /**
+       * <code>string session_token = 2;</code>
+       * @return The sessionToken.
+       */
+      public java.lang.String getSessionToken() {
+        java.lang.Object ref = sessionToken_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          sessionToken_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string session_token = 2;</code>
+       * @return The bytes for sessionToken.
+       */
+      public com.google.protobuf.ByteString
+          getSessionTokenBytes() {
+        java.lang.Object ref = sessionToken_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          sessionToken_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string session_token = 2;</code>
+       * @param value The sessionToken to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSessionToken(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        sessionToken_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string session_token = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSessionToken() {
+        sessionToken_ = getDefaultInstance().getSessionToken();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string session_token = 2;</code>
+       * @param value The bytes for sessionToken to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSessionTokenBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        sessionToken_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
       private java.lang.Object path_ = "";
       /**
-       * <code>string path = 2;</code>
+       * <code>string path = 3;</code>
        * @return The path.
        */
       public java.lang.String getPath() {
@@ -9282,7 +10927,7 @@ public final class Dfs {
         }
       }
       /**
-       * <code>string path = 2;</code>
+       * <code>string path = 3;</code>
        * @return The bytes for path.
        */
       public com.google.protobuf.ByteString
@@ -9299,7 +10944,7 @@ public final class Dfs {
         }
       }
       /**
-       * <code>string path = 2;</code>
+       * <code>string path = 3;</code>
        * @param value The path to set.
        * @return This builder for chaining.
        */
@@ -9307,22 +10952,22 @@ public final class Dfs {
           java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
         path_ = value;
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
-       * <code>string path = 2;</code>
+       * <code>string path = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearPath() {
         path_ = getDefaultInstance().getPath();
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
       /**
-       * <code>string path = 2;</code>
+       * <code>string path = 3;</code>
        * @param value The bytes for path to set.
        * @return This builder for chaining.
        */
@@ -9331,7 +10976,7 @@ public final class Dfs {
         if (value == null) { throw new NullPointerException(); }
         checkByteStringIsUtf8(value);
         path_ = value;
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -10047,10 +11692,6 @@ public final class Dfs {
         getFilenameBytes();
 
     /**
-     * <pre>
-     * contenido del bloque
-     * </pre>
-     *
      * <code>bytes data = 3;</code>
      * @return The data.
      */
@@ -10150,10 +11791,6 @@ public final class Dfs {
     public static final int DATA_FIELD_NUMBER = 3;
     private com.google.protobuf.ByteString data_ = com.google.protobuf.ByteString.EMPTY;
     /**
-     * <pre>
-     * contenido del bloque
-     * </pre>
-     *
      * <code>bytes data = 3;</code>
      * @return The data.
      */
@@ -10645,10 +12282,6 @@ public final class Dfs {
 
       private com.google.protobuf.ByteString data_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <pre>
-       * contenido del bloque
-       * </pre>
-       *
        * <code>bytes data = 3;</code>
        * @return The data.
        */
@@ -10657,10 +12290,6 @@ public final class Dfs {
         return data_;
       }
       /**
-       * <pre>
-       * contenido del bloque
-       * </pre>
-       *
        * <code>bytes data = 3;</code>
        * @param value The data to set.
        * @return This builder for chaining.
@@ -10673,10 +12302,6 @@ public final class Dfs {
         return this;
       }
       /**
-       * <pre>
-       * contenido del bloque
-       * </pre>
-       *
        * <code>bytes data = 3;</code>
        * @return This builder for chaining.
        */
@@ -17098,19 +18723,11 @@ public final class Dfs {
     long getBlockId();
 
     /**
-     * <pre>
-     * Datanode primario (el que recibe del cliente)
-     * </pre>
-     *
      * <code>string primary_address = 2;</code>
      * @return The primaryAddress.
      */
     java.lang.String getPrimaryAddress();
     /**
-     * <pre>
-     * Datanode primario (el que recibe del cliente)
-     * </pre>
-     *
      * <code>string primary_address = 2;</code>
      * @return The bytes for primaryAddress.
      */
@@ -17118,39 +18735,23 @@ public final class Dfs {
         getPrimaryAddressBytes();
 
     /**
-     * <pre>
-     * Direcciones de réplicas (opcional para cliente)
-     * </pre>
-     *
      * <code>repeated string replica_addresses = 3;</code>
      * @return A list containing the replicaAddresses.
      */
     java.util.List<java.lang.String>
         getReplicaAddressesList();
     /**
-     * <pre>
-     * Direcciones de réplicas (opcional para cliente)
-     * </pre>
-     *
      * <code>repeated string replica_addresses = 3;</code>
      * @return The count of replicaAddresses.
      */
     int getReplicaAddressesCount();
     /**
-     * <pre>
-     * Direcciones de réplicas (opcional para cliente)
-     * </pre>
-     *
      * <code>repeated string replica_addresses = 3;</code>
      * @param index The index of the element to return.
      * @return The replicaAddresses at the given index.
      */
     java.lang.String getReplicaAddresses(int index);
     /**
-     * <pre>
-     * Direcciones de réplicas (opcional para cliente)
-     * </pre>
-     *
      * <code>repeated string replica_addresses = 3;</code>
      * @param index The index of the value to return.
      * @return The bytes of the replicaAddresses at the given index.
@@ -17221,10 +18822,6 @@ public final class Dfs {
     @SuppressWarnings("serial")
     private volatile java.lang.Object primaryAddress_ = "";
     /**
-     * <pre>
-     * Datanode primario (el que recibe del cliente)
-     * </pre>
-     *
      * <code>string primary_address = 2;</code>
      * @return The primaryAddress.
      */
@@ -17242,10 +18839,6 @@ public final class Dfs {
       }
     }
     /**
-     * <pre>
-     * Datanode primario (el que recibe del cliente)
-     * </pre>
-     *
      * <code>string primary_address = 2;</code>
      * @return The bytes for primaryAddress.
      */
@@ -17269,10 +18862,6 @@ public final class Dfs {
     private com.google.protobuf.LazyStringArrayList replicaAddresses_ =
         com.google.protobuf.LazyStringArrayList.emptyList();
     /**
-     * <pre>
-     * Direcciones de réplicas (opcional para cliente)
-     * </pre>
-     *
      * <code>repeated string replica_addresses = 3;</code>
      * @return A list containing the replicaAddresses.
      */
@@ -17281,10 +18870,6 @@ public final class Dfs {
       return replicaAddresses_;
     }
     /**
-     * <pre>
-     * Direcciones de réplicas (opcional para cliente)
-     * </pre>
-     *
      * <code>repeated string replica_addresses = 3;</code>
      * @return The count of replicaAddresses.
      */
@@ -17292,10 +18877,6 @@ public final class Dfs {
       return replicaAddresses_.size();
     }
     /**
-     * <pre>
-     * Direcciones de réplicas (opcional para cliente)
-     * </pre>
-     *
      * <code>repeated string replica_addresses = 3;</code>
      * @param index The index of the element to return.
      * @return The replicaAddresses at the given index.
@@ -17304,10 +18885,6 @@ public final class Dfs {
       return replicaAddresses_.get(index);
     }
     /**
-     * <pre>
-     * Direcciones de réplicas (opcional para cliente)
-     * </pre>
-     *
      * <code>repeated string replica_addresses = 3;</code>
      * @param index The index of the value to return.
      * @return The bytes of the replicaAddresses at the given index.
@@ -17778,10 +19355,6 @@ public final class Dfs {
 
       private java.lang.Object primaryAddress_ = "";
       /**
-       * <pre>
-       * Datanode primario (el que recibe del cliente)
-       * </pre>
-       *
        * <code>string primary_address = 2;</code>
        * @return The primaryAddress.
        */
@@ -17798,10 +19371,6 @@ public final class Dfs {
         }
       }
       /**
-       * <pre>
-       * Datanode primario (el que recibe del cliente)
-       * </pre>
-       *
        * <code>string primary_address = 2;</code>
        * @return The bytes for primaryAddress.
        */
@@ -17819,10 +19388,6 @@ public final class Dfs {
         }
       }
       /**
-       * <pre>
-       * Datanode primario (el que recibe del cliente)
-       * </pre>
-       *
        * <code>string primary_address = 2;</code>
        * @param value The primaryAddress to set.
        * @return This builder for chaining.
@@ -17836,10 +19401,6 @@ public final class Dfs {
         return this;
       }
       /**
-       * <pre>
-       * Datanode primario (el que recibe del cliente)
-       * </pre>
-       *
        * <code>string primary_address = 2;</code>
        * @return This builder for chaining.
        */
@@ -17850,10 +19411,6 @@ public final class Dfs {
         return this;
       }
       /**
-       * <pre>
-       * Datanode primario (el que recibe del cliente)
-       * </pre>
-       *
        * <code>string primary_address = 2;</code>
        * @param value The bytes for primaryAddress to set.
        * @return This builder for chaining.
@@ -17877,10 +19434,6 @@ public final class Dfs {
         bitField0_ |= 0x00000004;
       }
       /**
-       * <pre>
-       * Direcciones de réplicas (opcional para cliente)
-       * </pre>
-       *
        * <code>repeated string replica_addresses = 3;</code>
        * @return A list containing the replicaAddresses.
        */
@@ -17890,10 +19443,6 @@ public final class Dfs {
         return replicaAddresses_;
       }
       /**
-       * <pre>
-       * Direcciones de réplicas (opcional para cliente)
-       * </pre>
-       *
        * <code>repeated string replica_addresses = 3;</code>
        * @return The count of replicaAddresses.
        */
@@ -17901,10 +19450,6 @@ public final class Dfs {
         return replicaAddresses_.size();
       }
       /**
-       * <pre>
-       * Direcciones de réplicas (opcional para cliente)
-       * </pre>
-       *
        * <code>repeated string replica_addresses = 3;</code>
        * @param index The index of the element to return.
        * @return The replicaAddresses at the given index.
@@ -17913,10 +19458,6 @@ public final class Dfs {
         return replicaAddresses_.get(index);
       }
       /**
-       * <pre>
-       * Direcciones de réplicas (opcional para cliente)
-       * </pre>
-       *
        * <code>repeated string replica_addresses = 3;</code>
        * @param index The index of the value to return.
        * @return The bytes of the replicaAddresses at the given index.
@@ -17926,10 +19467,6 @@ public final class Dfs {
         return replicaAddresses_.getByteString(index);
       }
       /**
-       * <pre>
-       * Direcciones de réplicas (opcional para cliente)
-       * </pre>
-       *
        * <code>repeated string replica_addresses = 3;</code>
        * @param index The index to set the value at.
        * @param value The replicaAddresses to set.
@@ -17945,10 +19482,6 @@ public final class Dfs {
         return this;
       }
       /**
-       * <pre>
-       * Direcciones de réplicas (opcional para cliente)
-       * </pre>
-       *
        * <code>repeated string replica_addresses = 3;</code>
        * @param value The replicaAddresses to add.
        * @return This builder for chaining.
@@ -17963,10 +19496,6 @@ public final class Dfs {
         return this;
       }
       /**
-       * <pre>
-       * Direcciones de réplicas (opcional para cliente)
-       * </pre>
-       *
        * <code>repeated string replica_addresses = 3;</code>
        * @param values The replicaAddresses to add.
        * @return This builder for chaining.
@@ -17981,10 +19510,6 @@ public final class Dfs {
         return this;
       }
       /**
-       * <pre>
-       * Direcciones de réplicas (opcional para cliente)
-       * </pre>
-       *
        * <code>repeated string replica_addresses = 3;</code>
        * @return This builder for chaining.
        */
@@ -17996,10 +19521,6 @@ public final class Dfs {
         return this;
       }
       /**
-       * <pre>
-       * Direcciones de réplicas (opcional para cliente)
-       * </pre>
-       *
        * <code>repeated string replica_addresses = 3;</code>
        * @param value The bytes of the replicaAddresses to add.
        * @return This builder for chaining.
@@ -19294,6 +20815,16 @@ public final class Dfs {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_dfs_LoginRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_dfs_LoginRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_dfs_LoginResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_dfs_LoginResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_dfs_PutFileRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -19442,49 +20973,55 @@ public final class Dfs {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\tdfs.proto\022\003dfs\"X\n\016PutFileRequest\022\020\n\010us" +
-      "ername\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022\020\n\010filena" +
-      "me\030\003 \001(\t\022\020\n\010filesize\030\004 \001(\003\"5\n\017PutFileRes" +
-      "ponse\022\"\n\006blocks\030\001 \003(\0132\022.dfs.BlockLocatio" +
-      "n\"F\n\016GetFileRequest\022\020\n\010username\030\001 \001(\t\022\020\n" +
-      "\010password\030\002 \001(\t\022\020\n\010filename\030\003 \001(\t\"5\n\017Get" +
-      "FileResponse\022\"\n\006blocks\030\001 \003(\0132\022.dfs.Block" +
-      "Location\"6\n\020ListFilesRequest\022\020\n\010username" +
-      "\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"&\n\021ListFilesRes" +
-      "ponse\022\021\n\tfilenames\030\001 \003(\t\"I\n\021RemoveFileRe" +
-      "quest\022\020\n\010username\030\001 \001(\t\022\020\n\010password\030\002 \001(" +
-      "\t\022\020\n\010filename\030\003 \001(\t\"6\n\022RemoveFileRespons" +
-      "e\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"\"\n\016R" +
-      "eplicaRequest\022\020\n\010block_id\030\001 \001(\003\",\n\017Repli" +
-      "caResponse\022\031\n\021replica_datanodes\030\001 \003(\t\".\n" +
-      "\014MkdirRequest\022\020\n\010username\030\001 \001(\t\022\014\n\004path\030" +
-      "\002 \001(\t\"1\n\rMkdirResponse\022\017\n\007success\030\001 \001(\010\022" +
-      "\017\n\007message\030\002 \001(\t\".\n\014RmdirRequest\022\020\n\010user" +
-      "name\030\001 \001(\t\022\014\n\004path\030\002 \001(\t\"1\n\rRmdirRespons" +
-      "e\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"F\n\022B" +
-      "lockUploadRequest\022\020\n\010block_id\030\001 \001(\003\022\020\n\010f" +
-      "ilename\030\002 \001(\t\022\014\n\004data\030\003 \001(\014\"&\n\023BlockUplo" +
-      "adResponse\022\017\n\007success\030\001 \001(\010\":\n\024BlockDown" +
-      "loadRequest\022\020\n\010block_id\030\001 \001(\003\022\020\n\010filenam" +
-      "e\030\002 \001(\t\"%\n\025BlockDownloadResponse\022\014\n\004data" +
-      "\030\001 \001(\014\"P\n\027RegisterDataNodeRequest\022\023\n\013dat" +
-      "anode_id\030\001 \001(\t\022\022\n\nip_address\030\002 \001(\t\022\014\n\004po" +
-      "rt\030\003 \001(\005\"+\n\030RegisterDataNodeResponse\022\017\n\007" +
-      "success\030\001 \001(\010\"I\n\020HeartbeatRequest\022\023\n\013dat" +
-      "anode_id\030\001 \001(\t\022\022\n\nip_address\030\002 \001(\t\022\014\n\004po" +
-      "rt\030\003 \001(\005\"$\n\021HeartbeatResponse\022\017\n\007success" +
-      "\030\001 \001(\010\"m\n\022ReportBlockRequest\022\023\n\013datanode" +
-      "_id\030\001 \001(\t\022\022\n\nip_address\030\002 \001(\t\022\014\n\004port\030\003 " +
-      "\001(\005\022 \n\006blocks\030\004 \003(\0132\020.dfs.BlockReport\"&\n" +
-      "\023ReportBlockResponse\022\017\n\007success\030\001 \001(\010\"1\n" +
-      "\013BlockReport\022\020\n\010block_id\030\001 \001(\003\022\020\n\010filena" +
-      "me\030\002 \001(\t\"j\n\rBlockLocation\022\020\n\010block_id\030\001 " +
-      "\001(\003\022\027\n\017primary_address\030\002 \001(\t\022\031\n\021replica_" +
-      "addresses\030\003 \003(\t\022\023\n\013block_index\030\004 \001(\005\"K\n\027" +
-      "BlockReplicationRequest\022\020\n\010block_id\030\001 \001(" +
-      "\003\022\020\n\010filename\030\002 \001(\t\022\014\n\004data\030\003 \001(\014\"+\n\030Blo" +
-      "ckReplicationResponse\022\017\n\007success\030\001 \001(\0102\222" +
-      "\003\n\017NameNodeService\0224\n\007PutFile\022\023.dfs.PutF" +
+      "\n\tdfs.proto\022\003dfs\"2\n\014LoginRequest\022\020\n\010user" +
+      "name\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"H\n\rLoginRes" +
+      "ponse\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\022" +
+      "\025\n\rsession_token\030\003 \001(\t\"]\n\016PutFileRequest" +
+      "\022\020\n\010username\030\001 \001(\t\022\025\n\rsession_token\030\002 \001(" +
+      "\t\022\020\n\010filename\030\003 \001(\t\022\020\n\010filesize\030\004 \001(\003\"5\n" +
+      "\017PutFileResponse\022\"\n\006blocks\030\001 \003(\0132\022.dfs.B" +
+      "lockLocation\"K\n\016GetFileRequest\022\020\n\010userna" +
+      "me\030\001 \001(\t\022\025\n\rsession_token\030\002 \001(\t\022\020\n\010filen" +
+      "ame\030\003 \001(\t\"5\n\017GetFileResponse\022\"\n\006blocks\030\001" +
+      " \003(\0132\022.dfs.BlockLocation\";\n\020ListFilesReq" +
+      "uest\022\020\n\010username\030\001 \001(\t\022\025\n\rsession_token\030" +
+      "\002 \001(\t\"&\n\021ListFilesResponse\022\021\n\tfilenames\030" +
+      "\001 \003(\t\"N\n\021RemoveFileRequest\022\020\n\010username\030\001" +
+      " \001(\t\022\025\n\rsession_token\030\002 \001(\t\022\020\n\010filename\030" +
+      "\003 \001(\t\"6\n\022RemoveFileResponse\022\017\n\007success\030\001" +
+      " \001(\010\022\017\n\007message\030\002 \001(\t\"\"\n\016ReplicaRequest\022" +
+      "\020\n\010block_id\030\001 \001(\003\",\n\017ReplicaResponse\022\031\n\021" +
+      "replica_datanodes\030\001 \003(\t\"E\n\014MkdirRequest\022" +
+      "\020\n\010username\030\001 \001(\t\022\025\n\rsession_token\030\002 \001(\t" +
+      "\022\014\n\004path\030\003 \001(\t\"1\n\rMkdirResponse\022\017\n\007succe" +
+      "ss\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"E\n\014RmdirReques" +
+      "t\022\020\n\010username\030\001 \001(\t\022\025\n\rsession_token\030\002 \001" +
+      "(\t\022\014\n\004path\030\003 \001(\t\"1\n\rRmdirResponse\022\017\n\007suc" +
+      "cess\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"F\n\022BlockUplo" +
+      "adRequest\022\020\n\010block_id\030\001 \001(\003\022\020\n\010filename\030" +
+      "\002 \001(\t\022\014\n\004data\030\003 \001(\014\"&\n\023BlockUploadRespon" +
+      "se\022\017\n\007success\030\001 \001(\010\":\n\024BlockDownloadRequ" +
+      "est\022\020\n\010block_id\030\001 \001(\003\022\020\n\010filename\030\002 \001(\t\"" +
+      "%\n\025BlockDownloadResponse\022\014\n\004data\030\001 \001(\014\"P" +
+      "\n\027RegisterDataNodeRequest\022\023\n\013datanode_id" +
+      "\030\001 \001(\t\022\022\n\nip_address\030\002 \001(\t\022\014\n\004port\030\003 \001(\005" +
+      "\"+\n\030RegisterDataNodeResponse\022\017\n\007success\030" +
+      "\001 \001(\010\"I\n\020HeartbeatRequest\022\023\n\013datanode_id" +
+      "\030\001 \001(\t\022\022\n\nip_address\030\002 \001(\t\022\014\n\004port\030\003 \001(\005" +
+      "\"$\n\021HeartbeatResponse\022\017\n\007success\030\001 \001(\010\"m" +
+      "\n\022ReportBlockRequest\022\023\n\013datanode_id\030\001 \001(" +
+      "\t\022\022\n\nip_address\030\002 \001(\t\022\014\n\004port\030\003 \001(\005\022 \n\006b" +
+      "locks\030\004 \003(\0132\020.dfs.BlockReport\"&\n\023ReportB" +
+      "lockResponse\022\017\n\007success\030\001 \001(\010\"1\n\013BlockRe" +
+      "port\022\020\n\010block_id\030\001 \001(\003\022\020\n\010filename\030\002 \001(\t" +
+      "\"j\n\rBlockLocation\022\020\n\010block_id\030\001 \001(\003\022\027\n\017p" +
+      "rimary_address\030\002 \001(\t\022\031\n\021replica_addresse" +
+      "s\030\003 \003(\t\022\023\n\013block_index\030\004 \001(\005\"K\n\027BlockRep" +
+      "licationRequest\022\020\n\010block_id\030\001 \001(\003\022\020\n\010fil" +
+      "ename\030\002 \001(\t\022\014\n\004data\030\003 \001(\014\"+\n\030BlockReplic" +
+      "ationResponse\022\017\n\007success\030\001 \001(\0102\302\003\n\017NameN" +
+      "odeService\022.\n\005Login\022\021.dfs.LoginRequest\032\022" +
+      ".dfs.LoginResponse\0224\n\007PutFile\022\023.dfs.PutF" +
       "ileRequest\032\024.dfs.PutFileResponse\0224\n\007GetF" +
       "ile\022\023.dfs.GetFileRequest\032\024.dfs.GetFileRe" +
       "sponse\022:\n\tListFiles\022\025.dfs.ListFilesReque" +
@@ -19511,170 +21048,182 @@ public final class Dfs {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         });
-    internal_static_dfs_PutFileRequest_descriptor =
+    internal_static_dfs_LoginRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
+    internal_static_dfs_LoginRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_dfs_LoginRequest_descriptor,
+        new java.lang.String[] { "Username", "Password", });
+    internal_static_dfs_LoginResponse_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_dfs_LoginResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_dfs_LoginResponse_descriptor,
+        new java.lang.String[] { "Success", "Message", "SessionToken", });
+    internal_static_dfs_PutFileRequest_descriptor =
+      getDescriptor().getMessageTypes().get(2);
     internal_static_dfs_PutFileRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_PutFileRequest_descriptor,
-        new java.lang.String[] { "Username", "Password", "Filename", "Filesize", });
+        new java.lang.String[] { "Username", "SessionToken", "Filename", "Filesize", });
     internal_static_dfs_PutFileResponse_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_dfs_PutFileResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_PutFileResponse_descriptor,
         new java.lang.String[] { "Blocks", });
     internal_static_dfs_GetFileRequest_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_dfs_GetFileRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_GetFileRequest_descriptor,
-        new java.lang.String[] { "Username", "Password", "Filename", });
+        new java.lang.String[] { "Username", "SessionToken", "Filename", });
     internal_static_dfs_GetFileResponse_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_dfs_GetFileResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_GetFileResponse_descriptor,
         new java.lang.String[] { "Blocks", });
     internal_static_dfs_ListFilesRequest_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_dfs_ListFilesRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_ListFilesRequest_descriptor,
-        new java.lang.String[] { "Username", "Password", });
+        new java.lang.String[] { "Username", "SessionToken", });
     internal_static_dfs_ListFilesResponse_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_dfs_ListFilesResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_ListFilesResponse_descriptor,
         new java.lang.String[] { "Filenames", });
     internal_static_dfs_RemoveFileRequest_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_dfs_RemoveFileRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_RemoveFileRequest_descriptor,
-        new java.lang.String[] { "Username", "Password", "Filename", });
+        new java.lang.String[] { "Username", "SessionToken", "Filename", });
     internal_static_dfs_RemoveFileResponse_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_dfs_RemoveFileResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_RemoveFileResponse_descriptor,
         new java.lang.String[] { "Success", "Message", });
     internal_static_dfs_ReplicaRequest_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_dfs_ReplicaRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_ReplicaRequest_descriptor,
         new java.lang.String[] { "BlockId", });
     internal_static_dfs_ReplicaResponse_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_dfs_ReplicaResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_ReplicaResponse_descriptor,
         new java.lang.String[] { "ReplicaDatanodes", });
     internal_static_dfs_MkdirRequest_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_dfs_MkdirRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_MkdirRequest_descriptor,
-        new java.lang.String[] { "Username", "Path", });
+        new java.lang.String[] { "Username", "SessionToken", "Path", });
     internal_static_dfs_MkdirResponse_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(13);
     internal_static_dfs_MkdirResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_MkdirResponse_descriptor,
         new java.lang.String[] { "Success", "Message", });
     internal_static_dfs_RmdirRequest_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(14);
     internal_static_dfs_RmdirRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_RmdirRequest_descriptor,
-        new java.lang.String[] { "Username", "Path", });
+        new java.lang.String[] { "Username", "SessionToken", "Path", });
     internal_static_dfs_RmdirResponse_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(15);
     internal_static_dfs_RmdirResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_RmdirResponse_descriptor,
         new java.lang.String[] { "Success", "Message", });
     internal_static_dfs_BlockUploadRequest_descriptor =
-      getDescriptor().getMessageTypes().get(14);
+      getDescriptor().getMessageTypes().get(16);
     internal_static_dfs_BlockUploadRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_BlockUploadRequest_descriptor,
         new java.lang.String[] { "BlockId", "Filename", "Data", });
     internal_static_dfs_BlockUploadResponse_descriptor =
-      getDescriptor().getMessageTypes().get(15);
+      getDescriptor().getMessageTypes().get(17);
     internal_static_dfs_BlockUploadResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_BlockUploadResponse_descriptor,
         new java.lang.String[] { "Success", });
     internal_static_dfs_BlockDownloadRequest_descriptor =
-      getDescriptor().getMessageTypes().get(16);
+      getDescriptor().getMessageTypes().get(18);
     internal_static_dfs_BlockDownloadRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_BlockDownloadRequest_descriptor,
         new java.lang.String[] { "BlockId", "Filename", });
     internal_static_dfs_BlockDownloadResponse_descriptor =
-      getDescriptor().getMessageTypes().get(17);
+      getDescriptor().getMessageTypes().get(19);
     internal_static_dfs_BlockDownloadResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_BlockDownloadResponse_descriptor,
         new java.lang.String[] { "Data", });
     internal_static_dfs_RegisterDataNodeRequest_descriptor =
-      getDescriptor().getMessageTypes().get(18);
+      getDescriptor().getMessageTypes().get(20);
     internal_static_dfs_RegisterDataNodeRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_RegisterDataNodeRequest_descriptor,
         new java.lang.String[] { "DatanodeId", "IpAddress", "Port", });
     internal_static_dfs_RegisterDataNodeResponse_descriptor =
-      getDescriptor().getMessageTypes().get(19);
+      getDescriptor().getMessageTypes().get(21);
     internal_static_dfs_RegisterDataNodeResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_RegisterDataNodeResponse_descriptor,
         new java.lang.String[] { "Success", });
     internal_static_dfs_HeartbeatRequest_descriptor =
-      getDescriptor().getMessageTypes().get(20);
+      getDescriptor().getMessageTypes().get(22);
     internal_static_dfs_HeartbeatRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_HeartbeatRequest_descriptor,
         new java.lang.String[] { "DatanodeId", "IpAddress", "Port", });
     internal_static_dfs_HeartbeatResponse_descriptor =
-      getDescriptor().getMessageTypes().get(21);
+      getDescriptor().getMessageTypes().get(23);
     internal_static_dfs_HeartbeatResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_HeartbeatResponse_descriptor,
         new java.lang.String[] { "Success", });
     internal_static_dfs_ReportBlockRequest_descriptor =
-      getDescriptor().getMessageTypes().get(22);
+      getDescriptor().getMessageTypes().get(24);
     internal_static_dfs_ReportBlockRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_ReportBlockRequest_descriptor,
         new java.lang.String[] { "DatanodeId", "IpAddress", "Port", "Blocks", });
     internal_static_dfs_ReportBlockResponse_descriptor =
-      getDescriptor().getMessageTypes().get(23);
+      getDescriptor().getMessageTypes().get(25);
     internal_static_dfs_ReportBlockResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_ReportBlockResponse_descriptor,
         new java.lang.String[] { "Success", });
     internal_static_dfs_BlockReport_descriptor =
-      getDescriptor().getMessageTypes().get(24);
+      getDescriptor().getMessageTypes().get(26);
     internal_static_dfs_BlockReport_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_BlockReport_descriptor,
         new java.lang.String[] { "BlockId", "Filename", });
     internal_static_dfs_BlockLocation_descriptor =
-      getDescriptor().getMessageTypes().get(25);
+      getDescriptor().getMessageTypes().get(27);
     internal_static_dfs_BlockLocation_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_BlockLocation_descriptor,
         new java.lang.String[] { "BlockId", "PrimaryAddress", "ReplicaAddresses", "BlockIndex", });
     internal_static_dfs_BlockReplicationRequest_descriptor =
-      getDescriptor().getMessageTypes().get(26);
+      getDescriptor().getMessageTypes().get(28);
     internal_static_dfs_BlockReplicationRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_BlockReplicationRequest_descriptor,
         new java.lang.String[] { "BlockId", "Filename", "Data", });
     internal_static_dfs_BlockReplicationResponse_descriptor =
-      getDescriptor().getMessageTypes().get(27);
+      getDescriptor().getMessageTypes().get(29);
     internal_static_dfs_BlockReplicationResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_dfs_BlockReplicationResponse_descriptor,

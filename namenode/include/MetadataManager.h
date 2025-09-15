@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include <vector>
 #include <algorithm>
+#include <random>
 
 struct BlockLocation {
     std::string block_id;
@@ -18,6 +19,7 @@ struct NodeInfo {
 
 class MetadataManager {
 public:
+    MetadataManager();
     // ==== DataNodes ====
     void registerDataNode(const std::string& datanode_id,
                           const std::string& ip,
@@ -38,6 +40,11 @@ public:
                                const std::vector<std::string>& nodes);
     std::vector<std::string> getReplicasForBlock(int64_t block_id) const;
 
+    // ==== Usuarios ====
+    bool validateUser(const std::string& username, const std::string& password);
+    std::string createSession(const std::string& username);
+    bool validateToken(const std::string& username, const std::string& token);
+
 private:
     // id → dirección (ip:port)
     std::unordered_map<std::string, std::string> dataNodes;
@@ -49,4 +56,10 @@ private:
     std::unordered_map<std::string, std::vector<std::string>> userFiles;
     // blockId → réplicas
     std::unordered_map<int64_t, std::vector<std::string>> blockReplicas;
+
+    std::unordered_map<std::string, std::string> users;   // username -> password
+
+    std::unordered_map<std::string, std::string> sessions; // token -> username
+
+    std::string generateToken();
 };

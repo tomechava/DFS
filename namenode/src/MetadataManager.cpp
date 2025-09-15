@@ -1,5 +1,14 @@
 #include "MetadataManager.h"
 #include <iostream>
+#include <sstream>
+#include <algorithm> // std::remove
+#include <random>
+#include <chrono>
+
+MetadataManager::MetadataManager() {
+    //precargar usuarios
+    users["testuser"] = "1234";
+}
 
 void MetadataManager::registerDataNode(const std::string& datanode_id,
                                        const std::string& ip,
@@ -72,4 +81,30 @@ std::vector<std::string> MetadataManager::getReplicasForBlock(int64_t block_id) 
         return it->second;
     }
     return {};
+}
+
+// ==== Usuarios ====
+bool MetadataManager::validateUser(const std::string& username, const std::string& password) {
+    auto it = users.find(username);
+    return it != users.end() && it->second == password;
+}
+
+std::string MetadataManager::generateToken() {
+    static std::mt19937_64 rng(std::chrono::high_resolution_clock::now().time_since_epoch().count());
+    static std::uniform_int_distribution<uint64_t> dist;
+
+    std::stringstream ss;
+    ss << std::hex << dist(rng) << dist(rng);
+    return ss.str();
+}
+
+std::string MetadataManager::createSession(const std::string& username) {
+    std::string token = generateToken();
+    sessions[token] = username;
+    return token;
+}
+
+bool MetadataManager::validateToken(const std::string& username, const std::string& token) {
+    auto it = sessions.find(token);
+    return it != sessions.end() && it->second == username;
 }

@@ -12,57 +12,62 @@ class DFSCLI(cmd.Cmd):
     def __init__(self, namenode_addr="127.0.0.1:50052"):
         super().__init__()
         self.client = DFSClient(namenode_addr)
-        self.username = "test_user"
-        self.password = "1234"
+        self.username = input("Usuario: ")
+        self.password = input("Contraseña: ")
         self.cwd = "/"   # directorio actual en DFS
 
+        # --- Login obligatorio ---
+        print("Debes iniciar sesión con: login <usuario> <contraseña>")
+            
     # -------------------------
     # Comandos NameNodeService
     # -------------------------
     def do_putFile(self, arg):
-        "Solicitar al NameNode la asignación de bloques para un archivo: putFile <path_local>"
+        if not self.ensure_login():
+            return
         if not arg:
             print("Uso: putFile <ruta_local>")
             return
-        resp = self.client.putFile(self.username, self.password, arg)
+        resp = self.client.putFile(arg)
         for b in resp.blocks:
             print(f"Bloque {b.block_id} -> {b.primary_address}")
-            if b.replica_addresses:
-                print(f"   réplicas: {list(b.replica_addresses)}")
-
 
     def do_getFile(self, arg):
-        "Obtener información de bloques de un archivo: getFile <nombre_archivo>"
+        if not self.ensure_login():
+            return
         if not arg:
             print("Uso: getFile <archivo>")
             return
-        resp = self.client.getFile(self.username, self.password, arg)
+        resp = self.client.getFile(arg)
         for b in resp.blocks:
-            print(f"Bloque {b.block_id} en {b.datanode_address}")
+            print(f"Bloque {b.block_id} -> {b.primary_address}")
 
     def do_listFiles(self, arg):
-        "Listar archivos registrados: listFiles"
-        resp = self.client.list_files(self.username, self.password)
+        if not self.ensure_login():
+            return
+        resp = self.client.list_files()
         print("Archivos:", list(resp.filenames))
 
     def do_removeFile(self, arg):
         "Eliminar un archivo del sistema: removeFile <archivo>"
+        if not self.ensure_login():
+            return
         if not arg:
             print("Uso: removeFile <archivo>")
             return
 
         dfs_path, local_path = self.resolve_path(arg)
-        resp = self.client.remove_file(self.username, self.password, dfs_path)
+        resp = self.client.remove_file(dfs_path)
 
         if resp.success:
             try:
                 if os.path.exists(local_path):
                     os.remove(local_path)
-                    print(f"🗑️ Archivo local '{local_path}' eliminado")
+                    print(f"Archivo local '{local_path}' eliminado")
                 else:
-                    print(f"⚠️ Archivo local '{local_path}' no existe")
+                    print(f"Archivo local '{local_path}' no existe")
             except Exception as e:
-                print(f"❌ Error al eliminar archivo local: {e}")
+                print(f"Error al eliminar archivo local: {e}")
 
         print(f"{resp.success} - {resp.message} (DFS={dfs_path}, Local={local_path})")
 
@@ -71,6 +76,8 @@ class DFSCLI(cmd.Cmd):
     # -------------------------
     def do_uploadBlock(self, arg):
         "Subir un bloque a un DataNode: uploadBlock <addr> <block_id> <archivo> <offset>"
+        if not self.ensure_login():
+            return
         try:
             addr, block_id, filename, offset = arg.split()
             block_id, offset = int(block_id), int(offset)
@@ -85,6 +92,8 @@ class DFSCLI(cmd.Cmd):
 
     def do_downloadBlock(self, arg):
         "Descargar un bloque desde un DataNode: downloadBlock <addr> <block_id> <archivo> <salida>"
+        if not self.ensure_login():
+            return
         try:
             addr, block_id, filename, output = arg.split()
             block_id = int(block_id)
@@ -101,13 +110,17 @@ class DFSCLI(cmd.Cmd):
     # -------------------------
     def do_putFile_and_upload(self, arg):
         "Subir archivo completo (NameNode + DataNodes): putFile_and_upload <ruta_local>"
+        if not self.ensure_login():
+            return
         if not arg:
             print("Uso: putFile_and_upload <archivo>")
             return
-        print(self.client.putFile_and_upload(self.username, self.password, arg))
+        print(self.client.putFile_and_upload(arg))
 
     def do_getFile_and_download(self, arg):
         "Descargar archivo completo (NameNode + DataNodes): getFile_and_download <archivo> <salida>"
+        if not self.ensure_login():
+            return
         try:
             filename, output = arg.split()
 
@@ -116,79 +129,82 @@ class DFSCLI(cmd.Cmd):
 
             # Crear carpetas intermedias si no existen
             os.makedirs(os.path.dirname(local_output), exist_ok=True)
-            print(self.client.getFile_and_download(self.username, self.password, filename, local_output))
+            print(self.client.getFile_and_download(filename, local_output))
         except:
             print("Uso: getFile_and_download <archivo> <salida>")
 
-    def do_cd(self, arg):
-        "Cambiar directorio actual en el DFS: cd <ruta>"
-        if not arg:
-            print("Uso: cd <ruta>")
-            return
-
-        dfs_path, _ = self.resolve_path(arg)
-        self.cwd = dfs_path
-        print(f"Directorio actual: {self.cwd}")
-    
     def do_mkdir(self, arg):
-        "Crear directorio en el DFS: mkdir <nombre>"
+        if not self.ensure_login():
+            return
         if not arg:
             print("Uso: mkdir <nombre>")
             return
-
         dfs_path, local_path = self.resolve_path(arg)
-        resp = self.client.mkdir(self.username, self.password, dfs_path)
+        resp = self.client.mkdir(dfs_path)
         if resp.success:
-            try:
-                os.makedirs(local_path, exist_ok=True)
-            except Exception as e:
-                print(f"❌ Error al crear directorio local: {e}")
-        print(f"{resp.success} - {resp.message} (DFS={dfs_path}, Local={local_path})")
+            os.makedirs(local_path, exist_ok=True)
+        print(f"{resp.success} - {resp.message}")
 
     def do_rmdir(self, arg):
-        "Eliminar directorio en el DFS: rmdir <nombre>"
+        if not self.ensure_login():
+            return
         if not arg:
             print("Uso: rmdir <nombre>")
             return
-
         dfs_path, local_path = self.resolve_path(arg)
-        resp = self.client.rmdir(self.username, self.password, dfs_path)
-        if resp.success:
-            try:
-                if os.path.exists(local_path):
-                    shutil.rmtree(local_path)
-                    print(f"🗑️ Directorio local '{local_path}' eliminado")
-                else:
-                    print(f"⚠️ Directorio local '{local_path}' no existe")
-            except Exception as e:
-                print(f"❌ Error al eliminar directorio local: {e}")
-        print(f"{resp.success} - {resp.message} (DFS={dfs_path}, Local={local_path})")
+        resp = self.client.rmdir(dfs_path)
+        if resp.success and os.path.exists(local_path):
+            shutil.rmtree(local_path)
+        print(f"{resp.success} - {resp.message}")
 
-
+    def do_cd(self, arg):
+        if not arg:
+            print("Uso: cd <ruta>")
+            return
+        dfs_path, _ = self.resolve_path(arg)
+        self.cwd = dfs_path
+        print(f"Directorio actual: {self.cwd}")
 
     def resolve_path(self, arg):
-        """Construye ruta DFS (para el servidor) y ruta local (para el cliente)"""
-        # --- DFS PATH ---
         if arg.startswith("/"):
             dfs_path = os.path.normpath(arg).replace("\\", "/")
         else:
             dfs_path = os.path.normpath(os.path.join(self.cwd, arg)).replace("\\", "/")
-
         if not dfs_path.startswith("/"):
-            dfs_path = "/" + dfs_path  # DFS siempre arranca con /
-
-        # --- LOCAL PATH ---
-        # quitar solo el primer slash inicial
-        local_path = dfs_path.lstrip("/")  
-
+            dfs_path = "/" + dfs_path
+        local_path = dfs_path.lstrip("/")
         return dfs_path, local_path
     
     # -------------------------
     # Utilidades
     # -------------------------
+    def do_login(self, arg):
+        """
+        Iniciar sesión o reautenticar al usuario: login <usuario> <contraseña>
+        """
+        try:
+            username, password = arg.split()
+        except ValueError:
+            print("Uso: login <usuario> <contraseña>")
+            return
+
+        resp = self.client.login(username, password)
+        if resp.success:
+            self.username = username
+            print(f"Login correcto. Usuario activo: {username}")
+        else:
+            print(f"Login fallido: {resp.message}")
+
+    
     def do_exit(self, arg):
         "Salir del cliente DFS"
         print("Saliendo...")
+        return True
+
+    def ensure_login(self):
+        if not self.client.session_token:
+            print("Debes iniciar sesión primero con: login <usuario> <contraseña>")
+            return False
         return True
 
 

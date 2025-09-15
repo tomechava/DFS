@@ -6,6 +6,9 @@ package dfs;
 //  Servicio NameNode <-> Cliente
 // ===========================================================
 service NameNodeService {
+  // Login inicial con usuario y contraseña
+  rpc Login (LoginRequest) returns (LoginResponse);
+
   // Subir un archivo: cliente indica nombre y tamaño, NN responde con asignación de bloques
   rpc PutFile (PutFileRequest) returns (PutFileResponse);
 
@@ -21,8 +24,8 @@ service NameNodeService {
   // Consulta de réplicas para un bloque
   rpc GetReplicas (ReplicaRequest) returns (ReplicaResponse);
 
+  // Manejo de directorios
   rpc Mkdir (MkdirRequest) returns (MkdirResponse);
-  
   rpc Rmdir (RmdirRequest) returns (RmdirResponse);
 }
 
@@ -30,13 +33,8 @@ service NameNodeService {
 //  Servicio Cliente <-> DataNode
 // ===========================================================
 service DataNodeService {
-  // Subir un bloque a un DataNode
   rpc UploadBlock (BlockUploadRequest) returns (BlockUploadResponse);
-
-  // Descargar un bloque desde un DataNode
   rpc DownloadBlock (BlockDownloadRequest) returns (BlockDownloadResponse);
-
-  // Replicación de bloques entre DataNodes
   rpc ReplicateBlock (BlockReplicationRequest) returns (BlockReplicationResponse);
 }
 
@@ -44,13 +42,8 @@ service DataNodeService {
 //  Servicio interno NameNode <-> DataNodes (Cluster Management)
 // ===========================================================
 service ClusterService {
-  // Registro inicial de un DataNode
   rpc RegisterDataNode (RegisterDataNodeRequest) returns (RegisterDataNodeResponse);
-
-  // Heartbeat: DataNode avisa que sigue activo
   rpc Heartbeat (HeartbeatRequest) returns (HeartbeatResponse);
-
-  // Reporte de bloques almacenados
   rpc ReportBlock (ReportBlockRequest) returns (ReportBlockResponse);
 }
 
@@ -58,21 +51,33 @@ service ClusterService {
 //  MENSAJES
 // ===========================================================
 
+// ---------- Autenticación ----------
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  bool success = 1;
+  string message = 2;
+  string session_token = 3;
+}
+
 // ---------- Cliente <-> NameNode ----------
 message PutFileRequest {
   string username = 1;
-  string password = 2;
+  string session_token = 2;
   string filename = 3;
-  int64 filesize = 4;  // en bytes
+  int64 filesize = 4;
 }
 
 message PutFileResponse {
-  repeated BlockLocation blocks = 1; // Lista de bloques y DataNodes asignados
+  repeated BlockLocation blocks = 1;
 }
 
 message GetFileRequest {
   string username = 1;
-  string password = 2;
+  string session_token = 2;
   string filename = 3;
 }
 
@@ -82,7 +87,7 @@ message GetFileResponse {
 
 message ListFilesRequest {
   string username = 1;
-  string password = 2;
+  string session_token = 2;
 }
 
 message ListFilesResponse {
@@ -91,7 +96,7 @@ message ListFilesResponse {
 
 message RemoveFileRequest {
   string username = 1;
-  string password = 2;
+  string session_token = 2;
   string filename = 3;
 }
 
@@ -110,7 +115,8 @@ message ReplicaResponse {
 
 message MkdirRequest {
   string username = 1;
-  string path = 2;
+  string session_token = 2;
+  string path = 3;
 }
 
 message MkdirResponse {
@@ -120,7 +126,8 @@ message MkdirResponse {
 
 message RmdirRequest {
   string username = 1;
-  string path = 2;
+  string session_token = 2;
+  string path = 3;
 }
 
 message RmdirResponse {
@@ -132,7 +139,7 @@ message RmdirResponse {
 message BlockUploadRequest {
   int64 block_id = 1;
   string filename = 2;
-  bytes data = 3; // contenido del bloque
+  bytes data = 3;
 }
 
 message BlockUploadResponse {
@@ -174,7 +181,6 @@ message ReportBlockRequest {
   string ip_address = 2;
   int32 port = 3;
   repeated BlockReport blocks = 4;
-
 }
 
 message ReportBlockResponse {
@@ -189,11 +195,10 @@ message BlockReport {
 // ---------- Estructuras comunes ----------
 message BlockLocation {
   int64 block_id = 1;
-  string primary_address = 2;            // Datanode primario (el que recibe del cliente)
-  repeated string replica_addresses = 3;  // Direcciones de réplicas (opcional para cliente)
-  int32 block_index=4;
+  string primary_address = 2;
+  repeated string replica_addresses = 3;
+  int32 block_index = 4;
 }
-
 
 // ---------- Datanodes <-> DataNodes ----------
 message BlockReplicationRequest {

@@ -20,6 +20,37 @@ public final class NameNodeServiceGrpc {
   public static final java.lang.String SERVICE_NAME = "dfs.NameNodeService";
 
   // Static method descriptors that strictly reflect the proto.
+  private static volatile io.grpc.MethodDescriptor<dfs.Dfs.LoginRequest,
+      dfs.Dfs.LoginResponse> getLoginMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "Login",
+      requestType = dfs.Dfs.LoginRequest.class,
+      responseType = dfs.Dfs.LoginResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<dfs.Dfs.LoginRequest,
+      dfs.Dfs.LoginResponse> getLoginMethod() {
+    io.grpc.MethodDescriptor<dfs.Dfs.LoginRequest, dfs.Dfs.LoginResponse> getLoginMethod;
+    if ((getLoginMethod = NameNodeServiceGrpc.getLoginMethod) == null) {
+      synchronized (NameNodeServiceGrpc.class) {
+        if ((getLoginMethod = NameNodeServiceGrpc.getLoginMethod) == null) {
+          NameNodeServiceGrpc.getLoginMethod = getLoginMethod =
+              io.grpc.MethodDescriptor.<dfs.Dfs.LoginRequest, dfs.Dfs.LoginResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Login"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  dfs.Dfs.LoginRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  dfs.Dfs.LoginResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new NameNodeServiceMethodDescriptorSupplier("Login"))
+              .build();
+        }
+      }
+    }
+    return getLoginMethod;
+  }
+
   private static volatile io.grpc.MethodDescriptor<dfs.Dfs.PutFileRequest,
       dfs.Dfs.PutFileResponse> getPutFileMethod;
 
@@ -292,6 +323,16 @@ public final class NameNodeServiceGrpc {
 
     /**
      * <pre>
+     * Login inicial con usuario y contraseña
+     * </pre>
+     */
+    default void login(dfs.Dfs.LoginRequest request,
+        io.grpc.stub.StreamObserver<dfs.Dfs.LoginResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getLoginMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
      * Subir un archivo: cliente indica nombre y tamaño, NN responde con asignación de bloques
      * </pre>
      */
@@ -341,6 +382,9 @@ public final class NameNodeServiceGrpc {
     }
 
     /**
+     * <pre>
+     * Manejo de directorios
+     * </pre>
      */
     default void mkdir(dfs.Dfs.MkdirRequest request,
         io.grpc.stub.StreamObserver<dfs.Dfs.MkdirResponse> responseObserver) {
@@ -390,6 +434,17 @@ public final class NameNodeServiceGrpc {
     protected NameNodeServiceStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new NameNodeServiceStub(channel, callOptions);
+    }
+
+    /**
+     * <pre>
+     * Login inicial con usuario y contraseña
+     * </pre>
+     */
+    public void login(dfs.Dfs.LoginRequest request,
+        io.grpc.stub.StreamObserver<dfs.Dfs.LoginResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getLoginMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -448,6 +503,9 @@ public final class NameNodeServiceGrpc {
     }
 
     /**
+     * <pre>
+     * Manejo de directorios
+     * </pre>
      */
     public void mkdir(dfs.Dfs.MkdirRequest request,
         io.grpc.stub.StreamObserver<dfs.Dfs.MkdirResponse> responseObserver) {
@@ -483,6 +541,16 @@ public final class NameNodeServiceGrpc {
     protected NameNodeServiceBlockingStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new NameNodeServiceBlockingStub(channel, callOptions);
+    }
+
+    /**
+     * <pre>
+     * Login inicial con usuario y contraseña
+     * </pre>
+     */
+    public dfs.Dfs.LoginResponse login(dfs.Dfs.LoginRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getLoginMethod(), getCallOptions(), request);
     }
 
     /**
@@ -536,6 +604,9 @@ public final class NameNodeServiceGrpc {
     }
 
     /**
+     * <pre>
+     * Manejo de directorios
+     * </pre>
      */
     public dfs.Dfs.MkdirResponse mkdir(dfs.Dfs.MkdirRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
@@ -569,6 +640,17 @@ public final class NameNodeServiceGrpc {
     protected NameNodeServiceFutureStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new NameNodeServiceFutureStub(channel, callOptions);
+    }
+
+    /**
+     * <pre>
+     * Login inicial con usuario y contraseña
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<dfs.Dfs.LoginResponse> login(
+        dfs.Dfs.LoginRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getLoginMethod(), getCallOptions()), request);
     }
 
     /**
@@ -627,6 +709,9 @@ public final class NameNodeServiceGrpc {
     }
 
     /**
+     * <pre>
+     * Manejo de directorios
+     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<dfs.Dfs.MkdirResponse> mkdir(
         dfs.Dfs.MkdirRequest request) {
@@ -643,13 +728,14 @@ public final class NameNodeServiceGrpc {
     }
   }
 
-  private static final int METHODID_PUT_FILE = 0;
-  private static final int METHODID_GET_FILE = 1;
-  private static final int METHODID_LIST_FILES = 2;
-  private static final int METHODID_REMOVE_FILE = 3;
-  private static final int METHODID_GET_REPLICAS = 4;
-  private static final int METHODID_MKDIR = 5;
-  private static final int METHODID_RMDIR = 6;
+  private static final int METHODID_LOGIN = 0;
+  private static final int METHODID_PUT_FILE = 1;
+  private static final int METHODID_GET_FILE = 2;
+  private static final int METHODID_LIST_FILES = 3;
+  private static final int METHODID_REMOVE_FILE = 4;
+  private static final int METHODID_GET_REPLICAS = 5;
+  private static final int METHODID_MKDIR = 6;
+  private static final int METHODID_RMDIR = 7;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -668,6 +754,10 @@ public final class NameNodeServiceGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_LOGIN:
+          serviceImpl.login((dfs.Dfs.LoginRequest) request,
+              (io.grpc.stub.StreamObserver<dfs.Dfs.LoginResponse>) responseObserver);
+          break;
         case METHODID_PUT_FILE:
           serviceImpl.putFile((dfs.Dfs.PutFileRequest) request,
               (io.grpc.stub.StreamObserver<dfs.Dfs.PutFileResponse>) responseObserver);
@@ -714,6 +804,13 @@ public final class NameNodeServiceGrpc {
 
   public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
     return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getLoginMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              dfs.Dfs.LoginRequest,
+              dfs.Dfs.LoginResponse>(
+                service, METHODID_LOGIN)))
         .addMethod(
           getPutFileMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
@@ -811,6 +908,7 @@ public final class NameNodeServiceGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new NameNodeServiceFileDescriptorSupplier())
+              .addMethod(getLoginMethod())
               .addMethod(getPutFileMethod())
               .addMethod(getGetFileMethod())
               .addMethod(getListFilesMethod())

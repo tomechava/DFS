@@ -167,9 +167,6 @@ public final class ClusterServiceGrpc {
   public interface AsyncService {
 
     /**
-     * <pre>
-     * Registro inicial de un DataNode
-     * </pre>
      */
     default void registerDataNode(dfs.Dfs.RegisterDataNodeRequest request,
         io.grpc.stub.StreamObserver<dfs.Dfs.RegisterDataNodeResponse> responseObserver) {
@@ -177,9 +174,6 @@ public final class ClusterServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Heartbeat: DataNode avisa que sigue activo
-     * </pre>
      */
     default void heartbeat(dfs.Dfs.HeartbeatRequest request,
         io.grpc.stub.StreamObserver<dfs.Dfs.HeartbeatResponse> responseObserver) {
@@ -187,9 +181,6 @@ public final class ClusterServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Reporte de bloques almacenados
-     * </pre>
      */
     default void reportBlock(dfs.Dfs.ReportBlockRequest request,
         io.grpc.stub.StreamObserver<dfs.Dfs.ReportBlockResponse> responseObserver) {
@@ -235,9 +226,6 @@ public final class ClusterServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Registro inicial de un DataNode
-     * </pre>
      */
     public void registerDataNode(dfs.Dfs.RegisterDataNodeRequest request,
         io.grpc.stub.StreamObserver<dfs.Dfs.RegisterDataNodeResponse> responseObserver) {
@@ -246,9 +234,6 @@ public final class ClusterServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Heartbeat: DataNode avisa que sigue activo
-     * </pre>
      */
     public void heartbeat(dfs.Dfs.HeartbeatRequest request,
         io.grpc.stub.StreamObserver<dfs.Dfs.HeartbeatResponse> responseObserver) {
@@ -257,9 +242,6 @@ public final class ClusterServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Reporte de bloques almacenados
-     * </pre>
      */
     public void reportBlock(dfs.Dfs.ReportBlockRequest request,
         io.grpc.stub.StreamObserver<dfs.Dfs.ReportBlockResponse> responseObserver) {
@@ -290,9 +272,6 @@ public final class ClusterServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Registro inicial de un DataNode
-     * </pre>
      */
     public dfs.Dfs.RegisterDataNodeResponse registerDataNode(dfs.Dfs.RegisterDataNodeRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
@@ -300,9 +279,6 @@ public final class ClusterServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Heartbeat: DataNode avisa que sigue activo
-     * </pre>
      */
     public dfs.Dfs.HeartbeatResponse heartbeat(dfs.Dfs.HeartbeatRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
@@ -310,9 +286,6 @@ public final class ClusterServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Reporte de bloques almacenados
-     * </pre>
      */
     public dfs.Dfs.ReportBlockResponse reportBlock(dfs.Dfs.ReportBlockRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
@@ -342,9 +315,6 @@ public final class ClusterServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Registro inicial de un DataNode
-     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<dfs.Dfs.RegisterDataNodeResponse> registerDataNode(
         dfs.Dfs.RegisterDataNodeRequest request) {
@@ -353,9 +323,6 @@ public final class ClusterServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Heartbeat: DataNode avisa que sigue activo
-     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<dfs.Dfs.HeartbeatResponse> heartbeat(
         dfs.Dfs.HeartbeatRequest request) {
@@ -364,9 +331,6 @@ public final class ClusterServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Reporte de bloques almacenados
-     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<dfs.Dfs.ReportBlockResponse> reportBlock(
         dfs.Dfs.ReportBlockRequest request) {

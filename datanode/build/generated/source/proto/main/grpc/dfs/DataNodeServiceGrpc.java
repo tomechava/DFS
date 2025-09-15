@@ -167,9 +167,6 @@ public final class DataNodeServiceGrpc {
   public interface AsyncService {
 
     /**
-     * <pre>
-     * Subir un bloque a un DataNode
-     * </pre>
      */
     default void uploadBlock(dfs.Dfs.BlockUploadRequest request,
         io.grpc.stub.StreamObserver<dfs.Dfs.BlockUploadResponse> responseObserver) {
@@ -177,9 +174,6 @@ public final class DataNodeServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Descargar un bloque desde un DataNode
-     * </pre>
      */
     default void downloadBlock(dfs.Dfs.BlockDownloadRequest request,
         io.grpc.stub.StreamObserver<dfs.Dfs.BlockDownloadResponse> responseObserver) {
@@ -187,9 +181,6 @@ public final class DataNodeServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Replicación de bloques entre DataNodes
-     * </pre>
      */
     default void replicateBlock(dfs.Dfs.BlockReplicationRequest request,
         io.grpc.stub.StreamObserver<dfs.Dfs.BlockReplicationResponse> responseObserver) {
@@ -235,9 +226,6 @@ public final class DataNodeServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Subir un bloque a un DataNode
-     * </pre>
      */
     public void uploadBlock(dfs.Dfs.BlockUploadRequest request,
         io.grpc.stub.StreamObserver<dfs.Dfs.BlockUploadResponse> responseObserver) {
@@ -246,9 +234,6 @@ public final class DataNodeServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Descargar un bloque desde un DataNode
-     * </pre>
      */
     public void downloadBlock(dfs.Dfs.BlockDownloadRequest request,
         io.grpc.stub.StreamObserver<dfs.Dfs.BlockDownloadResponse> responseObserver) {
@@ -257,9 +242,6 @@ public final class DataNodeServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Replicación de bloques entre DataNodes
-     * </pre>
      */
     public void replicateBlock(dfs.Dfs.BlockReplicationRequest request,
         io.grpc.stub.StreamObserver<dfs.Dfs.BlockReplicationResponse> responseObserver) {
@@ -290,9 +272,6 @@ public final class DataNodeServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Subir un bloque a un DataNode
-     * </pre>
      */
     public dfs.Dfs.BlockUploadResponse uploadBlock(dfs.Dfs.BlockUploadRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
@@ -300,9 +279,6 @@ public final class DataNodeServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Descargar un bloque desde un DataNode
-     * </pre>
      */
     public dfs.Dfs.BlockDownloadResponse downloadBlock(dfs.Dfs.BlockDownloadRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
@@ -310,9 +286,6 @@ public final class DataNodeServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Replicación de bloques entre DataNodes
-     * </pre>
      */
     public dfs.Dfs.BlockReplicationResponse replicateBlock(dfs.Dfs.BlockReplicationRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
@@ -342,9 +315,6 @@ public final class DataNodeServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Subir un bloque a un DataNode
-     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<dfs.Dfs.BlockUploadResponse> uploadBlock(
         dfs.Dfs.BlockUploadRequest request) {
@@ -353,9 +323,6 @@ public final class DataNodeServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Descargar un bloque desde un DataNode
-     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<dfs.Dfs.BlockDownloadResponse> downloadBlock(
         dfs.Dfs.BlockDownloadRequest request) {
@@ -364,9 +331,6 @@ public final class DataNodeServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Replicación de bloques entre DataNodes
-     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<dfs.Dfs.BlockReplicationResponse> replicateBlock(
         dfs.Dfs.BlockReplicationRequest request) {

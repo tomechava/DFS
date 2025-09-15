@@ -23,31 +23,49 @@ class DFSClient:
         self.namenode_addr = namenode_addr
         channel = grpc.insecure_channel(namenode_addr)
         self.namenode_stub = dfs_pb2_grpc.NameNodeServiceStub(channel)
+        self.session_token = None
+        self.username = None
 
+    # --- Login ---
+    def login(self, username, password):
+        req = dfs_pb2.LoginRequest(username=username, password=password)
+        resp = self.namenode_stub.Login(req)
+        if resp.success:
+            self.username = username
+            self.session_token = resp.session_token
+        return resp
+    
     # --- Funciones hacia el NameNode (NameNodeService) ---
-    def putFile(self, username, password, filename):
+    def putFile(self, filename):
         filesize = os.path.getsize(filename)
         req = dfs_pb2.PutFileRequest(
-            username=username,
-            password=password,
+            username=self.username,
+            session_token=self.session_token,
             filename=os.path.basename(filename),
             filesize=filesize,
         )
         return self.namenode_stub.PutFile(req)
 
-    def getFile(self, username, password, filename):
+    def getFile(self, filename):
         req = dfs_pb2.GetFileRequest(
-            username=username, password=password, filename=filename
+            username=self.username,
+            session_token=self.session_token,
+            filename=filename,
         )
         return self.namenode_stub.GetFile(req)
 
-    def list_files(self, username, password):
-        req = dfs_pb2.ListFilesRequest(username=username, password=password)
+    def list_files(self):
+        req = dfs_pb2.ListFilesRequest(
+            username=self.username,
+            session_token=self.session_token,
+        )
         return self.namenode_stub.ListFiles(req)
 
-    def remove_file(self, username, password, filename):
+    def remove_file(self, filename):
         req = dfs_pb2.RemoveFileRequest(
-            username=username, password=password, filename=filename
+            username=self.username,
+            session_token=self.session_token,
+            filename=filename,
         )
         return self.namenode_stub.RemoveFile(req)
 
@@ -82,12 +100,12 @@ class DFSClient:
         return resp
 
     # --- Operaciones de alto nivel (usan ambos) ---
-    def putFile_and_upload(self, username, password, local_path):
+    def putFile_and_upload(self, local_path):
         """
         Orquesta: pide asignación al NameNode y sube los bloques a DataNodes.
         IMPORTANTE: ordena put_resp.blocks por block_index antes de leer y subir.
         """
-        put_resp = self.putFile(username, password, local_path)
+        put_resp = self.putFile(local_path)
 
         filesize = os.path.getsize(local_path)
         expected_parts = math.ceil(filesize / BLOCK_SIZE) if filesize > 0 else 1
@@ -116,12 +134,12 @@ class DFSClient:
 
         return "[DONE] Archivo subido."
 
-    def getFile_and_download(self, username, password, filename, output_path):
+    def getFile_and_download(self, filename, output_path):
         """
         Orquesta: pide mapa al NameNode y reconstruye el archivo desde DataNodes.
         Asegura orden correcto por block_index y valida que cada bloque tenga bytes.
         """
-        get_resp = self.getFile(username, password, filename)
+        get_resp = self.getFile(filename)
 
         if not get_resp.blocks:
             raise RuntimeError(f"[ERROR cliente] NameNode no devolvió bloques para {filename}")
@@ -146,19 +164,23 @@ class DFSClient:
 
         return f"[DONE] Archivo reconstruido en {output_path}"
 
-    def mkdir(self, username, password, path):
-        req = dfs_pb2.MkdirRequest(username=username, path=path)
+    def mkdir(self, path):
+        req = dfs_pb2.MkdirRequest(username=self.username,
+                                   session_token=self.session_token,
+                                   path=path)
         resp = self.namenode_stub.Mkdir(req)
         if resp.success:
             try:
                 os.makedirs(path, exist_ok=True)
                 print(f"Directorio local '{path}' creado")
             except Exception as e:
-                print(f"❌ Error al crear directorio local: {e}")
+                print(f"Error al crear directorio local: {e}")
         return resp
 
-    def rmdir(self, username, password, path):
-        req = dfs_pb2.RmdirRequest(username=username, path=path)
+    def rmdir(self, path):
+        req = dfs_pb2.RmdirRequest(username=self.username,
+                                   session_token=self.session_token,
+                                   path=path)
         resp = self.namenode_stub.Rmdir(req)
         if resp.success:
             try:

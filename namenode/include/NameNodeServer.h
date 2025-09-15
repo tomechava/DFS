@@ -14,6 +14,10 @@ public:
     // metadata: puntero al gestor de metadatos (vital que viva mientras el servicio exista)
     explicit NameNodeServiceImpl(MetadataManager* metadata);
 
+    grpc::Status Login(grpc::ServerContext* context,
+                       const dfs::LoginRequest* request,
+                       dfs::LoginResponse* response) override;
+
     grpc::Status PutFile(grpc::ServerContext* context,
                          const dfs::PutFileRequest* request,
                          dfs::PutFileResponse* response) override;
@@ -43,4 +47,9 @@ public:
                        dfs::RmdirResponse* response) override;
 private:
     MetadataManager* metadata;
+
+    // Helper para validar token en todas las llamadas
+    bool checkAuth(const std::string& username,
+                   const std::string& token,
+                   std::string* errorMsg);
 };

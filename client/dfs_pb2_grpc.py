@@ -37,6 +37,11 @@ class NameNodeServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
+        self.Login = channel.unary_unary(
+                '/dfs.NameNodeService/Login',
+                request_serializer=dfs__pb2.LoginRequest.SerializeToString,
+                response_deserializer=dfs__pb2.LoginResponse.FromString,
+                _registered_method=True)
         self.PutFile = channel.unary_unary(
                 '/dfs.NameNodeService/PutFile',
                 request_serializer=dfs__pb2.PutFileRequest.SerializeToString,
@@ -80,6 +85,13 @@ class NameNodeServiceServicer(object):
     ===========================================================
     """
 
+    def Login(self, request, context):
+        """Login inicial con usuario y contraseña
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def PutFile(self, request, context):
         """Subir un archivo: cliente indica nombre y tamaño, NN responde con asignación de bloques
         """
@@ -116,7 +128,8 @@ class NameNodeServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def Mkdir(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Manejo de directorios
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -130,6 +143,11 @@ class NameNodeServiceServicer(object):
 
 def add_NameNodeServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
+            'Login': grpc.unary_unary_rpc_method_handler(
+                    servicer.Login,
+                    request_deserializer=dfs__pb2.LoginRequest.FromString,
+                    response_serializer=dfs__pb2.LoginResponse.SerializeToString,
+            ),
             'PutFile': grpc.unary_unary_rpc_method_handler(
                     servicer.PutFile,
                     request_deserializer=dfs__pb2.PutFileRequest.FromString,
@@ -178,6 +196,33 @@ class NameNodeService(object):
     Servicio NameNode <-> Cliente
     ===========================================================
     """
+
+    @staticmethod
+    def Login(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/dfs.NameNodeService/Login',
+            dfs__pb2.LoginRequest.SerializeToString,
+            dfs__pb2.LoginResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def PutFile(request,
@@ -405,22 +450,19 @@ class DataNodeServiceServicer(object):
     """
 
     def UploadBlock(self, request, context):
-        """Subir un bloque a un DataNode
-        """
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def DownloadBlock(self, request, context):
-        """Descargar un bloque desde un DataNode
-        """
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def ReplicateBlock(self, request, context):
-        """Replicación de bloques entre DataNodes
-        """
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -575,22 +617,19 @@ class ClusterServiceServicer(object):
     """
 
     def RegisterDataNode(self, request, context):
-        """Registro inicial de un DataNode
-        """
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def Heartbeat(self, request, context):
-        """Heartbeat: DataNode avisa que sigue activo
-        """
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def ReportBlock(self, request, context):
-        """Reporte de bloques almacenados
-        """
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')

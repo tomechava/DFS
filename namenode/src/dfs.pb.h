@@ -94,6 +94,12 @@ extern ListFilesRequestDefaultTypeInternal _ListFilesRequest_default_instance_;
 class ListFilesResponse;
 struct ListFilesResponseDefaultTypeInternal;
 extern ListFilesResponseDefaultTypeInternal _ListFilesResponse_default_instance_;
+class LoginRequest;
+struct LoginRequestDefaultTypeInternal;
+extern LoginRequestDefaultTypeInternal _LoginRequest_default_instance_;
+class LoginResponse;
+struct LoginResponseDefaultTypeInternal;
+extern LoginResponseDefaultTypeInternal _LoginResponse_default_instance_;
 class MkdirRequest;
 struct MkdirRequestDefaultTypeInternal;
 extern MkdirRequestDefaultTypeInternal _MkdirRequest_default_instance_;
@@ -208,7 +214,7 @@ class RmdirResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const RmdirResponse*>(
         &_RmdirResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 13;
+  static constexpr int kIndexInFileMessages = 15;
   friend void swap(RmdirResponse& a, RmdirResponse& b) { a.Swap(&b); }
   inline void Swap(RmdirResponse* other) {
     if (other == this) return;
@@ -416,7 +422,7 @@ class RmdirRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const RmdirRequest*>(
         &_RmdirRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 12;
+  static constexpr int kIndexInFileMessages = 14;
   friend void swap(RmdirRequest& a, RmdirRequest& b) { a.Swap(&b); }
   inline void Swap(RmdirRequest* other) {
     if (other == this) return;
@@ -504,7 +510,8 @@ class RmdirRequest final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kUsernameFieldNumber = 1,
-    kPathFieldNumber = 2,
+    kSessionTokenFieldNumber = 2,
+    kPathFieldNumber = 3,
   };
   // string username = 1;
   void clear_username() ;
@@ -522,7 +529,23 @@ class RmdirRequest final : public ::google::protobuf::Message
   std::string* _internal_mutable_username();
 
   public:
-  // string path = 2;
+  // string session_token = 2;
+  void clear_session_token() ;
+  const std::string& session_token() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_session_token(Arg_&& arg, Args_... args);
+  std::string* mutable_session_token();
+  PROTOBUF_NODISCARD std::string* release_session_token();
+  void set_allocated_session_token(std::string* value);
+
+  private:
+  const std::string& _internal_session_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_session_token(
+      const std::string& value);
+  std::string* _internal_mutable_session_token();
+
+  public:
+  // string path = 3;
   void clear_path() ;
   const std::string& path() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -543,8 +566,8 @@ class RmdirRequest final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 0,
-      37, 2>
+      2, 3, 0,
+      50, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -562,6 +585,7 @@ class RmdirRequest final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const RmdirRequest& from_msg);
     ::google::protobuf::internal::ArenaStringPtr username_;
+    ::google::protobuf::internal::ArenaStringPtr session_token_;
     ::google::protobuf::internal::ArenaStringPtr path_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -630,7 +654,7 @@ class ReportBlockResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const ReportBlockResponse*>(
         &_ReportBlockResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 23;
+  static constexpr int kIndexInFileMessages = 25;
   friend void swap(ReportBlockResponse& a, ReportBlockResponse& b) { a.Swap(&b); }
   inline void Swap(ReportBlockResponse* other) {
     if (other == this) return;
@@ -820,7 +844,7 @@ class ReplicaResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const ReplicaResponse*>(
         &_ReplicaResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 9;
+  static constexpr int kIndexInFileMessages = 11;
   friend void swap(ReplicaResponse& a, ReplicaResponse& b) { a.Swap(&b); }
   inline void Swap(ReplicaResponse* other) {
     if (other == this) return;
@@ -1022,7 +1046,7 @@ class ReplicaRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const ReplicaRequest*>(
         &_ReplicaRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 8;
+  static constexpr int kIndexInFileMessages = 10;
   friend void swap(ReplicaRequest& a, ReplicaRequest& b) { a.Swap(&b); }
   inline void Swap(ReplicaRequest* other) {
     if (other == this) return;
@@ -1212,7 +1236,7 @@ class RemoveFileResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const RemoveFileResponse*>(
         &_RemoveFileResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 7;
+  static constexpr int kIndexInFileMessages = 9;
   friend void swap(RemoveFileResponse& a, RemoveFileResponse& b) { a.Swap(&b); }
   inline void Swap(RemoveFileResponse* other) {
     if (other == this) return;
@@ -1420,7 +1444,7 @@ class RemoveFileRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const RemoveFileRequest*>(
         &_RemoveFileRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 6;
+  static constexpr int kIndexInFileMessages = 8;
   friend void swap(RemoveFileRequest& a, RemoveFileRequest& b) { a.Swap(&b); }
   inline void Swap(RemoveFileRequest* other) {
     if (other == this) return;
@@ -1508,7 +1532,7 @@ class RemoveFileRequest final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kUsernameFieldNumber = 1,
-    kPasswordFieldNumber = 2,
+    kSessionTokenFieldNumber = 2,
     kFilenameFieldNumber = 3,
   };
   // string username = 1;
@@ -1527,20 +1551,20 @@ class RemoveFileRequest final : public ::google::protobuf::Message
   std::string* _internal_mutable_username();
 
   public:
-  // string password = 2;
-  void clear_password() ;
-  const std::string& password() const;
+  // string session_token = 2;
+  void clear_session_token() ;
+  const std::string& session_token() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_password(Arg_&& arg, Args_... args);
-  std::string* mutable_password();
-  PROTOBUF_NODISCARD std::string* release_password();
-  void set_allocated_password(std::string* value);
+  void set_session_token(Arg_&& arg, Args_... args);
+  std::string* mutable_session_token();
+  PROTOBUF_NODISCARD std::string* release_session_token();
+  void set_allocated_session_token(std::string* value);
 
   private:
-  const std::string& _internal_password() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_password(
+  const std::string& _internal_session_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_session_token(
       const std::string& value);
-  std::string* _internal_mutable_password();
+  std::string* _internal_mutable_session_token();
 
   public:
   // string filename = 3;
@@ -1565,7 +1589,7 @@ class RemoveFileRequest final : public ::google::protobuf::Message
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       2, 3, 0,
-      54, 2>
+      59, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -1583,7 +1607,7 @@ class RemoveFileRequest final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const RemoveFileRequest& from_msg);
     ::google::protobuf::internal::ArenaStringPtr username_;
-    ::google::protobuf::internal::ArenaStringPtr password_;
+    ::google::protobuf::internal::ArenaStringPtr session_token_;
     ::google::protobuf::internal::ArenaStringPtr filename_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -1652,7 +1676,7 @@ class RegisterDataNodeResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const RegisterDataNodeResponse*>(
         &_RegisterDataNodeResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 19;
+  static constexpr int kIndexInFileMessages = 21;
   friend void swap(RegisterDataNodeResponse& a, RegisterDataNodeResponse& b) { a.Swap(&b); }
   inline void Swap(RegisterDataNodeResponse* other) {
     if (other == this) return;
@@ -1842,7 +1866,7 @@ class RegisterDataNodeRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const RegisterDataNodeRequest*>(
         &_RegisterDataNodeRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 18;
+  static constexpr int kIndexInFileMessages = 20;
   friend void swap(RegisterDataNodeRequest& a, RegisterDataNodeRequest& b) { a.Swap(&b); }
   inline void Swap(RegisterDataNodeRequest* other) {
     if (other == this) return;
@@ -2068,7 +2092,7 @@ class PutFileRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const PutFileRequest*>(
         &_PutFileRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 0;
+  static constexpr int kIndexInFileMessages = 2;
   friend void swap(PutFileRequest& a, PutFileRequest& b) { a.Swap(&b); }
   inline void Swap(PutFileRequest* other) {
     if (other == this) return;
@@ -2156,7 +2180,7 @@ class PutFileRequest final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kUsernameFieldNumber = 1,
-    kPasswordFieldNumber = 2,
+    kSessionTokenFieldNumber = 2,
     kFilenameFieldNumber = 3,
     kFilesizeFieldNumber = 4,
   };
@@ -2176,20 +2200,20 @@ class PutFileRequest final : public ::google::protobuf::Message
   std::string* _internal_mutable_username();
 
   public:
-  // string password = 2;
-  void clear_password() ;
-  const std::string& password() const;
+  // string session_token = 2;
+  void clear_session_token() ;
+  const std::string& session_token() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_password(Arg_&& arg, Args_... args);
-  std::string* mutable_password();
-  PROTOBUF_NODISCARD std::string* release_password();
-  void set_allocated_password(std::string* value);
+  void set_session_token(Arg_&& arg, Args_... args);
+  std::string* mutable_session_token();
+  PROTOBUF_NODISCARD std::string* release_session_token();
+  void set_allocated_session_token(std::string* value);
 
   private:
-  const std::string& _internal_password() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_password(
+  const std::string& _internal_session_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_session_token(
       const std::string& value);
-  std::string* _internal_mutable_password();
+  std::string* _internal_mutable_session_token();
 
   public:
   // string filename = 3;
@@ -2224,7 +2248,7 @@ class PutFileRequest final : public ::google::protobuf::Message
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       2, 4, 0,
-      51, 2>
+      56, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -2242,7 +2266,7 @@ class PutFileRequest final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const PutFileRequest& from_msg);
     ::google::protobuf::internal::ArenaStringPtr username_;
-    ::google::protobuf::internal::ArenaStringPtr password_;
+    ::google::protobuf::internal::ArenaStringPtr session_token_;
     ::google::protobuf::internal::ArenaStringPtr filename_;
     ::int64_t filesize_;
     ::google::protobuf::internal::CachedSize _cached_size_;
@@ -2312,7 +2336,7 @@ class MkdirResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const MkdirResponse*>(
         &_MkdirResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 11;
+  static constexpr int kIndexInFileMessages = 13;
   friend void swap(MkdirResponse& a, MkdirResponse& b) { a.Swap(&b); }
   inline void Swap(MkdirResponse* other) {
     if (other == this) return;
@@ -2520,7 +2544,7 @@ class MkdirRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const MkdirRequest*>(
         &_MkdirRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 10;
+  static constexpr int kIndexInFileMessages = 12;
   friend void swap(MkdirRequest& a, MkdirRequest& b) { a.Swap(&b); }
   inline void Swap(MkdirRequest* other) {
     if (other == this) return;
@@ -2608,7 +2632,8 @@ class MkdirRequest final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kUsernameFieldNumber = 1,
-    kPathFieldNumber = 2,
+    kSessionTokenFieldNumber = 2,
+    kPathFieldNumber = 3,
   };
   // string username = 1;
   void clear_username() ;
@@ -2626,7 +2651,23 @@ class MkdirRequest final : public ::google::protobuf::Message
   std::string* _internal_mutable_username();
 
   public:
-  // string path = 2;
+  // string session_token = 2;
+  void clear_session_token() ;
+  const std::string& session_token() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_session_token(Arg_&& arg, Args_... args);
+  std::string* mutable_session_token();
+  PROTOBUF_NODISCARD std::string* release_session_token();
+  void set_allocated_session_token(std::string* value);
+
+  private:
+  const std::string& _internal_session_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_session_token(
+      const std::string& value);
+  std::string* _internal_mutable_session_token();
+
+  public:
+  // string path = 3;
   void clear_path() ;
   const std::string& path() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -2647,8 +2688,8 @@ class MkdirRequest final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 0,
-      37, 2>
+      2, 3, 0,
+      50, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -2666,7 +2707,448 @@ class MkdirRequest final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const MkdirRequest& from_msg);
     ::google::protobuf::internal::ArenaStringPtr username_;
+    ::google::protobuf::internal::ArenaStringPtr session_token_;
     ::google::protobuf::internal::ArenaStringPtr path_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_dfs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class LoginResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:dfs.LoginResponse) */ {
+ public:
+  inline LoginResponse() : LoginResponse(nullptr) {}
+  ~LoginResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(LoginResponse* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(LoginResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR LoginResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline LoginResponse(const LoginResponse& from) : LoginResponse(nullptr, from) {}
+  inline LoginResponse(LoginResponse&& from) noexcept
+      : LoginResponse(nullptr, std::move(from)) {}
+  inline LoginResponse& operator=(const LoginResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline LoginResponse& operator=(LoginResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const LoginResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const LoginResponse* internal_default_instance() {
+    return reinterpret_cast<const LoginResponse*>(
+        &_LoginResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 1;
+  friend void swap(LoginResponse& a, LoginResponse& b) { a.Swap(&b); }
+  inline void Swap(LoginResponse* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(LoginResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  LoginResponse* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<LoginResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const LoginResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const LoginResponse& from) { LoginResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(LoginResponse* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "dfs.LoginResponse"; }
+
+ protected:
+  explicit LoginResponse(::google::protobuf::Arena* arena);
+  LoginResponse(::google::protobuf::Arena* arena, const LoginResponse& from);
+  LoginResponse(::google::protobuf::Arena* arena, LoginResponse&& from) noexcept
+      : LoginResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kMessageFieldNumber = 2,
+    kSessionTokenFieldNumber = 3,
+    kSuccessFieldNumber = 1,
+  };
+  // string message = 2;
+  void clear_message() ;
+  const std::string& message() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_message(Arg_&& arg, Args_... args);
+  std::string* mutable_message();
+  PROTOBUF_NODISCARD std::string* release_message();
+  void set_allocated_message(std::string* value);
+
+  private:
+  const std::string& _internal_message() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_message(
+      const std::string& value);
+  std::string* _internal_mutable_message();
+
+  public:
+  // string session_token = 3;
+  void clear_session_token() ;
+  const std::string& session_token() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_session_token(Arg_&& arg, Args_... args);
+  std::string* mutable_session_token();
+  PROTOBUF_NODISCARD std::string* release_session_token();
+  void set_allocated_session_token(std::string* value);
+
+  private:
+  const std::string& _internal_session_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_session_token(
+      const std::string& value);
+  std::string* _internal_mutable_session_token();
+
+  public:
+  // bool success = 1;
+  void clear_success() ;
+  bool success() const;
+  void set_success(bool value);
+
+  private:
+  bool _internal_success() const;
+  void _internal_set_success(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:dfs.LoginResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 0,
+      46, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const LoginResponse& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr message_;
+    ::google::protobuf::internal::ArenaStringPtr session_token_;
+    bool success_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_dfs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class LoginRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:dfs.LoginRequest) */ {
+ public:
+  inline LoginRequest() : LoginRequest(nullptr) {}
+  ~LoginRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(LoginRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(LoginRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR LoginRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline LoginRequest(const LoginRequest& from) : LoginRequest(nullptr, from) {}
+  inline LoginRequest(LoginRequest&& from) noexcept
+      : LoginRequest(nullptr, std::move(from)) {}
+  inline LoginRequest& operator=(const LoginRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline LoginRequest& operator=(LoginRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const LoginRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const LoginRequest* internal_default_instance() {
+    return reinterpret_cast<const LoginRequest*>(
+        &_LoginRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 0;
+  friend void swap(LoginRequest& a, LoginRequest& b) { a.Swap(&b); }
+  inline void Swap(LoginRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(LoginRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  LoginRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<LoginRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const LoginRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const LoginRequest& from) { LoginRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(LoginRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "dfs.LoginRequest"; }
+
+ protected:
+  explicit LoginRequest(::google::protobuf::Arena* arena);
+  LoginRequest(::google::protobuf::Arena* arena, const LoginRequest& from);
+  LoginRequest(::google::protobuf::Arena* arena, LoginRequest&& from) noexcept
+      : LoginRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kUsernameFieldNumber = 1,
+    kPasswordFieldNumber = 2,
+  };
+  // string username = 1;
+  void clear_username() ;
+  const std::string& username() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_username(Arg_&& arg, Args_... args);
+  std::string* mutable_username();
+  PROTOBUF_NODISCARD std::string* release_username();
+  void set_allocated_username(std::string* value);
+
+  private:
+  const std::string& _internal_username() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_username(
+      const std::string& value);
+  std::string* _internal_mutable_username();
+
+  public:
+  // string password = 2;
+  void clear_password() ;
+  const std::string& password() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_password(Arg_&& arg, Args_... args);
+  std::string* mutable_password();
+  PROTOBUF_NODISCARD std::string* release_password();
+  void set_allocated_password(std::string* value);
+
+  private:
+  const std::string& _internal_password() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_password(
+      const std::string& value);
+  std::string* _internal_mutable_password();
+
+  public:
+  // @@protoc_insertion_point(class_scope:dfs.LoginRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      41, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const LoginRequest& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr username_;
+    ::google::protobuf::internal::ArenaStringPtr password_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -2734,7 +3216,7 @@ class ListFilesResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const ListFilesResponse*>(
         &_ListFilesResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 5;
+  static constexpr int kIndexInFileMessages = 7;
   friend void swap(ListFilesResponse& a, ListFilesResponse& b) { a.Swap(&b); }
   inline void Swap(ListFilesResponse* other) {
     if (other == this) return;
@@ -2936,7 +3418,7 @@ class ListFilesRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const ListFilesRequest*>(
         &_ListFilesRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 4;
+  static constexpr int kIndexInFileMessages = 6;
   friend void swap(ListFilesRequest& a, ListFilesRequest& b) { a.Swap(&b); }
   inline void Swap(ListFilesRequest* other) {
     if (other == this) return;
@@ -3024,7 +3506,7 @@ class ListFilesRequest final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kUsernameFieldNumber = 1,
-    kPasswordFieldNumber = 2,
+    kSessionTokenFieldNumber = 2,
   };
   // string username = 1;
   void clear_username() ;
@@ -3042,20 +3524,20 @@ class ListFilesRequest final : public ::google::protobuf::Message
   std::string* _internal_mutable_username();
 
   public:
-  // string password = 2;
-  void clear_password() ;
-  const std::string& password() const;
+  // string session_token = 2;
+  void clear_session_token() ;
+  const std::string& session_token() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_password(Arg_&& arg, Args_... args);
-  std::string* mutable_password();
-  PROTOBUF_NODISCARD std::string* release_password();
-  void set_allocated_password(std::string* value);
+  void set_session_token(Arg_&& arg, Args_... args);
+  std::string* mutable_session_token();
+  PROTOBUF_NODISCARD std::string* release_session_token();
+  void set_allocated_session_token(std::string* value);
 
   private:
-  const std::string& _internal_password() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_password(
+  const std::string& _internal_session_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_session_token(
       const std::string& value);
-  std::string* _internal_mutable_password();
+  std::string* _internal_mutable_session_token();
 
   public:
   // @@protoc_insertion_point(class_scope:dfs.ListFilesRequest)
@@ -3064,7 +3546,7 @@ class ListFilesRequest final : public ::google::protobuf::Message
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 2, 0,
-      45, 2>
+      50, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -3082,7 +3564,7 @@ class ListFilesRequest final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const ListFilesRequest& from_msg);
     ::google::protobuf::internal::ArenaStringPtr username_;
-    ::google::protobuf::internal::ArenaStringPtr password_;
+    ::google::protobuf::internal::ArenaStringPtr session_token_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -3150,7 +3632,7 @@ class HeartbeatResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const HeartbeatResponse*>(
         &_HeartbeatResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 21;
+  static constexpr int kIndexInFileMessages = 23;
   friend void swap(HeartbeatResponse& a, HeartbeatResponse& b) { a.Swap(&b); }
   inline void Swap(HeartbeatResponse* other) {
     if (other == this) return;
@@ -3340,7 +3822,7 @@ class HeartbeatRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const HeartbeatRequest*>(
         &_HeartbeatRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 20;
+  static constexpr int kIndexInFileMessages = 22;
   friend void swap(HeartbeatRequest& a, HeartbeatRequest& b) { a.Swap(&b); }
   inline void Swap(HeartbeatRequest* other) {
     if (other == this) return;
@@ -3566,7 +4048,7 @@ class GetFileRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const GetFileRequest*>(
         &_GetFileRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 2;
+  static constexpr int kIndexInFileMessages = 4;
   friend void swap(GetFileRequest& a, GetFileRequest& b) { a.Swap(&b); }
   inline void Swap(GetFileRequest* other) {
     if (other == this) return;
@@ -3654,7 +4136,7 @@ class GetFileRequest final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kUsernameFieldNumber = 1,
-    kPasswordFieldNumber = 2,
+    kSessionTokenFieldNumber = 2,
     kFilenameFieldNumber = 3,
   };
   // string username = 1;
@@ -3673,20 +4155,20 @@ class GetFileRequest final : public ::google::protobuf::Message
   std::string* _internal_mutable_username();
 
   public:
-  // string password = 2;
-  void clear_password() ;
-  const std::string& password() const;
+  // string session_token = 2;
+  void clear_session_token() ;
+  const std::string& session_token() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_password(Arg_&& arg, Args_... args);
-  std::string* mutable_password();
-  PROTOBUF_NODISCARD std::string* release_password();
-  void set_allocated_password(std::string* value);
+  void set_session_token(Arg_&& arg, Args_... args);
+  std::string* mutable_session_token();
+  PROTOBUF_NODISCARD std::string* release_session_token();
+  void set_allocated_session_token(std::string* value);
 
   private:
-  const std::string& _internal_password() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_password(
+  const std::string& _internal_session_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_session_token(
       const std::string& value);
-  std::string* _internal_mutable_password();
+  std::string* _internal_mutable_session_token();
 
   public:
   // string filename = 3;
@@ -3711,7 +4193,7 @@ class GetFileRequest final : public ::google::protobuf::Message
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       2, 3, 0,
-      51, 2>
+      56, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -3729,7 +4211,7 @@ class GetFileRequest final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const GetFileRequest& from_msg);
     ::google::protobuf::internal::ArenaStringPtr username_;
-    ::google::protobuf::internal::ArenaStringPtr password_;
+    ::google::protobuf::internal::ArenaStringPtr session_token_;
     ::google::protobuf::internal::ArenaStringPtr filename_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -3798,7 +4280,7 @@ class BlockUploadResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const BlockUploadResponse*>(
         &_BlockUploadResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 15;
+  static constexpr int kIndexInFileMessages = 17;
   friend void swap(BlockUploadResponse& a, BlockUploadResponse& b) { a.Swap(&b); }
   inline void Swap(BlockUploadResponse* other) {
     if (other == this) return;
@@ -3988,7 +4470,7 @@ class BlockUploadRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const BlockUploadRequest*>(
         &_BlockUploadRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 14;
+  static constexpr int kIndexInFileMessages = 16;
   friend void swap(BlockUploadRequest& a, BlockUploadRequest& b) { a.Swap(&b); }
   inline void Swap(BlockUploadRequest* other) {
     if (other == this) return;
@@ -4214,7 +4696,7 @@ class BlockReport final : public ::google::protobuf::Message
     return reinterpret_cast<const BlockReport*>(
         &_BlockReport_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 24;
+  static constexpr int kIndexInFileMessages = 26;
   friend void swap(BlockReport& a, BlockReport& b) { a.Swap(&b); }
   inline void Swap(BlockReport* other) {
     if (other == this) return;
@@ -4422,7 +4904,7 @@ class BlockReplicationResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const BlockReplicationResponse*>(
         &_BlockReplicationResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 27;
+  static constexpr int kIndexInFileMessages = 29;
   friend void swap(BlockReplicationResponse& a, BlockReplicationResponse& b) { a.Swap(&b); }
   inline void Swap(BlockReplicationResponse* other) {
     if (other == this) return;
@@ -4612,7 +5094,7 @@ class BlockReplicationRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const BlockReplicationRequest*>(
         &_BlockReplicationRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 26;
+  static constexpr int kIndexInFileMessages = 28;
   friend void swap(BlockReplicationRequest& a, BlockReplicationRequest& b) { a.Swap(&b); }
   inline void Swap(BlockReplicationRequest* other) {
     if (other == this) return;
@@ -4838,7 +5320,7 @@ class BlockLocation final : public ::google::protobuf::Message
     return reinterpret_cast<const BlockLocation*>(
         &_BlockLocation_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 25;
+  static constexpr int kIndexInFileMessages = 27;
   friend void swap(BlockLocation& a, BlockLocation& b) { a.Swap(&b); }
   inline void Swap(BlockLocation* other) {
     if (other == this) return;
@@ -5082,7 +5564,7 @@ class BlockDownloadResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const BlockDownloadResponse*>(
         &_BlockDownloadResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 17;
+  static constexpr int kIndexInFileMessages = 19;
   friend void swap(BlockDownloadResponse& a, BlockDownloadResponse& b) { a.Swap(&b); }
   inline void Swap(BlockDownloadResponse* other) {
     if (other == this) return;
@@ -5278,7 +5760,7 @@ class BlockDownloadRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const BlockDownloadRequest*>(
         &_BlockDownloadRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 16;
+  static constexpr int kIndexInFileMessages = 18;
   friend void swap(BlockDownloadRequest& a, BlockDownloadRequest& b) { a.Swap(&b); }
   inline void Swap(BlockDownloadRequest* other) {
     if (other == this) return;
@@ -5486,7 +5968,7 @@ class ReportBlockRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const ReportBlockRequest*>(
         &_ReportBlockRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 22;
+  static constexpr int kIndexInFileMessages = 24;
   friend void swap(ReportBlockRequest& a, ReportBlockRequest& b) { a.Swap(&b); }
   inline void Swap(ReportBlockRequest* other) {
     if (other == this) return;
@@ -5731,7 +6213,7 @@ class PutFileResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const PutFileResponse*>(
         &_PutFileResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 1;
+  static constexpr int kIndexInFileMessages = 3;
   friend void swap(PutFileResponse& a, PutFileResponse& b) { a.Swap(&b); }
   inline void Swap(PutFileResponse* other) {
     if (other == this) return;
@@ -5928,7 +6410,7 @@ class GetFileResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const GetFileResponse*>(
         &_GetFileResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 3;
+  static constexpr int kIndexInFileMessages = 5;
   friend void swap(GetFileResponse& a, GetFileResponse& b) { a.Swap(&b); }
   inline void Swap(GetFileResponse* other) {
     if (other == this) return;
@@ -6079,6 +6561,228 @@ class GetFileResponse final : public ::google::protobuf::Message
 #endif  // __GNUC__
 // -------------------------------------------------------------------
 
+// LoginRequest
+
+// string username = 1;
+inline void LoginRequest::clear_username() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.username_.ClearToEmpty();
+}
+inline const std::string& LoginRequest::username() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:dfs.LoginRequest.username)
+  return _internal_username();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void LoginRequest::set_username(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.username_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:dfs.LoginRequest.username)
+}
+inline std::string* LoginRequest::mutable_username() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_username();
+  // @@protoc_insertion_point(field_mutable:dfs.LoginRequest.username)
+  return _s;
+}
+inline const std::string& LoginRequest::_internal_username() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.username_.Get();
+}
+inline void LoginRequest::_internal_set_username(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.username_.Set(value, GetArena());
+}
+inline std::string* LoginRequest::_internal_mutable_username() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.username_.Mutable( GetArena());
+}
+inline std::string* LoginRequest::release_username() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:dfs.LoginRequest.username)
+  return _impl_.username_.Release();
+}
+inline void LoginRequest::set_allocated_username(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.username_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.username_.IsDefault()) {
+    _impl_.username_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:dfs.LoginRequest.username)
+}
+
+// string password = 2;
+inline void LoginRequest::clear_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.password_.ClearToEmpty();
+}
+inline const std::string& LoginRequest::password() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:dfs.LoginRequest.password)
+  return _internal_password();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void LoginRequest::set_password(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.password_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:dfs.LoginRequest.password)
+}
+inline std::string* LoginRequest::mutable_password() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_password();
+  // @@protoc_insertion_point(field_mutable:dfs.LoginRequest.password)
+  return _s;
+}
+inline const std::string& LoginRequest::_internal_password() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.password_.Get();
+}
+inline void LoginRequest::_internal_set_password(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.password_.Set(value, GetArena());
+}
+inline std::string* LoginRequest::_internal_mutable_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.password_.Mutable( GetArena());
+}
+inline std::string* LoginRequest::release_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:dfs.LoginRequest.password)
+  return _impl_.password_.Release();
+}
+inline void LoginRequest::set_allocated_password(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.password_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.password_.IsDefault()) {
+    _impl_.password_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:dfs.LoginRequest.password)
+}
+
+// -------------------------------------------------------------------
+
+// LoginResponse
+
+// bool success = 1;
+inline void LoginResponse::clear_success() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.success_ = false;
+}
+inline bool LoginResponse::success() const {
+  // @@protoc_insertion_point(field_get:dfs.LoginResponse.success)
+  return _internal_success();
+}
+inline void LoginResponse::set_success(bool value) {
+  _internal_set_success(value);
+  // @@protoc_insertion_point(field_set:dfs.LoginResponse.success)
+}
+inline bool LoginResponse::_internal_success() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.success_;
+}
+inline void LoginResponse::_internal_set_success(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.success_ = value;
+}
+
+// string message = 2;
+inline void LoginResponse::clear_message() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.message_.ClearToEmpty();
+}
+inline const std::string& LoginResponse::message() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:dfs.LoginResponse.message)
+  return _internal_message();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void LoginResponse::set_message(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.message_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:dfs.LoginResponse.message)
+}
+inline std::string* LoginResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_message();
+  // @@protoc_insertion_point(field_mutable:dfs.LoginResponse.message)
+  return _s;
+}
+inline const std::string& LoginResponse::_internal_message() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.message_.Get();
+}
+inline void LoginResponse::_internal_set_message(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.message_.Set(value, GetArena());
+}
+inline std::string* LoginResponse::_internal_mutable_message() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.message_.Mutable( GetArena());
+}
+inline std::string* LoginResponse::release_message() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:dfs.LoginResponse.message)
+  return _impl_.message_.Release();
+}
+inline void LoginResponse::set_allocated_message(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.message_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.message_.IsDefault()) {
+    _impl_.message_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:dfs.LoginResponse.message)
+}
+
+// string session_token = 3;
+inline void LoginResponse::clear_session_token() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.session_token_.ClearToEmpty();
+}
+inline const std::string& LoginResponse::session_token() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:dfs.LoginResponse.session_token)
+  return _internal_session_token();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void LoginResponse::set_session_token(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.session_token_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:dfs.LoginResponse.session_token)
+}
+inline std::string* LoginResponse::mutable_session_token() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_session_token();
+  // @@protoc_insertion_point(field_mutable:dfs.LoginResponse.session_token)
+  return _s;
+}
+inline const std::string& LoginResponse::_internal_session_token() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.session_token_.Get();
+}
+inline void LoginResponse::_internal_set_session_token(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.session_token_.Set(value, GetArena());
+}
+inline std::string* LoginResponse::_internal_mutable_session_token() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.session_token_.Mutable( GetArena());
+}
+inline std::string* LoginResponse::release_session_token() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:dfs.LoginResponse.session_token)
+  return _impl_.session_token_.Release();
+}
+inline void LoginResponse::set_allocated_session_token(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.session_token_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.session_token_.IsDefault()) {
+    _impl_.session_token_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:dfs.LoginResponse.session_token)
+}
+
+// -------------------------------------------------------------------
+
 // PutFileRequest
 
 // string username = 1;
@@ -6129,52 +6833,52 @@ inline void PutFileRequest::set_allocated_username(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:dfs.PutFileRequest.username)
 }
 
-// string password = 2;
-inline void PutFileRequest::clear_password() {
+// string session_token = 2;
+inline void PutFileRequest::clear_session_token() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.password_.ClearToEmpty();
+  _impl_.session_token_.ClearToEmpty();
 }
-inline const std::string& PutFileRequest::password() const
+inline const std::string& PutFileRequest::session_token() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:dfs.PutFileRequest.password)
-  return _internal_password();
+  // @@protoc_insertion_point(field_get:dfs.PutFileRequest.session_token)
+  return _internal_session_token();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void PutFileRequest::set_password(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void PutFileRequest::set_session_token(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.password_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:dfs.PutFileRequest.password)
+  _impl_.session_token_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:dfs.PutFileRequest.session_token)
 }
-inline std::string* PutFileRequest::mutable_password() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_password();
-  // @@protoc_insertion_point(field_mutable:dfs.PutFileRequest.password)
+inline std::string* PutFileRequest::mutable_session_token() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_session_token();
+  // @@protoc_insertion_point(field_mutable:dfs.PutFileRequest.session_token)
   return _s;
 }
-inline const std::string& PutFileRequest::_internal_password() const {
+inline const std::string& PutFileRequest::_internal_session_token() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.password_.Get();
+  return _impl_.session_token_.Get();
 }
-inline void PutFileRequest::_internal_set_password(const std::string& value) {
+inline void PutFileRequest::_internal_set_session_token(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.password_.Set(value, GetArena());
+  _impl_.session_token_.Set(value, GetArena());
 }
-inline std::string* PutFileRequest::_internal_mutable_password() {
+inline std::string* PutFileRequest::_internal_mutable_session_token() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.password_.Mutable( GetArena());
+  return _impl_.session_token_.Mutable( GetArena());
 }
-inline std::string* PutFileRequest::release_password() {
+inline std::string* PutFileRequest::release_session_token() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:dfs.PutFileRequest.password)
-  return _impl_.password_.Release();
+  // @@protoc_insertion_point(field_release:dfs.PutFileRequest.session_token)
+  return _impl_.session_token_.Release();
 }
-inline void PutFileRequest::set_allocated_password(std::string* value) {
+inline void PutFileRequest::set_allocated_session_token(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.password_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.password_.IsDefault()) {
-    _impl_.password_.Set("", GetArena());
+  _impl_.session_token_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.session_token_.IsDefault()) {
+    _impl_.session_token_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:dfs.PutFileRequest.password)
+  // @@protoc_insertion_point(field_set_allocated:dfs.PutFileRequest.session_token)
 }
 
 // string filename = 3;
@@ -6352,52 +7056,52 @@ inline void GetFileRequest::set_allocated_username(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:dfs.GetFileRequest.username)
 }
 
-// string password = 2;
-inline void GetFileRequest::clear_password() {
+// string session_token = 2;
+inline void GetFileRequest::clear_session_token() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.password_.ClearToEmpty();
+  _impl_.session_token_.ClearToEmpty();
 }
-inline const std::string& GetFileRequest::password() const
+inline const std::string& GetFileRequest::session_token() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:dfs.GetFileRequest.password)
-  return _internal_password();
+  // @@protoc_insertion_point(field_get:dfs.GetFileRequest.session_token)
+  return _internal_session_token();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void GetFileRequest::set_password(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void GetFileRequest::set_session_token(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.password_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:dfs.GetFileRequest.password)
+  _impl_.session_token_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:dfs.GetFileRequest.session_token)
 }
-inline std::string* GetFileRequest::mutable_password() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_password();
-  // @@protoc_insertion_point(field_mutable:dfs.GetFileRequest.password)
+inline std::string* GetFileRequest::mutable_session_token() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_session_token();
+  // @@protoc_insertion_point(field_mutable:dfs.GetFileRequest.session_token)
   return _s;
 }
-inline const std::string& GetFileRequest::_internal_password() const {
+inline const std::string& GetFileRequest::_internal_session_token() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.password_.Get();
+  return _impl_.session_token_.Get();
 }
-inline void GetFileRequest::_internal_set_password(const std::string& value) {
+inline void GetFileRequest::_internal_set_session_token(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.password_.Set(value, GetArena());
+  _impl_.session_token_.Set(value, GetArena());
 }
-inline std::string* GetFileRequest::_internal_mutable_password() {
+inline std::string* GetFileRequest::_internal_mutable_session_token() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.password_.Mutable( GetArena());
+  return _impl_.session_token_.Mutable( GetArena());
 }
-inline std::string* GetFileRequest::release_password() {
+inline std::string* GetFileRequest::release_session_token() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:dfs.GetFileRequest.password)
-  return _impl_.password_.Release();
+  // @@protoc_insertion_point(field_release:dfs.GetFileRequest.session_token)
+  return _impl_.session_token_.Release();
 }
-inline void GetFileRequest::set_allocated_password(std::string* value) {
+inline void GetFileRequest::set_allocated_session_token(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.password_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.password_.IsDefault()) {
-    _impl_.password_.Set("", GetArena());
+  _impl_.session_token_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.session_token_.IsDefault()) {
+    _impl_.session_token_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:dfs.GetFileRequest.password)
+  // @@protoc_insertion_point(field_set_allocated:dfs.GetFileRequest.session_token)
 }
 
 // string filename = 3;
@@ -6553,52 +7257,52 @@ inline void ListFilesRequest::set_allocated_username(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:dfs.ListFilesRequest.username)
 }
 
-// string password = 2;
-inline void ListFilesRequest::clear_password() {
+// string session_token = 2;
+inline void ListFilesRequest::clear_session_token() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.password_.ClearToEmpty();
+  _impl_.session_token_.ClearToEmpty();
 }
-inline const std::string& ListFilesRequest::password() const
+inline const std::string& ListFilesRequest::session_token() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:dfs.ListFilesRequest.password)
-  return _internal_password();
+  // @@protoc_insertion_point(field_get:dfs.ListFilesRequest.session_token)
+  return _internal_session_token();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void ListFilesRequest::set_password(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void ListFilesRequest::set_session_token(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.password_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:dfs.ListFilesRequest.password)
+  _impl_.session_token_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:dfs.ListFilesRequest.session_token)
 }
-inline std::string* ListFilesRequest::mutable_password() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_password();
-  // @@protoc_insertion_point(field_mutable:dfs.ListFilesRequest.password)
+inline std::string* ListFilesRequest::mutable_session_token() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_session_token();
+  // @@protoc_insertion_point(field_mutable:dfs.ListFilesRequest.session_token)
   return _s;
 }
-inline const std::string& ListFilesRequest::_internal_password() const {
+inline const std::string& ListFilesRequest::_internal_session_token() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.password_.Get();
+  return _impl_.session_token_.Get();
 }
-inline void ListFilesRequest::_internal_set_password(const std::string& value) {
+inline void ListFilesRequest::_internal_set_session_token(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.password_.Set(value, GetArena());
+  _impl_.session_token_.Set(value, GetArena());
 }
-inline std::string* ListFilesRequest::_internal_mutable_password() {
+inline std::string* ListFilesRequest::_internal_mutable_session_token() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.password_.Mutable( GetArena());
+  return _impl_.session_token_.Mutable( GetArena());
 }
-inline std::string* ListFilesRequest::release_password() {
+inline std::string* ListFilesRequest::release_session_token() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:dfs.ListFilesRequest.password)
-  return _impl_.password_.Release();
+  // @@protoc_insertion_point(field_release:dfs.ListFilesRequest.session_token)
+  return _impl_.session_token_.Release();
 }
-inline void ListFilesRequest::set_allocated_password(std::string* value) {
+inline void ListFilesRequest::set_allocated_session_token(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.password_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.password_.IsDefault()) {
-    _impl_.password_.Set("", GetArena());
+  _impl_.session_token_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.session_token_.IsDefault()) {
+    _impl_.session_token_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:dfs.ListFilesRequest.password)
+  // @@protoc_insertion_point(field_set_allocated:dfs.ListFilesRequest.session_token)
 }
 
 // -------------------------------------------------------------------
@@ -6721,52 +7425,52 @@ inline void RemoveFileRequest::set_allocated_username(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:dfs.RemoveFileRequest.username)
 }
 
-// string password = 2;
-inline void RemoveFileRequest::clear_password() {
+// string session_token = 2;
+inline void RemoveFileRequest::clear_session_token() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.password_.ClearToEmpty();
+  _impl_.session_token_.ClearToEmpty();
 }
-inline const std::string& RemoveFileRequest::password() const
+inline const std::string& RemoveFileRequest::session_token() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:dfs.RemoveFileRequest.password)
-  return _internal_password();
+  // @@protoc_insertion_point(field_get:dfs.RemoveFileRequest.session_token)
+  return _internal_session_token();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void RemoveFileRequest::set_password(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void RemoveFileRequest::set_session_token(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.password_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:dfs.RemoveFileRequest.password)
+  _impl_.session_token_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:dfs.RemoveFileRequest.session_token)
 }
-inline std::string* RemoveFileRequest::mutable_password() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_password();
-  // @@protoc_insertion_point(field_mutable:dfs.RemoveFileRequest.password)
+inline std::string* RemoveFileRequest::mutable_session_token() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_session_token();
+  // @@protoc_insertion_point(field_mutable:dfs.RemoveFileRequest.session_token)
   return _s;
 }
-inline const std::string& RemoveFileRequest::_internal_password() const {
+inline const std::string& RemoveFileRequest::_internal_session_token() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.password_.Get();
+  return _impl_.session_token_.Get();
 }
-inline void RemoveFileRequest::_internal_set_password(const std::string& value) {
+inline void RemoveFileRequest::_internal_set_session_token(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.password_.Set(value, GetArena());
+  _impl_.session_token_.Set(value, GetArena());
 }
-inline std::string* RemoveFileRequest::_internal_mutable_password() {
+inline std::string* RemoveFileRequest::_internal_mutable_session_token() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.password_.Mutable( GetArena());
+  return _impl_.session_token_.Mutable( GetArena());
 }
-inline std::string* RemoveFileRequest::release_password() {
+inline std::string* RemoveFileRequest::release_session_token() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:dfs.RemoveFileRequest.password)
-  return _impl_.password_.Release();
+  // @@protoc_insertion_point(field_release:dfs.RemoveFileRequest.session_token)
+  return _impl_.session_token_.Release();
 }
-inline void RemoveFileRequest::set_allocated_password(std::string* value) {
+inline void RemoveFileRequest::set_allocated_session_token(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.password_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.password_.IsDefault()) {
-    _impl_.password_.Set("", GetArena());
+  _impl_.session_token_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.session_token_.IsDefault()) {
+    _impl_.session_token_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:dfs.RemoveFileRequest.password)
+  // @@protoc_insertion_point(field_set_allocated:dfs.RemoveFileRequest.session_token)
 }
 
 // string filename = 3;
@@ -7037,7 +7741,55 @@ inline void MkdirRequest::set_allocated_username(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:dfs.MkdirRequest.username)
 }
 
-// string path = 2;
+// string session_token = 2;
+inline void MkdirRequest::clear_session_token() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.session_token_.ClearToEmpty();
+}
+inline const std::string& MkdirRequest::session_token() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:dfs.MkdirRequest.session_token)
+  return _internal_session_token();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void MkdirRequest::set_session_token(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.session_token_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:dfs.MkdirRequest.session_token)
+}
+inline std::string* MkdirRequest::mutable_session_token() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_session_token();
+  // @@protoc_insertion_point(field_mutable:dfs.MkdirRequest.session_token)
+  return _s;
+}
+inline const std::string& MkdirRequest::_internal_session_token() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.session_token_.Get();
+}
+inline void MkdirRequest::_internal_set_session_token(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.session_token_.Set(value, GetArena());
+}
+inline std::string* MkdirRequest::_internal_mutable_session_token() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.session_token_.Mutable( GetArena());
+}
+inline std::string* MkdirRequest::release_session_token() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:dfs.MkdirRequest.session_token)
+  return _impl_.session_token_.Release();
+}
+inline void MkdirRequest::set_allocated_session_token(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.session_token_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.session_token_.IsDefault()) {
+    _impl_.session_token_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:dfs.MkdirRequest.session_token)
+}
+
+// string path = 3;
 inline void MkdirRequest::clear_path() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.path_.ClearToEmpty();
@@ -7211,7 +7963,55 @@ inline void RmdirRequest::set_allocated_username(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:dfs.RmdirRequest.username)
 }
 
-// string path = 2;
+// string session_token = 2;
+inline void RmdirRequest::clear_session_token() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.session_token_.ClearToEmpty();
+}
+inline const std::string& RmdirRequest::session_token() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:dfs.RmdirRequest.session_token)
+  return _internal_session_token();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void RmdirRequest::set_session_token(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.session_token_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:dfs.RmdirRequest.session_token)
+}
+inline std::string* RmdirRequest::mutable_session_token() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_session_token();
+  // @@protoc_insertion_point(field_mutable:dfs.RmdirRequest.session_token)
+  return _s;
+}
+inline const std::string& RmdirRequest::_internal_session_token() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.session_token_.Get();
+}
+inline void RmdirRequest::_internal_set_session_token(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.session_token_.Set(value, GetArena());
+}
+inline std::string* RmdirRequest::_internal_mutable_session_token() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.session_token_.Mutable( GetArena());
+}
+inline std::string* RmdirRequest::release_session_token() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:dfs.RmdirRequest.session_token)
+  return _impl_.session_token_.Release();
+}
+inline void RmdirRequest::set_allocated_session_token(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.session_token_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.session_token_.IsDefault()) {
+    _impl_.session_token_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:dfs.RmdirRequest.session_token)
+}
+
+// string path = 3;
 inline void RmdirRequest::clear_path() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.path_.ClearToEmpty();

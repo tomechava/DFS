@@ -22,6 +22,7 @@
 namespace dfs {
 
 static const char* NameNodeService_method_names[] = {
+  "/dfs.NameNodeService/Login",
   "/dfs.NameNodeService/PutFile",
   "/dfs.NameNodeService/GetFile",
   "/dfs.NameNodeService/ListFiles",
@@ -38,14 +39,38 @@ std::unique_ptr< NameNodeService::Stub> NameNodeService::NewStub(const std::shar
 }
 
 NameNodeService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_PutFile_(NameNodeService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetFile_(NameNodeService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListFiles_(NameNodeService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_RemoveFile_(NameNodeService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetReplicas_(NameNodeService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Mkdir_(NameNodeService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Rmdir_(NameNodeService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_Login_(NameNodeService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PutFile_(NameNodeService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetFile_(NameNodeService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListFiles_(NameNodeService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RemoveFile_(NameNodeService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetReplicas_(NameNodeService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Mkdir_(NameNodeService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Rmdir_(NameNodeService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
+
+::grpc::Status NameNodeService::Stub::Login(::grpc::ClientContext* context, const ::dfs::LoginRequest& request, ::dfs::LoginResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::dfs::LoginRequest, ::dfs::LoginResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Login_, context, request, response);
+}
+
+void NameNodeService::Stub::async::Login(::grpc::ClientContext* context, const ::dfs::LoginRequest* request, ::dfs::LoginResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::dfs::LoginRequest, ::dfs::LoginResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Login_, context, request, response, std::move(f));
+}
+
+void NameNodeService::Stub::async::Login(::grpc::ClientContext* context, const ::dfs::LoginRequest* request, ::dfs::LoginResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Login_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::dfs::LoginResponse>* NameNodeService::Stub::PrepareAsyncLoginRaw(::grpc::ClientContext* context, const ::dfs::LoginRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::dfs::LoginResponse, ::dfs::LoginRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Login_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::dfs::LoginResponse>* NameNodeService::Stub::AsyncLoginRaw(::grpc::ClientContext* context, const ::dfs::LoginRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncLoginRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
 
 ::grpc::Status NameNodeService::Stub::PutFile(::grpc::ClientContext* context, const ::dfs::PutFileRequest& request, ::dfs::PutFileResponse* response) {
   return ::grpc::internal::BlockingUnaryCall< ::dfs::PutFileRequest, ::dfs::PutFileResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PutFile_, context, request, response);
@@ -212,6 +237,16 @@ NameNodeService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       NameNodeService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NameNodeService::Service, ::dfs::LoginRequest, ::dfs::LoginResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NameNodeService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::dfs::LoginRequest* req,
+             ::dfs::LoginResponse* resp) {
+               return service->Login(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NameNodeService_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< NameNodeService::Service, ::dfs::PutFileRequest, ::dfs::PutFileResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](NameNodeService::Service* service,
              ::grpc::ServerContext* ctx,
@@ -220,7 +255,7 @@ NameNodeService::Service::Service() {
                return service->PutFile(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      NameNodeService_method_names[1],
+      NameNodeService_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< NameNodeService::Service, ::dfs::GetFileRequest, ::dfs::GetFileResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](NameNodeService::Service* service,
@@ -230,7 +265,7 @@ NameNodeService::Service::Service() {
                return service->GetFile(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      NameNodeService_method_names[2],
+      NameNodeService_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< NameNodeService::Service, ::dfs::ListFilesRequest, ::dfs::ListFilesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](NameNodeService::Service* service,
@@ -240,7 +275,7 @@ NameNodeService::Service::Service() {
                return service->ListFiles(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      NameNodeService_method_names[3],
+      NameNodeService_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< NameNodeService::Service, ::dfs::RemoveFileRequest, ::dfs::RemoveFileResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](NameNodeService::Service* service,
@@ -250,7 +285,7 @@ NameNodeService::Service::Service() {
                return service->RemoveFile(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      NameNodeService_method_names[4],
+      NameNodeService_method_names[5],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< NameNodeService::Service, ::dfs::ReplicaRequest, ::dfs::ReplicaResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](NameNodeService::Service* service,
@@ -260,7 +295,7 @@ NameNodeService::Service::Service() {
                return service->GetReplicas(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      NameNodeService_method_names[5],
+      NameNodeService_method_names[6],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< NameNodeService::Service, ::dfs::MkdirRequest, ::dfs::MkdirResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](NameNodeService::Service* service,
@@ -270,7 +305,7 @@ NameNodeService::Service::Service() {
                return service->Mkdir(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      NameNodeService_method_names[6],
+      NameNodeService_method_names[7],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< NameNodeService::Service, ::dfs::RmdirRequest, ::dfs::RmdirResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](NameNodeService::Service* service,
@@ -282,6 +317,13 @@ NameNodeService::Service::Service() {
 }
 
 NameNodeService::Service::~Service() {
+}
+
+::grpc::Status NameNodeService::Service::Login(::grpc::ServerContext* context, const ::dfs::LoginRequest* request, ::dfs::LoginResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
 ::grpc::Status NameNodeService::Service::PutFile(::grpc::ServerContext* context, const ::dfs::PutFileRequest* request, ::dfs::PutFileResponse* response) {
