@@ -94,8 +94,10 @@ public class DataNodeServer {
                 try {
                     Dfs.HeartbeatRequest req = Dfs.HeartbeatRequest.newBuilder()
                             .setDatanodeId(dataNodeId)
+                            .setIpAddress(ip)       // 👈 Agregar IP
+                            .setPort(port)          // 👈 Agregar puerto del DataNode
                             .build();
-
+    
                     Dfs.HeartbeatResponse resp = clusterStub.heartbeat(req);
                     if (resp.getSuccess()) {
                         System.out.println("Heartbeat enviado OK");
@@ -108,6 +110,7 @@ public class DataNodeServer {
             }
         }, 0, 30000); // cada 30 segundos
     }
+    
 
     public void stop() {
         if (server != null) server.shutdown();

@@ -16,6 +16,8 @@ void RunServer() {
     std::string server_address("0.0.0.0:50052");
 
     MetadataManager metadata;
+    metadata.monitorHeartbeats(60); // timeout: 60 segundos sin heartbeat = nodo caído
+
     NameNodeServiceImpl nameNodeService(&metadata);
     ClusterServiceImpl clusterService(&metadata);  // <- ahora lo conectamos con metadata
 

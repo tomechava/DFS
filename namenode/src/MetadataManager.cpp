@@ -4,6 +4,7 @@
 #include <algorithm> // std::remove
 #include <random>
 #include <chrono>
+#include <thread>
 
 MetadataManager::MetadataManager() {
     //precargar usuarios
@@ -15,11 +16,45 @@ void MetadataManager::registerDataNode(const std::string& datanode_id,
                                        int port) {
     std::string address = ip + ":" + std::to_string(port);
 
-    dataNodes[datanode_id] = address;
-    nodeInfo[datanode_id] = {address, 0, 0, true};
+    NodeInfo info;
+    info.address = address;
+    info.capacity = 0;
+    info.used = 0;
+    info.alive = true;
+    info.lastHeartbeat = std::chrono::steady_clock::now();
 
-    std::cout << "✅ DataNode registrado: " << datanode_id
+    dataNodes[datanode_id] = address;
+    nodeInfo[datanode_id] = info;
+
+    std::cout << "DataNode registrado: " << datanode_id
               << " @ " << address << std::endl;
+}
+
+void MetadataManager::updateHeartbeat(const std::string& datanode_id,
+                                      const std::string& ip,
+                                      int port) {
+    std::lock_guard<std::mutex> lock(mtx);
+    auto it = nodeInfo.find(datanode_id);
+    if (it != nodeInfo.end()) {
+        it->second.lastHeartbeat = std::chrono::steady_clock::now();
+        it->second.alive = true;
+    } else {
+        // Nodo no estaba registrado, lo registramos aquí también
+        std::string address = ip + ":" + std::to_string(port);
+
+        NodeInfo info;
+        info.address = address;
+        info.capacity = 0;
+        info.used = 0;
+        info.alive = true;
+        info.lastHeartbeat = std::chrono::steady_clock::now();
+
+        nodeInfo[datanode_id] = info;
+        dataNodes[datanode_id] = address;
+
+        std::cout << "Heartbeat recibido de nodo no registrado, auto-registrado: "
+                  << datanode_id << " @ " << address << std::endl;
+    }
 }
 
 std::vector<std::string> MetadataManager::getAllDataNodes() const {
@@ -38,6 +73,29 @@ std::vector<std::string> MetadataManager::getAliveDataNodes() const {
         }
     }
     return alive;
+}
+
+// ----------------------
+// Monitor en background
+// ----------------------
+void MetadataManager::monitorHeartbeats(int timeoutSeconds) {
+    std::thread([this, timeoutSeconds]() {
+        while (true) {
+            {
+                std::lock_guard<std::mutex> lock(mtx);
+                auto now = std::chrono::steady_clock::now();
+                for (auto& [id, info] : nodeInfo) {
+                    auto diff = std::chrono::duration_cast<std::chrono::seconds>(now - info.lastHeartbeat).count();
+                    if (diff > timeoutSeconds && info.alive) {
+                        info.alive = false;
+                        std::cerr << "DataNode marcado como caído: " << id
+                                  << " (" << info.address << ")" << std::endl;
+                    }
+                }
+            }
+            std::this_thread::sleep_for(std::chrono::seconds(5));
+        }
+    }).detach();
 }
 
 void MetadataManager::registerBlockLocation(const std::string& filename,

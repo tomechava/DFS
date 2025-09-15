@@ -31,24 +31,16 @@ Status ClusterServiceImpl::Heartbeat(ServerContext* context,
     std::string id = request->datanode_id();
     std::string ip = request->ip_address();
     int port = request->port();
-    std::string address = ip + ":" + std::to_string(port);
 
-    // ✅ validamos contra lista de nodos vivos (direcciones ip:port)
-    auto aliveNodes = metadata->getAliveDataNodes();
-    bool exists = std::find(aliveNodes.begin(), aliveNodes.end(), address) != aliveNodes.end();
+    metadata->updateHeartbeat(id, ip, port); //Necesitas implementar updateHeartbeat en MetadataManager
 
-    if (!exists) {
-        std::cerr << "⚠️ Heartbeat de nodo no registrado: "
-                  << id << " @ " << address << std::endl;
-        response->set_success(false);
-        return Status::CANCELLED;
-    }
+    std::cout << "Heartbeat recibido de " << id
+              << " @ " << ip << ":" << port << std::endl;
 
-    std::cout << "💓 Heartbeat recibido de " << id
-              << " @ " << address << std::endl;
     response->set_success(true);
     return Status::OK;
 }
+
 
 Status ClusterServiceImpl::ReportBlock(ServerContext* context,
                                        const dfs::ReportBlockRequest* request,
