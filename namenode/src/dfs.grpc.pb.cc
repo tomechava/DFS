@@ -27,6 +27,8 @@ static const char* NameNodeService_method_names[] = {
   "/dfs.NameNodeService/ListFiles",
   "/dfs.NameNodeService/RemoveFile",
   "/dfs.NameNodeService/GetReplicas",
+  "/dfs.NameNodeService/Mkdir",
+  "/dfs.NameNodeService/Rmdir",
 };
 
 std::unique_ptr< NameNodeService::Stub> NameNodeService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -41,6 +43,8 @@ NameNodeService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& ch
   , rpcmethod_ListFiles_(NameNodeService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_RemoveFile_(NameNodeService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetReplicas_(NameNodeService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Mkdir_(NameNodeService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Rmdir_(NameNodeService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status NameNodeService::Stub::PutFile(::grpc::ClientContext* context, const ::dfs::PutFileRequest& request, ::dfs::PutFileResponse* response) {
@@ -158,6 +162,52 @@ void NameNodeService::Stub::async::GetReplicas(::grpc::ClientContext* context, c
   return result;
 }
 
+::grpc::Status NameNodeService::Stub::Mkdir(::grpc::ClientContext* context, const ::dfs::MkdirRequest& request, ::dfs::MkdirResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::dfs::MkdirRequest, ::dfs::MkdirResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Mkdir_, context, request, response);
+}
+
+void NameNodeService::Stub::async::Mkdir(::grpc::ClientContext* context, const ::dfs::MkdirRequest* request, ::dfs::MkdirResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::dfs::MkdirRequest, ::dfs::MkdirResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Mkdir_, context, request, response, std::move(f));
+}
+
+void NameNodeService::Stub::async::Mkdir(::grpc::ClientContext* context, const ::dfs::MkdirRequest* request, ::dfs::MkdirResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Mkdir_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::dfs::MkdirResponse>* NameNodeService::Stub::PrepareAsyncMkdirRaw(::grpc::ClientContext* context, const ::dfs::MkdirRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::dfs::MkdirResponse, ::dfs::MkdirRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Mkdir_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::dfs::MkdirResponse>* NameNodeService::Stub::AsyncMkdirRaw(::grpc::ClientContext* context, const ::dfs::MkdirRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncMkdirRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status NameNodeService::Stub::Rmdir(::grpc::ClientContext* context, const ::dfs::RmdirRequest& request, ::dfs::RmdirResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::dfs::RmdirRequest, ::dfs::RmdirResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Rmdir_, context, request, response);
+}
+
+void NameNodeService::Stub::async::Rmdir(::grpc::ClientContext* context, const ::dfs::RmdirRequest* request, ::dfs::RmdirResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::dfs::RmdirRequest, ::dfs::RmdirResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Rmdir_, context, request, response, std::move(f));
+}
+
+void NameNodeService::Stub::async::Rmdir(::grpc::ClientContext* context, const ::dfs::RmdirRequest* request, ::dfs::RmdirResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Rmdir_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::dfs::RmdirResponse>* NameNodeService::Stub::PrepareAsyncRmdirRaw(::grpc::ClientContext* context, const ::dfs::RmdirRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::dfs::RmdirResponse, ::dfs::RmdirRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Rmdir_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::dfs::RmdirResponse>* NameNodeService::Stub::AsyncRmdirRaw(::grpc::ClientContext* context, const ::dfs::RmdirRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncRmdirRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 NameNodeService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       NameNodeService_method_names[0],
@@ -209,6 +259,26 @@ NameNodeService::Service::Service() {
              ::dfs::ReplicaResponse* resp) {
                return service->GetReplicas(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NameNodeService_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NameNodeService::Service, ::dfs::MkdirRequest, ::dfs::MkdirResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NameNodeService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::dfs::MkdirRequest* req,
+             ::dfs::MkdirResponse* resp) {
+               return service->Mkdir(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NameNodeService_method_names[6],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NameNodeService::Service, ::dfs::RmdirRequest, ::dfs::RmdirResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NameNodeService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::dfs::RmdirRequest* req,
+             ::dfs::RmdirResponse* resp) {
+               return service->Rmdir(ctx, req, resp);
+             }, this)));
 }
 
 NameNodeService::Service::~Service() {
@@ -243,6 +313,20 @@ NameNodeService::Service::~Service() {
 }
 
 ::grpc::Status NameNodeService::Service::GetReplicas(::grpc::ServerContext* context, const ::dfs::ReplicaRequest* request, ::dfs::ReplicaResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status NameNodeService::Service::Mkdir(::grpc::ServerContext* context, const ::dfs::MkdirRequest* request, ::dfs::MkdirResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status NameNodeService::Service::Rmdir(::grpc::ServerContext* context, const ::dfs::RmdirRequest* request, ::dfs::RmdirResponse* response) {
   (void) context;
   (void) request;
   (void) response;

@@ -34,6 +34,13 @@ public:
                              const dfs::ReplicaRequest* request,
                              dfs::ReplicaResponse* response) override;
 
+    grpc::Status Mkdir(grpc::ServerContext* context,
+                       const dfs::MkdirRequest* request,
+                       dfs::MkdirResponse* response) override;
+
+    grpc::Status Rmdir(grpc::ServerContext* context,
+                       const dfs::RmdirRequest* request,
+                       dfs::RmdirResponse* response) override;
 private:
     MetadataManager* metadata;
 };

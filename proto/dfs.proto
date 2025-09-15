@@ -20,6 +20,10 @@ service NameNodeService {
 
   // Consulta de réplicas para un bloque
   rpc GetReplicas (ReplicaRequest) returns (ReplicaResponse);
+
+  rpc Mkdir (MkdirRequest) returns (MkdirResponse);
+  
+  rpc Rmdir (RmdirRequest) returns (RmdirResponse);
 }
 
 // ===========================================================
@@ -102,6 +106,26 @@ message ReplicaRequest {
 
 message ReplicaResponse {
   repeated string replica_datanodes = 1;
+}
+
+message MkdirRequest {
+  string username = 1;
+  string path = 2;
+}
+
+message MkdirResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message RmdirRequest {
+  string username = 1;
+  string path = 2;
+}
+
+message RmdirResponse {
+  bool success = 1;
+  string message = 2;
 }
 
 // ---------- Cliente <-> DataNode ----------

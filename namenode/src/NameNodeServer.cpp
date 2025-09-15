@@ -185,3 +185,32 @@ Status NameNodeServiceImpl::RemoveFile(ServerContext* context,
 
     return Status::OK;
 }
+
+Status NameNodeServiceImpl::Mkdir(ServerContext* context,
+                                  const dfs::MkdirRequest* request,
+                                  dfs::MkdirResponse* response) {
+    std::string username = request->username();
+    std::string path = request->path();
+
+    std::cout << "[NameNode] Usuario " << username << " pide mkdir: " << path << std::endl;
+
+    // Aquí podrías validar permisos, existencia en metadata, etc.
+    response->set_success(true);
+    response->set_message("Directorio autorizado por NameNode");
+
+    return Status::OK;
+}
+
+Status NameNodeServiceImpl::Rmdir(ServerContext* context,
+                                  const dfs::RmdirRequest* request,
+                                  dfs::RmdirResponse* response) {
+    std::string username = request->username();
+    std::string path = request->path();
+
+    std::cout << "[NameNode] Usuario " << username << " pide rmdir: " << path << std::endl;
+
+    response->set_success(true);
+    response->set_message("Eliminación autorizada por NameNode");
+
+    return Status::OK;
+}

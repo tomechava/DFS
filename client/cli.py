@@ -2,6 +2,8 @@
 import sys
 import cmd
 from dfs_client import DFSClient
+import os
+import shutil
 
 class DFSCLI(cmd.Cmd):
     intro = "Bienvenido al cliente DFS. Escribe 'help' para ver comandos.\n"
@@ -12,6 +14,7 @@ class DFSCLI(cmd.Cmd):
         self.client = DFSClient(namenode_addr)
         self.username = "test_user"
         self.password = "1234"
+        self.cwd = "/"   # directorio actual en DFS
 
     # -------------------------
     # Comandos NameNodeService
@@ -47,8 +50,21 @@ class DFSCLI(cmd.Cmd):
         if not arg:
             print("Uso: removeFile <archivo>")
             return
-        resp = self.client.remove_file(self.username, self.password, arg)
-        print(f"{resp.success} - {resp.message}")
+
+        dfs_path, local_path = self.resolve_path(arg)
+        resp = self.client.remove_file(self.username, self.password, dfs_path)
+
+        if resp.success:
+            try:
+                if os.path.exists(local_path):
+                    os.remove(local_path)
+                    print(f"🗑️ Archivo local '{local_path}' eliminado")
+                else:
+                    print(f"⚠️ Archivo local '{local_path}' no existe")
+            except Exception as e:
+                print(f"❌ Error al eliminar archivo local: {e}")
+
+        print(f"{resp.success} - {resp.message} (DFS={dfs_path}, Local={local_path})")
 
     # -------------------------
     # Comandos DataNodeService
@@ -94,10 +110,79 @@ class DFSCLI(cmd.Cmd):
         "Descargar archivo completo (NameNode + DataNodes): getFile_and_download <archivo> <salida>"
         try:
             filename, output = arg.split()
-            print(self.client.getFile_and_download(self.username, self.password, filename, output))
+
+            # Usamos resolve_path para que el archivo de salida caiga en el cwd correcto
+            dfs_path, local_output = self.resolve_path(output)
+
+            # Crear carpetas intermedias si no existen
+            os.makedirs(os.path.dirname(local_output), exist_ok=True)
+            print(self.client.getFile_and_download(self.username, self.password, filename, local_output))
         except:
             print("Uso: getFile_and_download <archivo> <salida>")
 
+    def do_cd(self, arg):
+        "Cambiar directorio actual en el DFS: cd <ruta>"
+        if not arg:
+            print("Uso: cd <ruta>")
+            return
+
+        dfs_path, _ = self.resolve_path(arg)
+        self.cwd = dfs_path
+        print(f"Directorio actual: {self.cwd}")
+    
+    def do_mkdir(self, arg):
+        "Crear directorio en el DFS: mkdir <nombre>"
+        if not arg:
+            print("Uso: mkdir <nombre>")
+            return
+
+        dfs_path, local_path = self.resolve_path(arg)
+        resp = self.client.mkdir(self.username, self.password, dfs_path)
+        if resp.success:
+            try:
+                os.makedirs(local_path, exist_ok=True)
+            except Exception as e:
+                print(f"❌ Error al crear directorio local: {e}")
+        print(f"{resp.success} - {resp.message} (DFS={dfs_path}, Local={local_path})")
+
+    def do_rmdir(self, arg):
+        "Eliminar directorio en el DFS: rmdir <nombre>"
+        if not arg:
+            print("Uso: rmdir <nombre>")
+            return
+
+        dfs_path, local_path = self.resolve_path(arg)
+        resp = self.client.rmdir(self.username, self.password, dfs_path)
+        if resp.success:
+            try:
+                if os.path.exists(local_path):
+                    shutil.rmtree(local_path)
+                    print(f"🗑️ Directorio local '{local_path}' eliminado")
+                else:
+                    print(f"⚠️ Directorio local '{local_path}' no existe")
+            except Exception as e:
+                print(f"❌ Error al eliminar directorio local: {e}")
+        print(f"{resp.success} - {resp.message} (DFS={dfs_path}, Local={local_path})")
+
+
+
+    def resolve_path(self, arg):
+        """Construye ruta DFS (para el servidor) y ruta local (para el cliente)"""
+        # --- DFS PATH ---
+        if arg.startswith("/"):
+            dfs_path = os.path.normpath(arg).replace("\\", "/")
+        else:
+            dfs_path = os.path.normpath(os.path.join(self.cwd, arg)).replace("\\", "/")
+
+        if not dfs_path.startswith("/"):
+            dfs_path = "/" + dfs_path  # DFS siempre arranca con /
+
+        # --- LOCAL PATH ---
+        # quitar solo el primer slash inicial
+        local_path = dfs_path.lstrip("/")  
+
+        return dfs_path, local_path
+    
     # -------------------------
     # Utilidades
     # -------------------------

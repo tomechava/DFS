@@ -2,6 +2,7 @@
 import os
 import math
 import grpc
+import shutil
 from google.protobuf import empty_pb2
 from google.protobuf import wrappers_pb2
 from google.protobuf import message
@@ -144,3 +145,27 @@ class DFSClient:
                 print(f"[GET] Bloque {i} (id={block.block_id}, index={block.block_index}) <- {block.primary_address} bytes_written={received}")
 
         return f"[DONE] Archivo reconstruido en {output_path}"
+
+    def mkdir(self, username, password, path):
+        req = dfs_pb2.MkdirRequest(username=username, path=path)
+        resp = self.namenode_stub.Mkdir(req)
+        if resp.success:
+            try:
+                os.makedirs(path, exist_ok=True)
+                print(f"Directorio local '{path}' creado")
+            except Exception as e:
+                print(f"❌ Error al crear directorio local: {e}")
+        return resp
+
+    def rmdir(self, username, password, path):
+        req = dfs_pb2.RmdirRequest(username=username, path=path)
+        resp = self.namenode_stub.Rmdir(req)
+        if resp.success:
+            try:
+                shutil.rmtree(path)
+                print(f"Directorio local '{path}' eliminado")
+            except FileNotFoundError:
+                print(f"Directorio local '{path}' no existe")
+            except Exception as e:
+                print(f"Error al eliminar directorio local: {e}")
+        return resp

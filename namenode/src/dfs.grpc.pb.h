@@ -79,6 +79,20 @@ class NameNodeService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dfs::ReplicaResponse>> PrepareAsyncGetReplicas(::grpc::ClientContext* context, const ::dfs::ReplicaRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dfs::ReplicaResponse>>(PrepareAsyncGetReplicasRaw(context, request, cq));
     }
+    virtual ::grpc::Status Mkdir(::grpc::ClientContext* context, const ::dfs::MkdirRequest& request, ::dfs::MkdirResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dfs::MkdirResponse>> AsyncMkdir(::grpc::ClientContext* context, const ::dfs::MkdirRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dfs::MkdirResponse>>(AsyncMkdirRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dfs::MkdirResponse>> PrepareAsyncMkdir(::grpc::ClientContext* context, const ::dfs::MkdirRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dfs::MkdirResponse>>(PrepareAsyncMkdirRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Rmdir(::grpc::ClientContext* context, const ::dfs::RmdirRequest& request, ::dfs::RmdirResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dfs::RmdirResponse>> AsyncRmdir(::grpc::ClientContext* context, const ::dfs::RmdirRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dfs::RmdirResponse>>(AsyncRmdirRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dfs::RmdirResponse>> PrepareAsyncRmdir(::grpc::ClientContext* context, const ::dfs::RmdirRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dfs::RmdirResponse>>(PrepareAsyncRmdirRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -97,6 +111,10 @@ class NameNodeService final {
       // Consulta de réplicas para un bloque
       virtual void GetReplicas(::grpc::ClientContext* context, const ::dfs::ReplicaRequest* request, ::dfs::ReplicaResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetReplicas(::grpc::ClientContext* context, const ::dfs::ReplicaRequest* request, ::dfs::ReplicaResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Mkdir(::grpc::ClientContext* context, const ::dfs::MkdirRequest* request, ::dfs::MkdirResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Mkdir(::grpc::ClientContext* context, const ::dfs::MkdirRequest* request, ::dfs::MkdirResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Rmdir(::grpc::ClientContext* context, const ::dfs::RmdirRequest* request, ::dfs::RmdirResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Rmdir(::grpc::ClientContext* context, const ::dfs::RmdirRequest* request, ::dfs::RmdirResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -112,6 +130,10 @@ class NameNodeService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::dfs::RemoveFileResponse>* PrepareAsyncRemoveFileRaw(::grpc::ClientContext* context, const ::dfs::RemoveFileRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::dfs::ReplicaResponse>* AsyncGetReplicasRaw(::grpc::ClientContext* context, const ::dfs::ReplicaRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::dfs::ReplicaResponse>* PrepareAsyncGetReplicasRaw(::grpc::ClientContext* context, const ::dfs::ReplicaRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::dfs::MkdirResponse>* AsyncMkdirRaw(::grpc::ClientContext* context, const ::dfs::MkdirRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::dfs::MkdirResponse>* PrepareAsyncMkdirRaw(::grpc::ClientContext* context, const ::dfs::MkdirRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::dfs::RmdirResponse>* AsyncRmdirRaw(::grpc::ClientContext* context, const ::dfs::RmdirRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::dfs::RmdirResponse>* PrepareAsyncRmdirRaw(::grpc::ClientContext* context, const ::dfs::RmdirRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -151,6 +173,20 @@ class NameNodeService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dfs::ReplicaResponse>> PrepareAsyncGetReplicas(::grpc::ClientContext* context, const ::dfs::ReplicaRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dfs::ReplicaResponse>>(PrepareAsyncGetReplicasRaw(context, request, cq));
     }
+    ::grpc::Status Mkdir(::grpc::ClientContext* context, const ::dfs::MkdirRequest& request, ::dfs::MkdirResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dfs::MkdirResponse>> AsyncMkdir(::grpc::ClientContext* context, const ::dfs::MkdirRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dfs::MkdirResponse>>(AsyncMkdirRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dfs::MkdirResponse>> PrepareAsyncMkdir(::grpc::ClientContext* context, const ::dfs::MkdirRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dfs::MkdirResponse>>(PrepareAsyncMkdirRaw(context, request, cq));
+    }
+    ::grpc::Status Rmdir(::grpc::ClientContext* context, const ::dfs::RmdirRequest& request, ::dfs::RmdirResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dfs::RmdirResponse>> AsyncRmdir(::grpc::ClientContext* context, const ::dfs::RmdirRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dfs::RmdirResponse>>(AsyncRmdirRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dfs::RmdirResponse>> PrepareAsyncRmdir(::grpc::ClientContext* context, const ::dfs::RmdirRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dfs::RmdirResponse>>(PrepareAsyncRmdirRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -164,6 +200,10 @@ class NameNodeService final {
       void RemoveFile(::grpc::ClientContext* context, const ::dfs::RemoveFileRequest* request, ::dfs::RemoveFileResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetReplicas(::grpc::ClientContext* context, const ::dfs::ReplicaRequest* request, ::dfs::ReplicaResponse* response, std::function<void(::grpc::Status)>) override;
       void GetReplicas(::grpc::ClientContext* context, const ::dfs::ReplicaRequest* request, ::dfs::ReplicaResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Mkdir(::grpc::ClientContext* context, const ::dfs::MkdirRequest* request, ::dfs::MkdirResponse* response, std::function<void(::grpc::Status)>) override;
+      void Mkdir(::grpc::ClientContext* context, const ::dfs::MkdirRequest* request, ::dfs::MkdirResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Rmdir(::grpc::ClientContext* context, const ::dfs::RmdirRequest* request, ::dfs::RmdirResponse* response, std::function<void(::grpc::Status)>) override;
+      void Rmdir(::grpc::ClientContext* context, const ::dfs::RmdirRequest* request, ::dfs::RmdirResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -185,11 +225,17 @@ class NameNodeService final {
     ::grpc::ClientAsyncResponseReader< ::dfs::RemoveFileResponse>* PrepareAsyncRemoveFileRaw(::grpc::ClientContext* context, const ::dfs::RemoveFileRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::dfs::ReplicaResponse>* AsyncGetReplicasRaw(::grpc::ClientContext* context, const ::dfs::ReplicaRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::dfs::ReplicaResponse>* PrepareAsyncGetReplicasRaw(::grpc::ClientContext* context, const ::dfs::ReplicaRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::dfs::MkdirResponse>* AsyncMkdirRaw(::grpc::ClientContext* context, const ::dfs::MkdirRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::dfs::MkdirResponse>* PrepareAsyncMkdirRaw(::grpc::ClientContext* context, const ::dfs::MkdirRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::dfs::RmdirResponse>* AsyncRmdirRaw(::grpc::ClientContext* context, const ::dfs::RmdirRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::dfs::RmdirResponse>* PrepareAsyncRmdirRaw(::grpc::ClientContext* context, const ::dfs::RmdirRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_PutFile_;
     const ::grpc::internal::RpcMethod rpcmethod_GetFile_;
     const ::grpc::internal::RpcMethod rpcmethod_ListFiles_;
     const ::grpc::internal::RpcMethod rpcmethod_RemoveFile_;
     const ::grpc::internal::RpcMethod rpcmethod_GetReplicas_;
+    const ::grpc::internal::RpcMethod rpcmethod_Mkdir_;
+    const ::grpc::internal::RpcMethod rpcmethod_Rmdir_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -207,6 +253,8 @@ class NameNodeService final {
     virtual ::grpc::Status RemoveFile(::grpc::ServerContext* context, const ::dfs::RemoveFileRequest* request, ::dfs::RemoveFileResponse* response);
     // Consulta de réplicas para un bloque
     virtual ::grpc::Status GetReplicas(::grpc::ServerContext* context, const ::dfs::ReplicaRequest* request, ::dfs::ReplicaResponse* response);
+    virtual ::grpc::Status Mkdir(::grpc::ServerContext* context, const ::dfs::MkdirRequest* request, ::dfs::MkdirResponse* response);
+    virtual ::grpc::Status Rmdir(::grpc::ServerContext* context, const ::dfs::RmdirRequest* request, ::dfs::RmdirResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_PutFile : public BaseClass {
@@ -308,7 +356,47 @@ class NameNodeService final {
       ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_PutFile<WithAsyncMethod_GetFile<WithAsyncMethod_ListFiles<WithAsyncMethod_RemoveFile<WithAsyncMethod_GetReplicas<Service > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_Mkdir : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Mkdir() {
+      ::grpc::Service::MarkMethodAsync(5);
+    }
+    ~WithAsyncMethod_Mkdir() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Mkdir(::grpc::ServerContext* /*context*/, const ::dfs::MkdirRequest* /*request*/, ::dfs::MkdirResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestMkdir(::grpc::ServerContext* context, ::dfs::MkdirRequest* request, ::grpc::ServerAsyncResponseWriter< ::dfs::MkdirResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Rmdir : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Rmdir() {
+      ::grpc::Service::MarkMethodAsync(6);
+    }
+    ~WithAsyncMethod_Rmdir() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Rmdir(::grpc::ServerContext* /*context*/, const ::dfs::RmdirRequest* /*request*/, ::dfs::RmdirResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestRmdir(::grpc::ServerContext* context, ::dfs::RmdirRequest* request, ::grpc::ServerAsyncResponseWriter< ::dfs::RmdirResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_PutFile<WithAsyncMethod_GetFile<WithAsyncMethod_ListFiles<WithAsyncMethod_RemoveFile<WithAsyncMethod_GetReplicas<WithAsyncMethod_Mkdir<WithAsyncMethod_Rmdir<Service > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_PutFile : public BaseClass {
    private:
@@ -444,7 +532,61 @@ class NameNodeService final {
     virtual ::grpc::ServerUnaryReactor* GetReplicas(
       ::grpc::CallbackServerContext* /*context*/, const ::dfs::ReplicaRequest* /*request*/, ::dfs::ReplicaResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_PutFile<WithCallbackMethod_GetFile<WithCallbackMethod_ListFiles<WithCallbackMethod_RemoveFile<WithCallbackMethod_GetReplicas<Service > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_Mkdir : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Mkdir() {
+      ::grpc::Service::MarkMethodCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::dfs::MkdirRequest, ::dfs::MkdirResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::dfs::MkdirRequest* request, ::dfs::MkdirResponse* response) { return this->Mkdir(context, request, response); }));}
+    void SetMessageAllocatorFor_Mkdir(
+        ::grpc::MessageAllocator< ::dfs::MkdirRequest, ::dfs::MkdirResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::dfs::MkdirRequest, ::dfs::MkdirResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Mkdir() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Mkdir(::grpc::ServerContext* /*context*/, const ::dfs::MkdirRequest* /*request*/, ::dfs::MkdirResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Mkdir(
+      ::grpc::CallbackServerContext* /*context*/, const ::dfs::MkdirRequest* /*request*/, ::dfs::MkdirResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Rmdir : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Rmdir() {
+      ::grpc::Service::MarkMethodCallback(6,
+          new ::grpc::internal::CallbackUnaryHandler< ::dfs::RmdirRequest, ::dfs::RmdirResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::dfs::RmdirRequest* request, ::dfs::RmdirResponse* response) { return this->Rmdir(context, request, response); }));}
+    void SetMessageAllocatorFor_Rmdir(
+        ::grpc::MessageAllocator< ::dfs::RmdirRequest, ::dfs::RmdirResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::dfs::RmdirRequest, ::dfs::RmdirResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Rmdir() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Rmdir(::grpc::ServerContext* /*context*/, const ::dfs::RmdirRequest* /*request*/, ::dfs::RmdirResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Rmdir(
+      ::grpc::CallbackServerContext* /*context*/, const ::dfs::RmdirRequest* /*request*/, ::dfs::RmdirResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_PutFile<WithCallbackMethod_GetFile<WithCallbackMethod_ListFiles<WithCallbackMethod_RemoveFile<WithCallbackMethod_GetReplicas<WithCallbackMethod_Mkdir<WithCallbackMethod_Rmdir<Service > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_PutFile : public BaseClass {
@@ -527,6 +669,40 @@ class NameNodeService final {
     }
     // disable synchronous version of this method
     ::grpc::Status GetReplicas(::grpc::ServerContext* /*context*/, const ::dfs::ReplicaRequest* /*request*/, ::dfs::ReplicaResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Mkdir : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Mkdir() {
+      ::grpc::Service::MarkMethodGeneric(5);
+    }
+    ~WithGenericMethod_Mkdir() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Mkdir(::grpc::ServerContext* /*context*/, const ::dfs::MkdirRequest* /*request*/, ::dfs::MkdirResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Rmdir : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Rmdir() {
+      ::grpc::Service::MarkMethodGeneric(6);
+    }
+    ~WithGenericMethod_Rmdir() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Rmdir(::grpc::ServerContext* /*context*/, const ::dfs::RmdirRequest* /*request*/, ::dfs::RmdirResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -629,6 +805,46 @@ class NameNodeService final {
     }
     void RequestGetReplicas(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Mkdir : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Mkdir() {
+      ::grpc::Service::MarkMethodRaw(5);
+    }
+    ~WithRawMethod_Mkdir() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Mkdir(::grpc::ServerContext* /*context*/, const ::dfs::MkdirRequest* /*request*/, ::dfs::MkdirResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestMkdir(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Rmdir : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Rmdir() {
+      ::grpc::Service::MarkMethodRaw(6);
+    }
+    ~WithRawMethod_Rmdir() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Rmdir(::grpc::ServerContext* /*context*/, const ::dfs::RmdirRequest* /*request*/, ::dfs::RmdirResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestRmdir(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -739,6 +955,50 @@ class NameNodeService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* GetReplicas(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Mkdir : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Mkdir() {
+      ::grpc::Service::MarkMethodRawCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Mkdir(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Mkdir() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Mkdir(::grpc::ServerContext* /*context*/, const ::dfs::MkdirRequest* /*request*/, ::dfs::MkdirResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Mkdir(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Rmdir : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Rmdir() {
+      ::grpc::Service::MarkMethodRawCallback(6,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Rmdir(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Rmdir() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Rmdir(::grpc::ServerContext* /*context*/, const ::dfs::RmdirRequest* /*request*/, ::dfs::RmdirResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Rmdir(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -876,9 +1136,63 @@ class NameNodeService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetReplicas(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::dfs::ReplicaRequest,::dfs::ReplicaResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_PutFile<WithStreamedUnaryMethod_GetFile<WithStreamedUnaryMethod_ListFiles<WithStreamedUnaryMethod_RemoveFile<WithStreamedUnaryMethod_GetReplicas<Service > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Mkdir : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Mkdir() {
+      ::grpc::Service::MarkMethodStreamed(5,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::dfs::MkdirRequest, ::dfs::MkdirResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::dfs::MkdirRequest, ::dfs::MkdirResponse>* streamer) {
+                       return this->StreamedMkdir(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Mkdir() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Mkdir(::grpc::ServerContext* /*context*/, const ::dfs::MkdirRequest* /*request*/, ::dfs::MkdirResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedMkdir(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::dfs::MkdirRequest,::dfs::MkdirResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Rmdir : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Rmdir() {
+      ::grpc::Service::MarkMethodStreamed(6,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::dfs::RmdirRequest, ::dfs::RmdirResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::dfs::RmdirRequest, ::dfs::RmdirResponse>* streamer) {
+                       return this->StreamedRmdir(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Rmdir() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Rmdir(::grpc::ServerContext* /*context*/, const ::dfs::RmdirRequest* /*request*/, ::dfs::RmdirResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedRmdir(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::dfs::RmdirRequest,::dfs::RmdirResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_PutFile<WithStreamedUnaryMethod_GetFile<WithStreamedUnaryMethod_ListFiles<WithStreamedUnaryMethod_RemoveFile<WithStreamedUnaryMethod_GetReplicas<WithStreamedUnaryMethod_Mkdir<WithStreamedUnaryMethod_Rmdir<Service > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_PutFile<WithStreamedUnaryMethod_GetFile<WithStreamedUnaryMethod_ListFiles<WithStreamedUnaryMethod_RemoveFile<WithStreamedUnaryMethod_GetReplicas<Service > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_PutFile<WithStreamedUnaryMethod_GetFile<WithStreamedUnaryMethod_ListFiles<WithStreamedUnaryMethod_RemoveFile<WithStreamedUnaryMethod_GetReplicas<WithStreamedUnaryMethod_Mkdir<WithStreamedUnaryMethod_Rmdir<Service > > > > > > > StreamedService;
 };
 
 // ===========================================================

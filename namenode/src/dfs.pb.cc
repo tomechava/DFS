@@ -26,6 +26,64 @@ namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
 namespace dfs {
 
+inline constexpr RmdirResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : message_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        success_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR RmdirResponse::RmdirResponse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct RmdirResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR RmdirResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~RmdirResponseDefaultTypeInternal() {}
+  union {
+    RmdirResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RmdirResponseDefaultTypeInternal _RmdirResponse_default_instance_;
+
+inline constexpr RmdirRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : username_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        path_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR RmdirRequest::RmdirRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct RmdirRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR RmdirRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~RmdirRequestDefaultTypeInternal() {}
+  union {
+    RmdirRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RmdirRequestDefaultTypeInternal _RmdirRequest_default_instance_;
+
 inline constexpr ReportBlockResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : success_{false},
@@ -251,6 +309,64 @@ struct PutFileRequestDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PutFileRequestDefaultTypeInternal _PutFileRequest_default_instance_;
+
+inline constexpr MkdirResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : message_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        success_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR MkdirResponse::MkdirResponse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct MkdirResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MkdirResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MkdirResponseDefaultTypeInternal() {}
+  union {
+    MkdirResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MkdirResponseDefaultTypeInternal _MkdirResponse_default_instance_;
+
+inline constexpr MkdirRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : username_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        path_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR MkdirRequest::MkdirRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct MkdirRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MkdirRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MkdirRequestDefaultTypeInternal() {}
+  union {
+    MkdirRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MkdirRequestDefaultTypeInternal _MkdirRequest_default_instance_;
 
 inline constexpr ListFilesResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -810,6 +926,46 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::dfs::ReplicaResponse, _impl_.replica_datanodes_),
         ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::dfs::MkdirRequest, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::dfs::MkdirRequest, _impl_.username_),
+        PROTOBUF_FIELD_OFFSET(::dfs::MkdirRequest, _impl_.path_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::dfs::MkdirResponse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::dfs::MkdirResponse, _impl_.success_),
+        PROTOBUF_FIELD_OFFSET(::dfs::MkdirResponse, _impl_.message_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::dfs::RmdirRequest, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::dfs::RmdirRequest, _impl_.username_),
+        PROTOBUF_FIELD_OFFSET(::dfs::RmdirRequest, _impl_.path_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::dfs::RmdirResponse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::dfs::RmdirResponse, _impl_.success_),
+        PROTOBUF_FIELD_OFFSET(::dfs::RmdirResponse, _impl_.message_),
+        ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::dfs::BlockUploadRequest, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
@@ -965,20 +1121,24 @@ static const ::_pbi::MigrationSchema
         {71, -1, -1, sizeof(::dfs::RemoveFileResponse)},
         {81, -1, -1, sizeof(::dfs::ReplicaRequest)},
         {90, -1, -1, sizeof(::dfs::ReplicaResponse)},
-        {99, -1, -1, sizeof(::dfs::BlockUploadRequest)},
-        {110, -1, -1, sizeof(::dfs::BlockUploadResponse)},
-        {119, -1, -1, sizeof(::dfs::BlockDownloadRequest)},
-        {129, -1, -1, sizeof(::dfs::BlockDownloadResponse)},
-        {138, -1, -1, sizeof(::dfs::RegisterDataNodeRequest)},
-        {149, -1, -1, sizeof(::dfs::RegisterDataNodeResponse)},
-        {158, -1, -1, sizeof(::dfs::HeartbeatRequest)},
-        {169, -1, -1, sizeof(::dfs::HeartbeatResponse)},
-        {178, -1, -1, sizeof(::dfs::ReportBlockRequest)},
-        {190, -1, -1, sizeof(::dfs::ReportBlockResponse)},
-        {199, -1, -1, sizeof(::dfs::BlockReport)},
-        {209, -1, -1, sizeof(::dfs::BlockLocation)},
-        {221, -1, -1, sizeof(::dfs::BlockReplicationRequest)},
-        {232, -1, -1, sizeof(::dfs::BlockReplicationResponse)},
+        {99, -1, -1, sizeof(::dfs::MkdirRequest)},
+        {109, -1, -1, sizeof(::dfs::MkdirResponse)},
+        {119, -1, -1, sizeof(::dfs::RmdirRequest)},
+        {129, -1, -1, sizeof(::dfs::RmdirResponse)},
+        {139, -1, -1, sizeof(::dfs::BlockUploadRequest)},
+        {150, -1, -1, sizeof(::dfs::BlockUploadResponse)},
+        {159, -1, -1, sizeof(::dfs::BlockDownloadRequest)},
+        {169, -1, -1, sizeof(::dfs::BlockDownloadResponse)},
+        {178, -1, -1, sizeof(::dfs::RegisterDataNodeRequest)},
+        {189, -1, -1, sizeof(::dfs::RegisterDataNodeResponse)},
+        {198, -1, -1, sizeof(::dfs::HeartbeatRequest)},
+        {209, -1, -1, sizeof(::dfs::HeartbeatResponse)},
+        {218, -1, -1, sizeof(::dfs::ReportBlockRequest)},
+        {230, -1, -1, sizeof(::dfs::ReportBlockResponse)},
+        {239, -1, -1, sizeof(::dfs::BlockReport)},
+        {249, -1, -1, sizeof(::dfs::BlockLocation)},
+        {261, -1, -1, sizeof(::dfs::BlockReplicationRequest)},
+        {272, -1, -1, sizeof(::dfs::BlockReplicationResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::dfs::_PutFileRequest_default_instance_._instance,
@@ -991,6 +1151,10 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::dfs::_RemoveFileResponse_default_instance_._instance,
     &::dfs::_ReplicaRequest_default_instance_._instance,
     &::dfs::_ReplicaResponse_default_instance_._instance,
+    &::dfs::_MkdirRequest_default_instance_._instance,
+    &::dfs::_MkdirResponse_default_instance_._instance,
+    &::dfs::_RmdirRequest_default_instance_._instance,
+    &::dfs::_RmdirResponse_default_instance_._instance,
     &::dfs::_BlockUploadRequest_default_instance_._instance,
     &::dfs::_BlockUploadResponse_default_instance_._instance,
     &::dfs::_BlockDownloadRequest_default_instance_._instance,
@@ -1022,61 +1186,68 @@ const char descriptor_table_protodef_dfs_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIAB
     "\t\022\020\n\010filename\030\003 \001(\t\"6\n\022RemoveFileRespons"
     "e\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"\"\n\016R"
     "eplicaRequest\022\020\n\010block_id\030\001 \001(\003\",\n\017Repli"
-    "caResponse\022\031\n\021replica_datanodes\030\001 \003(\t\"F\n"
-    "\022BlockUploadRequest\022\020\n\010block_id\030\001 \001(\003\022\020\n"
-    "\010filename\030\002 \001(\t\022\014\n\004data\030\003 \001(\014\"&\n\023BlockUp"
-    "loadResponse\022\017\n\007success\030\001 \001(\010\":\n\024BlockDo"
-    "wnloadRequest\022\020\n\010block_id\030\001 \001(\003\022\020\n\010filen"
-    "ame\030\002 \001(\t\"%\n\025BlockDownloadResponse\022\014\n\004da"
-    "ta\030\001 \001(\014\"P\n\027RegisterDataNodeRequest\022\023\n\013d"
-    "atanode_id\030\001 \001(\t\022\022\n\nip_address\030\002 \001(\t\022\014\n\004"
-    "port\030\003 \001(\005\"+\n\030RegisterDataNodeResponse\022\017"
-    "\n\007success\030\001 \001(\010\"I\n\020HeartbeatRequest\022\023\n\013d"
-    "atanode_id\030\001 \001(\t\022\022\n\nip_address\030\002 \001(\t\022\014\n\004"
-    "port\030\003 \001(\005\"$\n\021HeartbeatResponse\022\017\n\007succe"
-    "ss\030\001 \001(\010\"m\n\022ReportBlockRequest\022\023\n\013datano"
-    "de_id\030\001 \001(\t\022\022\n\nip_address\030\002 \001(\t\022\014\n\004port\030"
-    "\003 \001(\005\022 \n\006blocks\030\004 \003(\0132\020.dfs.BlockReport\""
-    "&\n\023ReportBlockResponse\022\017\n\007success\030\001 \001(\010\""
-    "1\n\013BlockReport\022\020\n\010block_id\030\001 \001(\003\022\020\n\010file"
-    "name\030\002 \001(\t\"j\n\rBlockLocation\022\020\n\010block_id\030"
-    "\001 \001(\003\022\027\n\017primary_address\030\002 \001(\t\022\031\n\021replic"
-    "a_addresses\030\003 \003(\t\022\023\n\013block_index\030\004 \001(\005\"K"
-    "\n\027BlockReplicationRequest\022\020\n\010block_id\030\001 "
-    "\001(\003\022\020\n\010filename\030\002 \001(\t\022\014\n\004data\030\003 \001(\014\"+\n\030B"
-    "lockReplicationResponse\022\017\n\007success\030\001 \001(\010"
-    "2\262\002\n\017NameNodeService\0224\n\007PutFile\022\023.dfs.Pu"
-    "tFileRequest\032\024.dfs.PutFileResponse\0224\n\007Ge"
-    "tFile\022\023.dfs.GetFileRequest\032\024.dfs.GetFile"
-    "Response\022:\n\tListFiles\022\025.dfs.ListFilesReq"
-    "uest\032\026.dfs.ListFilesResponse\022=\n\nRemoveFi"
-    "le\022\026.dfs.RemoveFileRequest\032\027.dfs.RemoveF"
-    "ileResponse\0228\n\013GetReplicas\022\023.dfs.Replica"
-    "Request\032\024.dfs.ReplicaResponse2\352\001\n\017DataNo"
-    "deService\022@\n\013UploadBlock\022\027.dfs.BlockUplo"
-    "adRequest\032\030.dfs.BlockUploadResponse\022F\n\rD"
-    "ownloadBlock\022\031.dfs.BlockDownloadRequest\032"
-    "\032.dfs.BlockDownloadResponse\022M\n\016Replicate"
-    "Block\022\034.dfs.BlockReplicationRequest\032\035.df"
-    "s.BlockReplicationResponse2\337\001\n\016ClusterSe"
-    "rvice\022O\n\020RegisterDataNode\022\034.dfs.Register"
-    "DataNodeRequest\032\035.dfs.RegisterDataNodeRe"
-    "sponse\022:\n\tHeartbeat\022\025.dfs.HeartbeatReque"
-    "st\032\026.dfs.HeartbeatResponse\022@\n\013ReportBloc"
-    "k\022\027.dfs.ReportBlockRequest\032\030.dfs.ReportB"
-    "lockResponseb\006proto3"
+    "caResponse\022\031\n\021replica_datanodes\030\001 \003(\t\".\n"
+    "\014MkdirRequest\022\020\n\010username\030\001 \001(\t\022\014\n\004path\030"
+    "\002 \001(\t\"1\n\rMkdirResponse\022\017\n\007success\030\001 \001(\010\022"
+    "\017\n\007message\030\002 \001(\t\".\n\014RmdirRequest\022\020\n\010user"
+    "name\030\001 \001(\t\022\014\n\004path\030\002 \001(\t\"1\n\rRmdirRespons"
+    "e\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"F\n\022B"
+    "lockUploadRequest\022\020\n\010block_id\030\001 \001(\003\022\020\n\010f"
+    "ilename\030\002 \001(\t\022\014\n\004data\030\003 \001(\014\"&\n\023BlockUplo"
+    "adResponse\022\017\n\007success\030\001 \001(\010\":\n\024BlockDown"
+    "loadRequest\022\020\n\010block_id\030\001 \001(\003\022\020\n\010filenam"
+    "e\030\002 \001(\t\"%\n\025BlockDownloadResponse\022\014\n\004data"
+    "\030\001 \001(\014\"P\n\027RegisterDataNodeRequest\022\023\n\013dat"
+    "anode_id\030\001 \001(\t\022\022\n\nip_address\030\002 \001(\t\022\014\n\004po"
+    "rt\030\003 \001(\005\"+\n\030RegisterDataNodeResponse\022\017\n\007"
+    "success\030\001 \001(\010\"I\n\020HeartbeatRequest\022\023\n\013dat"
+    "anode_id\030\001 \001(\t\022\022\n\nip_address\030\002 \001(\t\022\014\n\004po"
+    "rt\030\003 \001(\005\"$\n\021HeartbeatResponse\022\017\n\007success"
+    "\030\001 \001(\010\"m\n\022ReportBlockRequest\022\023\n\013datanode"
+    "_id\030\001 \001(\t\022\022\n\nip_address\030\002 \001(\t\022\014\n\004port\030\003 "
+    "\001(\005\022 \n\006blocks\030\004 \003(\0132\020.dfs.BlockReport\"&\n"
+    "\023ReportBlockResponse\022\017\n\007success\030\001 \001(\010\"1\n"
+    "\013BlockReport\022\020\n\010block_id\030\001 \001(\003\022\020\n\010filena"
+    "me\030\002 \001(\t\"j\n\rBlockLocation\022\020\n\010block_id\030\001 "
+    "\001(\003\022\027\n\017primary_address\030\002 \001(\t\022\031\n\021replica_"
+    "addresses\030\003 \003(\t\022\023\n\013block_index\030\004 \001(\005\"K\n\027"
+    "BlockReplicationRequest\022\020\n\010block_id\030\001 \001("
+    "\003\022\020\n\010filename\030\002 \001(\t\022\014\n\004data\030\003 \001(\014\"+\n\030Blo"
+    "ckReplicationResponse\022\017\n\007success\030\001 \001(\0102\222"
+    "\003\n\017NameNodeService\0224\n\007PutFile\022\023.dfs.PutF"
+    "ileRequest\032\024.dfs.PutFileResponse\0224\n\007GetF"
+    "ile\022\023.dfs.GetFileRequest\032\024.dfs.GetFileRe"
+    "sponse\022:\n\tListFiles\022\025.dfs.ListFilesReque"
+    "st\032\026.dfs.ListFilesResponse\022=\n\nRemoveFile"
+    "\022\026.dfs.RemoveFileRequest\032\027.dfs.RemoveFil"
+    "eResponse\0228\n\013GetReplicas\022\023.dfs.ReplicaRe"
+    "quest\032\024.dfs.ReplicaResponse\022.\n\005Mkdir\022\021.d"
+    "fs.MkdirRequest\032\022.dfs.MkdirResponse\022.\n\005R"
+    "mdir\022\021.dfs.RmdirRequest\032\022.dfs.RmdirRespo"
+    "nse2\352\001\n\017DataNodeService\022@\n\013UploadBlock\022\027"
+    ".dfs.BlockUploadRequest\032\030.dfs.BlockUploa"
+    "dResponse\022F\n\rDownloadBlock\022\031.dfs.BlockDo"
+    "wnloadRequest\032\032.dfs.BlockDownloadRespons"
+    "e\022M\n\016ReplicateBlock\022\034.dfs.BlockReplicati"
+    "onRequest\032\035.dfs.BlockReplicationResponse"
+    "2\337\001\n\016ClusterService\022O\n\020RegisterDataNode\022"
+    "\034.dfs.RegisterDataNodeRequest\032\035.dfs.Regi"
+    "sterDataNodeResponse\022:\n\tHeartbeat\022\025.dfs."
+    "HeartbeatRequest\032\026.dfs.HeartbeatResponse"
+    "\022@\n\013ReportBlock\022\027.dfs.ReportBlockRequest"
+    "\032\030.dfs.ReportBlockResponseb\006proto3"
 };
 static ::absl::once_flag descriptor_table_dfs_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_dfs_2eproto = {
     false,
     false,
-    2260,
+    2554,
     descriptor_table_protodef_dfs_2eproto,
     "dfs.proto",
     &descriptor_table_dfs_2eproto_once,
     nullptr,
     0,
-    24,
+    28,
     schemas,
     file_default_instances,
     TableStruct_dfs_2eproto::offsets,
@@ -3666,6 +3837,1038 @@ void ReplicaResponse::InternalSwap(ReplicaResponse* PROTOBUF_RESTRICT other) {
 }
 
 ::google::protobuf::Metadata ReplicaResponse::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class MkdirRequest::_Internal {
+ public:
+};
+
+MkdirRequest::MkdirRequest(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:dfs.MkdirRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE MkdirRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::dfs::MkdirRequest& from_msg)
+      : username_(arena, from.username_),
+        path_(arena, from.path_),
+        _cached_size_{0} {}
+
+MkdirRequest::MkdirRequest(
+    ::google::protobuf::Arena* arena,
+    const MkdirRequest& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  MkdirRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:dfs.MkdirRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE MkdirRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : username_(arena),
+        path_(arena),
+        _cached_size_{0} {}
+
+inline void MkdirRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+MkdirRequest::~MkdirRequest() {
+  // @@protoc_insertion_point(destructor:dfs.MkdirRequest)
+  SharedDtor(*this);
+}
+inline void MkdirRequest::SharedDtor(MessageLite& self) {
+  MkdirRequest& this_ = static_cast<MkdirRequest&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.username_.Destroy();
+  this_._impl_.path_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* MkdirRequest::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) MkdirRequest(arena);
+}
+constexpr auto MkdirRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(MkdirRequest),
+                                            alignof(MkdirRequest));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull MkdirRequest::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_MkdirRequest_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &MkdirRequest::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<MkdirRequest>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &MkdirRequest::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<MkdirRequest>(), &MkdirRequest::ByteSizeLong,
+            &MkdirRequest::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(MkdirRequest, _impl_._cached_size_),
+        false,
+    },
+    &MkdirRequest::kDescriptorMethods,
+    &descriptor_table_dfs_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* MkdirRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 37, 2> MkdirRequest::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::dfs::MkdirRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string path = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(MkdirRequest, _impl_.path_)}},
+    // string username = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(MkdirRequest, _impl_.username_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string username = 1;
+    {PROTOBUF_FIELD_OFFSET(MkdirRequest, _impl_.username_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string path = 2;
+    {PROTOBUF_FIELD_OFFSET(MkdirRequest, _impl_.path_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\20\10\4\0\0\0\0\0"
+    "dfs.MkdirRequest"
+    "username"
+    "path"
+  }},
+};
+
+PROTOBUF_NOINLINE void MkdirRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:dfs.MkdirRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.username_.ClearToEmpty();
+  _impl_.path_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* MkdirRequest::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const MkdirRequest& this_ = static_cast<const MkdirRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* MkdirRequest::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const MkdirRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:dfs.MkdirRequest)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string username = 1;
+          if (!this_._internal_username().empty()) {
+            const std::string& _s = this_._internal_username();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "dfs.MkdirRequest.username");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          // string path = 2;
+          if (!this_._internal_path().empty()) {
+            const std::string& _s = this_._internal_path();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "dfs.MkdirRequest.path");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:dfs.MkdirRequest)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t MkdirRequest::ByteSizeLong(const MessageLite& base) {
+          const MkdirRequest& this_ = static_cast<const MkdirRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t MkdirRequest::ByteSizeLong() const {
+          const MkdirRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:dfs.MkdirRequest)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string username = 1;
+            if (!this_._internal_username().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_username());
+            }
+            // string path = 2;
+            if (!this_._internal_path().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_path());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void MkdirRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<MkdirRequest*>(&to_msg);
+  auto& from = static_cast<const MkdirRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:dfs.MkdirRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_username().empty()) {
+    _this->_internal_set_username(from._internal_username());
+  }
+  if (!from._internal_path().empty()) {
+    _this->_internal_set_path(from._internal_path());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void MkdirRequest::CopyFrom(const MkdirRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:dfs.MkdirRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void MkdirRequest::InternalSwap(MkdirRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.username_, &other->_impl_.username_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.path_, &other->_impl_.path_, arena);
+}
+
+::google::protobuf::Metadata MkdirRequest::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class MkdirResponse::_Internal {
+ public:
+};
+
+MkdirResponse::MkdirResponse(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:dfs.MkdirResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE MkdirResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::dfs::MkdirResponse& from_msg)
+      : message_(arena, from.message_),
+        _cached_size_{0} {}
+
+MkdirResponse::MkdirResponse(
+    ::google::protobuf::Arena* arena,
+    const MkdirResponse& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  MkdirResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.success_ = from._impl_.success_;
+
+  // @@protoc_insertion_point(copy_constructor:dfs.MkdirResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE MkdirResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : message_(arena),
+        _cached_size_{0} {}
+
+inline void MkdirResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.success_ = {};
+}
+MkdirResponse::~MkdirResponse() {
+  // @@protoc_insertion_point(destructor:dfs.MkdirResponse)
+  SharedDtor(*this);
+}
+inline void MkdirResponse::SharedDtor(MessageLite& self) {
+  MkdirResponse& this_ = static_cast<MkdirResponse&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.message_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* MkdirResponse::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) MkdirResponse(arena);
+}
+constexpr auto MkdirResponse::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(MkdirResponse),
+                                            alignof(MkdirResponse));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull MkdirResponse::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_MkdirResponse_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &MkdirResponse::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<MkdirResponse>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &MkdirResponse::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<MkdirResponse>(), &MkdirResponse::ByteSizeLong,
+            &MkdirResponse::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(MkdirResponse, _impl_._cached_size_),
+        false,
+    },
+    &MkdirResponse::kDescriptorMethods,
+    &descriptor_table_dfs_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* MkdirResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 33, 2> MkdirResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::dfs::MkdirResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string message = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(MkdirResponse, _impl_.message_)}},
+    // bool success = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(MkdirResponse, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(MkdirResponse, _impl_.success_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool success = 1;
+    {PROTOBUF_FIELD_OFFSET(MkdirResponse, _impl_.success_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // string message = 2;
+    {PROTOBUF_FIELD_OFFSET(MkdirResponse, _impl_.message_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\21\0\7\0\0\0\0\0"
+    "dfs.MkdirResponse"
+    "message"
+  }},
+};
+
+PROTOBUF_NOINLINE void MkdirResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:dfs.MkdirResponse)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.message_.ClearToEmpty();
+  _impl_.success_ = false;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* MkdirResponse::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const MkdirResponse& this_ = static_cast<const MkdirResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* MkdirResponse::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const MkdirResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:dfs.MkdirResponse)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // bool success = 1;
+          if (this_._internal_success() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteBoolToArray(
+                1, this_._internal_success(), target);
+          }
+
+          // string message = 2;
+          if (!this_._internal_message().empty()) {
+            const std::string& _s = this_._internal_message();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "dfs.MkdirResponse.message");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:dfs.MkdirResponse)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t MkdirResponse::ByteSizeLong(const MessageLite& base) {
+          const MkdirResponse& this_ = static_cast<const MkdirResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t MkdirResponse::ByteSizeLong() const {
+          const MkdirResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:dfs.MkdirResponse)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string message = 2;
+            if (!this_._internal_message().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_message());
+            }
+            // bool success = 1;
+            if (this_._internal_success() != 0) {
+              total_size += 2;
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void MkdirResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<MkdirResponse*>(&to_msg);
+  auto& from = static_cast<const MkdirResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:dfs.MkdirResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
+  }
+  if (from._internal_success() != 0) {
+    _this->_impl_.success_ = from._impl_.success_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void MkdirResponse::CopyFrom(const MkdirResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:dfs.MkdirResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void MkdirResponse::InternalSwap(MkdirResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+        swap(_impl_.success_, other->_impl_.success_);
+}
+
+::google::protobuf::Metadata MkdirResponse::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class RmdirRequest::_Internal {
+ public:
+};
+
+RmdirRequest::RmdirRequest(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:dfs.RmdirRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE RmdirRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::dfs::RmdirRequest& from_msg)
+      : username_(arena, from.username_),
+        path_(arena, from.path_),
+        _cached_size_{0} {}
+
+RmdirRequest::RmdirRequest(
+    ::google::protobuf::Arena* arena,
+    const RmdirRequest& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  RmdirRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:dfs.RmdirRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE RmdirRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : username_(arena),
+        path_(arena),
+        _cached_size_{0} {}
+
+inline void RmdirRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+RmdirRequest::~RmdirRequest() {
+  // @@protoc_insertion_point(destructor:dfs.RmdirRequest)
+  SharedDtor(*this);
+}
+inline void RmdirRequest::SharedDtor(MessageLite& self) {
+  RmdirRequest& this_ = static_cast<RmdirRequest&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.username_.Destroy();
+  this_._impl_.path_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* RmdirRequest::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) RmdirRequest(arena);
+}
+constexpr auto RmdirRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(RmdirRequest),
+                                            alignof(RmdirRequest));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull RmdirRequest::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_RmdirRequest_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &RmdirRequest::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<RmdirRequest>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &RmdirRequest::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<RmdirRequest>(), &RmdirRequest::ByteSizeLong,
+            &RmdirRequest::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(RmdirRequest, _impl_._cached_size_),
+        false,
+    },
+    &RmdirRequest::kDescriptorMethods,
+    &descriptor_table_dfs_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* RmdirRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 37, 2> RmdirRequest::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::dfs::RmdirRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string path = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(RmdirRequest, _impl_.path_)}},
+    // string username = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(RmdirRequest, _impl_.username_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string username = 1;
+    {PROTOBUF_FIELD_OFFSET(RmdirRequest, _impl_.username_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string path = 2;
+    {PROTOBUF_FIELD_OFFSET(RmdirRequest, _impl_.path_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\20\10\4\0\0\0\0\0"
+    "dfs.RmdirRequest"
+    "username"
+    "path"
+  }},
+};
+
+PROTOBUF_NOINLINE void RmdirRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:dfs.RmdirRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.username_.ClearToEmpty();
+  _impl_.path_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* RmdirRequest::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const RmdirRequest& this_ = static_cast<const RmdirRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* RmdirRequest::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const RmdirRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:dfs.RmdirRequest)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string username = 1;
+          if (!this_._internal_username().empty()) {
+            const std::string& _s = this_._internal_username();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "dfs.RmdirRequest.username");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          // string path = 2;
+          if (!this_._internal_path().empty()) {
+            const std::string& _s = this_._internal_path();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "dfs.RmdirRequest.path");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:dfs.RmdirRequest)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t RmdirRequest::ByteSizeLong(const MessageLite& base) {
+          const RmdirRequest& this_ = static_cast<const RmdirRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t RmdirRequest::ByteSizeLong() const {
+          const RmdirRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:dfs.RmdirRequest)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string username = 1;
+            if (!this_._internal_username().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_username());
+            }
+            // string path = 2;
+            if (!this_._internal_path().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_path());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void RmdirRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<RmdirRequest*>(&to_msg);
+  auto& from = static_cast<const RmdirRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:dfs.RmdirRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_username().empty()) {
+    _this->_internal_set_username(from._internal_username());
+  }
+  if (!from._internal_path().empty()) {
+    _this->_internal_set_path(from._internal_path());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void RmdirRequest::CopyFrom(const RmdirRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:dfs.RmdirRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void RmdirRequest::InternalSwap(RmdirRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.username_, &other->_impl_.username_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.path_, &other->_impl_.path_, arena);
+}
+
+::google::protobuf::Metadata RmdirRequest::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class RmdirResponse::_Internal {
+ public:
+};
+
+RmdirResponse::RmdirResponse(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:dfs.RmdirResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE RmdirResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::dfs::RmdirResponse& from_msg)
+      : message_(arena, from.message_),
+        _cached_size_{0} {}
+
+RmdirResponse::RmdirResponse(
+    ::google::protobuf::Arena* arena,
+    const RmdirResponse& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  RmdirResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.success_ = from._impl_.success_;
+
+  // @@protoc_insertion_point(copy_constructor:dfs.RmdirResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE RmdirResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : message_(arena),
+        _cached_size_{0} {}
+
+inline void RmdirResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.success_ = {};
+}
+RmdirResponse::~RmdirResponse() {
+  // @@protoc_insertion_point(destructor:dfs.RmdirResponse)
+  SharedDtor(*this);
+}
+inline void RmdirResponse::SharedDtor(MessageLite& self) {
+  RmdirResponse& this_ = static_cast<RmdirResponse&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.message_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* RmdirResponse::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) RmdirResponse(arena);
+}
+constexpr auto RmdirResponse::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(RmdirResponse),
+                                            alignof(RmdirResponse));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull RmdirResponse::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_RmdirResponse_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &RmdirResponse::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<RmdirResponse>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &RmdirResponse::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<RmdirResponse>(), &RmdirResponse::ByteSizeLong,
+            &RmdirResponse::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(RmdirResponse, _impl_._cached_size_),
+        false,
+    },
+    &RmdirResponse::kDescriptorMethods,
+    &descriptor_table_dfs_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* RmdirResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 33, 2> RmdirResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::dfs::RmdirResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string message = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(RmdirResponse, _impl_.message_)}},
+    // bool success = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(RmdirResponse, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(RmdirResponse, _impl_.success_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool success = 1;
+    {PROTOBUF_FIELD_OFFSET(RmdirResponse, _impl_.success_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // string message = 2;
+    {PROTOBUF_FIELD_OFFSET(RmdirResponse, _impl_.message_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\21\0\7\0\0\0\0\0"
+    "dfs.RmdirResponse"
+    "message"
+  }},
+};
+
+PROTOBUF_NOINLINE void RmdirResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:dfs.RmdirResponse)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.message_.ClearToEmpty();
+  _impl_.success_ = false;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* RmdirResponse::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const RmdirResponse& this_ = static_cast<const RmdirResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* RmdirResponse::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const RmdirResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:dfs.RmdirResponse)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // bool success = 1;
+          if (this_._internal_success() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteBoolToArray(
+                1, this_._internal_success(), target);
+          }
+
+          // string message = 2;
+          if (!this_._internal_message().empty()) {
+            const std::string& _s = this_._internal_message();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "dfs.RmdirResponse.message");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:dfs.RmdirResponse)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t RmdirResponse::ByteSizeLong(const MessageLite& base) {
+          const RmdirResponse& this_ = static_cast<const RmdirResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t RmdirResponse::ByteSizeLong() const {
+          const RmdirResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:dfs.RmdirResponse)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string message = 2;
+            if (!this_._internal_message().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_message());
+            }
+            // bool success = 1;
+            if (this_._internal_success() != 0) {
+              total_size += 2;
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void RmdirResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<RmdirResponse*>(&to_msg);
+  auto& from = static_cast<const RmdirResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:dfs.RmdirResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
+  }
+  if (from._internal_success() != 0) {
+    _this->_impl_.success_ = from._impl_.success_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void RmdirResponse::CopyFrom(const RmdirResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:dfs.RmdirResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void RmdirResponse::InternalSwap(RmdirResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+        swap(_impl_.success_, other->_impl_.success_);
+}
+
+::google::protobuf::Metadata RmdirResponse::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================

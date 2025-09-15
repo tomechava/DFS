@@ -62,6 +62,16 @@ class NameNodeServiceStub(object):
                 request_serializer=dfs__pb2.ReplicaRequest.SerializeToString,
                 response_deserializer=dfs__pb2.ReplicaResponse.FromString,
                 _registered_method=True)
+        self.Mkdir = channel.unary_unary(
+                '/dfs.NameNodeService/Mkdir',
+                request_serializer=dfs__pb2.MkdirRequest.SerializeToString,
+                response_deserializer=dfs__pb2.MkdirResponse.FromString,
+                _registered_method=True)
+        self.Rmdir = channel.unary_unary(
+                '/dfs.NameNodeService/Rmdir',
+                request_serializer=dfs__pb2.RmdirRequest.SerializeToString,
+                response_deserializer=dfs__pb2.RmdirResponse.FromString,
+                _registered_method=True)
 
 
 class NameNodeServiceServicer(object):
@@ -105,6 +115,18 @@ class NameNodeServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def Mkdir(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def Rmdir(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_NameNodeServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -132,6 +154,16 @@ def add_NameNodeServiceServicer_to_server(servicer, server):
                     servicer.GetReplicas,
                     request_deserializer=dfs__pb2.ReplicaRequest.FromString,
                     response_serializer=dfs__pb2.ReplicaResponse.SerializeToString,
+            ),
+            'Mkdir': grpc.unary_unary_rpc_method_handler(
+                    servicer.Mkdir,
+                    request_deserializer=dfs__pb2.MkdirRequest.FromString,
+                    response_serializer=dfs__pb2.MkdirResponse.SerializeToString,
+            ),
+            'Rmdir': grpc.unary_unary_rpc_method_handler(
+                    servicer.Rmdir,
+                    request_deserializer=dfs__pb2.RmdirRequest.FromString,
+                    response_serializer=dfs__pb2.RmdirResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -272,6 +304,60 @@ class NameNodeService(object):
             '/dfs.NameNodeService/GetReplicas',
             dfs__pb2.ReplicaRequest.SerializeToString,
             dfs__pb2.ReplicaResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def Mkdir(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/dfs.NameNodeService/Mkdir',
+            dfs__pb2.MkdirRequest.SerializeToString,
+            dfs__pb2.MkdirResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def Rmdir(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/dfs.NameNodeService/Rmdir',
+            dfs__pb2.RmdirRequest.SerializeToString,
+            dfs__pb2.RmdirResponse.FromString,
             options,
             channel_credentials,
             insecure,

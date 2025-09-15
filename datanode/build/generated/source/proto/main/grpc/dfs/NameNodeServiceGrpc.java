@@ -175,6 +175,68 @@ public final class NameNodeServiceGrpc {
     return getGetReplicasMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<dfs.Dfs.MkdirRequest,
+      dfs.Dfs.MkdirResponse> getMkdirMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "Mkdir",
+      requestType = dfs.Dfs.MkdirRequest.class,
+      responseType = dfs.Dfs.MkdirResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<dfs.Dfs.MkdirRequest,
+      dfs.Dfs.MkdirResponse> getMkdirMethod() {
+    io.grpc.MethodDescriptor<dfs.Dfs.MkdirRequest, dfs.Dfs.MkdirResponse> getMkdirMethod;
+    if ((getMkdirMethod = NameNodeServiceGrpc.getMkdirMethod) == null) {
+      synchronized (NameNodeServiceGrpc.class) {
+        if ((getMkdirMethod = NameNodeServiceGrpc.getMkdirMethod) == null) {
+          NameNodeServiceGrpc.getMkdirMethod = getMkdirMethod =
+              io.grpc.MethodDescriptor.<dfs.Dfs.MkdirRequest, dfs.Dfs.MkdirResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Mkdir"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  dfs.Dfs.MkdirRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  dfs.Dfs.MkdirResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new NameNodeServiceMethodDescriptorSupplier("Mkdir"))
+              .build();
+        }
+      }
+    }
+    return getMkdirMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<dfs.Dfs.RmdirRequest,
+      dfs.Dfs.RmdirResponse> getRmdirMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "Rmdir",
+      requestType = dfs.Dfs.RmdirRequest.class,
+      responseType = dfs.Dfs.RmdirResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<dfs.Dfs.RmdirRequest,
+      dfs.Dfs.RmdirResponse> getRmdirMethod() {
+    io.grpc.MethodDescriptor<dfs.Dfs.RmdirRequest, dfs.Dfs.RmdirResponse> getRmdirMethod;
+    if ((getRmdirMethod = NameNodeServiceGrpc.getRmdirMethod) == null) {
+      synchronized (NameNodeServiceGrpc.class) {
+        if ((getRmdirMethod = NameNodeServiceGrpc.getRmdirMethod) == null) {
+          NameNodeServiceGrpc.getRmdirMethod = getRmdirMethod =
+              io.grpc.MethodDescriptor.<dfs.Dfs.RmdirRequest, dfs.Dfs.RmdirResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Rmdir"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  dfs.Dfs.RmdirRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  dfs.Dfs.RmdirResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new NameNodeServiceMethodDescriptorSupplier("Rmdir"))
+              .build();
+        }
+      }
+    }
+    return getRmdirMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -277,6 +339,20 @@ public final class NameNodeServiceGrpc {
         io.grpc.stub.StreamObserver<dfs.Dfs.ReplicaResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetReplicasMethod(), responseObserver);
     }
+
+    /**
+     */
+    default void mkdir(dfs.Dfs.MkdirRequest request,
+        io.grpc.stub.StreamObserver<dfs.Dfs.MkdirResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getMkdirMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void rmdir(dfs.Dfs.RmdirRequest request,
+        io.grpc.stub.StreamObserver<dfs.Dfs.RmdirResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRmdirMethod(), responseObserver);
+    }
   }
 
   /**
@@ -370,6 +446,22 @@ public final class NameNodeServiceGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetReplicasMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void mkdir(dfs.Dfs.MkdirRequest request,
+        io.grpc.stub.StreamObserver<dfs.Dfs.MkdirResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getMkdirMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void rmdir(dfs.Dfs.RmdirRequest request,
+        io.grpc.stub.StreamObserver<dfs.Dfs.RmdirResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getRmdirMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -441,6 +533,20 @@ public final class NameNodeServiceGrpc {
     public dfs.Dfs.ReplicaResponse getReplicas(dfs.Dfs.ReplicaRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetReplicasMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public dfs.Dfs.MkdirResponse mkdir(dfs.Dfs.MkdirRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getMkdirMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public dfs.Dfs.RmdirResponse rmdir(dfs.Dfs.RmdirRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getRmdirMethod(), getCallOptions(), request);
     }
   }
 
@@ -519,6 +625,22 @@ public final class NameNodeServiceGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetReplicasMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<dfs.Dfs.MkdirResponse> mkdir(
+        dfs.Dfs.MkdirRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getMkdirMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<dfs.Dfs.RmdirResponse> rmdir(
+        dfs.Dfs.RmdirRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getRmdirMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_PUT_FILE = 0;
@@ -526,6 +648,8 @@ public final class NameNodeServiceGrpc {
   private static final int METHODID_LIST_FILES = 2;
   private static final int METHODID_REMOVE_FILE = 3;
   private static final int METHODID_GET_REPLICAS = 4;
+  private static final int METHODID_MKDIR = 5;
+  private static final int METHODID_RMDIR = 6;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -563,6 +687,14 @@ public final class NameNodeServiceGrpc {
         case METHODID_GET_REPLICAS:
           serviceImpl.getReplicas((dfs.Dfs.ReplicaRequest) request,
               (io.grpc.stub.StreamObserver<dfs.Dfs.ReplicaResponse>) responseObserver);
+          break;
+        case METHODID_MKDIR:
+          serviceImpl.mkdir((dfs.Dfs.MkdirRequest) request,
+              (io.grpc.stub.StreamObserver<dfs.Dfs.MkdirResponse>) responseObserver);
+          break;
+        case METHODID_RMDIR:
+          serviceImpl.rmdir((dfs.Dfs.RmdirRequest) request,
+              (io.grpc.stub.StreamObserver<dfs.Dfs.RmdirResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -617,6 +749,20 @@ public final class NameNodeServiceGrpc {
               dfs.Dfs.ReplicaRequest,
               dfs.Dfs.ReplicaResponse>(
                 service, METHODID_GET_REPLICAS)))
+        .addMethod(
+          getMkdirMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              dfs.Dfs.MkdirRequest,
+              dfs.Dfs.MkdirResponse>(
+                service, METHODID_MKDIR)))
+        .addMethod(
+          getRmdirMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              dfs.Dfs.RmdirRequest,
+              dfs.Dfs.RmdirResponse>(
+                service, METHODID_RMDIR)))
         .build();
   }
 
@@ -670,6 +816,8 @@ public final class NameNodeServiceGrpc {
               .addMethod(getListFilesMethod())
               .addMethod(getRemoveFileMethod())
               .addMethod(getGetReplicasMethod())
+              .addMethod(getMkdirMethod())
+              .addMethod(getRmdirMethod())
               .build();
         }
       }
